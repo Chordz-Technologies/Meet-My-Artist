@@ -15,6 +15,14 @@ mat-toolbar {
     align-items: center;
 }
 
+.center-content h2 {
+    font-size: 30px;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 800;
+
+}
+
 .icons {
     display: flex;
     align-items: center;

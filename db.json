@@ -2,21 +2,21 @@
     "artist": [
         {
             "Aid": 1,
-            "Aname": "Akshay Bansode",
+            "Aname": "Arijit Singh",
             "Aemail": "akshay@gmail.com",
             "Owhatsappno": "9876543456",
             "Aaddress": "Uruli Kanchan",
             "Acity": "Pune",
             "Aworkexperience": "5+ years",
-            "Alikes": 5,
+            "Alikes": 500,
             "Awishlist": 5,
-            "Acategory": "Guitarist",
+            "Acategory": "Singer",
             "Asubcategory": "Guitarist",
             "Aspeciality": [
                 "Guitarist",
                 "Singer"
             ],
-            "Aprofilephotos": "image1.jpg",
+            "Aprofilephotos": "./assets/artists/arijit.png",
             "Aphotos": [
                 "img1.jpg",
                 "img2.jpg"
@@ -38,22 +38,60 @@
         },
         {
             "Aid": 2,
-            "Aname": "John Smith",
+            "Aname": "Kapil Sharma",
             "Aemail": "john@gmail.com",
             "Owhatsappno": "8956378593",
             "Aaddress": "FC Road",
             "Acity": "Pune",
             "Aworkexperience": "2 years",
-            "Alikes": 4,
+            "Alikes": 500,
             "Awishlist": 4,
-            "Acategory": "Singer",
+            "Acategory": "Actor",
             "Asubcategory": "Western",
             "Aspeciality": [
                 "Guitarist",
                 "Singer",
                 "Anchoring"
             ],
-            "Aprofilephotos": "image2.jpg",
+            "Aprofilephotos": "./assets/artists/kapil.png",
+            "Aphotos": [
+                "img1.jpg",
+                "img2.jpg"
+            ],
+            "Afblink": "https://www.facebook.com/",
+            "Ainstalink": "https://www.instagram.com/",
+            "Awebsite": "https://www.website.com/",
+            "Aliink1": "videolink1",
+            "Alink2": "videolink2",
+            "Alink3": "videolink3",
+            "Arequirements": [
+                "Dinner",
+                "Music System",
+                "Stay"
+            ],
+            "Adescription": "This is the description",
+            "Aregistrationdate": "20/01/2024",
+            "Asubscriptiondate": "05/02/2024",
+            "Astatus": "Active"
+        },
+        {
+            "Aid": 3,
+            "Aname": "Sarita Dangre",
+            "Aemail": "john@gmail.com",
+            "Owhatsappno": "8956378593",
+            "Aaddress": "FC Road",
+            "Acity": "Pune",
+            "Aworkexperience": "2 years",
+            "Alikes": 500,
+            "Awishlist": 4,
+            "Acategory": "Dancer",
+            "Asubcategory": "Western",
+            "Aspeciality": [
+                "Guitarist",
+                "Singer",
+                "Anchoring"
+            ],
+            "Aprofilephotos": "./assets/artists/sarita.png",
             "Aphotos": [
                 "img1.jpg",
                 "img2.jpg"

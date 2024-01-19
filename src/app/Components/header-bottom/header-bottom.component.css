@@ -13,7 +13,7 @@
     line-height: normal;
 }
 
-.navbar-nav .nav-item:hover {
+.navbar-nav .nav-item .nav-link:hover {
     color: #F0E945;
 }
 
