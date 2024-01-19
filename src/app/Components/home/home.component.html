@@ -30,7 +30,7 @@
             <button type="button" class="btn cat-btn" style="float: right;">View More</button>
         </div>
     </div>
-    <div class="row pt-5 pb-5">
+    <div class="row pt-5">
         <div class="col-md-2 col-4">
             <div class="circle">
                 <img src="./assets/categories/cat1.png" alt="Image 1">
@@ -65,10 +65,10 @@
             <div class="circle">
                 <img src="./assets/categories/cat6.png" alt="Image 1">
             </div>
-            <h3 class="circle-heading">Sound System</h3>
+            <h3 class="circle-heading">Sound System</h3><br>
         </div>
-    </div>
-    <div class="row pb-3">
+    <!-- </div> -->
+    <!-- <div class="row pb-3"> -->
         <div class="col-md-2 col-4">
             <div class="circle">
                 <img src="./assets/categories/cat7.png" alt="Image 1">
@@ -109,7 +109,7 @@
 </div>
 
 <div class="container">
-    <div class="row pb-5">
+    <div class="row">
         <div class="col-md-12 text-center">
             <h1>--- Looking for this also ---</h1>
         </div>
@@ -197,14 +197,13 @@
                 <div class="card-data">
                     <img [src]="artist.Aprofilephotos" class="card-img-top" alt="Image Alt Text">
                     <h4>{{ artist.Aname }}</h4>
-                    <p class="text-center">{{ artist.Acategory }}</p>
-                    <p class="text-center">{{ artist.Alikes }} <mat-icon>thumb_up</mat-icon></p>
+                    <p class="text-center" style="font-size: 20px;">{{ artist.Acategory }}</p>
+                    <p class="text-center"><b>{{ artist.Alikes }} </b><mat-icon style="font-size: 28px;">thumb_up</mat-icon></p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <div class="container pt-5">
     <div class="card mb-3">
@@ -213,7 +212,7 @@
                 <img src="./assets/reg-img1.png" class="card-img">
             </div>
             <div class="col-md-6">
-                <div class="card-body">
+                <div class="card-body" style="padding-left: 60px;">
                     <h3 class="card-title">Benefits For Organizer</h3><br>
                     <p class="card-text">Here are some benefits that organizers may find appealing when registering
                         on
@@ -233,7 +232,7 @@
 
         <div class="row no-gutters pt-5">
             <div class="col-md-6">
-                <div class="card-body">
+                <div class="card-body" style="padding-left: 60px;">
                     <h3 class="card-title">Benefits For Artists</h3><br>
                     <p class="card-text">Here are some benefits that organizers may find appealing when registering
                         on
@@ -269,6 +268,21 @@
         </div> -->
         <div class="col-md-6 col-6">
             <button type="button" class="btn cat-btn" style="float: right;">View More</button>
+        </div>
+    </div>
+    <div class="row pt-5 pb-5">
+        <div class="col-lg-3 col-md-4 col-sm-12 " *ngFor="let product of products | slice:0:4">
+            <div class="card my-3 pt-2" id="product-card">
+                <img src={{product.Pimages}} class="card-img-top" alt="product-image">
+                <div id="product-body">
+                    <h2 class="">{{product.Pbrand}}</h2>
+                    <p class="">{{product.Pmodel | slice:0:70 }}...</p>
+                    <!-- <div class="buttons pt-5"> -->
+                        <span class="mx-2" style="font-size: large; font-weight: 600;">₹ {{product.Pprice}}</span>
+                        <button href="#" class="btn mx-2" id="buy-btn">Buy Now</button>
+                    <!-- </div> -->
+                </div>
+            </div>
         </div>
     </div>
 

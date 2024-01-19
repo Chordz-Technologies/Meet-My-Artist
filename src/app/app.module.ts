@@ -17,6 +17,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductsComponent } from './Components/products/products.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     HeaderTopComponent,
     HeaderBottomComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

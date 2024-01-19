@@ -12,4 +12,8 @@ export class ServiceService {
   getArtistDetails(): Observable<any> {
     return this.http.get<any>(`http://localhost:3000/artist`);
   }
+
+  getProductDetails(): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/product`);
+  }
 }
