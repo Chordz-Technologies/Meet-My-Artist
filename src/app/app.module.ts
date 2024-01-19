@@ -16,6 +16,9 @@ import { HomeComponent } from './Components/home/home.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductsComponent } from './Components/products/products.component';
+import { HttpClientModule} from '@angular/common/http';
+import { TextlengthPipe } from './products-textlength/textlength.pipe'
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     HeaderTopComponent,
     HeaderBottomComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    ProductsComponent,
+    TextlengthPipe
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,8 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     MatMenuModule,
     NgbCarouselModule,
     NgbDropdownModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
