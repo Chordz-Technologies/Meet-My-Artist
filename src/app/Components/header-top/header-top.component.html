@@ -1,24 +1,5 @@
 <mat-toolbar color="white">
-    <div>
-        <img src="./assets/logo.png" alt="Logo" class="logo">
-    </div>
-
-    <div class="center-content">
-        <!-- <h1 style="color: black; font-size:35px; font-family: Roboto">
-            <b>FIND MY ARTIST</b>
-        </h1> -->
-        <!-- <div class="search-container">
-            <input matInput placeholder="Search" class="search-input">
-            <button mat-icon-button class="search-icon">
-                <mat-icon><b>search</b></mat-icon>
-            </button>
-        </div> -->
-    </div>
-
     <div class="icons">
-        <!-- <button mat-icon-button>
-            <mat-icon><b>search</b></mat-icon>
-        </button> -->
         <button mat-icon-button>
             <mat-icon>notifications</mat-icon>
         </button>
@@ -28,5 +9,20 @@
         <button mat-icon-button>
             <mat-icon>person</mat-icon>
         </button>
+    </div>
+    <div class="center-content">
+        <img src="./assets/logo.png" alt="Logo" class="logo">
+    </div>
+    <div class="navbar-nav ml-auto">
+        <div ngbDropdown>
+            <button class="btn btn-outline-light" id="dropdownBasic1" ngbDropdownToggle>
+                Register Here
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="menu">
+                <button class="btn" ngbDropdownItem>Organizer</button>
+                <button class="btn" ngbDropdownItem>Artist</button>
+                <button class="btn" ngbDropdownItem>User</button>
+            </div>
+        </div>
     </div>
 </mat-toolbar>

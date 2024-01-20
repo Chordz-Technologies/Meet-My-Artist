@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg">
     <div class="container">
         <button class="navbar-toggler" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,19 @@
             </ul>
         </div>
 
-        <div class="navbar-nav ml-auto">
+        <!-- <div class="center-content"> -->
+            <!-- <h1 style="color: black; font-size:35px; font-family: Roboto">
+                <b>FIND MY ARTIST</b>
+            </h1> -->
+             <div class="search-container">
+                <input matInput placeholder="Search" class="search-input">
+                <button mat-icon-button class="search-icon">
+                    <mat-icon><b>search</b></mat-icon>
+                </button>
+            </div>
+        <!-- </div> -->
+
+        <!-- <div class="navbar-nav ml-auto">
             <div ngbDropdown>
                 <button class="btn btn-outline-light" id="dropdownBasic1" ngbDropdownToggle>
                     Register Here
@@ -33,6 +45,6 @@
                     <button ngbDropdownItem>As User</button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </nav>

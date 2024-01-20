@@ -2,8 +2,8 @@
     background-color: #40ADEA;
 }
 
-.navbar-nav .nav-item .nav-link{
-    padding: 0 50px 0 50px;
+.navbar-nav .nav-item .nav-link {
+    padding: 0 30px 0 30px;
     color: white;
     text-align: center;
     font-family: Roboto;
@@ -17,20 +17,24 @@
     color: #F0E945;
 }
 
-.btn {
-    padding: 10px 40px 10px 40px;
+.navbar-collapse {
+    flex: 0;
 }
 
-.mat-toolbar {
+/* .btn {
+    padding: 10px 40px 10px 40px;
+} */
+
+/* .mat-toolbar {
     background-color: #40ADEA;
     color: white;
-}
+} */
 
-.mat-button {
+/* .mat-button {
     color: white;
-}
+} */
 
-button {
+/* button {
     border-radius: 10px;
     background: #F0E945;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -42,9 +46,9 @@ button {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-}
+} */
 
-.menu {
+/* .menu {
     background: transparent;
     border: none;
     padding: 5px 20px 5px 20px;
@@ -58,8 +62,36 @@ button {
 
 .menu button:hover {
     background: #F0E945;
+} */
+
+/* .menu button:active {
+    color: black;
+} */
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 30%;
 }
 
-.menu button:active {
-    color: black;
+.search-input {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid black;
+    padding: 5px;
+    padding-left: 15px;
+    background: rgb(240, 240, 240);
+}
+
+.search-icon {
+    position: absolute;
+    right: 8px;
+    color: #40ADEA;
+}
+
+@media screen and (max-width: 600px) {
+    .search-container {
+        width: 70%;
+    }
 }

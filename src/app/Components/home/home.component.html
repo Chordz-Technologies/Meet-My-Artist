@@ -67,8 +67,8 @@
             </div>
             <h3 class="circle-heading">Sound System</h3><br>
         </div>
-    <!-- </div> -->
-    <!-- <div class="row pb-3"> -->
+        <!-- </div> -->
+        <!-- <div class="row pb-3"> -->
         <div class="col-md-2 col-4">
             <div class="circle">
                 <img src="./assets/categories/cat7.png" alt="Image 1">
@@ -114,7 +114,7 @@
             <h1>--- Looking for this also ---</h1>
         </div>
     </div>
-    <div class="row">
+    <div class="row pt-5">
         <div class="col-md-3">
             <div class="card business-card shadow p-3 mb-5 bg-white rounded">
                 <div class="card-data">
@@ -198,7 +198,8 @@
                     <img [src]="artist.Aprofilephotos" class="card-img-top" alt="Image Alt Text">
                     <h4>{{ artist.Aname }}</h4>
                     <p class="text-center" style="font-size: 20px;">{{ artist.Acategory }}</p>
-                    <p class="text-center"><b>{{ artist.Alikes }} </b><mat-icon style="font-size: 28px;">thumb_up</mat-icon></p>
+                    <p class="text-center"><b>{{ artist.Alikes }} </b><mat-icon
+                            style="font-size: 28px;">thumb_up</mat-icon></p>
                 </div>
             </div>
         </div>
@@ -267,7 +268,7 @@
             </b>
         </div> -->
         <div class="col-md-6 col-6">
-            <button type="button" class="btn cat-btn" style="float: right;">View More</button>
+            <button type="button" class="btn cat-btn" style="float: right;" routerLink="products">View More</button>
         </div>
     </div>
     <div class="row pt-5 pb-5">
@@ -278,8 +279,8 @@
                     <h2 class="">{{product.Pbrand}}</h2>
                     <p class="">{{product.Pmodel | slice:0:70 }}...</p>
                     <!-- <div class="buttons pt-5"> -->
-                        <span class="mx-2" style="font-size: large; font-weight: 600;">₹ {{product.Pprice}}</span>
-                        <button href="#" class="btn mx-2" id="buy-btn">Buy Now</button>
+                    <span class="mx-2" style="font-size: large; font-weight: 600;">₹ {{product.Pprice}}</span>
+                    <button href="#" class="btn mx-2" id="buy-btn">Buy Now</button>
                     <!-- </div> -->
                 </div>
             </div>

@@ -1,0 +1,45 @@
+<div class="row pt-5 pb-5">
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <ngb-carousel [showNavigationIndicators]="false" [pauseOnHover]="false" [pauseOnFocus]="false">
+            <!-- Carousel 1 slides go here -->
+            <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                    <img src="./assets/carousal/event1.jpg" alt="Random first slide" />
+                </div>
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                    <img src="./assets/carousal/event2.jpg" alt="Random second slide" />
+                </div>
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                    <img src="./assets/carousal/event3.jpg" alt="Random third slide" />
+                </div>
+            </ng-template>
+            <!-- Add more slides for Carousel 1 as needed -->
+        </ngb-carousel>
+    </div>
+
+    <div class="col-md-6" id="carousal">
+        <ngb-carousel [showNavigationIndicators]="false" [pauseOnHover]="false" [pauseOnFocus]="false">
+            <!-- Carousel 2 slides go here -->
+            <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                    <img src="./assets/carousal/event3.jpg" alt="Random first slide" />
+                </div>
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                    <img src="./assets/carousal/event1.jpg" alt="Random second slide" />
+                </div>
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                    <img src="./assets/carousal/event2.jpg" alt="Random third slide" />
+                </div>
+            </ng-template>
+            <!-- Add more slides for Carousel 2 as needed -->
+        </ngb-carousel>
+    </div>
+</div>
