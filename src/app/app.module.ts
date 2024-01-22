@@ -18,7 +18,9 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsComponent } from './Components/products/products.component';
 import { HttpClientModule} from '@angular/common/http';
-import { TextlengthPipe } from './products-textlength/textlength.pipe'
+import { TextlengthPipe } from './products-textlength/textlength.pipe';
+import { EventComponent } from './event/event.component';
+import { ArtistHomePageComponent } from './artist-home-page/artist-home-page.component'
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { TextlengthPipe } from './products-textlength/textlength.pipe'
     FooterComponent,
     HomeComponent,
     ProductsComponent,
-    TextlengthPipe
+    TextlengthPipe,
+    EventComponent,
+    ArtistHomePageComponent
   ],
   imports: [
     BrowserModule,

@@ -8,13 +8,23 @@
             "Aaddress": "Uruli Kanchan",
             "Acity": "Pune",
             "Aworkexperience": "5+ years",
-            "Alikes": 5,
-            "Awishlist": 5,
+            "Alikes": [
+                "1",
+                "1001"
+            ],
+            "Awishlist": [
+                "1",
+                "1001"
+            ],
             "Acategory": "Guitarist",
             "Asubcategory": "Guitarist",
             "Aspeciality": [
                 "Guitarist",
                 "Singer"
+            ],
+            "Abookeddate": [
+                "12/02/2024",
+                "14/02/2024"
             ],
             "Aprofilephotos": "image1.jpg",
             "Aphotos": [
@@ -38,7 +48,7 @@
         },
         {
             "Aid": 2,
-            "Aname": "John Smith",
+            "Aname": "Abhishek Chobe",
             "Aemail": "john@gmail.com",
             "Owhatsappno": "8956378593",
             "Aaddress": "FC Road",
@@ -46,12 +56,16 @@
             "Aworkexperience": "2 years",
             "Alikes": 4,
             "Awishlist": 4,
-            "Acategory": "Singer",
+            "Acategory": "Drummer",
             "Asubcategory": "Western",
             "Aspeciality": [
                 "Guitarist",
                 "Singer",
-                "Anchoring"
+                "Drummer"
+            ],
+            "Abookeddate": [
+                "16/02/2024",
+                "18/02/2024"
             ],
             "Aprofilephotos": "image2.jpg",
             "Aphotos": [
@@ -144,10 +158,14 @@
     "events": [
         {
             "Eid": 1,
+            "Oid": 2,
+            "Obusinessname": "ABC Organizer",
             "Ename": "Musical Night",
             "Elocation": "Pune",
             "Edate": "22/01/2024",
-            "Etime": "7PM",
+            "Etime": "5PM",
+            "Eposter":"assets/Events posters/event poster.jpeg",
+            "Erequirement":0,
             "Artistequipwith": [
                 "Music System",
                 "Guitar"
@@ -163,10 +181,107 @@
         },
         {
             "Eid": 2,
-            "Ename": "Lohri Fest",
+            "Oid": 3,
+            "Obusinessname": "BCD Organizer",
+            "Ename": "Dance Night",
+            "Elocation": "Nashik",
+            "Edate": "30/01/2024",
+            "Etime": "7PM",
+            "Eposter":"assets/Events posters/event poster.jpeg",
+            "Erequirement":1,
+            "Artistequipwith": [
+                "Music System",
+                "Guitar"
+            ],
+            "Facilitiesforartist": [
+                "Dinner",
+                "Travel Allowance"
+            ],
+            "Orequirement": [
+                "Guitarist",
+                "Anchor"
+            ]
+        },
+        {
+            "Eid": 3,
+            "Oid": 4,
+            "Obusinessname": "Kp production",
+            "Ename": "Musical Night",
+            "Elocation": "Mumbai",
+            "Edate": "03/02/2024",
+            "Etime": "4PM",
+            "Eposter":"assets/Events posters/event poster.jpeg",
+            "Erequirement":1,
+            "Artistequipwith": [
+                "Music System",
+                "Guitar"
+            ],
+            "Facilitiesforartist": [
+                "Dinner",
+                "Travel Allowance"
+            ],
+            "Orequirement": [
+                "Guitarist",
+                "Anchor"
+            ]
+        },
+        {
+            "Eid": 4,
+            "Oid": 5,
+            "Obusinessname": "Random Organizer",
+            "Ename": "Sangit festival",
+            "Elocation": "Nagpur",
+            "Edate": "14/02/2024",
+            "Etime": "2PM",
+            "Eposter":"assets/Events posters/event poster.jpeg",
+            "Erequirement":0,
+            "Artistequipwith": [
+                "Music System",
+                "Guitar"
+            ],
+            "Facilitiesforartist": [
+                "Dinner",
+                "Travel Allowance / Arrangements",
+                "Stay"
+            ],
+            "Orequirement": [
+                "Guitarist",
+                "Anchor"
+            ]
+        },
+        {
+            "Eid": 5,
+            "Oid": 6,
+            "Obusinessname": "Sant agro turism",
+            "Ename": "Musical Night",
+            "Elocation": "Shirur",
+            "Edate": "18/02/2024",
+            "Etime": "10AM",
+            "Eposter":"assets/Events posters/event poster.jpeg",
+            "Erequirement":1,
+            "Artistequipwith": [
+                "Music System",
+                "Guitar"
+            ],
+            "Facilitiesforartist": [
+                "Dinner",
+                "Travel Allowance"
+            ],
+            "Orequirement": [
+                "Guitarist",
+                "Anchor"
+            ]
+        },
+        {
+            "Eid": 6,
+            "Oid": 7,
+            "Obusinessname": "prajwal import export",
+            "Ename": "Musical Night",
             "Elocation": "Pune",
-            "Edate": "07/02/2024",
-            "Etime": "5PM-8PM",
+            "Edate": "22/02/2024",
+            "Etime": "7PM",
+            "Eposter":"assets/Events posters/event poster.jpeg",
+            "Erequirement":1,
             "Artistequipwith": [
                 "Music System",
                 "Guitar"
