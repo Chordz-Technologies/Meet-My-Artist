@@ -19,6 +19,20 @@
 
 a {
     text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: blue;
+}
+
+a.active {
+    color: blue;
+}
+
+.copyright {
+    color: blue;
+    cursor: pointer;
 }
 
 .text-center p {

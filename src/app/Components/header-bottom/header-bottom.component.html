@@ -4,47 +4,48 @@
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" routerLink="">Home</a>
+                    <a class="nav-link" routerLink="" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact:true}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="artists">Artists</a>
+                    <a class="nav-link" routerLink="artists" routerLinkActive="active">Artists</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="events">Events</a>
+                    <a class="nav-link" routerLink="events" routerLinkActive="active">Events</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="products">Products</a>
+                    <a class="nav-link" routerLink="products" routerLinkActive="active">Products</a>
                 </li>
             </ul>
         </div>
-
-        <!-- <div class="center-content"> -->
-            <!-- <h1 style="color: black; font-size:35px; font-family: Roboto">
-                <b>FIND MY ARTIST</b>
-            </h1> -->
-             <div class="search-container">
+        <div>
+            <div class="search-container">
                 <input matInput placeholder="Search" class="search-input">
                 <button mat-icon-button class="search-icon">
                     <mat-icon><b>search</b></mat-icon>
                 </button>
             </div>
-        <!-- </div> -->
+        </div>
 
-        <!-- <div class="navbar-nav ml-auto">
-            <div ngbDropdown>
-                <button class="btn btn-outline-light" id="dropdownBasic1" ngbDropdownToggle>
-                    Register Here
-                </button>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="menu">
-                    <button ngbDropdownItem>As Organizer</button>
-                    <button ngbDropdownItem>As Artist</button>
-                    <button ngbDropdownItem>As User</button>
+        <div class="navbar-nav ml-auto" style="float: right;">
+            <ng-container *ngIf="!isUserRegistered; else registrationSection">
+                <div ngbDropdown>
+                    <button class="btn btn-outline-light" id="dropdownBasic1" ngbDropdownToggle>
+                        Register Here
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="menu">
+                        <button class="btn" ngbDropdownItem routerLink="organizerRegistration">Organizer</button>
+                        <button class="btn" ngbDropdownItem routerLink="artistRegistration">Artist</button>
+                        <button class="btn" ngbDropdownItem routerLink="userRegistration">User</button>
+                    </div>
                 </div>
-            </div>
-        </div> -->
+            </ng-container>
+            <ng-template #registrationSection>
+                <button class="btn" routerLink="eventRegistration">Create Event</button>
+            </ng-template>
+        </div>
     </div>
 </nav>

@@ -13,12 +13,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
-import { HomeComponent } from './Components/home/home.component';
+import { HomePageComponent } from './Components/home-page/home-page.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
-import { ProductsComponent } from './Components/products/products.component';
-import { EventsComponent } from './Components/events/events.component';
+import { ProductsPageComponent } from './Components/products-page/products-page.component';
+import { EventsPageComponent } from './Components/events-page/events-page.component';
+import { OrganizerRegistrationComponent } from './Components/organizer-registration/organizer-registration.component';
+import { ArtistRegistrationComponent } from './Components/artist-registration/artist-registration.component';
+import { UserRegistrationComponent } from './Components/user-registration/user-registration.component';
+import { ArtistsPageComponent } from './Components/artists-page/artists-page.component';
+import { EventRegistrationComponent } from './Components/event-registration/event-registration.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,9 +32,14 @@ import { EventsComponent } from './Components/events/events.component';
     HeaderTopComponent,
     HeaderBottomComponent,
     FooterComponent,
-    HomeComponent,
-    ProductsComponent,
-    EventsComponent
+    HomePageComponent,
+    ProductsPageComponent,
+    EventsPageComponent,
+    OrganizerRegistrationComponent,
+    ArtistRegistrationComponent,
+    UserRegistrationComponent,
+    ArtistsPageComponent,
+    EventRegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +54,8 @@ import { EventsComponent } from './Components/events/events.component';
     MatMenuModule,
     NgbCarouselModule,
     NgbDropdownModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

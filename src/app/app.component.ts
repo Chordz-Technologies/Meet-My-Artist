@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Find_My_Artist';
+  
+  onActive() {
+    window.scroll(0, 0);
+  }
 }

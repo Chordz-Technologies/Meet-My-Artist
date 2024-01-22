@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ServiceService } from 'src/app/Services/service.service';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  selector: 'app-artists-page',
+  templateUrl: './artists-page.component.html',
+  styleUrls: ['./artists-page.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ArtistsPageComponent {
   products: any[] = [];
 
   constructor(private service: ServiceService) { }
@@ -25,4 +25,5 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
+
 }

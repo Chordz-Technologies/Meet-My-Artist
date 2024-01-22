@@ -1,5 +1,5 @@
 /* mat-toolbar { */
-    /* color: white;
+/* color: white;
     height: 80px; */
 /* } */
 
@@ -33,6 +33,7 @@
 .icons button:hover {
     color: #F0E945;
 }
+
 .navbar-nav {
     padding-right: 50px;
 }
@@ -84,7 +85,7 @@
 .menu button {
     background: rgb(226, 227, 227);
     margin-bottom: 3px;
-    padding: 10px 30px 10px 30px;
+    padding: 10px 40px 10px 35px;
 }
 
 .menu button:hover {
@@ -95,8 +96,49 @@
     color: black;
 }
 
-@media screen and (max-width: 600px) {
-    /* .search-container {
-        display: none;
-    } */
+.mobile {
+    height: 140px;
 }
+
+@media (max-width: 600px) {
+
+    /* Mobile view styles */
+    .desktop {
+        display: none;
+    }
+
+    .icons {
+        padding-left: 0;
+    }
+
+    .navbar-nav {
+        padding-right: 0;
+    }
+
+    .btn {
+        padding: 10px 20px 10px 20px;
+    }
+
+    .menu {
+        padding: 0;
+    }
+}
+
+@media (min-width: 601px) {
+
+    /* Desktop or Laptop view styles */
+    .mobile {
+        display: none;
+    }
+}
+
+
+/* @media screen and (max-width: 600px) {
+    mat-toolbar {
+        height: 150px;
+    }
+
+    .icons {
+        padding-left: 0;
+    }
+} */
