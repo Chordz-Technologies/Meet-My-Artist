@@ -25,6 +25,14 @@ import { UserRegistrationComponent } from './Components/user-registration/user-r
 import { ArtistsPageComponent } from './Components/artists-page/artists-page.component';
 import { EventRegistrationComponent } from './Components/event-registration/event-registration.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './Components/login/login.component';
+import { NotificationsPageComponent } from './Components/notifications-page/notifications-page.component';
+import { WishlistPageComponent } from './Components/wishlist-page/wishlist-page.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTreeModule } from '@angular/material/tree';
+import { ArtistProfilePageComponent } from './Components/artist-profile-page/artist-profile-page.component';
+// import { FlatTreeControl } from '@angular/cdk/tree';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +47,11 @@ import { FormsModule } from '@angular/forms';
     ArtistRegistrationComponent,
     UserRegistrationComponent,
     ArtistsPageComponent,
-    EventRegistrationComponent
+    EventRegistrationComponent,
+    LoginComponent,
+    NotificationsPageComponent,
+    WishlistPageComponent,
+    ArtistProfilePageComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +67,10 @@ import { FormsModule } from '@angular/forms';
     NgbCarouselModule,
     NgbDropdownModule,
     NgbCollapseModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule,
+    MatTreeModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

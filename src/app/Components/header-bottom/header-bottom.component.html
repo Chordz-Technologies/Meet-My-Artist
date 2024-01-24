@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse">
-            <ul class="navbar-nav mx-auto">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact:true}">Home</a>
@@ -21,20 +21,26 @@
                 </li>
             </ul>
         </div>
-        <div>
-            <div class="search-container">
-                <input matInput placeholder="Search" class="search-input">
-                <button mat-icon-button class="search-icon">
-                    <mat-icon><b>search</b></mat-icon>
-                </button>
-            </div>
+
+        <div class="search-container">
+            <input matInput placeholder="Search" class="search-input">
+            <button mat-icon-button class="search-icon">
+                <mat-icon><b>search</b></mat-icon>
+            </button>
         </div>
 
-        <div class="navbar-nav ml-auto" style="float: right;">
+
+        <div class="navbar-nav ml-auto">
             <ng-container *ngIf="!isUserRegistered; else registrationSection">
                 <div ngbDropdown>
-                    <button class="btn btn-outline-light" id="dropdownBasic1" ngbDropdownToggle>
-                        Register Here
+                    <button class="btn btn-outline-light" id="desktop" ngbDropdownToggle>
+                        Login Here
+                    </button>
+                    <button class="btn btn-outline-light" id="mobile" ngbDropdownToggle>
+                        <!-- <button mat-icon-button> -->
+                            <mat-icon>person</mat-icon>
+                        <!-- </button> -->
+                        <!-- Register Here -->
                     </button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="menu">
                         <button class="btn" ngbDropdownItem routerLink="organizerRegistration">Organizer</button>

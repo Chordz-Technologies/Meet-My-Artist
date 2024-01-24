@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServiceService } from 'src/app/Services/service.service';
 
 @Component({
   selector: 'app-events-page',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class EventsPageComponent {
 
+  eventdata: any[] = []
+  constructor(private service: ServiceService) { }
+  ngOnInit(): void {
+    this.service.getEventDetails().subscribe({
+      next: (res: any) => {
+        this.eventdata = res.filter((item: { Erequirement: number; }) => item.Erequirement === 1);
+      },
+      error: (err: any) => {
+        alert(err);
+      }
+    });
+  }
 }

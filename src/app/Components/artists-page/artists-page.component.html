@@ -1,3 +1,111 @@
+<div class="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="pt-4">
+                    <h2>Filters</h2>
+                    <hr />
+                    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                        <mat-tree-node *matTreeNodeDef="let node">
+                            <button mat-icon-button disabled></button>
+                            {{ node.name }}
+                        </mat-tree-node>
+
+                        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+                            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+                                <mat-icon class="mat-icon-rtl-mirror">
+                                    {{
+                                    treeControl.isExpanded(node)
+                                    ? "expand_more"
+                                    : "chevron_right"
+                                    }}
+                                </mat-icon>
+                            </button>
+                            {{ node.name }}
+                        </mat-tree-node>
+                    </mat-tree>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="container pt-3">
+                    <section class="vh-50 mt-3">
+                        <div class="row justify-content-center align-items-center h-50">
+                            <div class="col-12 col-md-10 col-xl-10">
+                                <div *ngFor="let artist of artists" class="mb-3">
+                                    <div class="card shadow p-3 mb-3 bg-white rounded"
+                                        (click)="navigateToProfile(artist)">
+                                        <div class="card-body p-1 d-md-flex text-center text-md-left">
+                                            <div class="ms-md-5 my-2 d-flex flex-column">
+                                                <img src="{{ artist.Aprofilephotos }}" alt="Generic placeholder image"
+                                                    class="img-fluid my-4 mb-1 rounded-circle mx-auto"
+                                                    style="width: 150px; z-index: 1" />
+                                                <button mat-button class="text-center">
+                                                    <span><b>{{ artist.Alikes }} </b>
+                                                        <i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
+
+                                                </button>
+                                            </div>
+                                            <div class="mx-md-5 mt-5">
+                                                <h2 class="mb-3 mt-4">{{ artist.Aname }}</h2>
+                                                <p>{{ artist.Acategory }}</p>
+                                                <p>{{ artist.Aaddress }}</p>
+                                                <p>Experience: {{ artist.Aworkexperience }}</p>
+                                            </div>
+                                            <div class="profile-icons ms-auto ms-md-6 mt-4">
+                                                <button mat-button>
+                                                    <i class="far fa-heart" style="font-size: 20px;"></i>
+                                                </button>
+                                                <div class="social-links">
+                                                    <a class="btn rounded-circle bg-primary text-white me-1"
+                                                        href="{{ artist.Afblink }}" target="_blank"><i
+                                                            class="fab fa-facebook-f"></i></a>
+                                                    <a class="btn btn-sm rounded-circle text-white me-1"
+                                                        style="background: linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);"
+                                                        href="{{ artist.Afblink }}" target="_blank"><i
+                                                            class="fab fa-instagram"></i></a>
+                                                    <a class="btn btn-sm rounded-circle text-white bg-primary me-1"
+                                                        href=""><i class="fab fa-linkedin-in"></i></a>
+                                                </div>
+                                                <p>
+                                                    <a href="https://wa.me/{{ artist.Owhatsappno }}" target="_blank"
+                                                        class="btn border border-secondary bg-white py-2 px-5 mt-3">
+                                                        <i class="fab fa-whatsapp"
+                                                            style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
+                                                        Book Now</a>
+                                                </p>
+                                                <p>
+                                                    <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a
+                                                        href="{{ artist.Awebsite }}" target="_blank"
+                                                        class="text-decoration-none py-3 px-2 mt-3">{{
+                                                        artist.Awebsite }}</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="row justify-content-center mt-3">
+                    <div class="col-12 col-md-10 col-xl-10 text-center">
+                        <mat-paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons></mat-paginator>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="d-flex justify-content-center mt-4">
+          <mat-paginator
+            [length]="100"
+            [pageSize]="10"
+            [pageSizeOptions]="[5, 10, 25, 100]"
+            aria-label="Select page"
+          >
+          </mat-paginator>
+        </div> -->
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-12 text-center">

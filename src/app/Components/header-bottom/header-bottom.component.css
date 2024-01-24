@@ -2,10 +2,6 @@
     background-color: #40ADEA;
 }
 
-.navbar .container {
-    justify-content: flex-start;
-}
-
 .navbar-nav .nav-item .nav-link {
     padding: 0 30px 0 30px;
     color: white;
@@ -81,23 +77,23 @@
     position: relative;
     display: flex;
     align-items: center;
-    width: 250%;
+    width: 40%;
     /* justify-content: flex-start; */
     /* padding-right: 10px; */
 }
 
 .search-input {
-    width: 100%;
+    width: 90%;
     border-radius: 20px;
     border: 1px solid black;
     padding: 5px;
     padding-left: 15px;
-    background: rgb(240, 240, 240);
+    background: rgb(255, 255, 255);
 }
 
 .search-icon {
     position: absolute;
-    right: 5px;
+    right: 50px;
     color: #40ADEA;
 }
 
@@ -114,16 +110,87 @@
     font-weight: 700;
     line-height: normal;
     padding: 10px 40px 10px 40px;
-    /* justify-content:flex-end; */
 }
+
+.menu {
+    background: transparent;
+    border: none;
+    padding: 5px 30px 5px 30px;
+}
+
+.menu button {
+    background: rgb(226, 227, 227);
+    margin-bottom: 3px;
+    padding: 10px 25px 10px 30px;
+}
+
+.menu button:hover {
+    background: #F0E945;
+}
+
+.menu button:active {
+    color: black;
+}
+
 
 @media screen and (max-width: 600px) {
     .search-container {
-        width: 70%;
-        padding-right: 0;
+        width: 100%;
+        /* padding-right: 0; */
+    }
+
+    .search-input {
+        width: 95%;
+    }
+    .navbar-toggler {
+        padding: 1px;
+    }
+
+    .navbar .container {
+        flex-wrap: nowrap;
+    }
+
+    .btn {
+        padding: 1px;
+    }
+
+    .search-container {
+        margin-left: 10px;
     }
 
     .search-icon {
-        right: 2px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    /* Mobile view styles */
+    #desktop {
+        display: none;
+    }
+
+    /* .icons {
+        padding-left: 0;
+    }
+
+    .navbar-nav {
+        padding-right: 0;
+    } */
+
+    /* .btn {
+        padding: 10px 20px 10px 20px;
+    }
+
+    .menu {
+        padding: 0;
+    } */
+}
+
+@media (min-width: 601px) {
+
+    /* Desktop or Laptop view styles */
+    #mobile {
+        display: none;
     }
 }

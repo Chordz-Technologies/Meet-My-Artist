@@ -1,18 +1,26 @@
 <mat-toolbar color="white" class="desktop">
-    <!-- <div class="icons">
-        <button mat-icon-button>
-            <mat-icon>notifications</mat-icon>
-        </button>
-        <button mat-icon-button>
-            <mat-icon>favorite</mat-icon>
-        </button>
-        <button mat-icon-button>
-            <mat-icon>person</mat-icon>
-        </button>
-    </div> -->
+
     <div class="center-content">
         <img src="./assets/logo.png" alt="Logo" class="logo">
     </div>
+
+    <ng-container *ngIf="!isUserRegistered; else registrationSection">
+
+    </ng-container>
+
+    <ng-template #registrationSection>
+        <div class="icons">
+            <button mat-icon-button routerLink="notifications">
+                <mat-icon>notifications</mat-icon>
+            </button>
+            <button mat-icon-button routerLink="wishlist">
+                <mat-icon>favorite</mat-icon>
+            </button>
+            <button mat-icon-button>
+                <mat-icon>person</mat-icon>
+            </button>
+        </div>
+    </ng-template>
     <!-- <div class="navbar-nav ml-auto">
         <ng-container *ngIf="!isUserRegistered; else registrationSection">
             <div ngbDropdown>
@@ -34,11 +42,12 @@
 </mat-toolbar>
 
 <mat-toolbar color="white" class="mobile">
-    <div class="row">
-        <div class="col-md-12 center-content">
-            <img src="./assets/logo.png" alt="Logo" class="logo">
-        </div><br><br><br>
-        <div class="col-6">
+    <!-- <div class="row"> -->
+    <div class="center-content">
+        <img src="./assets/logo.png" alt="Logo" class="logo">
+    </div>
+    <!-- <br><br><br> -->
+    <!-- <div class="col-6">
             <div class="icons">
                 <button mat-icon-button>
                     <mat-icon>notifications</mat-icon>
@@ -50,8 +59,8 @@
                     <mat-icon>person</mat-icon>
                 </button>
             </div>
-        </div>
-        <div class="col-6">
+        </div> -->
+    <!-- <div class="col-6">
             <div class="navbar-nav ml-auto">
                 <ng-container *ngIf="!isUserRegistered; else registrationSection">
                     <div ngbDropdown>
@@ -70,6 +79,6 @@
                     <button class="btn" routerLink="eventRegistration">Create Event</button>
                 </ng-template>
             </div>
-        </div><br><br>
-    </div>
+        </div><br><br> -->
+    <!-- </div> -->
 </mat-toolbar>

@@ -18,10 +18,21 @@ h1 {
     line-height: normal;
 }
 
+h2 {
+    color: #1E1E1E;
+    font-family: Roboto;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-left: 20px;
+}
+
 .card {
-    padding: 60px 0 50px 0;
+    /* padding: 60px 0 50px 0; */
     border-radius: 20px;
     background: rgba(203, 228, 242, 0.48);
+    cursor: pointer;
 }
 
 .card-data img {
@@ -56,8 +67,22 @@ h4 {
     padding: 10px 30px 10px 30px;
 }
 
+.profile-icons {
+    padding-right: 20px;
+}
+
+.social-links a {
+    padding: 8px;
+    height: 40px;
+    width: 40px;
+}
+
 .container {
     padding-top: 100px;
+}
+
+mat-tree-node {
+    padding-left: 1px;
 }
 
 #product-card {
@@ -114,5 +139,8 @@ h4 {
 
     #product-card p {
         height: none;
+    }
+    .profile-icons {
+        padding-right: 0;
     }
 }

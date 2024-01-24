@@ -182,10 +182,14 @@
     "events": [
         {
             "Eid": 1,
+            "Oid": 2,
+            "Obusinessname": "ABC Organizer",
             "Ename": "Musical Night",
             "Elocation": "Pune",
             "Edate": "22/01/2024",
-            "Etime": "7PM",
+            "Etime": "5PM",
+            "Eposter": "assets/Events-posters/event-poster.jpeg",
+            "Erequirement": 0,
             "Artistequipwith": [
                 "Music System",
                 "Guitar"
@@ -201,10 +205,107 @@
         },
         {
             "Eid": 2,
-            "Ename": "Lohri Fest",
+            "Oid": 3,
+            "Obusinessname": "BCD Organizer",
+            "Ename": "Dance Night",
+            "Elocation": "Nashik",
+            "Edate": "30/01/2024",
+            "Etime": "7PM",
+            "Eposter": "assets/Events-posters/event-poster.jpeg",
+            "Erequirement": 1,
+            "Artistequipwith": [
+                "Music System",
+                "Guitar"
+            ],
+            "Facilitiesforartist": [
+                "Dinner",
+                "Travel Allowance"
+            ],
+            "Orequirement": [
+                "Guitarist",
+                "Anchor"
+            ]
+        },
+        {
+            "Eid": 3,
+            "Oid": 4,
+            "Obusinessname": "Kp production",
+            "Ename": "Musical Night",
+            "Elocation": "Mumbai",
+            "Edate": "03/02/2024",
+            "Etime": "4PM",
+            "Eposter": "assets/Events-posters/event-poster.jpeg",
+            "Erequirement": 1,
+            "Artistequipwith": [
+                "Music System",
+                "Guitar"
+            ],
+            "Facilitiesforartist": [
+                "Dinner",
+                "Travel Allowance"
+            ],
+            "Orequirement": [
+                "Guitarist",
+                "Anchor"
+            ]
+        },
+        {
+            "Eid": 4,
+            "Oid": 5,
+            "Obusinessname": "Random Organizer",
+            "Ename": "Sangit festival",
+            "Elocation": "Nagpur",
+            "Edate": "14/02/2024",
+            "Etime": "2PM",
+            "Eposter": "assets/Events-posters/event-poster.jpeg",
+            "Erequirement": 0,
+            "Artistequipwith": [
+                "Music System",
+                "Guitar"
+            ],
+            "Facilitiesforartist": [
+                "Dinner",
+                "Travel Allowance / Arrangements",
+                "Stay"
+            ],
+            "Orequirement": [
+                "Guitarist",
+                "Anchor"
+            ]
+        },
+        {
+            "Eid": 5,
+            "Oid": 6,
+            "Obusinessname": "Sant agro turism",
+            "Ename": "Musical Night",
+            "Elocation": "Shirur",
+            "Edate": "18/02/2024",
+            "Etime": "10AM",
+            "Eposter": "assets/Events-posters/event-poster.jpeg",
+            "Erequirement": 1,
+            "Artistequipwith": [
+                "Music System",
+                "Guitar"
+            ],
+            "Facilitiesforartist": [
+                "Dinner",
+                "Travel Allowance"
+            ],
+            "Orequirement": [
+                "Guitarist",
+                "Anchor"
+            ]
+        },
+        {
+            "Eid": 6,
+            "Oid": 7,
+            "Obusinessname": "prajwal import export",
+            "Ename": "Musical Night",
             "Elocation": "Pune",
-            "Edate": "07/02/2024",
-            "Etime": "5PM-8PM",
+            "Edate": "22/02/2024",
+            "Etime": "7PM",
+            "Eposter": "assets/Events-posters/event-poster.jpeg",
+            "Erequirement": 1,
             "Artistequipwith": [
                 "Music System",
                 "Guitar"
@@ -225,112 +326,112 @@
             "Pbrand": "Intern",
             "Pmodel": "INT-38C Right hand Acoustic Guitar Kit, With Bag, Strings, Pick And Strap, Black, small",
             "Pprice": "1,899",
-            "Pimages": "./assets/products/Guitar.png"
+            "Pimages": "assets/products/Guitar.png"
         },
         {
             "Pid": 2,
             "Pbrand": "Punam",
             "Pmodel": "Flutes C Sharp Medium Right Hand Bansuri 18.5 inches",
             "Pprice": "1,974",
-            "Pimages": "./assets/products/Flute.png"
+            "Pimages": "assets/products/Flute.png"
         },
         {
             "Pid": 3,
             "Pbrand": "Kadence",
             "Pmodel": "Acoustic Begginers Drum Kit (5 Piece Complete) Full -Size Drumset with Cymbals (Black)",
             "Pprice": "34,999",
-            "Pimages": "./assets/products/drum-set.png"
+            "Pimages": "assets/products/drum-set.png"
         },
         {
             "Pid": 4,
             "Pbrand": "Clapbox",
             "Pmodel": "Cajon CB02 Flow -Black, Oak Wood (H:50 W:30 L:30) - 3 Internal Snares",
             "Pprice": "3,399",
-            "Pimages": "./assets/products/Kajon.png"
+            "Pimages": "assets/products/Kajon.png"
         },
         {
             "Pid": 5,
             "Pbrand": "Juârez",
             "Pmodel": "JRZ250 One Handed Trigger Guitar Metal Capo Quick Change for Ukulele, Electric and Acoustic Guitars, Black",
             "Pprice": "99",
-            "Pimages": "./assets/products/capo.png"
+            "Pimages": "assets/products/capo.png"
         },
         {
             "Pid": 6,
             "Pbrand": "JUAREZ",
             "Pmodel": "JAP60 Guitar Plectrums Pick Set of Various Thickness, 6 Pieces (Celluloid + ABS), Colours Random",
             "Pprice": "129",
-            "Pimages": "./assets/products/picks.png"
+            "Pimages": "assets/products/picks.png"
         },
         {
             "Pid": 7,
             "Pbrand": "Yamaha",
             "Pmodel": "PSR-I300 61-Keys Portable Keyboard",
             "Pprice": "15,689",
-            "Pimages": "./assets/products/keyboard.png"
+            "Pimages": "assets/products/keyboard.png"
         },
         {
             "Pid": 8,
             "Pbrand": "Jyotaksh Store",
             "Pmodel": "Best Harmonium 9 Stopper, Chudidaar Bellow, 42 key, Two reed, Bass Male, Harmonium with Cover A-stop9",
             "Pprice": "9,600",
-            "Pimages": "./assets/products/harmonium.png"
+            "Pimages": "assets/products/harmonium.png"
         },
         {
             "Pid": 9,
             "Pbrand": "Surjan Singh & Sons",
             "Pmodel": "Brass Tabla Set Brass Material",
             "Pprice": "8,499",
-            "Pimages": "./assets/products/tabla.png"
+            "Pimages": "assets/products/tabla.png"
         },
         {
             "Pid": 10,
             "Pbrand": "Forerunner",
             "Pmodel": "East top Chromatic Mouth Organ 12 Holes 48 Tones Forerunner Chromatic Harmonica Key of C, Chromatic Harmonica Mouth Organ Musical Instrument for Beginners and Professionals",
             "Pprice": "3,780",
-            "Pimages": "./assets/products/mouth-organ.png"
+            "Pimages": "assets/products/mouth-organ.png"
         },
         {
             "Pid": 11,
             "Pbrand": "Kadence",
             "Pmodel": "Vivaldi 4/4 Violin With Bow, Rosin, Hard Case (Brown Glossy V001C)",
             "Pprice": "3,099",
-            "Pimages": "./assets/products/violin.png"
+            "Pimages": "assets/products/violin.png"
         },
         {
             "Pid": 12,
             "Pbrand": "Kadence",
             "Pmodel": "Wanderer Series ukulele + (Free online learning Course) Brown Mahogany wood Ukulele With Bag",
             "Pprice": "1,999",
-            "Pimages": "./assets/products/ukulele.png"
+            "Pimages": "assets/products/ukulele.png"
         },
         {
             "Pid": 13,
             "Pbrand": "Mustang",
             "Pmodel": "Orchestral Music Stand with FREE Carry Cover And Folding Plate",
             "Pprice": "1,290",
-            "Pimages": "./assets/products/lyrics-stand.png"
+            "Pimages": "assets/products/lyrics-stand.png"
         },
         {
             "Pid": 14,
             "Pbrand": "JUAREZ",
             "Pmodel": "KLM50 KALIMBA NATURAL",
             "Pprice": "1,489",
-            "Pimages": "./assets/products/KALIMBA.png"
+            "Pimages": "assets/products/KALIMBA.png"
         },
         {
             "Pid": 15,
             "Pbrand": "YEEN",
             "Pmodel": "D'Addario Bronze EZ900 010-.050 Extra Light Gauge 85/15 Full. Bright Tone Acoustic Guitar Strings set with FREE Two Planet Waves Guitar Plectrums",
             "Pprice": "560",
-            "Pimages": "./assets/products/strings.png"
+            "Pimages": "assets/products/strings.png"
         },
         {
             "Pid": 16,
             "Pbrand": "True Cult",
             "Pmodel": "True Cult Acoustic Guitar Carry Bag for Yamaha, Fender, Cort, Ibanez, Vault, Kadence, Kepma, Jixing, Juarez and all other brands",
             "Pprice": "1,199",
-            "Pimages": "./assets/products/guitar bag.png"
+            "Pimages": "assets/products/guitar bag.png"
         }
     ]
 }
