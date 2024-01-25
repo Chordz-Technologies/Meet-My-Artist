@@ -20,7 +20,14 @@ import { ProductsComponent } from './Components/products/products.component';
 import { HttpClientModule} from '@angular/common/http';
 import { TextlengthPipe } from './products-textlength/textlength.pipe';
 import { EventComponent } from './event/event.component';
-import { ArtistHomePageComponent } from './artist-home-page/artist-home-page.component'
+import { ArtistHomePageComponent } from './artist-home-page/artist-home-page.component';
+import { NotificationComponent } from './notification/notification.component';
+import { LoginComponent } from './login/login.component';
+import { ArtistFormComponent } from './artist-form/artist-form.component';
+import { OrganizerFormComponent } from './organizer-form/organizer-form.component';
+import { UserFormComponent } from './user-form/user-form.component';
+import { EventManageFormComponent } from './event-manage-form/event-manage-form.component';
+import { CreateEventFormComponent } from './create-event-form/create-event-form.component'
 
 @NgModule({
   declarations: [
@@ -32,7 +39,14 @@ import { ArtistHomePageComponent } from './artist-home-page/artist-home-page.com
     ProductsComponent,
     TextlengthPipe,
     EventComponent,
-    ArtistHomePageComponent
+    ArtistHomePageComponent,
+    NotificationComponent,
+    LoginComponent,
+    ArtistFormComponent,
+    OrganizerFormComponent,
+    UserFormComponent,
+    EventManageFormComponent,
+    CreateEventFormComponent
   ],
   imports: [
     BrowserModule,

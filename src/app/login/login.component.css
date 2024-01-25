@@ -1,0 +1,160 @@
+.container {
+    font-family: Roboto;
+    height: 100vh;
+}
+
+/* main image css */
+.div_img {
+    width: 500px;
+    height: 400px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: url("src\assets\Login.jpg") center no-repeat;
+    background-size: cover;
+    box-shadow: 0px 0px 30px 3px rgba(0, 0, 0, 0.10);
+}
+
+/* login Form css */
+.div_form {
+    width: 500px;
+    height: 400px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #FFF;
+
+    /* shadow */
+    box-shadow: 0px 0px 30px 3px rgba(0, 0, 0, 0.10);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+    .container {
+        height: auto;
+    }
+
+    .div_img {
+
+        width: 100%;
+
+        height: 400px;
+        padding: 30px;
+
+    }
+
+    .div_form {
+
+        width: 100%;
+
+        height: auto;
+        padding: 30px;
+
+    }
+
+}
+
+#form_heading {
+    color: #1E1E1E;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.form-control {
+    width: 295px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid #000;
+    background: #FFF;
+}
+
+
+/* login button css */
+.btn {
+    width: 150px;
+    height: 40px;
+
+    border-radius: 10px;
+    background: #F0E945;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #1E1E1E;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.btn:hover {
+    background: white;
+    color: #1E1E1E;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+
+}
+
+/* dropdown button css */
+.btn1 {
+    width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background: rgb(211, 211, 211);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #1E1E1E;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+
+.btn1:hover {
+    background: #F0E945;
+    color: #1E1E1E;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+
+}
+
+.register {
+    color: #000;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.menu {
+    background: transparent;
+    border: none;
+    padding: 5px 20px 5px 20px;
+}
+
+.menu button {
+    background: white;
+    margin-bottom: 3px;
+    padding: 10px 30px 10px 30px;
+}
+
+.menu button:hover {
+    background: #F0E945;
+}
+
+.menu button:active {
+    color: black;
+}

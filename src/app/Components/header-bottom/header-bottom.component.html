@@ -7,22 +7,47 @@
 
         <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link active" href="#">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Artists</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="#" routerLink="/events" routerLinkActive="active" href="#" >Events</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" routerLink="/products" routerLinkActive="active">Products</a>
                 </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#" routerLink="/artist_form" routerLinkActive="active">Artist form</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" routerLink="/organizer_form" routerLinkActive="active">Organizer form</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" routerLink="/user_form" routerLinkActive="active">user form</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" routerLink="/event_manage" routerLinkActive="active">event manage form</a>
+                </li> -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Forms
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" routerLink="/login" routerLinkActive="active">Login form</a></li>
+                        <li><a class="dropdown-item" href="#" routerLink="/artist_form" routerLinkActive="active">Artist form</a></li>
+                      <li><a class="dropdown-item" href="#" routerLink="/organizer_form" routerLinkActive="active">Organizer form</a></li>
+                      <li><a class="dropdown-item" href="#" routerLink="/user_form" routerLinkActive="active">user form</a></li>
+                      <li><a class="dropdown-item" href="#" routerLink="/event_manage" routerLinkActive="active">event manage form</a></li>
+                      <li><a class="dropdown-item" href="#" routerLink="/create_event" routerLinkActive="active">event create form</a></li>
+                    </ul>
+                  </div>
             </ul>
         </div>
 
-        <div class="navbar-nav ml-auto">
+        <!-- <div class="navbar-nav ml-auto">
             <div ngbDropdown>
                 <button class="btn btn-outline-light" id="dropdownBasic1" ngbDropdownToggle>
                     Register Here
@@ -33,6 +58,6 @@
                     <button ngbDropdownItem>As User</button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </nav>

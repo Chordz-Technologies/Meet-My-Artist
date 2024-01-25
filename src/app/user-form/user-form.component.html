@@ -1,0 +1,65 @@
+<div class="container my-5">
+
+    <form class="form-table">
+        <h1 class="mt-2">User Registration Form</h1>
+        <hr>
+        <table>
+            <tr>
+                <td><label for="firstName">Name :</label></td>
+                <td colspan="3"><input type="text" id="firstName" name="firstName" placeholder="Enter your Name "></td>
+            </tr>
+            <tr>
+                <td><label for="firstName">Email :</label></td>
+                <td colspan="3"><input type="text" id="firstName" name="firstName" placeholder="Enter your Email "></td>
+            </tr>
+            <tr>
+                <td style="width: 200px;"><label for="firstName">Whatsapp Number :</label></td>
+                <td colspan="3"><input type="text" id="firstName" name="firstName" placeholder="Enter your Whatsapp Number "></td>
+            </tr>
+            <tr>
+                <td><label for="firstName">Address :</label></td>
+                <td colspan="3"><input type="text" id="firstName" name="firstName" placeholder="Enter your Address"></td>
+            </tr>
+            <tr>
+                <td><label for="firstName">Password :</label></td>
+                <td colspan="3"><input type="text" id="firstName" name="firstName" placeholder="Set your Password"></td>
+            </tr>
+            <tr>
+                <td><label for="firstName">Confirm Password :</label></td>
+                <td colspan="3"><input type="text" id="firstName" name="firstName" placeholder="Confirm Password"></td>
+            </tr>
+
+            <!-- Speciality check box -->
+            <tr>
+                <td><label>Select Profile:</label></td>
+                <!-- column 1 -->
+                <td class="checkbox-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1" checked readonly onclick="return false;">
+                        <label class="form-check-label" for="option1" >User</label>
+                    </div>
+                </td>
+                <!-- column 2 -->
+                <td class="checkbox-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1">
+                        <label class="form-check-label" for="option1">Artist</label>
+                    </div>
+                </td>
+                <!-- column 3 -->
+                <td class="checkbox-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1">
+                        <label class="form-check-label" for="option1">Organizer</label>
+                    </div>
+                </td>
+            </tr>
+
+
+            <!-- Add more rows for additional form fields -->
+        </table>
+        <div class="text-center">
+            <button type="submit" class="btn btn_submit">Submit</button>
+        </div>
+    </form>
+</div>

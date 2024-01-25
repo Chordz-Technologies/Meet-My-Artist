@@ -1,0 +1,134 @@
+.container {
+    font-family: Roboto;
+    font-size: 16px;
+    margin: auto;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #1E1E1E;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+hr {
+
+    border: none;
+    height: 4px; /* Adjust the thickness as needed */
+    background-color: black; /* Adjust the color as needed */
+    width: 50%;
+    margin: 20px auto;
+    
+}
+
+.form-table {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #FFF;
+
+    /* shadow */
+    box-shadow: 0px 0px 30px 3px rgba(0, 0, 0, 0.10);
+}
+
+
+.form-table td {
+    padding: 10px;
+}
+
+.form-table input[type="text"],
+.form-table input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.checkbox-group label {
+    margin-right: 20px;
+}
+.form-check-input
+{
+    border: 1px solid black;
+}
+@media (max-width: 767px) {
+    .form-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .checkbox-group {
+        display: block;
+    }
+
+    .checkbox-group label {
+        margin-bottom: 10px;
+    }
+
+    .form-table input[type="text"],
+    .form-table input[type="email"] {
+        width: 100%;
+    }
+
+
+}
+
+/* submit button */
+.btn {
+    width: 200px;
+    height: 40px;
+
+    border-radius: 10px;
+    background: #F0E945;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #1E1E1E;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.btn:hover {
+    background: white;
+    color: #1E1E1E;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+
+}
+
+/* date css */
+  /* Style for the date input */
+  .date-input {
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #3498db;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  /* Style for the date input on focus */
+  .date-input:focus {
+    border-color: #2ecc71;
+  }
+  
+  /* Style for the date input placeholder */
+  .date-input::placeholder {
+    color: #95a5a6;
+  }
+  
+  /* Style for the date input arrow icon */
+  .date-input::-webkit-calendar-picker-indicator {
+    filter: invert(40%);
+  }

@@ -1,0 +1,169 @@
+<div class="container my-5">
+
+    <form class="form-table">
+        <h1 class="mt-2">Artist Registration Form</h1>
+        <hr>
+        <table>
+            <tr>
+                <td><label for="firstName">Work Experience:</label></td>
+                <td><input type="text" id="firstName" name="firstName" placeholder="Enter your work experience"></td>
+            </tr>
+            <!-- Category filter -->
+
+            <tr>
+                <td><label for="firstName">Category:</label></td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn_dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Select Category
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <!-- sub category -->
+                <td><label for="firstName">Sub Category:</label></td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn_dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Select Sub Category
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Speciality check box -->
+            <tr>
+                <td><label>Specialty:</label></td>
+                <!-- column 1 -->
+                <td class="checkbox-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1">
+                        <label class="form-check-label" for="option1">Singing</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="option2" name="options[]" value="option2">
+                        <label class="form-check-label" for="option2">Anchoring</label>
+                    </div>
+                </td>
+                <!-- column 2 -->
+                <td class="checkbox-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1">
+                        <label class="form-check-label" for="option1">Guitarist</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="option2" name="options[]" value="option2">
+                        <label class="form-check-label" for="option2">Drummer</label>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- upload profile photo and images -->
+            <tr>
+                <td><label for="lastName">Upload Profile Photo:</label></td>
+                <td><input type="file" class="form-control up_img" id="imageUpload" name="imageUpload"></td>
+                <!-- </tr>
+            <tr> -->
+                <td><label for="lastName">Upload Photos:</label></td>
+                <td><input type="file" class="form-control up_img" id="imageUpload" name="imageUpload"></td>
+            </tr>
+
+            <!-- popular video link section -->
+
+            <tr>
+                <td colspan="3"><label class="label_thick">Enter Popular Video Links</label></td>
+            </tr>
+            <tr>
+                <td><label for="lastName">Popular Video Link 1:</label></td>
+                <td><input type="text" id="lastName" name="lastName" placeholder="Video Link 1"></td>
+                <!-- </tr>
+            <tr> -->
+                <td><label for="email">Popular Video Link 2:</label></td>
+                <td><input type="email" id="email" name="email" placeholder="Video Link 2"></td>
+            </tr>
+            <tr>
+                <td><label for="email">Popular Video Link 3:</label></td>
+                <td><input type="email" id="email" name="email" placeholder="Video Link 3"></td>
+            </tr>
+
+            <!-- Social medial links -->
+            <tr>
+                <td colspan="3"><label class="label_thick">Enter Social Media Links</label></td>
+            </tr>
+            <tr>
+                <td class="text-center text_brand">
+                    <i class="fa-brands fa-2x fa-facebook" style="color: #1877f2;"></i><span class="brand_names">&nbsp; Facebook</span>
+                </td>
+                <td><input type="email" id="email" name="email" placeholder="Facebook link"></td>
+                <td class="text-center text_brand">
+                    <i class="fa-brands fa-2x fa-square-instagram" style="color: #c13584;"></i><span
+                        class="brand_names">&nbsp; Instagram</span>
+                    </td>
+                <td><input type="email" id="email" name="email" placeholder="Instagram link"></td>
+            </tr>
+            <tr>
+                <td class="text-center text_brand">
+                    <i class="fa-solid fa-2x fa-globe" style="color: blue;"></i><span
+                        class="brand_names">&nbsp; Website</span></td>
+                <td><input type="email" id="email" name="email" placeholder="Website link">
+                </td>
+                <td colspan="2">
+                    <span class="hidden_text">Don’t have an website? build your website with <a target="_blank"
+                            href="https://chordztechnologies.com/">Chordz Technologies</a></span>
+                </td>
+            </tr>
+
+
+            <!-- artist requirements -->
+            <tr>
+                <td><label>Your Requirements:</label></td>
+                <!-- column 1 -->
+                <td class="checkbox-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1">
+                        <label class="form-check-label" for="option1">Meal</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="option2" name="options[]" value="option2">
+                        <label class="form-check-label" for="option2">Travel allowance</label>
+                    </div>
+                    <!-- Add more checkboxes as needed -->
+                </td>
+                <!-- column 2 -->
+                <td class="checkbox-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1">
+                        <label class="form-check-label" for="option1">Music System</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="option2" name="options[]" value="option2">
+                        <label class="form-check-label" for="option2">Stay</label>
+                    </div>
+                    <!-- Add more checkboxes as needed -->
+                </td>
+            </tr>
+
+            <!-- description section -->
+            <tr>
+                <td><label for="lastName">Your Description</label></td>
+                <td colspan="3"><textarea id="lastName" name="lastName" placeholder="Enter your Description"></textarea>
+                </td>
+            </tr>
+            <!-- Add more rows for additional form fields -->
+        </table>
+        <div class="text-center">
+            <button type="submit" class="btn btn_submit">Submit</button>
+        </div>
+    </form>
+</div>
