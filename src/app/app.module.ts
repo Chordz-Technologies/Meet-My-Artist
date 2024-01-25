@@ -31,8 +31,11 @@ import { WishlistPageComponent } from './Components/wishlist-page/wishlist-page.
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTreeModule } from '@angular/material/tree';
 import { ArtistProfilePageComponent } from './Components/artist-profile-page/artist-profile-page.component';
-// import { FlatTreeControl } from '@angular/cdk/tree';
-
+import { OrganizerPageComponent } from './Components/organizer-page/organizer-page.component';
+import { OrganizerProfilePageComponent } from './Components/organizer-profile-page/organizer-profile-page.component';
+import { LookingForThisComponent } from './Components/looking-for-this/looking-for-this.component';
+import { EventManageComponent } from './Components/event-manage/event-manage.component';
+import { ArtistsHomePageComponent } from './Components/artists-home-page/artists-home-page.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,12 @@ import { ArtistProfilePageComponent } from './Components/artist-profile-page/art
     LoginComponent,
     NotificationsPageComponent,
     WishlistPageComponent,
-    ArtistProfilePageComponent
+    ArtistProfilePageComponent,
+    OrganizerPageComponent,
+    OrganizerProfilePageComponent,
+    LookingForThisComponent,
+    EventManageComponent,
+    ArtistsHomePageComponent
   ],
   imports: [
     BrowserModule,

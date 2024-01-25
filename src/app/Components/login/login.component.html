@@ -1,15 +1,49 @@
-<div class="container pt-5 pb-5">
-    <h2>Login Form</h2>
-    <form>
-        <label for="fullName">Full Name : </label>
-        <input type="text" id="fullName" name="fullName" required><br><br>
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="row">
+        <div class="div_img col-md-6 col-sm-12 m-2">
+            <!-- <img src="assets/Login.jpg"> -->
 
-        <label for="email">Email : </label>
-        <input type="email" id="email" name="email"required><br><br>
+        </div>
+        <div class="div_form col-md-6 col-sm-12 m-2">
 
-        <label for="password">Password : </label>
-        <input type="password" id="password" name="password" required><br><br>
+            <form>
+                <h3 id="form_heading">Account Login</h3>
+                <div class="mb-3">
+                    <!-- <label for="exampleInputEmail1" class="form-label">Email address</label> -->
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Email address">
+                    <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+                <div class="mb-3">
+                    <!-- <label for="exampleInputPassword1" class="form-label">Password</label> -->
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
 
-        <button type="submit" routerLink="">Submit</button>
-    </form>
+                <div class="dropdown mx-auto text-center my-3" ngbDropdown>
+                    <button class="btn1 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                        ngbDropdownToggle>
+                        Select Your Profile
+                    </button>
+                    <ul class="dropdown-menu" ngbDropdownMenu>
+                        <li><button class="dropdown-item" ngbDropdownItem
+                                routerLink="/organizerRegistration">Organizer</button></li>
+                        <li><button class="dropdown-item" ngbDropdownItem
+                                routerLink="/artistRegistration">Artist</button></li>
+                        <li><button class="dropdown-item" ngbDropdownItem routerLink="/userRegistration">User</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mx-auto text-center">
+                    <button type="submit" class="btn">Login</button>
+                </div>
+                <div>
+                    <div class=" mt-3">
+                        <a class="register pointer" href="#" routerLink="/user_form" routerLinkActive="activate">Don’t
+                            have an account ? Register Now
+                            <i class="fa-solid fa-circle-right"></i></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

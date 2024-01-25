@@ -120,7 +120,7 @@
             "Obusinessname": "Sonai Hotel",
             "Oemail": "sonaihotel@gmail.com",
             "Owhatsappno": "9856743266",
-            "Oaddress": "Uruli Kanchan",
+            "Oaddress": "Uruli Kanchan, Pune",
             "Obusinesscategory": "Hotel",
             "Ofacilities": [
                 "AC Hall",
@@ -128,8 +128,8 @@
                 "Quality Food"
             ],
             "Owishlist": 5,
-            "Olikes": 5,
-            "Oprofilephoto": "image1.jpg",
+            "Olikes": 500,
+            "Oprofilephoto": "./assets/looking-for/caterers.png",
             "Ophotos": [
                 "img1.jpg",
                 "img2.jpg"
@@ -154,14 +154,14 @@
             "Oemail": "organizer@gmail.com",
             "Owhatsappno": "8877964432",
             "Oaddress": "Pune",
-            "Obusinesscategory": "company",
+            "Obusinesscategory": "Company",
             "Ofacilities": [
                 "AC Hall",
                 "Lawn"
             ],
             "Owishlist": 4,
-            "Olikes": 4,
-            "Oprofilephoto": "image2.jpg",
+            "Olikes": 400,
+            "Oprofilephoto": "./assets/looking-for/caterers.png",
             "Ophotos": [
                 "img1.jpg",
                 "img2.jpg"

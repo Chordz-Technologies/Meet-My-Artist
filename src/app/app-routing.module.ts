@@ -12,6 +12,10 @@ import { LoginComponent } from './Components/login/login.component';
 import { NotificationsPageComponent } from './Components/notifications-page/notifications-page.component';
 import { WishlistPageComponent } from './Components/wishlist-page/wishlist-page.component';
 import { ArtistProfilePageComponent } from './Components/artist-profile-page/artist-profile-page.component';
+import { OrganizerPageComponent } from './Components/organizer-page/organizer-page.component';
+import { OrganizerProfilePageComponent } from './Components/organizer-profile-page/organizer-profile-page.component';
+import { EventManageComponent } from './Components/event-manage/event-manage.component';
+import { ArtistsHomePageComponent } from './Components/artists-home-page/artists-home-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -22,11 +26,14 @@ const routes: Routes = [
   { path: 'artistRegistration', component: ArtistRegistrationComponent },
   { path: 'userRegistration', component: UserRegistrationComponent },
   { path: 'eventRegistration', component: EventRegistrationComponent },
+  { path: 'eventManage', component: EventManageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'notifications', component: NotificationsPageComponent },
   { path: 'wishlist', component: WishlistPageComponent },
-  { path: 'artistProfile/:artistId', component: ArtistProfilePageComponent }
-
+  { path: 'artistProfile/:artistId', component: ArtistProfilePageComponent },
+  { path: 'organizer', component: OrganizerPageComponent },
+  { path: 'organizerProfile/:organizerId', component: OrganizerProfilePageComponent },
+  { path: 'artistsHome', component: ArtistsHomePageComponent }
 ];
 
 @NgModule({

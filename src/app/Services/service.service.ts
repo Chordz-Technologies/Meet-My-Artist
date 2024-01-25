@@ -14,6 +14,10 @@ export class ServiceService {
     return this.http.get<any>(`http://localhost:3000/artist`);
   }
 
+  getOrganizerDetails(): Observable<any> {
+    return this.http.get<any>(` http://localhost:3000/organizer`);
+  }
+
   getProductDetails(): Observable<any[]> {
     return this.http.get<any[]>(`http://localhost:3000/product`);
   }

@@ -7,17 +7,17 @@
         <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="" routerLinkActive="active"
+                    <a class="nav-link" routerLink="/" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact:true}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="artists" routerLinkActive="active">Artists</a>
+                    <a class="nav-link" routerLink="/artists" routerLinkActive="active">Artists</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="events" routerLinkActive="active">Events</a>
+                    <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="products" routerLinkActive="active">Products</a>
+                    <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
                 </li>
             </ul>
         </div>
@@ -29,24 +29,23 @@
             </button>
         </div>
 
-
         <div class="navbar-nav ml-auto">
             <ng-container *ngIf="!isUserRegistered; else registrationSection">
                 <div ngbDropdown>
-                    <button class="btn btn-outline-light" id="desktop" ngbDropdownToggle>
+                    <button class="btn btn-outline-light" id="desktop" routerLink="/login">
                         Login Here
                     </button>
                     <button class="btn btn-outline-light" id="mobile" ngbDropdownToggle>
                         <!-- <button mat-icon-button> -->
-                            <mat-icon>person</mat-icon>
+                        <mat-icon>person</mat-icon>
                         <!-- </button> -->
                         <!-- Register Here -->
                     </button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="menu">
+                    <!-- <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="menu">
                         <button class="btn" ngbDropdownItem routerLink="organizerRegistration">Organizer</button>
                         <button class="btn" ngbDropdownItem routerLink="artistRegistration">Artist</button>
                         <button class="btn" ngbDropdownItem routerLink="userRegistration">User</button>
-                    </div>
+                    </div> -->
                 </div>
             </ng-container>
             <ng-template #registrationSection>

@@ -28,28 +28,28 @@
             </div>
             <div class="col-md-9">
                 <div class="container pt-3">
-                    <section class="mt-3">
+                    <section class="vh-50 mt-3">
                         <div class="row justify-content-center align-items-center h-50">
                             <div class="col-12 col-md-10 col-xl-10">
-                                <div *ngFor="let artist of artists" class="mb-3">
+                                <div *ngFor="let organizer of organizers" class="mb-3">
                                     <div class="card shadow p-3 mb-3 bg-white rounded"
-                                        (click)="navigateToProfile(artist)">
+                                        (click)="navigateToProfile(organizer)">
                                         <div class="card-body p-1 d-md-flex text-center text-md-left">
                                             <div class="ms-md-5 my-2 d-flex flex-column">
-                                                <img src="{{ artist.Aprofilephotos }}" alt="Generic placeholder image"
+                                                <img src="{{ organizer.Oprofilephoto }}" alt="Generic placeholder image"
                                                     class="img-fluid my-4 mb-1 rounded-circle mx-auto"
                                                     style="width: 150px; z-index: 1" />
                                                 <button mat-button class="text-center">
-                                                    <span><b>{{ artist.Alikes }} </b>
+                                                    <span><b>{{ organizer.Olikes }} </b>
                                                         <i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
 
                                                 </button>
                                             </div>
-                                            <div class="ms-md-5 mt-3">
-                                                <h4 class="mb-3 mt-4">{{ artist.Aname }}</h4>
-                                                <p>{{ artist.Acategory }}</p>
-                                                <p>{{ artist.Aaddress }}</p>
-                                                <p>Experience: {{ artist.Aworkexperience }}</p>
+                                            <div class="mx-md-5 mt-3">
+                                                <h4 class="mb-3 mt-4">{{ organizer.Oname }}</h4>
+                                                <p>{{ organizer.Obusinesscategory }}</p>
+                                                <p>{{ organizer.Oaddress }}</p>
+                                                <!-- <p>Experience: {{ artist.Aworkexperience }}</p> -->
                                             </div>
                                             <div class="profile-icons ms-auto ms-md-6 mt-4">
                                                 <button mat-button>
@@ -57,17 +57,17 @@
                                                 </button>
                                                 <div class="social-links">
                                                     <a class="btn rounded-circle bg-primary text-white me-1"
-                                                        href="{{ artist.Afblink }}" target="_blank"><i
+                                                        href="{{ organizer.Ofblink }}" target="_blank"><i
                                                             class="fab fa-facebook-f"></i></a>
                                                     <a class="btn btn-sm rounded-circle text-white me-1"
                                                         style="background: linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);"
-                                                        href="{{ artist.Afblink }}" target="_blank"><i
+                                                        href="{{ organizer.Oinstalink }}" target="_blank"><i
                                                             class="fab fa-instagram"></i></a>
                                                     <a class="btn btn-sm rounded-circle text-white bg-primary me-1"
                                                         href=""><i class="fab fa-linkedin-in"></i></a>
                                                 </div>
                                                 <p>
-                                                    <a href="https://wa.me/{{ artist.Owhatsappno }}" target="_blank"
+                                                    <a href="https://wa.me/{{ organizer.Owhatsappno }}" target="_blank"
                                                         class="btn border border-secondary bg-white py-2 px-5 mt-3">
                                                         <i class="fab fa-whatsapp"
                                                             style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
@@ -75,9 +75,9 @@
                                                 </p>
                                                 <p>
                                                     <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a
-                                                        href="{{ artist.Awebsite }}" target="_blank"
+                                                        href="{{ organizer.Owebsite }}" target="_blank"
                                                         class="text-decoration-none py-3 px-2 mt-3">{{
-                                                        artist.Awebsite }}</a>
+                                                            organizer.Owebsite }}</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -103,35 +103,6 @@
           >
           </mat-paginator>
         </div> -->
-        </div>
-    </div>
-</div>
-
-<app-looking-for-this></app-looking-for-this>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-2 col-6">
-            <h1>Products</h1>
-        </div>
-        <div class="col-md-7 col-1">
-            <hr class="custom-line">
-        </div>
-        <div class="col-md-3 col-5">
-            <button type="button" class="btn cat-btn" style="float: right;" routerLink="products">View More</button>
-        </div>
-    </div>
-    <div class="row pt-5 pb-5">
-        <div class="col-lg-3 col-md-4 col-sm-12 " *ngFor="let product of products | slice:0:4">
-            <div class="card my-3 pt-2" id="product-card">
-                <img src={{product.Pimages}} class="card-img-top" alt="product-image">
-                <div id="product-body">
-                    <h2 class="">{{product.Pbrand}}</h2>
-                    <p class="">{{product.Pmodel | slice:0:70 }}...</p>
-                    <span class="mx-2" style="font-size: large; font-weight: 600;">₹ {{product.Pprice}}</span>
-                    <button href="#" class="btn mx-2" id="buy-btn">Buy Now</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>

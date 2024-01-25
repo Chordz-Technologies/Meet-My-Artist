@@ -1,7 +1,7 @@
 <div class="container my-5">
 
     <form class="form-table">
-        <h1 class="mt-2">Create an Event</h1>
+        <h1 class="mt-2">Manage Event</h1>
         <hr>
         <table>
             <tr>
@@ -17,9 +17,9 @@
             <!-- date & time -->
             <tr>
                 <td><label for="firstName">Event Date:</label></td>
-                <td><input type="date" class="date-input" id="firstName" name="firstName"></td>
+                <td><input type="date" id="firstName" class="date-input" name="firstName"></td>
                 <td><label for="firstName">Event Time:</label></td>
-                <td><input type="time" class="date-input" id="firstName" name="firstName"></td>
+                <td><input type="time" id="firstName" class="date-input" name="firstName"></td>
             </tr>
 
             <!-- Artist check box -->
@@ -113,10 +113,20 @@
                 <td><input type="file" class="form-control up_img" id="imageUpload" name="imageUpload"></td>
             </tr>
 
+            <!-- Check box for complete form -->
+            <tr>
+                <td class="checkbox-group" colspan="3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1">
+                        <label class="form-check-label fw-bold" for="option1">Yes, I found artist</label>
+                    </div>
+
+                </td>
+            </tr>
 
         </table>
         <div class="text-center">
-            <br><button type="submit" class="btn btn_submit">Create Event</button>
+            <button type="submit" class="btn btn_submit">Schedule Event</button>
         </div>
     </form>
 </div>
