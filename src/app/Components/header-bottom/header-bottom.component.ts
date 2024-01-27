@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/Services/auth.service';
 import { ServiceService } from 'src/app/Services/service.service';
 
 @Component({
@@ -8,13 +9,13 @@ import { ServiceService } from 'src/app/Services/service.service';
 })
 export class HeaderBottomComponent implements OnInit {
   isNavbarCollapsed = true;
-  isUserRegistered!: boolean;
-  constructor(private service: ServiceService) { }
+  isUserLoggedIn!: boolean;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    // Subscribe to changes in the registration state
-    this.service.isUserRegistered$.subscribe((isRegistered) => {
-      this.isUserRegistered = isRegistered;
+    this.authService.isLoggedIn.subscribe((loggedIn) => {
+      this.isUserLoggedIn = loggedIn;
     });
   }
 

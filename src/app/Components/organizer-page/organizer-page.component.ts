@@ -96,7 +96,7 @@ export class OrganizerPageComponent implements OnInit {
   getOrganizersList() {
     this.service.getOrganizerDetails().subscribe({
       next: (res: any) => {
-        this.organizers = res;
+        this.organizers = res.slice(12);
         // this.updatePaginator();
       },
       error: (err: any) => {
@@ -108,7 +108,7 @@ export class OrganizerPageComponent implements OnInit {
 
   navigateToProfile(organizer: any) {
 
-    this.router.navigate(['/organizerProfile', organizer.Oid]);
+    this.router.navigate(['/organizerProfile', organizer.Uid]);
   }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;

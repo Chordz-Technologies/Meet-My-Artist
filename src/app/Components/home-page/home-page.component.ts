@@ -20,7 +20,7 @@ export class HomePageComponent implements OnInit {
   getArtistList() {
     this.service.getArtistDetails().subscribe({
       next: (res: any) => {
-        this.artists = res;
+        this.artists = res.slice(0, 3);
       },
       error: (err: any) => {
         alert(err);

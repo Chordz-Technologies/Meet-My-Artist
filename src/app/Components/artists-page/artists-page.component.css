@@ -81,6 +81,10 @@ h4 {
     padding-top: 100px;
 }
 
+.artist-info {
+    margin-left: 150px;
+}
+
 
 #product-card {
     border-radius: 10px;
@@ -139,5 +143,16 @@ h4 {
     }
     .profile-icons {
         padding-right: 0;
+    }
+    .artist-info {
+        margin-left: 0px;
+    }
+}
+@media (max-width: 1025px) {
+    .artist-info {
+        margin-left: 0px;
+    }
+    .btn {
+        padding: 10px;
     }
 }

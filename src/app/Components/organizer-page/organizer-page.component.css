@@ -50,3 +50,27 @@ h4 {
     line-height: normal;
     padding: 10px 30px 10px 30px;
 }
+
+.organizer-info {
+    margin-left: 130px;
+}
+
+@media (max-width: 767px) {
+    .organizer-info {
+        margin-left: 0px;
+    }
+
+    .btn {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 1025px) {
+    .organizer-info {
+        margin-left: 0px;
+    }
+
+    .btn {
+        padding: 10px;
+    }
+}

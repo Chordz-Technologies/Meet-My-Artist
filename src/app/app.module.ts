@@ -36,6 +36,7 @@ import { OrganizerProfilePageComponent } from './Components/organizer-profile-pa
 import { LookingForThisComponent } from './Components/looking-for-this/looking-for-this.component';
 import { EventManageComponent } from './Components/event-manage/event-manage.component';
 import { ArtistsHomePageComponent } from './Components/artists-home-page/artists-home-page.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,7 @@ import { ArtistsHomePageComponent } from './Components/artists-home-page/artists
     MatTreeModule
 
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

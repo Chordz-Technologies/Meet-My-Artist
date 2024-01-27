@@ -30,7 +30,7 @@
         </div>
 
         <div class="navbar-nav ml-auto">
-            <ng-container *ngIf="!isUserRegistered; else registrationSection">
+            <ng-container *ngIf="!isUserLoggedIn; else registrationSection">
                 <div ngbDropdown>
                     <button class="btn btn-outline-light" id="desktop" routerLink="/login">
                         Login Here
@@ -52,5 +52,17 @@
                 <button class="btn" routerLink="eventRegistration">Create Event</button>
             </ng-template>
         </div>
+
+
+        <!-- <div *ngIf="!isUserLoggedIn; else loggedInSection">
+            <p>You are not logged in.</p>
+            <button (click)="login()">Login</button>
+        </div>
+        <ng-template #loggedInSection>
+            <p>You are logged in.</p>
+            <button (click)="logout()">Logout</button>
+        </ng-template> -->
+
+
     </div>
 </nav>

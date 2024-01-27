@@ -11,11 +11,11 @@ export class ServiceService {
   constructor(private http: HttpClient) { }
 
   getArtistDetails(): Observable<any> {
-    return this.http.get<any>(`http://localhost:3000/artist`);
+    return this.http.get<any>(`http://localhost:3000/user`);
   }
 
   getOrganizerDetails(): Observable<any> {
-    return this.http.get<any>(` http://localhost:3000/organizer`);
+    return this.http.get<any>(` http://localhost:3000/user`);
   }
 
   getProductDetails(): Observable<any[]> {

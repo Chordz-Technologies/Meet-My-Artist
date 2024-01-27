@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/Services/auth.service';
 import { ServiceService } from 'src/app/Services/service.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-header-top',
@@ -7,13 +10,18 @@ import { ServiceService } from 'src/app/Services/service.service';
   styleUrls: ['./header-top.component.css']
 })
 export class HeaderTopComponent implements OnInit {
-  isUserRegistered!: boolean;
-  constructor(private service: ServiceService) { }
+  isUserLoggedIn!: boolean;
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    // Subscribe to changes in the registration state
-    this.service.isUserRegistered$.subscribe((isRegistered) => {
-      this.isUserRegistered = isRegistered;
+    this.authService.isLoggedIn.subscribe((loggedIn) => {
+      this.isUserLoggedIn = loggedIn;
     });
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

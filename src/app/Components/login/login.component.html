@@ -34,7 +34,7 @@
                     </ul>
                 </div>
                 <div class="mx-auto text-center">
-                    <button type="submit" class="btn">Login</button>
+                    <button type="submit" class="btn" (click)="login()">Login</button>
                 </div>
                 <div>
                     <div class=" mt-3">
@@ -46,4 +46,16 @@
             </form>
         </div>
     </div>
+
+
 </div>
+
+
+<div *ngIf="!isUserLoggedIn; else loggedInSection">
+    <!-- <p>You are not logged in.</p> -->
+    <button (click)="login()">Login</button>
+</div>
+<ng-template #loggedInSection>
+    <!-- <p>You are logged in.</p> -->
+    <button (click)="logout()">Logout</button>
+</ng-template>

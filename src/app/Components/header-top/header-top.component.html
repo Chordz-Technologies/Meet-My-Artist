@@ -4,7 +4,7 @@
         <img src="./assets/logo.png" alt="Logo" class="logo">
     </div>
 
-    <ng-container *ngIf="!isUserRegistered; else registrationSection">
+    <ng-container *ngIf="!isUserLoggedIn; else registrationSection">
 
     </ng-container>
 
@@ -18,6 +18,9 @@
             </button>
             <button mat-icon-button routerLink="/eventManage">
                 <mat-icon>person</mat-icon>
+            </button>
+            <button mat-icon-button (click)="logout()">
+                <mat-icon>lock</mat-icon>
             </button>
         </div>
     </ng-template>

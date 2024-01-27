@@ -133,7 +133,7 @@ export class ArtistsPageComponent implements OnInit {
     this.service.getArtistDetails().subscribe({
       next: (res: any) => {
         console.log(res);
-        this.artists = res;
+        this.artists = res.slice(0, 12);
         // this.updatePaginator();
       },
       error: (err: any) => {
@@ -154,9 +154,9 @@ export class ArtistsPageComponent implements OnInit {
     });
   }
 
-  navigateToProfile(artist: any) {
+  navigateToProfile(Uid: number) {
 
-    this.router.navigate(['/artistProfile', artist.Aid]);
+    this.router.navigate(['/artistProfile', Uid]);
   }
 
   // updatePaginator() {
