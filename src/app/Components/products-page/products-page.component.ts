@@ -18,7 +18,7 @@ export class ProductsPageComponent implements OnInit {
   getProductsList() {
     this.service.getProductDetails().subscribe({
       next: (res: any) => {
-        this.products = res;
+        this.products = res.all_products;
       },
       error: (err: any) => {
         alert(err);

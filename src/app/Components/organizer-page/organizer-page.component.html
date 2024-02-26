@@ -5,23 +5,17 @@
                 <div class="pt-4">
                     <h2>Filters</h2>
                     <hr />
+                    <!-- category-tree.component.html -->
                     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-                        <mat-tree-node *matTreeNodeDef="let node">
-                            <button mat-icon-button disabled></button>
-                            {{ node.name }}
-                        </mat-tree-node>
-
-                        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-                            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+                        <!-- Category nodes -->
+                        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodeToggle
+                            (click)="nodeClicked(node)">
+                            <button mat-icon-button [disabled]="!node.expandable">
                                 <mat-icon class="mat-icon-rtl-mirror">
-                                    {{
-                                    treeControl.isExpanded(node)
-                                    ? "expand_more"
-                                    : "chevron_right"
-                                    }}
+                                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                                 </mat-icon>
                             </button>
-                            {{ node.name }}
+                            {{node.name}}
                         </mat-tree-node>
                     </mat-tree>
                 </div>
@@ -31,44 +25,48 @@
                     <section class="vh-50 mt-3">
                         <div class="row justify-content-center align-items-center h-50">
                             <div class="col-12 col-md-10 col-xl-10">
-                                <div *ngFor="let organizer of organizers" class="mb-3">
-                                    <div class="card shadow p-3 mb-3 bg-white rounded"
-                                        (click)="navigateToProfile(organizer)">
+                                <div *ngFor="let organizer of filteredOrganizers" class="mb-3">
+                                    <div class="card shadow p-3 mb-3 bg-white rounded">
                                         <div class="card-body p-1 d-md-flex text-center text-md-left">
                                             <div class="ms-md-5 my-2 d-flex flex-column">
-                                                <img src="{{ organizer.Oprofilephoto }}" alt="Generic placeholder image"
+                                                <img src="{{ organizer.oprofilephoto }}" alt="Generic placeholder image"
                                                     class="img-fluid my-4 mb-1 rounded-circle mx-auto"
                                                     style="width: 150px; z-index: 1" />
                                                 <button mat-button class="text-center">
-                                                    <span><b>{{ organizer.Olikes.length }} </b>
+                                                    <span><b>{{ organizer.olikes.length }} </b>
                                                         <i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
 
                                                 </button>
                                             </div>
                                             <div class="organizer-info mt-3">
-                                                <h4 class="mb-3 mt-4">{{ organizer.Uname }}</h4>
-                                                <p>{{ organizer.Obusinesscategory }}</p>
-                                                <p>{{ organizer.Uaddress }}</p>
-                                                <p><b>{{ organizer.Ucity }}</b></p>
+                                                <h4 class="mb-3 mt-1">{{ organizer.obusinessname }}</h4>
+                                                <p>{{ organizer.obusinesscategory }}</p>
+                                                <p>{{ organizer.uaddress }}</p>
+                                                <p><b>{{ organizer.ucity }}</b></p>
+                                                <button class="btn border border-secondary" id="profilebtn"
+                                                    (click)="navigateToProfile(organizer.uid)"><i
+                                                        class="fa fa-user"></i>
+                                                    View Profile</button>
                                                 <!-- <p>Experience: {{ artist.Aworkexperience }}</p> -->
                                             </div>
                                             <div class="profile-icons ms-auto ms-md-6 mt-4">
-                                                <button mat-button>
-                                                    <i class="far fa-heart" style="font-size: 20px;"></i>
-                                                </button>
+                                                <a (click)="toggleWishlist(organizer)">
+                                                    <i *ngIf="!organizer.isWishlist" class="far fa-heart" style="font-size: 20px;"></i>
+                                                    <i *ngIf="organizer.isWishlist" class="fas fa-heart" style="font-size: 20px;"></i>
+                                                  </a> Your Wishlist<br><br>
                                                 <div class="social-links">
                                                     <a class="btn rounded-circle bg-primary text-white me-1"
-                                                        href="{{ organizer.Ofblink }}" target="_blank"><i
+                                                        href="{{ organizer.ofblink }}" target="_blank"><i
                                                             class="fab fa-facebook-f"></i></a>
                                                     <a class="btn btn-sm rounded-circle text-white me-1"
                                                         style="background: linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);"
-                                                        href="{{ organizer.Oinstalink }}" target="_blank"><i
+                                                        href="{{ organizer.oinstalink }}" target="_blank"><i
                                                             class="fab fa-instagram"></i></a>
                                                     <a class="btn btn-sm rounded-circle text-white bg-primary me-1"
                                                         href=""><i class="fab fa-linkedin-in"></i></a>
                                                 </div>
                                                 <p>
-                                                    <a href="https://wa.me/{{ organizer.Uwhatsappno }}" target="_blank"
+                                                    <a href="https://wa.me/{{ organizer.uwhatsappno }}" target="_blank"
                                                         class="btn border border-secondary bg-white py-2 mt-3">
                                                         <i class="fab fa-whatsapp"
                                                             style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
@@ -76,9 +74,9 @@
                                                 </p>
                                                 <p>
                                                     <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a
-                                                        href="{{ organizer.Owebsite }}" target="_blank"
+                                                        href="{{ organizer.owebsite }}" target="_blank"
                                                         class="text-decoration-none py-3 px-2 mt-3">{{
-                                                        organizer.Owebsite }}</a>
+                                                        organizer.owebsite }}</a>
                                                 </p>
                                             </div>
                                         </div>

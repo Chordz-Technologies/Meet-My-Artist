@@ -1,21 +1,4 @@
-<ngb-carousel [showNavigationIndicators]="false" [pauseOnHover]="false" [pauseOnFocus]="false">
-    <ng-template ngbSlide>
-        <div class="picsum-img-wrapper">
-            <img src="./assets/carousal/event1.jpg" alt="Random first slide" />
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="picsum-img-wrapper">
-            <img src="./assets/carousal/event2.jpg" alt="Random second slide" />
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="picsum-img-wrapper">
-            <img src="./assets/carousal/event3.jpg" alt="Random third slide" />
-        </div>
-    </ng-template>
-</ngb-carousel>
-
+<app-carousel></app-carousel>
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-6">
@@ -30,37 +13,37 @@
     </div>
     <div class="row pt-5">
         <div class="col-md-2 col-4">
-            <div class="circle">
+            <div class="circle" routerLink="/artists">
                 <img src="./assets/categories/cat1.png" alt="Image 1">
             </div>
             <h3 class="circle-heading">Singer</h3>
         </div>
         <div class="col-md-2 col-4">
-            <div class="circle">
+            <div class="circle" routerLink="/artists">
                 <img src="./assets/categories/cat2.png" alt="Image 1">
             </div>
             <h3 class="circle-heading">Guitarist</h3>
         </div>
         <div class="col-md-2 col-4">
-            <div class="circle">
+            <div class="circle" routerLink="/artists">
                 <img src="./assets/categories/cat3.png" alt="Image 1">
             </div>
             <h3 class="circle-heading">Anchor</h3>
         </div>
         <div class="col-md-2 col-4">
-            <div class="circle">
+            <div class="circle" routerLink="/artists">
                 <img src="./assets/categories/cat4.png" alt="Image 1">
             </div>
             <h3 class="circle-heading">Actor</h3>
         </div>
         <div class="col-md-2 col-4">
-            <div class="circle">
+            <div class="circle" routerLink="/artists">
                 <img src="./assets/categories/cat5.png" alt="Image 1">
             </div>
             <h3 class="circle-heading">Musician</h3>
         </div>
         <div class="col-md-2 col-4">
-            <div class="circle">
+            <div class="circle" routerLink="/artists">
                 <img src="./assets/categories/cat6.png" alt="Image 1">
             </div>
             <h3 class="circle-heading">Sound System</h3><br>
@@ -68,37 +51,37 @@
         <!-- </div> -->
         <!-- <div class="row pb-3"> -->
         <div class="col-md-2 col-4">
-            <div class="circle">
+            <div class="circle" routerLink="/artists">
                 <img src="./assets/categories/cat7.png" alt="Image 1">
             </div>
             <h3 class="circle-heading">Dancer</h3>
         </div>
         <div class="col-md-2 col-4">
-            <div class="circle">
+            <div class="circle" routerLink="/artists">
                 <img src="./assets/categories/cat8.png" alt="Image 1">
             </div>
             <h3 class="circle-heading">Emcee</h3>
         </div>
         <div class="col-md-2 col-4">
-            <div class="circle">
+            <div class="circle" routerLink="/artists">
                 <img src="./assets/categories/cat9.png" alt="Image 1">
             </div>
             <h3 class="circle-heading">Celebrity</h3>
         </div>
         <div class="col-md-2 col-4">
-            <div class="circle">
+            <div class="circle" routerLink="/artists">
                 <img src="./assets/categories/cat10.png" alt="Image 1">
             </div>
             <h3 class="circle-heading">Reel Star</h3>
         </div>
         <div class="col-md-2 col-4">
-            <div class="circle">
+            <div class="circle" routerLink="/artists">
                 <img src="./assets/categories/cat11.png" alt="Image 1">
             </div>
             <h3 class="circle-heading">Magician</h3>
         </div>
         <div class="col-md-2 col-4">
-            <div class="circle">
+            <div class="circle" routerLink="/artists">
                 <img src="./assets/categories/cat12.png" alt="Image 1">
             </div>
             <h3 class="circle-heading">Karaoke</h3>
@@ -124,10 +107,10 @@
         <div class="col-md-4" *ngFor="let artist of artists">
             <div class="card business-card shadow p-3 mb-5 bg-white rounded">
                 <div class="card-data">
-                    <img [src]="artist.Aprofilephoto" class="card-img-top" alt="Image Alt Text">
-                    <h4>{{ artist.Uname }}</h4>
-                    <p class="text-center" style="font-size: 20px;">{{ artist.Acategory }}</p>
-                    <p class="text-center"><b>{{ artist.Alikes }} </b><mat-icon
+                    <img [src]="artist.aprofilephoto" class="card-img-top" alt="Image Alt Text">
+                    <h4>{{ artist.uname }}</h4>
+                    <p class="text-center" style="font-size: 20px;">{{ artist.acategory }}</p>
+                    <p class="text-center"><b>{{ artist.alikes.length }} </b><mat-icon
                             style="font-size: 28px;">thumb_up</mat-icon></p>
                 </div>
             </div>
@@ -145,8 +128,7 @@
                 <div class="card-body" style="padding-left: 60px;">
                     <h3 class="card-title">Benefits For Organizer</h3><br>
                     <p class="card-text">Here are some benefits that organizers may find appealing when registering
-                        on
-                        our website</p><br>
+                        on our website</p><br>
                     <ul>
                         <li>Time and Cost Savings</li>
                         <li>Communication Tools</li>
@@ -155,7 +137,7 @@
                         <li>Networking and Collaboration</li>
                         <li>Accessibility and Mobile Responsiveness</li>
                     </ul><br>
-                    <button type="button" class="btn" routerLink="organizerRegistration">Register as Organizer
+                    <button type="button" class="btn" routerLink="/registrationForm">Register as Organizer
                         !</button>
                 </div>
             </div>
@@ -177,7 +159,7 @@
                         <li>Mobile-Friendly Experience</li>
                         <li>Support and Community Building</li>
                     </ul><br>
-                    <button type="button" class="btn" routerLink="artistRegistration">Register as Artist
+                    <button type="button" class="btn" routerLink="/registrationForm">Register as Artist
                         !</button><br><br>
                 </div>
             </div>
@@ -203,11 +185,11 @@
     <div class="row pt-5 pb-5">
         <div class="col-lg-3 col-md-4 col-sm-12 " *ngFor="let product of products">
             <div class="card my-3 pt-2" id="product-card">
-                <img src={{product.Pimages}} class="card-img-top" alt="product-image">
+                <img src={{product.pimages}} class="card-img-top" alt="product-image">
                 <div id="product-body">
-                    <h2 class="">{{product.Pbrand}}</h2>
-                    <p class="">{{product.Pmodel | slice:0:70 }}...</p>
-                    <span class="mx-2" style="font-size: large; font-weight: 600;">₹ {{product.Pprice}}</span>
+                    <h2 class="">{{product.pbrand}}</h2>
+                    <p class="">{{product.pmodel | slice:0:70 }}...</p>
+                    <span class="mx-2" style="font-size: large; font-weight: 600;">₹ {{product.pprice}}</span>
                     <button href="#" class="btn mx-2" id="buy-btn">Buy Now</button>
                 </div>
             </div>

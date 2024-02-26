@@ -5,17 +5,16 @@
                 <div class="card shadow pt-3 bg-white" style="border-radius: 15px">
                     <div class="card-body p-1 d-md-flex">
                         <div class="ms-md-5 my-2 d-flex flex-column text-center pe-5 px-5">
-                            <img src="./assets/looking-for/caterers.png" alt="Generic placeholder image"
+                            <img src="{{ organizer.oprofilephoto }}" alt="Generic placeholder image"
                                 class="img-fluid my-4 mb-1 rounded-circle mx-auto" style="width: 150px; z-index: 1" />
                             <button mat-button class="text-center">
-                                <span><b>500 </b><i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
+                                <span><b>{{ organizer.olikes }} </b><i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
                             </button>
                         </div>
                         <div class="mx-md-5 mt-5 text-start px-5 text-center text-md-start">
-                            <h2 class="mb-3">Sonai Veg</h2>
-                            <h3>Restaurant</h3>
-                            <h3>Uruli Kanchan, Pune</h3>
-                            <!-- <h3>Experience: 5+ years</h3> -->
+                            <h2 class="mb-3">{{ organizer.obusinessname }}</h2>
+                            <h3>{{ organizer.obusinesscategory }}</h3>
+                            <h3>{{ organizer.uaddress }}, <b>{{organizer.ucity}}</b></h3>
                         </div>
                         <div
                             class="profile-icons ms-auto ms-md-6 mt-4 d-flex flex-column align-items-center text-md-center">
@@ -23,24 +22,16 @@
                                 <i class="far fa-heart" style="font-size: 20px;"></i>
                             </button>
                             <div class="social-links">
-                                <a class="btn btn-sm rounded-circle bg-primary text-white me-3" href=""
-                                    target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm rounded-circle text-white me-3" style="
-                      background: linear-gradient(
-                        45deg,
-                        #405de6,
-                        #5851db,
-                        #833ab4,
-                        #c13584,
-                        #e1306c,
-                        #fd1d1d
-                      );
-                    " href="" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-sm rounded-circle bg-primary text-white me-3"
+                                    href="{{ organizer.ofblink }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-sm rounded-circle text-white me-3"
+                                    style="background: linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);"
+                                    href="{{ organizer.oinstalink }}" target="_blank"><i class="fab fa-instagram"></i></a>
                                 <a class="btn btn-sm rounded-circle text-white bg-primary" href=""><i
                                         class="fab fa-linkedin-in"></i></a>
                             </div>
                             <p>
-                                <a href="https://wa.me/" target="_blank"
+                                <a href="https://wa.me/{{ organizer.uwhatsappno }}" target="_blank"
                                     class="btn border border-secondary shadow bg-white py-2 px-5 mt-3">
                                     <i class="fab fa-whatsapp"
                                         style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
@@ -48,8 +39,8 @@
                             </p>
                             <p class="fs-5 mt-3">
                                 <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a
-                                    href="https://www.website.com/" target="_blank"
-                                    class="text-decoration-none py-3 px-2 mt-3">https://www.website.com/</a>
+                                    href="{{ organizer.owebsite }}" target="_blank"
+                                    class="text-decoration-none py-3 px-2 mt-3">{{ organizer.owebsite }}</a>
                             </p>
                         </div>
                     </div>
@@ -60,22 +51,10 @@
                     </div>
                     <div class="card-body">
                         <div class="row row-cols-2 row-cols-md-3 g-4">
-                            <div class="col">
+                            <div class="col" *ngFor="let image of organizer.ophotos">
                                 <div class="h-100 rounded-3">
-                                    <img src="./assets/looking-for/lawns.png" class="card-img-top"
-                                        alt="Hollywood Sign on The Hill" />
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="h-100">
-                                    <img src="./assets/looking-for/restaurants.png" class="card-img-top"
-                                        alt="Palm Springs Road" />
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="h-100">
-                                    <img src="./assets/looking-for/hall.png" class="card-img-top"
-                                        alt="Los Angeles Skyscrapers" />
+                                    <img [src]="image" class="card-img-top"
+                                        alt="Image" />
                                 </div>
                             </div>
                         </div>
@@ -83,16 +62,13 @@
                     <div class="card-body p-1 d-md-flex">
                         <div class="ms-md-5 my-3 text-center pe-5">
                             <h1 class="fw-bold" style="text-align: left;">
-                                Speciality
+                                Facilities
                             </h1>
                         </div>
                         <div class="mx-md-5 mt-4 fs-5 px-5">
                             <ol>
-                                <li class="mb-3">Dinning hall</li>
-                                <li class="mb-3">Musical Dinner</li>
-                                <li class="mb-3">Hygienic Washrooms</li>
-                                <li class="mb-3">Parking</li>
-                                <li class="mb-3">Quality Food</li>
+                                <li class="mb-3" *ngFor="let requirement of organizer.ofacilities.split(',')">
+                                    {{requirement.trim()}}</li>
                             </ol>
                         </div>
                     </div>
@@ -103,18 +79,7 @@
                             </h1>
                         </div>
                         <div class="mx-md-5 mt-3 px-5">
-                            <h3>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem Ipsum has been the industry's standard dummy
-                                text ever since the 1500s, when an unknown printer took a galley
-                                of type and scrambled it to make a type specimen book. It has
-                                survived not only five centuries, but also the leap into
-                                electronic typesetting, remaining essentially unchanged. It was
-                                popularised in the 1960s with the release of Letraset sheets
-                                containing Lorem Ipsum passages, and more recently with desktop
-                                publishing software like Aldus PageMaker including versions of
-                                Lorem Ipsum.
-                            </h3>
+                            <h3>{{organizer.odescription}}</h3>
                         </div>
                     </div>
                     <div class="card-body p-1 d-md-flex mb-5">
@@ -125,9 +90,8 @@
                         </div>
                         <div class="mx-md-5 mt-4 fs-5">
                             <ol>
-                                <li class="mb-3">Sound System</li>
-                                <li class="mb-3">Meal</li>
-                                <li class="mb-3">Travel Allowance</li>
+                                <li class="mb-3" *ngFor="let requirement of organizer.ofacilitesforartist.split(',')">
+                                    {{requirement.trim()}}</li>
                             </ol>
                         </div>
                     </div>

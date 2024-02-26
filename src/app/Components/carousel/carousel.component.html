@@ -1,0 +1,11 @@
+<ngb-carousel [showNavigationIndicators]="false" [pauseOnHover]="false" [pauseOnFocus]="false">
+    <ng-template ngFor let-image [ngForOf]="images">
+        <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+                <!-- Use the 'src' and 'data' properties of the 'image' object -->
+                <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + image.data)"
+                    [alt]="image.src" />
+            </div>
+        </ng-template>
+    </ng-template>
+</ngb-carousel>

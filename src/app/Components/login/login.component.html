@@ -1,21 +1,88 @@
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row">
         <div class="div_img col-md-6 col-sm-12 m-2">
-            <!-- <img src="assets/Login.jpg"> -->
+        </div>
+        <div class="div_form col-md-6 col-sm-12 m-2">
+            <form [formGroup]="loginform">
+                <h3 id="form_heading">Account Login</h3>
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="u_email" name="u_email" aria-describedby="emailHelp"
+                        placeholder="Email" formControlName="u_email">
+                </div>
+                <div class="mb-3">
+
+                    <input type="password" class="form-control" id="u_password" name="u_password" placeholder="Password"
+                        formControlName="u_password">
+                </div>
+
+                <!--  temp hide -->
+                <div class=" mx-auto text-center my-3">
+                    <table>
+                        <tr>
+                            <td><label>Select Profile:</label></td>
+
+                            <td class="checkbox-group ps-2 pt-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="option1" name="options"
+                                        formControlName="options" value="3">
+                                    <label class="form-check-label" for="option1">User</label>
+                                </div>
+                            </td>
+
+                            <td class="checkbox-group ps-2 pt-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="option1" name="options"
+                                        formControlName="options" value="2">
+                                    <label class="form-check-label" for="option1">Artist</label>
+                                </div>
+                            </td>
+
+                            <td class="checkbox-group ps-2 pt-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="option1" name="options"
+                                        formControlName="options" value="1">
+                                    <label class="form-check-label" for="option1">Organizer</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="mx-auto text-center" *ngIf="!isUserLoggedIn; else loggedInSection">
+                    <button type="submit" class="btn" (click)="loginpost_data()">Login</button>
+                </div>
+                <div>
+                    <div class="mt-3">
+                        <a class="register pointer" href="#" routerLink="/registrationForm" routerLinkActive="activate">Dont
+                            have an account ? Register Now
+                            <i class="fa-solid fa-circle-right"></i></a>
+                    </div>
+
+                </div>
+            </form>
 
         </div>
+    </div>
+</div>
+<ng-template #loggedInSection>
+    <!-- <p>You are logged in.</p> -->
+    <!-- <button (click)="logout()">Logout</button> -->
+    </ng-template>
+
+<!-- <div class="container d-flex justify-content-center align-items-center">
+    <div class="row">
+        <div class="div_img col-md-6 col-sm-12 m-2"> -->
+<!-- <img src="assets/Login.jpg"> -->
+
+<!-- </div>
         <div class="div_form col-md-6 col-sm-12 m-2">
 
             <form>
                 <h3 id="form_heading">Account Login</h3>
                 <div class="mb-3">
-                    <!-- <label for="exampleInputEmail1" class="form-label">Email address</label> -->
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                         placeholder="Email address">
-                    <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                 </div>
                 <div class="mb-3">
-                    <!-- <label for="exampleInputPassword1" class="form-label">Password</label> -->
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
 
@@ -33,12 +100,12 @@
                         </li>
                     </ul>
                 </div>
-                <div class="mx-auto text-center">
-                    <button type="submit" class="btn" (click)="login()">Login</button>
+                <div class="mx-auto text-center" *ngIf="!isUserLoggedIn; else loggedInSection">
+                    <button type="submit" class="btn" (click)="login()" routerLink="/artistsHome">Login</button>
                 </div>
                 <div>
-                    <div class=" mt-3">
-                        <a class="register pointer" href="#" routerLink="/user_form" routerLinkActive="activate">Don’t
+                    <div class="mt-3">
+                        <a class="register" routerLink="/userRegistration" routerLinkActive="activate">Don’t
                             have an account ? Register Now
                             <i class="fa-solid fa-circle-right"></i></a>
                     </div>
@@ -46,16 +113,14 @@
             </form>
         </div>
     </div>
+</div> -->
 
-
-</div>
-
-
-<div *ngIf="!isUserLoggedIn; else loggedInSection">
-    <!-- <p>You are not logged in.</p> -->
-    <button (click)="login()">Login</button>
-</div>
-<ng-template #loggedInSection>
-    <!-- <p>You are logged in.</p> -->
-    <button (click)="logout()">Logout</button>
-</ng-template>
+<!-- <br><br> -->
+<!-- <div *ngIf="!isUserLoggedIn; else loggedInSection"> -->
+<!-- <p>You are not logged in.</p> -->
+<!-- <button (click)="login()">Login</button> -->
+<!-- </div> -->
+<!-- <ng-template #loggedInSection> -->
+<!-- <p>You are logged in.</p> -->
+<!-- <button (click)="logout()">Logout</button> -->
+<!-- </ng-template> -->

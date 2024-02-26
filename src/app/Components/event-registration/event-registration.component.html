@@ -1,80 +1,77 @@
-<div class="container my-5">
-
-    <form class="form-table">
+<div class="container">
+    <form class="form-table" [formGroup]="createEventForm">
         <h1 class="mt-2">Create an Event</h1>
-        <hr>
+        <hr />
         <table>
             <tr>
-                <td style="width: 200px;"><label for="firstName">Event Name:</label></td>
-                <td colspan="2"><input type="text" id="firstName" name="firstName" placeholder="Enter your event name">
+                <td style="width: 200px"><label for="eventName">Event Name:</label></td>
+                <td colspan="2">
+                    <input type="text" id="eventName" name="eventName" formControlName="eventName"
+                        placeholder="Enter your event name" />
+                    <div class="form-text text-danger fw-bold"
+                        *ngIf="EventName.errors?.['required'] && (EventName.dirty || EventName.touched)">
+                        Event Name is required.
+                    </div>
                 </td>
             </tr>
             <tr>
-                <td><label for="firstName">Event Location:</label></td>
-                <td colspan="2"><input type="text" id="firstName" name="firstName" placeholder="Google map link"></td>
+                <td><label for="eventlocation">Event Location:</label></td>
+                <td colspan="2">
+                    <input type="text" id="eventlocation" formControlName="eventlocation" name="eventlocation"
+                        placeholder="Google map link" />
+                    <div class="form-text text-danger fw-bold"
+                        *ngIf="EventLocation.errors?.['required'] && (EventLocation.dirty || EventLocation.touched)">
+                        Location is required.
+                    </div>
+                </td>
             </tr>
 
             <!-- date & time -->
             <tr>
-                <td><label for="firstName">Event Date:</label></td>
-                <td><input type="date" class="date-input" id="firstName" name="firstName"></td>
-                <td><label for="firstName">Event Time:</label></td>
-                <td><input type="time" class="date-input" id="firstName" name="firstName"></td>
+                <td><label for="eventDate">Event Date:</label></td>
+                <td>
+                    <input type="date" class="date-input" id="eventDate" formControlName="eventDate" name="eventDate" />
+                    <div class="form-text text-danger fw-bold"
+                        *ngIf="EventDate.errors?.['required'] && (EventDate.dirty || EventDate.touched)">
+                        Date is required.
+                    </div>
+                </td>
+                <td><label for="eventTime">Event Time:</label></td>
+                <td>
+                    <input type="time" class="date-input" id="eventTime" formControlName="eventTime" name="eventTime" />
+                    <div class="form-text text-danger fw-bold"
+                        *ngIf="EventTime.errors?.['required'] && (EventTime.dirty || EventTime.touched)">
+                        Time is required.
+                    </div>
+                </td>
             </tr>
 
             <!-- Artist check box -->
             <tr>
-                <td><label>Select Artist:</label></td>
+                <td><label>Required Artist:</label></td>
                 <!-- column 1 -->
-                <td class="checkbox-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1">
-                        <label class="form-check-label" for="option1">Singer</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="option2" name="options[]" value="option2">
-                        <label class="form-check-label" for="option2">Drummer</label>
-                    </div>
-                </td>
-                <!-- column 2 -->
-                <td class="checkbox-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1">
-                        <label class="form-check-label" for="option1">Guitarist</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="option2" name="options[]" value="option2">
-                        <label class="form-check-label" for="option2">Anchor</label>
+                <td colspan="2">
+                    <input type="text" id="requiredArtist" name="requiredArtist" formControlName="requiredArtist"
+                        placeholder="Singer, Guitarist, Drummer, Anchor, etc." />
+                    <div class="form-text text-danger fw-bold"
+                        *ngIf="RequiredArtist.errors?.['required'] && (RequiredArtist.dirty || RequiredArtist.touched)">
+                        Required Artist is required.
                     </div>
                 </td>
             </tr>
 
             <!-- Facility for artist -->
             <tr>
-                <td><label>Facility for Artist:</label></td>
                 <!-- column 1 -->
-                <td class="checkbox-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1">
-                        <label class="form-check-label" for="option1">Meal</label>
+                <td><label for="o_facility">Facility For Artist:</label></td>
+                <td colspan="2">
+                    <input type="text" id="facilityForArtist" name="facilityForArtist"
+                        formControlName="facilityForArtist"
+                        placeholder="Travel Allowance,Music System, Meal, Stay, etc." />
+                    <div *ngIf="FacilityForArtist.errors?.['required'] && (FacilityForArtist.dirty || FacilityForArtist.touched)"
+                        class="form-text text-danger fw-bold">
+                        Your Facilities is required.
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="option2" name="options[]" value="option2">
-                        <label class="form-check-label" for="option2">Travel allowance</label>
-                    </div>
-                    <!-- Add more checkboxes as needed -->
-                </td>
-                <!-- column 2 -->
-                <td class="checkbox-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1">
-                        <label class="form-check-label" for="option1">Music System</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="option2" name="options[]" value="option2">
-                        <label class="form-check-label" for="option2">Stay</label>
-                    </div>
-                    <!-- Add more checkboxes as needed -->
                 </td>
             </tr>
 
@@ -82,41 +79,37 @@
             <tr>
                 <td><label>Artist Should equip with:</label></td>
                 <!-- column 1 -->
-                <td class="checkbox-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1">
-                        <label class="form-check-label" for="option1">Sound System</label>
+                <td colspan="2">
+                    <input type="text" id="artistEquip" name="artistEquip" formControlName="artistEquip"
+                        placeholder="Sound System, Own Instruments, Music System, Stay, etc." />
+                    <div *ngIf="ArtistEquip.errors?.['required'] && (ArtistEquip.dirty || ArtistEquip.touched)"
+                        class="form-text text-danger fw-bold">
+                        Your ArtistEquip is required.
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="option2" name="options[]" value="option2">
-                        <label class="form-check-label" for="option2">Own Instruments</label>
-                    </div>
-                    <!-- Add more checkboxes as needed -->
-                </td>
-                <!-- column 2 -->
-                <td class="checkbox-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="option1" name="options[]" value="option1">
-                        <label class="form-check-label" for="option1">Music System</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="option2" name="options[]" value="option2">
-                        <label class="form-check-label" for="option2">Stay</label>
-                    </div>
-                    <!-- Add more checkboxes as needed -->
                 </td>
             </tr>
 
             <!-- upload profile photo and images -->
             <tr>
-                <td><label for="lastName">Upload Event Poster:</label></td>
-                <td><input type="file" class="form-control up_img" id="imageUpload" name="imageUpload"></td>
+                <td><label for="imageUpload">Upload Event Poster:</label></td>
+                <td>
+                    <input type="file" class="form-control up_img" id="imageUpload" formControlName="imageUpload"
+                        name="imageUpload" accept="image/*" />
+                    <div class="form-text text-danger fw-bold"
+                        *ngIf="EventPoster.errors?.['required'] && (EventPoster.dirty || EventPoster.touched)">
+                        EventPoster is required.
+                    </div>
+                    <div class="form-text text-danger fw-bold"
+                        *ngIf="EventPoster.errors?.['minlength'] && (EventPoster.dirty || EventPoster.touched)">
+                        EventPoster only 1 is accepted.
+                    </div>
+                </td>
             </tr>
-
-
         </table>
         <div class="text-center">
-            <br><button type="submit" class="btn btn_submit">Create Event</button>
+            <button type="submit" class="btn btn_submit" (click)="postEventdata()">
+                Create Event
+            </button>
         </div>
     </form>
 </div>

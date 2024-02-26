@@ -1,30 +1,14 @@
-<ngb-carousel [showNavigationIndicators]="false" [pauseOnHover]="false" [pauseOnFocus]="false">
-    <ng-template ngbSlide>
-        <div class="picsum-img-wrapper">
-            <img src="./assets/carousal/event1.jpg" alt="Random first slide" />
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="picsum-img-wrapper">
-            <img src="./assets/carousal/event2.jpg" alt="Random second slide" />
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="picsum-img-wrapper">
-            <img src="./assets/carousal/event3.jpg" alt="Random third slide" />
-        </div>
-    </ng-template>
-</ngb-carousel>
+<app-carousel></app-carousel>
 
 <div class="container text-center pt-5 pb-5">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12 " *ngFor="let event of eventdata">
             <div class="card business-card shadow my-3" >
-                <img src={{event.Eposter}} class="card-img-top" alt="Event">
+                <img src={{event.eposter}} class="card-img-top" alt="Event">
                 <div class="card-body">
-                  <h2 class="card-title">{{event.Obusinessname}} has planned event {{event.Ename}}</h2>
-                  <p class="card-text" style="font-size: medium; font-weight: 400;">{{event.Edate}} | at {{event.Etime}}</p>
-                  <span class ="mx-2"style="font-size: large; font-weight: 600;">{{event.Elocation}}</span>
+                  <h2 class="card-title">{{event.obusinessname}} has planned event {{event.ename}}</h2>
+                  <p class="card-text" style="font-size: medium; font-weight: 400;">{{event.edate}} | at {{event.etime}}</p>
+                  <span class ="mx-2"style="font-size: large; font-weight: 600;">{{event.elocation}}</span>
                   <div class="buttons my-2"> 
                   <br><a href="#" class="btn mx-2">Book Now</a></div>
                 </div>

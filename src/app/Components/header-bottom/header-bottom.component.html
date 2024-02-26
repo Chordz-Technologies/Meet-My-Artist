@@ -5,22 +5,83 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/" routerLinkActive="active"
-                        [routerLinkActiveOptions]="{exact:true}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/artists" routerLinkActive="active">Artists</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
-                </li>
-            </ul>
+            <!-- Initial set of menu items -->
+            <ng-template #initialMenu>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact:true}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/artists" routerLinkActive="active">Artists</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
+                    </li>
+                </ul>
+            </ng-template>
+
+            <!-- Menu items after login -->
+            <ng-template #loggedInMenu>
+                <!-- Adjust these menu items based on the user's type -->
+                <ul class="navbar-nav mr-auto" *ngIf="userType === 'user'">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact:true}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/artists" routerLinkActive="active">Artists</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav mr-auto" *ngIf="userType === 'artist'">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/artistsHome" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact:true}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/organizer" routerLinkActive="active">Organizers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav mr-auto" *ngIf="userType === 'organizer'">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact:true}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/artists" routerLinkActive="active">Artists</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
+                    </li>
+                </ul>
+            </ng-template>
+
+            <!-- Display the appropriate set of menu items based on login status -->
+            <ng-container *ngIf="isUserLoggedIn; else initialMenu">
+                <ng-container *ngTemplateOutlet="loggedInMenu"></ng-container>
+            </ng-container>
         </div>
+
 
         <div class="search-container">
             <input matInput placeholder="Search" class="search-input">
@@ -30,7 +91,7 @@
         </div>
 
         <div class="navbar-nav ml-auto">
-            <ng-container *ngIf="!isUserLoggedIn; else registrationSection">
+            <ng-container *ngIf="!isUserLoggedIn; else loggedInSection">
                 <div ngbDropdown>
                     <button class="btn btn-outline-light" id="desktop" routerLink="/login">
                         Login Here
@@ -48,8 +109,12 @@
                     </div> -->
                 </div>
             </ng-container>
-            <ng-template #registrationSection>
-                <button class="btn" routerLink="eventRegistration">Create Event</button>
+            <ng-template #loggedInSection>
+                <!-- Display "Create Event" button when logged in as user or organizer -->
+                <button class="btn" *ngIf="userType === 'user' || userType === 'organizer'"
+                    routerLink="eventRegistration">Create Event</button>
+                <!-- Display "Open to Work" button when logged in as artist -->
+                <button class="btn" *ngIf="userType === 'artist'">Open to Work</button>
             </ng-template>
         </div>
 

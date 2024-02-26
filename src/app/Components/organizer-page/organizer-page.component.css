@@ -1,3 +1,7 @@
+mat-tree-node {
+    cursor: pointer;
+}
+
 h2 {
     color: #1E1E1E;
     font-family: Roboto;
@@ -17,13 +21,6 @@ h4 {
     line-height: normal;
     text-align: center;
     padding-top: 15px;
-}
-
-.card {
-    /* padding: 60px 0 50px 0; */
-    /* border-radius: 20px; */
-    /* background: rgba(203, 228, 242, 0.48); */
-    cursor: pointer;
 }
 
 .profile-icons {
@@ -49,6 +46,16 @@ h4 {
     font-weight: 600;
     line-height: normal;
     padding: 10px 30px 10px 30px;
+}
+
+#profilebtn {
+    background: #f7f375;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 10px;
 }
 
 .organizer-info {

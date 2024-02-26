@@ -5,17 +5,18 @@
                 <div class="card shadow pt-3 bg-white" style="border-radius: 15px">
                     <div class="card-body p-1 d-md-flex">
                         <div class="ms-md-5 my-2 d-flex flex-column text-center pe-5 px-5">
-                            <img src="./assets/artists/arijit.png" alt="Generic placeholder image"
+                            <img src="{{ artist.aprofilephoto }}" alt="Generic placeholder image"
                                 class="img-fluid my-4 mb-1 rounded-circle mx-auto" style="width: 150px; z-index: 1" />
                             <button mat-button class="text-center">
-                                <span><b>500 </b><i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
+                                <span><b>{{ artist.alikes }} </b><i class="fa fa-thumbs-up"
+                                        style="font-size: 18px;"></i></span>
                             </button>
                         </div>
                         <div class="mx-md-5 mt-4 text-start px-5 text-center text-md-start">
-                            <h2 class="mb-3">Akshay Bansode</h2>
-                            <h3>Singer + Guitarist</h3>
-                            <h3>UK, Pune</h3>
-                            <h3>Experience: 5+ years</h3>
+                            <h2 class="mb-3">{{ artist.uname }}</h2>
+                            <h3>{{ artist.acategory }}</h3>
+                            <h3>{{ artist.uaddress }}, <b>{{artist.ucity}}</b></h3>
+                            <h3>Experience: {{ artist.aworkexperience }}</h3>
                         </div>
                         <div
                             class="profile-icons ms-auto ms-md-6 mt-4 d-flex flex-column align-items-center text-md-center">
@@ -23,32 +24,25 @@
                                 <i class="far fa-heart" style="font-size: 20px;"></i>
                             </button>
                             <div class="social-links">
-                                <a class="btn btn-sm rounded-circle bg-primary text-white me-3" href=""
-                                    target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm rounded-circle text-white me-3" style="
-                      background: linear-gradient(
-                        45deg,
-                        #405de6,
-                        #5851db,
-                        #833ab4,
-                        #c13584,
-                        #e1306c,
-                        #fd1d1d
-                      );
-                    " href="" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-sm rounded-circle bg-primary text-white me-3"
+                                    href="{{ artist.afblink }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-sm rounded-circle text-white me-3"
+                                    style="background: linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);"
+                                    href="{{ artist.ainstalink }}" target="_blank"><i class="fab fa-instagram"></i></a>
                                 <a class="btn btn-sm rounded-circle text-white bg-primary" href=""><i
                                         class="fab fa-linkedin-in"></i></a>
                             </div>
                             <p>
-                                <a href="https://wa.me/" target="_blank"
+                                <a href="https://wa.me/{{ artist.uwhatsappno }}" target="_blank"
                                     class="btn border border-secondary shadow bg-white py-2 px-5 mt-3">
                                     <i class="fab fa-whatsapp"
                                         style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
                                     Book Now</a>
                             </p>
                             <p class="fs-5 mt-3">
-                                <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a href="https://www.website.com/" target="_blank"
-                                    class="text-decoration-none py-3 px-2 mt-3">https://www.website.com/</a>
+                                <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a
+                                    href="{{ artist.awebsite }}" target="_blank"
+                                    class="text-decoration-none py-3 px-2 mt-3">{{ artist.awebsite }}</a>
                             </p>
                         </div>
                     </div>
@@ -59,26 +53,27 @@
                     </div>
                     <div class="card-body">
                         <div class="row row-cols-2 row-cols-md-3 g-4">
-                            <div class="col">
+                            <div class="col" *ngFor="let image of artist.aphotos">
                                 <div class="h-100 rounded-3">
-                                    <img src="../../../assets/artists/group12 1.png" class="card-img-top"
-                                        alt="Hollywood Sign on The Hill" />
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="h-100">
-                                    <img src="../../../assets/artists/group36 1.png" class="card-img-top"
-                                        alt="Palm Springs Road" />
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="h-100">
-                                    <img src="../../../assets/artists/group32 1.png" class="card-img-top"
-                                        alt="Los Angeles Skyscrapers" />
+                                    <img [src]="image" class="card-img-top"
+                                        alt="Image" />
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- <div class="col">
+                                <div class="h-100">
+                                    <img src="../../../assets/artists/group36 1.png" class="card-img-top"
+                                        alt="Palm Springs Road" />
+                                </div>
+                            </div> -->
+                    <!-- <div class="col">
+                                <div class="h-100">aphotos
+                                    <img src="../../../assets/artists/group32 1.png" class="card-img-top"
+                                        alt="Los Angeles Skyscrapers" />
+                                </div>
+                            </div> -->
                     <div class="card-body p-1 d-md-flex">
                         <div class="ms-md-5 my-3 text-center pe-5">
                             <h1 class="fw-bold" style="text-align: left;">
@@ -87,10 +82,8 @@
                         </div>
                         <div class="mx-md-5 mt-4 fs-5 px-5">
                             <ol>
-                                <li class="mb-3">Singer</li>
-                                <li class="mb-3">Guitarist</li>
-                                <li class="mb-3">Drummer</li>
-                                <li class="mb-3">Public Engagement</li>
+                                <li class="mb-3" *ngFor="let requirement of artist.aspeciality.split(',')">
+                                    {{requirement.trim()}}</li>
                             </ol>
                         </div>
                     </div>
@@ -101,20 +94,7 @@
                             </h1>
                         </div>
                         <div class="mx-md-5 mt-3 px-5">
-                            <h3>
-                                Hi, This is Akshay your Guitar Instructor. Welcome to the Beats
-                                Academy. I have been playing guitar since 10 years. Beats
-                                academy has been working since last 8 years and till now more
-                                than 700 people have learned guitar successfully. I would like
-                                to say that some of these members are from out of India. We
-                                created 3 rock bands through Beats & more than 1000 live
-                                performances have been done so far. I'm an IT engineer by
-                                profession and Guitarist by Passion. Through this academy I want
-                                to say that you can also cultivate your hobby while maintaining
-                                your profession & Guitar is the best instrument for that and you
-                                can play all kinds of songs with deep emotions. We welcome you
-                                all to our academy.
-                            </h3>
+                            <h3>{{artist.adescription}}</h3>
                         </div>
                     </div>
                     <div class="card-body p-1 d-md-flex">
@@ -125,10 +105,8 @@
                         </div>
                         <div class="mx-md-5 mt-4 fs-5">
                             <ol>
-                                <li class="mb-3">Sound System</li>
-                                <li class="mb-3">Meal</li>
-                                <li class="mb-3">Drummer</li>
-                                <li class="mb-3">Travel Allowance</li>
+                                <li class="mb-3" *ngFor="let requirement of artist.arequirements.split(',')">
+                                    {{requirement.trim()}}</li>
                             </ol>
                         </div>
                     </div>

@@ -1,10 +1,107 @@
 <mat-toolbar color="white" class="desktop">
 
     <div class="center-content">
-        <img src="./assets/logo.png" alt="Logo" class="logo">
+        <img src="./assets/Meet-my-artist.png" alt="Logo" class="logo">
     </div>
 
-    <ng-container *ngIf="!isUserLoggedIn; else registrationSection">
+    <ng-container *ngIf="isUserLoggedIn">
+
+        <div class="icons">
+            <ng-container *ngIf="userType === 'user'">
+                <!-- <button mat-icon-button routerLink="/notifications">
+                    <mat-icon>notifications</mat-icon>
+                </button>
+                <button mat-icon-button routerLink="wishlist/:uid">
+                    <mat-icon>favorite</mat-icon>
+                </button> -->
+                <button mat-icon-button (click)="eventManageForm()">
+                    <mat-icon>event</mat-icon>
+                </button>
+                <button mat-icon-button (click)="openUpdateForm()">
+                    <mat-icon>person</mat-icon>
+                </button>
+                <button mat-icon-button (click)="logout()">
+                    <mat-icon>lock</mat-icon>
+                </button>
+            </ng-container>
+
+            <ng-container *ngIf="userType === 'artist'">
+                <!-- Display artist specific icon -->
+                <!-- <button mat-icon-button routerLink="/notifications">
+                    <mat-icon>notifications</mat-icon>
+                </button>
+                <button mat-icon-button routerLink="/wishlist/7">
+                    <mat-icon>favorite</mat-icon>
+                </button> -->
+                <button mat-icon-button (click)="openUpdateForm()">
+                    <mat-icon>person</mat-icon>
+                </button>
+                <button mat-icon-button (click)="logout()">
+                    <mat-icon>lock</mat-icon>
+                </button>
+            </ng-container>
+
+            <ng-container *ngIf="userType === 'organizer'">
+                <!-- Display artist specific icon -->
+                <!-- <button mat-icon-button routerLink="/notifications">
+                    <mat-icon>notifications</mat-icon>
+                </button>
+                <button mat-icon-button routerLink="wishlist/:uid">
+                    <mat-icon>favorite</mat-icon>
+                </button> -->
+                <button mat-icon-button (click)="eventManageForm()">
+                    <mat-icon>event</mat-icon>
+                </button>
+                <button mat-icon-button (click)="openUpdateForm()">
+                    <mat-icon>person</mat-icon>
+                </button>
+                <button mat-icon-button (click)="logout()">
+                    <mat-icon>lock</mat-icon>
+                </button>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <!-- <ng-container *ngIf="isUserLoggedIn">
+        <div class="icons">
+            <button mat-icon-button routerLink="/notifications">
+                <mat-icon>notifications</mat-icon>
+            </button>
+            <button mat-icon-button routerLink="/wishlist">
+                <mat-icon>favorite</mat-icon>
+            </button>
+            <button mat-icon-button routerLink="/eventManage">
+                <mat-icon>person</mat-icon>
+            </button>
+            <button mat-icon-button (click)="logout()">
+                <mat-icon>lock</mat-icon>
+            </button>
+            <!-- Additional icons based on user type 
+            <ng-container *ngIf="userType === 'artist'">
+                <!-- Display artist specific icon 
+                <button mat-icon-button routerLink="/notifications">
+                    <mat-icon>notifications</mat-icon>
+                </button>
+                <button mat-icon-button routerLink="/wishlist">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+                <button mat-icon-button (click)="logout()">
+                    <mat-icon>lock</mat-icon>
+                </button>
+            </ng-container>
+            <ng-container *ngIf="userType === 'organizer'">
+                <!-- Display organizer specific icon 
+                <button mat-icon-button routerLink="/eventManage">
+                    <mat-icon>person</mat-icon>
+                </button>
+                <button mat-icon-button (click)="logout()">
+                    <mat-icon>lock</mat-icon>
+                </button>
+            </ng-container>
+        </div>
+    </ng-container> -->
+
+    <!-- <ng-container *ngIf="!isUserLoggedIn; else registrationSection">
 
     </ng-container>
 
@@ -23,7 +120,7 @@
                 <mat-icon>lock</mat-icon>
             </button>
         </div>
-    </ng-template>
+    </ng-template> -->
     <!-- <div class="navbar-nav ml-auto">
         <ng-container *ngIf="!isUserRegistered; else registrationSection">
             <div ngbDropdown>

@@ -4,9 +4,7 @@ import { HomePageComponent } from './Components/home-page/home-page.component';
 import { ProductsPageComponent } from './Components/products-page/products-page.component';
 import { EventsPageComponent } from './Components/events-page/events-page.component';
 import { ArtistsPageComponent } from './Components/artists-page/artists-page.component';
-import { OrganizerRegistrationComponent } from './Components/organizer-registration/organizer-registration.component';
-import { ArtistRegistrationComponent } from './Components/artist-registration/artist-registration.component';
-import { UserRegistrationComponent } from './Components/user-registration/user-registration.component';
+import { RegistrationFormComponent } from './Components/registration-form/registration-form.component';
 import { EventRegistrationComponent } from './Components/event-registration/event-registration.component';
 import { LoginComponent } from './Components/login/login.component';
 import { NotificationsPageComponent } from './Components/notifications-page/notifications-page.component';
@@ -16,24 +14,35 @@ import { OrganizerPageComponent } from './Components/organizer-page/organizer-pa
 import { OrganizerProfilePageComponent } from './Components/organizer-profile-page/organizer-profile-page.component';
 import { EventManageComponent } from './Components/event-manage/event-manage.component';
 import { ArtistsHomePageComponent } from './Components/artists-home-page/artists-home-page.component';
+import { authGuard } from './Services/auth.guard';
+import { ArtistSubscriptionPageComponent } from './Components/artist-subscription-page/artist-subscription-page.component';
+import { UserSubscriptionPageComponent } from './Components/user-subscription-page/user-subscription-page.component';
+import { OrganizerSubscriptionPageComponent } from './Components/organizer-subscription-page/organizer-subscription-page.component';
+import { PricingPageComponent } from './Components/pricing-page/pricing-page.component';
+import { UpdateRegistrationFormComponent } from './Components/update-registration-form/update-registration-form.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: '', component: HomePageComponent, canActivate: [authGuard] },
+  // { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'artists', component: ArtistsPageComponent },
   { path: 'events', component: EventsPageComponent },
   { path: 'products', component: ProductsPageComponent },
-  { path: 'organizerRegistration', component: OrganizerRegistrationComponent },
-  { path: 'artistRegistration', component: ArtistRegistrationComponent },
-  { path: 'userRegistration', component: UserRegistrationComponent },
+  { path: 'registrationForm', component: RegistrationFormComponent },
+  { path: 'updateRegistrationForm/:uid', component: UpdateRegistrationFormComponent },
   { path: 'eventRegistration', component: EventRegistrationComponent },
-  { path: 'eventManage', component: EventManageComponent },
+  { path: 'eventManage/:uid', component: EventManageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'notifications', component: NotificationsPageComponent },
-  { path: 'wishlist', component: WishlistPageComponent },
-  { path: 'artistProfile/:artistId', component: ArtistProfilePageComponent },
+  { path: 'wishlist/:uid', component: WishlistPageComponent },
+  { path: 'artistProfile/:uid', component: ArtistProfilePageComponent },
   { path: 'organizer', component: OrganizerPageComponent },
-  { path: 'organizerProfile/:organizerId', component: OrganizerProfilePageComponent },
-  { path: 'artistsHome', component: ArtistsHomePageComponent }
+  { path: 'organizerProfile/:uid', component: OrganizerProfilePageComponent },
+  { path: 'artistsHome', component: ArtistsHomePageComponent, canActivate: [authGuard] },
+  { path: 'userSubscription', component: UserSubscriptionPageComponent },
+  { path: 'artistSubscription', component: ArtistSubscriptionPageComponent },
+  { path: 'organizerSubscription', component: OrganizerSubscriptionPageComponent },
+  { path: 'pricing', component: PricingPageComponent }
+
 ];
 
 @NgModule({

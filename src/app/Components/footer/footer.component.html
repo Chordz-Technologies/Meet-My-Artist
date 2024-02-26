@@ -14,20 +14,96 @@
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
                     <h4>Quick Links</h4>
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
-                        </li>
-                        <li>
-                            <a routerLink="artists" routerLinkActive="active">Artists</a>
-                        </li>
-                        <li>
-                            <a routerLink="events" routerLinkActive="active">Events</a>
-                        </li>
-                        <li>
-                            <a routerLink="products" routerLinkActive="active">Products</a>
-                        </li>
-                    </ul>
+                    <div>
+                        <!-- Initial set of menu items -->
+                        <ng-template #initialMenu>
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a routerLink="" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact:true}">Home</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/artists" routerLinkActive="active">Artists</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/events" routerLinkActive="active">Events</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/products" routerLinkActive="active">Products</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/userSubscription" routerLinkActive="active">Subscription Plan</a>
+                                </li>
+                            </ul>
+                        </ng-template>
+
+                        <!-- Menu items after login -->
+                        <ng-template #loggedInMenu>
+                            <!-- Adjust these menu items based on the user's type -->
+                            <ul class="list-unstyled mb-0" *ngIf="userType === 'user'">
+                                <li>
+                                    <a routerLink="" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact:true}">Home</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/artists" routerLinkActive="active">Artists</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/events" routerLinkActive="active">Events</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/products" routerLinkActive="active">Products</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/userSubscription" routerLinkActive="active">Subscription Plan</a>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled mb-0" *ngIf="userType === 'artist'">
+                                <li>
+                                    <a routerLink="" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact:true}">Home</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/artists" routerLinkActive="active">Artists</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/events" routerLinkActive="active">Events</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/products" routerLinkActive="active">Products</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/artistSubscription" routerLinkActive="active">Subscription Plan</a>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled mb-0" *ngIf="userType === 'organizer'">
+                                <li>
+                                    <a routerLink="" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact:true}">Home</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/artists" routerLinkActive="active">Artists</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/events" routerLinkActive="active">Events</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/products" routerLinkActive="active">Products</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/organizerSubscription" routerLinkActive="active">Subscription
+                                        Plan</a>
+                                </li>
+                            </ul>
+                        </ng-template>
+
+                        <!-- Display the appropriate set of menu items based on login status -->
+                        <ng-container *ngIf="isUserLoggedIn; else initialMenu">
+                            <ng-container *ngTemplateOutlet="loggedInMenu"></ng-container>
+                        </ng-container>
+                    </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
                     <h4 class="text-uppercase mb-0">Contact Us</h4>

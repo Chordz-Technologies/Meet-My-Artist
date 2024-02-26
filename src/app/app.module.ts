@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderTopComponent } from './Components/header-top/header-top.component';
 import { HeaderBottomComponent } from './Components/header-bottom/header-bottom.component';
@@ -19,9 +20,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsPageComponent } from './Components/products-page/products-page.component';
 import { EventsPageComponent } from './Components/events-page/events-page.component';
-import { OrganizerRegistrationComponent } from './Components/organizer-registration/organizer-registration.component';
-import { ArtistRegistrationComponent } from './Components/artist-registration/artist-registration.component';
-import { UserRegistrationComponent } from './Components/user-registration/user-registration.component';
+import { RegistrationFormComponent } from './Components/registration-form/registration-form.component';
 import { ArtistsPageComponent } from './Components/artists-page/artists-page.component';
 import { EventRegistrationComponent } from './Components/event-registration/event-registration.component';
 import { FormsModule } from '@angular/forms';
@@ -37,6 +36,17 @@ import { LookingForThisComponent } from './Components/looking-for-this/looking-f
 import { EventManageComponent } from './Components/event-manage/event-manage.component';
 import { ArtistsHomePageComponent } from './Components/artists-home-page/artists-home-page.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { CarouselComponent } from './Components/carousel/carousel.component';
+import { ArtistSubscriptionPageComponent } from './Components/artist-subscription-page/artist-subscription-page.component';
+import { UserSubscriptionPageComponent } from './Components/user-subscription-page/user-subscription-page.component';
+import { OrganizerSubscriptionPageComponent } from './Components/organizer-subscription-page/organizer-subscription-page.component';
+import { PricingPageComponent } from './Components/pricing-page/pricing-page.component';
+import { UpdateRegistrationFormComponent } from './Components/update-registration-form/update-registration-form.component';
+
+
 
 @NgModule({
   declarations: [
@@ -47,9 +57,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     HomePageComponent,
     ProductsPageComponent,
     EventsPageComponent,
-    OrganizerRegistrationComponent,
-    ArtistRegistrationComponent,
-    UserRegistrationComponent,
+    RegistrationFormComponent,
     ArtistsPageComponent,
     EventRegistrationComponent,
     LoginComponent,
@@ -60,7 +68,13 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     OrganizerProfilePageComponent,
     LookingForThisComponent,
     EventManageComponent,
-    ArtistsHomePageComponent
+    ArtistsHomePageComponent,
+    CarouselComponent,
+    ArtistSubscriptionPageComponent,
+    UserSubscriptionPageComponent,
+    OrganizerSubscriptionPageComponent,
+    PricingPageComponent,
+    UpdateRegistrationFormComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +92,11 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     NgbCollapseModule,
     FormsModule,
     MatPaginatorModule,
-    MatTreeModule
+    MatTreeModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ToastrModule.forRoot()
 
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],

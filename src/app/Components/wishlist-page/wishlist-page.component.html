@@ -12,13 +12,13 @@
         </div>
     </div> -->
     <div class="row pt-3">
-        <div class="col-md-4" *ngFor="let artist of artists | slice:1:4">
+        <div class="col-md-4" *ngFor="let organizer of organizers">
             <div class="card business-card shadow p-3 mb-5 bg-white rounded">
                 <div class="card-data">
-                    <img [src]="artist.Aprofilephoto" class="card-img-top" alt="Image Alt Text">
-                    <h4>{{ artist.Aname }}</h4>
-                    <p class="text-center" style="font-size: 20px;">{{ artist.Acategory }}</p>
-                    <p class="text-center"><b>{{ artist.Alikes }} </b><mat-icon
+                    <img [src]="organizer.oprofilephoto" class="card-img-top" alt="Image Alt Text">
+                    <h4>{{ organizer.uname }}</h4>
+                    <p class="text-center" style="font-size: 20px;">{{ organizer.ocategory }}</p>
+                    <p class="text-center"><b>{{ organizer.olikes }} </b><mat-icon
                             style="font-size: 28px;">thumb_up</mat-icon></p>
                 </div>
             </div>

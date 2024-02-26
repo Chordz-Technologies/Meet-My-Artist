@@ -9,13 +9,21 @@ import { ServiceService } from 'src/app/Services/service.service';
 })
 export class HeaderBottomComponent implements OnInit {
   isNavbarCollapsed = true;
-  isUserLoggedIn!: boolean;
+  isUserLoggedIn: boolean = false;
+  userType: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.authService.isLoggedIn.subscribe((loggedIn) => {
+
       this.isUserLoggedIn = loggedIn;
+      // alert(this.isUserLoggedIn);
+      if (loggedIn) {
+        this.userType = this.authService.getUserType();
+      } else {
+        this.userType = ''; // Reset userType when user logs out
+      }
     });
   }
 
