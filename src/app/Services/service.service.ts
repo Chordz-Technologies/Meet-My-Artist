@@ -11,11 +11,12 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
 
-  // carousal api
+  // Carousal API
   getCarouselImages(): Observable<any> {
-    return this.http.get<any>(`${this.url}/imagesCarousel/`);
+    return this.http.get<any>(`${this.url}/getCarouselImages/`);
   }
-
+ 
+  // Artist API
   getArtistDetails(): Observable<any> {
     return this.http.get<any>(`${this.url}/artistsList/`);
   }
@@ -28,6 +29,7 @@ export class ServiceService {
     return this.http.put<any>(`${this.url}/updateUser/${uid}/`, data);
   }
 
+  // Organizer API
   getOrganizerDetails(): Observable<any> {
     return this.http.get<any>(`${this.url}/organizersList/`);
   }

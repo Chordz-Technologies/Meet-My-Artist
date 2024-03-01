@@ -32,11 +32,11 @@
                                                 <img src="{{ organizer.oprofilephoto }}" alt="Generic placeholder image"
                                                     class="img-fluid my-4 mb-1 rounded-circle mx-auto"
                                                     style="width: 150px; z-index: 1" />
-                                                <button mat-button class="text-center">
+                                                <!-- <button mat-button class="text-center">
                                                     <span><b>{{ organizer.olikes.length }} </b>
                                                         <i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
 
-                                                </button>
+                                                </button> -->
                                             </div>
                                             <div class="organizer-info mt-3">
                                                 <h4 class="mb-3 mt-1">{{ organizer.obusinessname }}</h4>
@@ -50,23 +50,29 @@
                                                 <!-- <p>Experience: {{ artist.Aworkexperience }}</p> -->
                                             </div>
                                             <div class="profile-icons ms-auto ms-md-6 mt-4">
-                                                <a (click)="toggleWishlist(organizer)">
+                                                <!-- <a (click)="toggleWishlist(organizer)">
                                                     <i *ngIf="!organizer.isWishlist" class="far fa-heart" style="font-size: 20px;"></i>
                                                     <i *ngIf="organizer.isWishlist" class="fas fa-heart" style="font-size: 20px;"></i>
-                                                  </a> Your Wishlist<br><br>
+                                                  </a> Your Wishlist<br><br> -->
                                                 <div class="social-links">
                                                     <a class="btn rounded-circle bg-primary text-white me-1"
-                                                        href="{{ organizer.ofblink }}" target="_blank"><i
-                                                            class="fab fa-facebook-f"></i></a>
+                                                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                                        (click)="onLinkClick($event, organizer.ofblink)"
+                                                        target="_blank"><i class="fab fa-facebook-f"></i></a>
                                                     <a class="btn btn-sm rounded-circle text-white me-1"
                                                         style="background: linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);"
-                                                        href="{{ organizer.oinstalink }}" target="_blank"><i
-                                                            class="fab fa-instagram"></i></a>
+                                                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                                        (click)="onLinkClick($event, organizer.oinstalink)"
+                                                        target="_blank"><i class="fab fa-instagram"></i></a>
                                                     <a class="btn btn-sm rounded-circle text-white bg-primary me-1"
-                                                        href=""><i class="fab fa-linkedin-in"></i></a>
+                                                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                                        (click)="onLinkClick($event, '#')"><i
+                                                            class="fab fa-linkedin-in"></i></a>
                                                 </div>
                                                 <p>
-                                                    <a href="https://wa.me/{{ organizer.uwhatsappno }}" target="_blank"
+                                                    <a [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                                        (click)="onLinkClick($event, organizer.uwhatsappno)"
+                                                        target="_blank"
                                                         class="btn border border-secondary bg-white py-2 mt-3">
                                                         <i class="fab fa-whatsapp"
                                                             style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
@@ -74,7 +80,8 @@
                                                 </p>
                                                 <p>
                                                     <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a
-                                                        href="{{ organizer.owebsite }}" target="_blank"
+                                                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                                        (click)="onLinkClick($event, organizer.owebsite)" target="_blank"
                                                         class="text-decoration-none py-3 px-2 mt-3">{{
                                                         organizer.owebsite }}</a>
                                                 </p>

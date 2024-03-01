@@ -8,11 +8,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./organizer-profile-page.component.css']
 })
 export class OrganizerProfilePageComponent implements OnInit {
-
-  constructor(private service: ServiceService, private activatedRoute: ActivatedRoute) { }
-
   organizer: any;
   public userId!: number;
+  isUserLoggedIn: any;
+
+  constructor(private service: ServiceService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(val => {
@@ -27,5 +27,15 @@ export class OrganizerProfilePageComponent implements OnInit {
           }
         })
     })
+  }
+
+  onLinkClick(event: MouseEvent, link: string): void {
+    if (!this.isUserLoggedIn) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+    // Redirect logic for logged-in users
+    window.location.href = link;
   }
 }

@@ -12,6 +12,7 @@ export class ArtistProfilePageComponent implements OnInit {
   constructor(private service: ServiceService, private activatedRoute: ActivatedRoute) { }
   artist: any;
   public userId!: number;
+  isUserLoggedIn: any;
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(val => {
@@ -27,18 +28,13 @@ export class ArtistProfilePageComponent implements OnInit {
         })
     })
   }
-
-  // getArtistList() {
-  // this.service.getArtistDetailsByID(this.userId).subscribe({
-  //   next: (res: any) => {
-  //     console.log(res);
-  //     this.artists = res.user_details;
-  //     // this.updatePaginator();
-  //   },
-  //   error: (err: any) => {
-  //     console.error('Error:', err);
-  //     alert('Error fetching data. Check the console for details.');
-  //   },
-  // });
-  // }
+  onLinkClick(event: MouseEvent, link: string): void {
+    if (!this.isUserLoggedIn) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+    // Redirect logic for logged-in users
+    window.location.href = link;
+  }
 }

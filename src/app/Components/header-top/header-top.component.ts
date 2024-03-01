@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/Services/auth.service';
-import { ServiceService } from 'src/app/Services/service.service';
+// import { ServiceService } from 'src/app/Services/service.service';
 import { Router } from '@angular/router';
 
 
@@ -13,18 +13,17 @@ export class HeaderTopComponent implements OnInit {
   isUserLoggedIn: boolean = false;
   userType: string = ''; // Add this line to define userType
 
-  constructor(private authService: AuthService, private router: Router, private service: ServiceService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.authService.isLoggedIn.subscribe((loggedIn) => {
       this.isUserLoggedIn = loggedIn;
       this.userType = this.authService.getUserType();
-      console.log('User type:', this.userType); // Add this line to log userType
     });
 
     // Clear browser history and prevent going back
-    history.pushState(null, '', '/');
-    this.router.navigate(['/']); // Redirect to login page after logout
+    // history.pushState(null, '', '/');
+    // this.router.navigate(['/']);
   }
 
   getUserId(): string | null {

@@ -1,3 +1,20 @@
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    transform: translateX(-68%);
+    z-index: 1000;
+}
+
+.dropdown-menu .dropdown-item {
+    padding: 3px 15px 4px 15px;
+    color: black;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
 .navbar {
     background-color: #40ADEA;
 }
@@ -26,60 +43,11 @@
     flex: 0;
 }
 
-/* .btn {
-    padding: 10px 40px 10px 40px;
-} */
-
-/* .mat-toolbar {
-    background-color: #40ADEA;
-    color: white;
-} */
-
-/* .mat-button {
-    color: white;
-} */
-
-/* button {
-    border-radius: 10px;
-    background: #F0E945;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    color: #1E1E1E;
-    text-align: center;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-} */
-
-/* .menu {
-    background: transparent;
-    border: none;
-    padding: 5px 20px 5px 20px;
-}
-
-.menu button {
-    background: rgb(226, 227, 227);
-    margin-bottom: 3px;
-    padding: 10px 30px 10px 30px;
-}
-
-.menu button:hover {
-    background: #F0E945;
-} */
-
-/* .menu button:active {
-    color: black;
-} */
-
 .search-container {
     position: relative;
     display: flex;
     align-items: center;
     width: 40%;
-    /* justify-content: flex-start; */
-    /* padding-right: 10px; */
 }
 
 .search-input {
@@ -112,31 +80,9 @@
     padding: 10px 40px 10px 40px;
 }
 
-.menu {
-    background: transparent;
-    border: none;
-    padding: 5px 30px 5px 30px;
-}
-
-.menu button {
-    background: rgb(226, 227, 227);
-    margin-bottom: 3px;
-    padding: 10px 25px 10px 30px;
-}
-
-.menu button:hover {
-    background: #F0E945;
-}
-
-.menu button:active {
-    color: black;
-}
-
-
 @media screen and (max-width: 600px) {
     .search-container {
         width: 100%;
-        /* padding-right: 0; */
     }
 
     .search-input {
@@ -162,6 +108,23 @@
     .search-icon {
         right: 10px;
     }
+
+    .navbar-nav .nav-item .nav-link {
+        /* color: black; */
+        text-align: left;
+        padding: 3px;
+    }
+
+    #toggler {
+        position: absolute;
+        top: calc(100% + 3px);
+        transform: translateX(-35%);
+        z-index: 1000;
+        display: block;
+        background:  #40ADEA;
+        border-radius: 5px;
+        padding: 5px 30px 10px 10px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -170,22 +133,6 @@
     #desktop {
         display: none;
     }
-
-    /* .icons {
-        padding-left: 0;
-    }
-
-    .navbar-nav {
-        padding-right: 0;
-    } */
-
-    /* .btn {
-        padding: 10px 20px 10px 20px;
-    }
-
-    .menu {
-        padding: 0;
-    } */
 }
 
 @media (min-width: 601px) {

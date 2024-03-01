@@ -33,6 +33,7 @@ export class OrganizerPageComponent implements OnInit {
   isWishlist: boolean = false;
   loggedInUserId: number | undefined;
   wishlistIds: any;
+  isUserLoggedIn: any;
 
   constructor(private service: ServiceService, private router: Router) {
     this.treeFlattener = new MatTreeFlattener(
@@ -170,6 +171,16 @@ export class OrganizerPageComponent implements OnInit {
     const category = node.name;
     this.selectedCategory = category;
     this.filteredOrganizers = this.organizers.filter(organizer => organizer.obusinesscategory === category);
+  }
+
+  onLinkClick(event: MouseEvent, link: string): void {
+    if (!this.isUserLoggedIn) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+    // Redirect logic for logged-in users
+    window.location.href = link;
   }
 
   navigateToProfile(uid: number) {

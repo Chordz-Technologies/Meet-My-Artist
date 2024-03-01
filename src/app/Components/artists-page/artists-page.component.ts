@@ -36,6 +36,16 @@ export class ArtistsPageComponent implements OnInit {
   artists: any[] = [];
   filteredArtists: any[] = [];
   products: any[] = [];
+  isUserLoggedIn: any;
+  modalDisplay = 'none';
+
+  openModal() {
+    this.modalDisplay = 'block';
+  }
+
+  closeModal() {
+    this.modalDisplay = 'none';
+  }
 
   constructor(private service: ServiceService, private router: Router) {
     this.treeFlattener = new MatTreeFlattener(
@@ -110,6 +120,20 @@ export class ArtistsPageComponent implements OnInit {
       }
     });
   }
+
+  onLinkClick(event: MouseEvent, link: string): void {
+    if (!this.isUserLoggedIn) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+    }
+    // Redirect logic for logged-in users
+    window.location.href = link;
+}
+
+getMsg() {
+  alert("Register First...");
+}
 
   navigateToProfile(uid: number) {
     this.router.navigate(['/artistProfile', uid]);

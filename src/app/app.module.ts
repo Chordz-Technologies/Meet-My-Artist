@@ -47,7 +47,6 @@ import { PricingPageComponent } from './Components/pricing-page/pricing-page.com
 import { UpdateRegistrationFormComponent } from './Components/update-registration-form/update-registration-form.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -26,3 +26,8 @@ li {
 .profile-icons {
     padding-right: 20px;
 }
+
+.disabled-link {
+    pointer-events: none;
+    opacity: 0.5;
+}

@@ -7,9 +7,9 @@
                         <div class="ms-md-5 my-2 d-flex flex-column text-center pe-5 px-5">
                             <img src="{{ organizer.oprofilephoto }}" alt="Generic placeholder image"
                                 class="img-fluid my-4 mb-1 rounded-circle mx-auto" style="width: 150px; z-index: 1" />
-                            <button mat-button class="text-center">
+                            <!-- <button mat-button class="text-center">
                                 <span><b>{{ organizer.olikes }} </b><i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
-                            </button>
+                            </button> -->
                         </div>
                         <div class="mx-md-5 mt-5 text-start px-5 text-center text-md-start">
                             <h2 class="mb-3">{{ organizer.obusinessname }}</h2>
@@ -18,20 +18,26 @@
                         </div>
                         <div
                             class="profile-icons ms-auto ms-md-6 mt-4 d-flex flex-column align-items-center text-md-center">
-                            <button mat-button class="fs-4">
+                            <!-- <button mat-button class="fs-4">
                                 <i class="far fa-heart" style="font-size: 20px;"></i>
-                            </button>
+                            </button> -->
                             <div class="social-links">
                                 <a class="btn btn-sm rounded-circle bg-primary text-white me-3"
-                                    href="{{ organizer.ofblink }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                    [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                    (click)="onLinkClick($event, organizer.ofblink)" target="_blank"><i
+                                        class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-sm rounded-circle text-white me-3"
                                     style="background: linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);"
-                                    href="{{ organizer.oinstalink }}" target="_blank"><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-sm rounded-circle text-white bg-primary" href=""><i
-                                        class="fab fa-linkedin-in"></i></a>
+                                    [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                    (click)="onLinkClick($event, organizer.oinstalink)" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                                <a class="btn btn-sm rounded-circle text-white bg-primary"
+                                    [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                    (click)="onLinkClick($event, '#')"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                             <p>
-                                <a href="https://wa.me/{{ organizer.uwhatsappno }}" target="_blank"
+                                <a [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                    (click)="onLinkClick($event, organizer.uwhatsappno)" target="_blank"
                                     class="btn border border-secondary shadow bg-white py-2 px-5 mt-3">
                                     <i class="fab fa-whatsapp"
                                         style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
@@ -39,7 +45,8 @@
                             </p>
                             <p class="fs-5 mt-3">
                                 <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a
-                                    href="{{ organizer.owebsite }}" target="_blank"
+                                    [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                    (click)="onLinkClick($event, organizer.owebsite)" target="_blank"
                                     class="text-decoration-none py-3 px-2 mt-3">{{ organizer.owebsite }}</a>
                             </p>
                         </div>
@@ -53,8 +60,7 @@
                         <div class="row row-cols-2 row-cols-md-3 g-4">
                             <div class="col" *ngFor="let image of organizer.ophotos">
                                 <div class="h-100 rounded-3">
-                                    <img [src]="image" class="card-img-top"
-                                        alt="Image" />
+                                    <img [src]="image" class="card-img-top" alt="Image" />
                                 </div>
                             </div>
                         </div>

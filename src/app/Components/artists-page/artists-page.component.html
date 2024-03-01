@@ -37,10 +37,10 @@
                                                 <img src="{{ artist.aprofilephoto }}" alt="Generic placeholder image"
                                                     class="img-fluid my-4 mb-1 rounded-circle mx-auto"
                                                     style="width: 150px; z-index: 1" />
-                                                <button mat-button class="text-center">
+                                                <!-- <button mat-button class="text-center">
                                                     <span><b>{{ artist.alikes }} </b>
                                                         <i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
-                                                </button>
+                                                </button> -->
                                             </div>
                                             <div class="artist-info mt-1">
                                                 <h4 class="mb-3 mt-1">{{ artist.uname }}</h4>
@@ -51,23 +51,39 @@
                                                     (click)="navigateToProfile(artist.uid)"><i class="fa fa-user"></i>
                                                     View Profile</button>
                                             </div>
-                                            <div class="profile-icons ms-auto ms-md-6 mt-4">
-                                                <button mat-button>
+                                            <!-- <button mat-button>
                                                     <i class="far fa-heart" style="font-size: 20px;"></i>
-                                                </button>
+                                                </button> -->
+
+                                            <div id="myModal" class="modal" [style.display]="modalDisplay">
+                                                <!-- Modal content -->
+                                                <div class="modal-content">
+                                                    <h4>You want to login first!</h4>
+                                                    <button class="btn close" id="profilebtn" routerLink="/login">Login Here</button><br>
+                                                    <button class="btn close" id="profilebtn" (click)="closeModal()">Close</button>
+                                                </div>
+                                            </div>
+                                            <div class="profile-icons ms-auto ms-md-6 mt-4" (click)="openModal()">
+
                                                 <div class="social-links">
                                                     <a class="btn rounded-circle bg-primary text-white me-1"
-                                                        href="{{ artist.afblink }}" target="_blank"><i
+                                                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                                        (click)="onLinkClick($event, artist.afblink)" target="_blank"><i
                                                             class="fab fa-facebook-f"></i></a>
                                                     <a class="btn btn-sm rounded-circle text-white me-1"
                                                         style="background: linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);"
-                                                        href="{{ artist.ainstalink }}" target="_blank"><i
-                                                            class="fab fa-instagram"></i></a>
+                                                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                                        (click)="onLinkClick($event, artist.ainstalink)"
+                                                        target="_blank"><i class="fab fa-instagram"></i></a>
                                                     <a class="btn btn-sm rounded-circle text-white bg-primary me-1"
-                                                        href=""><i class="fab fa-linkedin-in"></i></a>
+                                                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                                        (click)="onLinkClick($event, '#')"><i
+                                                            class="fab fa-linkedin-in"></i></a>
                                                 </div>
                                                 <p>
-                                                    <a href="https://wa.me/{{ artist.uwhatsappno }}" target="_blank"
+                                                    <a [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                                        (click)="onLinkClick($event, artist.uwhatsappno)"
+                                                        target="_blank"
                                                         class="btn border border-secondary bg-white py-2 mt-3">
                                                         <i class="fab fa-whatsapp"
                                                             style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
@@ -75,7 +91,8 @@
                                                 </p>
                                                 <p>
                                                     <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a
-                                                        href="{{ artist.awebsite }}" target="_blank"
+                                                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                                                        (click)="onLinkClick($event, artist.awebsite)" target="_blank"
                                                         class="text-decoration-none py-3 px-2 mt-3">{{
                                                         artist.awebsite }}</a>
                                                 </p>

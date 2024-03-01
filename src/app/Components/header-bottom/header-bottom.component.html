@@ -7,18 +7,18 @@
         <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse">
             <!-- Initial set of menu items -->
             <ng-template #initialMenu>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
+                <ul class="navbar-nav mr-auto" id="toggler">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/" routerLinkActive="active"
                             [routerLinkActiveOptions]="{exact:true}">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/artists" routerLinkActive="active">Artists</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
                     </li>
                 </ul>
@@ -27,50 +27,50 @@
             <!-- Menu items after login -->
             <ng-template #loggedInMenu>
                 <!-- Adjust these menu items based on the user's type -->
-                <ul class="navbar-nav mr-auto" *ngIf="userType === 'user'">
-                    <li class="nav-item">
+                <ul class="navbar-nav mr-auto" *ngIf="userType === 'user'" id="toggler">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/" routerLinkActive="active"
                             [routerLinkActiveOptions]="{exact:true}">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/artists" routerLinkActive="active">Artists</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
                     </li>
                 </ul>
 
-                <ul class="navbar-nav mr-auto" *ngIf="userType === 'artist'">
-                    <li class="nav-item">
+                <ul class="navbar-nav mr-auto" *ngIf="userType === 'artist'" id="toggler">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/artistsHome" routerLinkActive="active"
                             [routerLinkActiveOptions]="{exact:true}">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/organizer" routerLinkActive="active">Organizers</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
                     </li>
                 </ul>
 
-                <ul class="navbar-nav mr-auto" *ngIf="userType === 'organizer'">
-                    <li class="nav-item">
+                <ul class="navbar-nav mr-auto" *ngIf="userType === 'organizer'" id="toggler">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/" routerLinkActive="active"
                             [routerLinkActiveOptions]="{exact:true}">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/artists" routerLinkActive="active">Artists</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
                     </li>
                 </ul>
@@ -92,42 +92,39 @@
 
         <div class="navbar-nav ml-auto">
             <ng-container *ngIf="!isUserLoggedIn; else loggedInSection">
-                <div ngbDropdown>
+                <div>
                     <button class="btn btn-outline-light" id="desktop" routerLink="/login">
                         Login Here
                     </button>
-                    <button class="btn btn-outline-light" id="mobile" ngbDropdownToggle>
-                        <!-- <button mat-icon-button> -->
+                    <button class="btn btn-outline-light" id="mobile" routerLink="/login">
                         <mat-icon>person</mat-icon>
-                        <!-- </button> -->
-                        <!-- Register Here -->
                     </button>
-                    <!-- <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="menu">
-                        <button class="btn" ngbDropdownItem routerLink="organizerRegistration">Organizer</button>
-                        <button class="btn" ngbDropdownItem routerLink="artistRegistration">Artist</button>
-                        <button class="btn" ngbDropdownItem routerLink="userRegistration">User</button>
-                    </div> -->
                 </div>
             </ng-container>
+
             <ng-template #loggedInSection>
-                <!-- Display "Create Event" button when logged in as user or organizer -->
-                <button class="btn" *ngIf="userType === 'user' || userType === 'organizer'"
-                    routerLink="eventRegistration">Create Event</button>
-                <!-- Display "Open to Work" button when logged in as artist -->
-                <button class="btn" *ngIf="userType === 'artist'">Open to Work</button>
+                <div class="dropdown" ngbDropdown>
+                    <button class="btn btn-outline-light" id="desktop"
+                        *ngIf="userType === 'user' || userType === 'organizer'" routerLink="/eventRegistration">Create
+                        Event</button>
+                    <button class="btn" *ngIf="userType === 'artist'" id="desktop">Open to Work</button>
+                    <button class="btn btn-outline-light" id="mobile" ngbDropdownToggle>
+                        <mat-icon>person</mat-icon>
+                    </button>
+                    <ul class="dropdown-menu" ngbDropdownMenu>
+                        <li>
+                            <a class="dropdown-item" ngbDropdownItem
+                                *ngIf="userType === 'user' || userType === 'organizer'"
+                                routerLink="/eventRegistration">Create Event</a>
+                            <a class="dropdown-item" ngbDropdownItem *ngIf="userType === 'artist'">Open to Work</a>
+                            <a class="dropdown-item" ngbDropdownItem *ngIf="userType === 'user' || userType === 'organizer'"
+                                (click)="eventManageForm()">Manage Event</a>
+                            <a class="dropdown-item" ngbDropdownItem (click)="openUpdateForm()">Edit Profile</a>
+                            <a class="dropdown-item" ngbDropdownItem (click)="logout()">Logout</a>
+                        </li>
+                    </ul>
+                </div>
             </ng-template>
         </div>
-
-
-        <!-- <div *ngIf="!isUserLoggedIn; else loggedInSection">
-            <p>You are not logged in.</p>
-            <button (click)="login()">Login</button>
-        </div>
-        <ng-template #loggedInSection>
-            <p>You are logged in.</p>
-            <button (click)="logout()">Logout</button>
-        </ng-template> -->
-
-
     </div>
 </nav>
