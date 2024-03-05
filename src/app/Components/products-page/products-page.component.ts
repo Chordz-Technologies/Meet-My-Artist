@@ -8,6 +8,7 @@ import { ServiceService } from 'src/app/Services/service.service';
 })
 export class ProductsPageComponent implements OnInit {
   products: any[] = [];
+  url = 'https://meetmyartist.beatsacademy.in/';
 
   constructor(private service: ServiceService) { }
 

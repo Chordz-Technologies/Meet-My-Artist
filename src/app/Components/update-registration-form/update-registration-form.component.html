@@ -203,6 +203,29 @@
         </tr>
         <!-- Category filter -->
 
+        <tr>
+          <td>
+            <label for="category">Category:</label>
+          </td>
+          <td>
+            <select class="form-select" id="category" name="category" formControlName="category" (change)="selectCategory(artistForm.value.category)">
+              <option [ngValue]="null" disabled>Select Category</option>
+              <option *ngFor="let category of artist_categories" [ngValue]="category.cname">{{ category?.cname }}</option>
+            </select>
+          </td>
+        
+          <td>
+            <label for="subcategory">Sub Category:</label>
+          </td>
+          <td>
+            <select class="form-select" id="subcategory" name="subcategory" formControlName="subcategory">
+              <option [ngValue]="null" disabled>Select Subcategory</option>
+              <option *ngFor="let subcategory of subcategories" [ngValue]="subcategory">{{ subcategory }}</option>
+            </select>
+          </td>
+        </tr>
+        
+        
         <!-- <tr>
               <td><label for="dropdown">Category:</label></td>
               <td>

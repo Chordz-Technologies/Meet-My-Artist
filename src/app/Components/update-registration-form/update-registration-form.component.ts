@@ -22,7 +22,23 @@ export class UpdateRegistrationFormComponent implements OnInit {
   showArtistRadioButton: boolean = true;
   showOrganizerRadioButton: boolean = true;
 
+  user_model: user_model = new user_model();
+  artist_categories: any[] = [];
+  selectedCategory: any ;
+  subcategories: string[] = [];
+  selectedSubcategory: string = '';
+  organizer_categories: any[] = [];
+
+  // images upload
+
+  images: any[] = [];
+
+  profileimageData: string | null = null;
+
+
   ngOnInit(): void {
+    this.artist_categorylist();
+    this.organizer_categorylist();  
     //user form validators
     this.userForm = this.fb.group(
       {
@@ -47,6 +63,8 @@ export class UpdateRegistrationFormComponent implements OnInit {
         Validators.required,
         Validators.pattern('[0-9]*'),
       ]),
+      category: '',
+      subcategory:'',
       video_one: this.fb.control('', [
         Validators.required,
         Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
@@ -71,17 +89,18 @@ export class UpdateRegistrationFormComponent implements OnInit {
         Validators.required,
         Validators.pattern('https://.*'),
       ]),
-      artist_profile: this.fb.control('', [
-        Validators.required,
-        Validators.minLength(1),
-      ]),
-      artist_photos: this.fb.control('', [
-        Validators.required,
-        Validators.maxLength(10),
-      ]),
+      // artist_profile: this.fb.control('', [
+      //   Validators.required,
+      //   Validators.minLength(1),
+      // ]),
+      // artist_photos: this.fb.control('', [
+      //   Validators.required,
+      //   Validators.maxLength(10),
+      // ]),
       speciality: this.fb.control('', [Validators.required]),
       requirement: this.fb.control('', [Validators.required]),
       artist_description: this.fb.control('', [Validators.required]),
+      
     });
 
     //organizer form validators
@@ -103,20 +122,21 @@ export class UpdateRegistrationFormComponent implements OnInit {
       ]),
       o_speciality: this.fb.control('', [Validators.required]),
       o_facility: this.fb.control('', [Validators.required]),
-      o_profile: this.fb.control('', [
-        Validators.required,
-        Validators.maxLength(1),
-      ]),
-      o_photos: this.fb.control('', [
-        Validators.required,
-        Validators.maxLength(10),
-      ]),
+      // o_profile: this.fb.control('', [
+      //   Validators.required,
+      //   Validators.maxLength(1),
+      // ]),
+      // o_photos: this.fb.control('', [
+      //   Validators.required,
+      //   Validators.maxLength(10),
+      // ]),
     });
 
     // Initially disable all forms
     this.userForm.disable();
     this.artistForm.disable();
     this.organizerForm.disable();
+    
 
     this.route.params.subscribe(val => {
       this.userIdToUpdate = val['uid'];
@@ -149,21 +169,25 @@ export class UpdateRegistrationFormComponent implements OnInit {
       this.userForm.enable();
       this.organizerForm.disable();
 
-      this.artistForm.setValue({
+      //this.selectedCategory =  user.acategory;
+      this.artistForm.patchValue({
         // Fill artist form values here
         wexp: user.aworkexperience,
+        category: user.acategory,
+        subcategory: user.asubcategory,
         video_one: user.alink1,
         video_two: user.alink2,
         video_three: user.alink2,
         artist_facebook: user.afblink,
         artist_instagram: user.ainstalink,
         artist_website: user.awebsite,
-        artist_profile: user.aprofilephoto,
-        artist_photos: user.aphotos,
+        // artist_profile: user.aprofilephoto,
+        // artist_photos: user.aphotos,
         speciality: user.aspeciality,
         requirement: user.arequirements,
         artist_description: user.adescription
       });
+      this.selectCategory(user.acategory);
 
       this.userForm.setValue({
         // Fill user form values here
@@ -188,8 +212,8 @@ export class UpdateRegistrationFormComponent implements OnInit {
         organizer_website: user.owebsite,
         o_speciality: user.ofacilities,
         o_facility: user.ofacilitesforartist,
-        o_profile: user.oprofilephoto,
-        o_photos: user.ophotos
+        // o_profile: user.oprofilephoto,
+        // o_photos: user.ophotos
       });
 
       this.userForm.setValue({
@@ -234,6 +258,8 @@ export class UpdateRegistrationFormComponent implements OnInit {
     // Extract artist data 
     const artistData = {
       aworkexperience: this.artistForm.value.wexp || '',
+      acategory: this.artistForm.value.category || '', // Include selected category
+      asubcategory: this.artistForm.value.subcategory || '', // Include selected subcategory
       alink1: this.artistForm.value.video_one || '',
       alink2: this.artistForm.value.video_two || '',
       alink3: this.artistForm.value.video_three || '',
@@ -243,13 +269,16 @@ export class UpdateRegistrationFormComponent implements OnInit {
       aspeciality: this.artistForm.value.speciality || '',
       arequirements: this.artistForm.value.requirement || '',
       adescription: this.artistForm.value.artist_description || '',
-      aprofilephoto: this.artistForm.value.artist_profile || '',
+      // aprofilephoto: this.artistForm.value.artist_profile || '',
       // aphotos: this.artistForm.value.artist_photos || '',
     };
+    this.postImages()
+    this.postProfileImage()
 
     // Extract organizer data
     const organizerData = {
       obusinessname: this.organizerForm.value.business_name || '',
+      obusinesscategory: this.user_model.obusinesscategory || '', // Include selected organizer category
       odescription: this.organizerForm.value.organizer_description || '',
       ofblink: this.organizerForm.value.organizer_facebook || '',
       oinstalink: this.organizerForm.value.organizer_instagram || '',
@@ -257,8 +286,10 @@ export class UpdateRegistrationFormComponent implements OnInit {
       ofacilities: this.organizerForm.value.o_speciality || '',
       ofacilitesforartist: this.organizerForm.value.o_facility || '',
       // ophotos: this.organizerForm.value.o_photos || '',
-      oprofilephoto: this.organizerForm.value.o_profile || '',
+      // oprofilephoto: this.organizerForm.value.o_profile || '',
+
     };
+
 
     let updateData = { ...userData, ...artistData, ...organizerData };
 
@@ -275,8 +306,8 @@ export class UpdateRegistrationFormComponent implements OnInit {
         !updateData.adescription) {
         this.toastr.error('Please fill all the field.', 'Error');
         return;
-
       }
+
     } else if (userData.utypeorganizer) {
       updateData = { ...updateData, ...organizerData };
       if (
@@ -286,9 +317,9 @@ export class UpdateRegistrationFormComponent implements OnInit {
         !updateData.oinstalink ||
         !updateData.owebsite ||
         !updateData.ofacilities ||
-        !updateData.ofacilitesforartist ||
+        !updateData.ofacilitesforartist
         // !updateData.ophotos ||
-        !updateData.oprofilephoto
+        // !updateData.oprofilephoto
       ) {
         this.toastr.error('Please fill all the field.', 'Error');
         return;
@@ -326,14 +357,57 @@ export class UpdateRegistrationFormComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+   //  select category
+   artist_categorylist() {
+    this.service.allArtistCategoriesFilter().subscribe((res: any) => {
+      this.artist_categories = res.all_categories;
+    });
+  }
+  selectCategory(category: any) {
+    // Get the selected category
+    const selectedCategory = this.artist_categories.find(cat => cat.cname === category);
+    if (selectedCategory) {
+      // Update the subcategories based on the selected category
+      this.subcategories = selectedCategory.scname || [];
+    }
+  }
+    // this.selectedCategory = this.selectedCategory.cname; 
+ // this.subcategories = category.scname;
+ //   this.user_model.acategory = category;
+ //  this.user_model.asubcategory = '';
+  // selectSubcategory(subcategory: any) {
+    
+  //   console.log(this.selectedSubcategory); 
+  
+  // }
+  // categoryName(categoryName: any) {
+  //   throw new Error('Method not implemented.');
+  // }
+
+  // selectSubcategory(subcategory: string) {
+  //   this.selectedSubcategory = subcategory;
+  //   this.user_model.asubcategory = subcategory;
+  // }
   selected: string = 'none';
+
+  organizer_categorylist() {
+    this.service.allOrganizerCategoriesFilter().subscribe((res: any) => {
+      this.organizer_categories = res.all_bcategories;
+    });
+  }
+
+  selectOCategory(category: any) {
+    this.selectedCategory = category;
+    this.user_model.obusinesscategory = category.businesscategory;
+  }
+
 
   onFileChange(event: any) {
     const files = event.target.files;
     if (files.length > 10) {
-      this.artistPhotos.setErrors({ maxlength: true });
+      // this.artistPhotos.setErrors({ maxlength: true });
     } else {
-      this.artistPhotos.setErrors(null);
+      // this.artistPhotos.setErrors(null);
     }
   }
   onFileChange2(event: any) {
@@ -375,12 +449,12 @@ export class UpdateRegistrationFormComponent implements OnInit {
   get Speciality(): FormControl {
     return this.artistForm.get('speciality') as FormControl;
   }
-  get artistProfile(): FormControl {
-    return this.artistForm.get('artist_profile') as FormControl;
-  }
-  get artistPhotos(): FormControl {
-    return this.artistForm.get('artist_photos') as FormControl;
-  }
+  // get artistProfile(): FormControl {
+  //   return this.artistForm.get('artist_profile') as FormControl;
+  // }
+  // get artistPhotos(): FormControl {
+  //   return this.artistForm.get('artist_photos') as FormControl;
+  // }
   get aVideo1(): FormControl {
     return this.artistForm.get('video_one') as FormControl;
   }
@@ -432,4 +506,126 @@ export class UpdateRegistrationFormComponent implements OnInit {
   get OrgDescription(): FormControl {
     return this.organizerForm.get('organizer_description') as FormControl;
   }
+
+  // images upload for artist
+  onFilesSelected(event: any) {
+    const files: FileList = event.target.files;
+
+    if (files) {
+      this.images = [];
+      for (let i = 0; i < files.length; i++) {
+        const file = files.item(i);
+        if (file) {
+          this.convertToBase64(file);
+        }
+      }
+    }
+    this.images = event.target.files;
+    // const files1 = event.target.files;
+    // if (files.length > 10) {
+    //   this.OrgPhotos.setErrors({ maxlength: true });
+    // } else {
+    //   this.OrgPhotos.setErrors(null);
+    // }
+
+  }
+
+
+
+
+
+  convertToBase64(file: File) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      if (event.target && typeof event.target.result === 'string') {
+        let imgBase64 = event.target.result.split(',')[1]; // Extract base64 data after comma
+        // Check if this.images is an array before pushing to it
+        if (Array.isArray(this.images)) {
+          this.images.push(imgBase64);
+        } else {
+          this.images = [imgBase64]; // If not an array, initialize it as an array with the first image
+        }
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+
+
+
+  postImages() {
+
+
+    const imageData: any = {
+      userid: this.userIdToUpdate
+    };
+
+    this.images.forEach((image, index) => {
+      imageData[`image${index + 1}`] = image;
+    });
+    this.service.postUserImages(imageData).subscribe(
+      (response => {
+        console.log('Images uploaded successfully:', response);
+        this.toastr.success('Images uploaded successfully!', 'Success');
+        if (response && response.status === 'success') {
+          console.log('File paths:', response.saved_file_paths);
+          this.toastr.success('Successfully uploaded photos!', 'Success');
+          if (response.saved_file_paths && Object.keys(response.saved_file_paths).length > 0) {
+            // Do something with the file paths object
+          } else {
+            console.log('No file paths returned from the server.');
+          }
+        } else {
+          console.error('Server returned an error:', response.message);
+        }
+      }),
+      (error => {
+        console.error('Error uploading images:', error);
+      })
+    );
+  }
+
+  // for profile image
+  onProfileImageSelected(event: any) {
+    const file: File | null = event.target.files[0];
+    if (file) {
+      this.profileImageconvertToBase64(file);
+    }
+  }
+
+  profileImageconvertToBase64(file: File) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      if (event.target && typeof event.target.result === 'string') {
+        this.profileimageData = event.target.result.split(',')[1]; // Extract base64 data after comma
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  postProfileImage() {
+    if (!this.profileimageData) {
+      console.error('No image data available.');
+      return;
+    }
+
+    const imageData: any = {
+      userid: this.userIdToUpdate,
+      photo: this.profileimageData
+    };
+
+    // Post imageData object containing image data to the server
+    this.service.postUserProfileImage(imageData).subscribe(
+      (response => {
+        console.log('Image uploaded successfully:', response);
+        this.toastr.success('Image uploaded successfully!', 'Success');
+        // Handle response as needed
+      }),
+      (error => {
+        console.error('Error uploading image:', error);
+      })
+    );
+  }
+  // ////////////////////////////////////////////////////////////////////
+
 }

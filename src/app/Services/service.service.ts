@@ -15,16 +15,18 @@ export class ServiceService {
   getCarouselImages(): Observable<any> {
     return this.http.get<any>(`${this.url}/getCarouselImages/`);
   }
- 
+
   // Artist API
   getArtistDetails(): Observable<any> {
     return this.http.get<any>(`${this.url}/artistsList/`);
   }
 
+  // Get user details by id API
   getUserDetailsByID(uid: number): Observable<any> {
     return this.http.get<any>(`${this.url}/userDetails/${uid}/`);
   }
 
+  // Update user API 
   updatedata(uid: number, data: any): Observable<any> {
     return this.http.put<any>(`${this.url}/updateUser/${uid}/`, data);
   }
@@ -34,58 +36,61 @@ export class ServiceService {
     return this.http.get<any>(`${this.url}/organizersList/`);
   }
 
+  // Product API
   getProductDetails(): Observable<any> {
     return this.http.get<any>(`${this.url}/allProducts/`);
   }
 
+  // Events API
   getEventDetails(): Observable<any> {
     return this.http.get<any>(`${this.url}/allEvents/`);
   }
 
+  // Login API
   loginpost(data: any): Observable<any> {
     return this.http.post<any>(`${this.url}/userLogin/`, data);
   }
 
+  // Artist category API
   allArtistCategoriesFilter(): Observable<any> {
     return this.http.get<any>(`${this.url}/allAcategories/`);
   }
 
+  // Organizer category API
   allOrganizerCategoriesFilter(): Observable<any> {
     return this.http.get<any>(`${this.url}/allBcategory/`);
   }
 
+  // Subscriptions API
   getOrganizerSubscription(): Observable<any> {
     return this.http.get<any>(`${this.url}/organizerSubscriptions/`);
   }
-
   getUserSubscription(): Observable<any> {
     return this.http.get<any>(`${this.url}/userSubscriptions/`);
   }
-
   getArtistSubscription(): Observable<any> {
     return this.http.get<any>(`${this.url}/artistSubscription/`);
   }
 
-  //post event
+  // Post event API
   postEvent(data: any): Observable<any> {
     return this.http.post(`${this.url}/createEvent/`, data);
   }
 
-  //get event
+  // Get event API
   getEventIdByUserId(uid: number): Observable<number> {
     return this.http.get<number>(`${this.url}/getEventsbyUid/${uid}`);
   }
-
   getEventById(eid: number): Observable<any> {
     return this.http.get<any>(`${this.url}/eventDetails/${eid}`);
   }
 
-  //update event
+  // Update event API
   updateEvent(eid: number, updateData: any): Observable<any> {
     return this.http.put<any>(`${this.url}/updateEvent/${eid}`, updateData);
   }
 
-  //post data
+  // Post user API
   postdata(data: any): Observable<any> {
     return this.http.post<any>(`${this.url}/createUser/`, data);
   }
@@ -107,17 +112,27 @@ export class ServiceService {
     return this.http.delete<any>(`${this.url}/removefromWishlist/${uid}/${wished_user_id}/`);
   }
 
+  // Images API
+  getMultipleImages(id: number): Observable<any> {
+    return this.http.get<any>(`${this.url}/getMultiplePhotos/${id}`)
+  }
+  getArtistProfileImage(id: number): Observable<any> {
+    return this.http.get<any>(`${this.url}/getProfilePhoto/${id}`)
+  }
+  postUserImages(imageData: any): Observable<any> {
+    return this.http.post<any>(`${this.url}/addMultiplePhotos/`, imageData);
+  }
+  postUserProfileImage(profileimageData: any): Observable<any> {
+    return this.http.post<any>(`${this.url}/addProfilePhoto/`, profileimageData)
+  }
 
+  // Search API
+  search(searchTerm: string): Observable<any> {
+    return this.http.get(`${this.url}/userSearch/?search_term=${searchTerm}`)
+  }
 
-  // search():Observable<any> {
-  //   return this.http.get(`https://meetmyartist.beatsacademy.in/userSearch/search/?search_term=Akshay`)
-  // }
-
-
-  // private isUserRegisteredSubject = new BehaviorSubject<boolean>(false);
-  // isUserRegistered$ = this.isUserRegisteredSubject.asObservable();
-
-  // setRegistrationState(isRegistered: boolean): void {
-  //   this.isUserRegisteredSubject.next(isRegistered);
-  // }
+  // Update user API for open to work
+  openToWork(uid: any, selectedDate: string): Observable<any> {
+    return this.http.put(`${this.url}/updateUser/${uid}/`, { abookeddate: selectedDate })
+  }
 }

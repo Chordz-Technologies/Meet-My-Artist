@@ -19,11 +19,12 @@ export class AuthService {
     return localStorage.getItem('userType') || ''; // Retrieving user type from localStorage
   }
 
-  login(userType: string, userId: string) {
+  login(userType: string, userId: string, status: string) {
     // Your login logic here
     // Set user type in localStorage or wherever you store user information
     localStorage.setItem('userType', userType); // Setting user type in localStorage
     localStorage.setItem('userId', userId);
+    localStorage.setItem('status', status);
     localStorage.setItem('isLoggedIn', 'true'); // Update isLoggedIn status in localStorage
     this.isLoggedIn.next(true);
   }
@@ -33,6 +34,7 @@ export class AuthService {
     // Clear user type and isLoggedIn status from localStorage
     localStorage.removeItem('userType');
     localStorage.removeItem('userId');
+    localStorage.removeItem('status');
     localStorage.removeItem('isLoggedIn');
     this.isLoggedIn.next(false);
     history.pushState(null, '', '/');

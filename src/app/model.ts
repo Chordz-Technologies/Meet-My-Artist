@@ -1,9 +1,9 @@
-export class product {
-    Pid!: number;
-    Pbrand!: string;
-    Pmodel!: string;
-    Pprice!: string;
-    Pimages!: number;
+export class product_model {
+    pid!: number;
+    pbrand!: string;
+    pmodel!: string;
+    pprice!: string;
+    pimages!: number;
 }
 
 export class user_model {

@@ -77,7 +77,9 @@ table {
     .business-card {
         height: none;
         /* Remove the max-height for smaller screens */
-
+    }
+    .heading {
+        font-size: 30px;
     }
 
 }

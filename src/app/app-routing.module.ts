@@ -20,6 +20,7 @@ import { UserSubscriptionPageComponent } from './Components/user-subscription-pa
 import { OrganizerSubscriptionPageComponent } from './Components/organizer-subscription-page/organizer-subscription-page.component';
 import { PricingPageComponent } from './Components/pricing-page/pricing-page.component';
 import { UpdateRegistrationFormComponent } from './Components/update-registration-form/update-registration-form.component';
+import { SearchPageComponent } from './Components/search-page/search-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent, canActivate: [authGuard] },
@@ -41,8 +42,9 @@ const routes: Routes = [
   { path: 'userSubscription', component: UserSubscriptionPageComponent },
   { path: 'artistSubscription', component: ArtistSubscriptionPageComponent },
   { path: 'organizerSubscription', component: OrganizerSubscriptionPageComponent },
-  { path: 'pricing', component: PricingPageComponent }
-
+  { path: 'pricing', component: PricingPageComponent },
+  { path: 'search/:term', component: SearchPageComponent }
+  
 ];
 
 @NgModule({

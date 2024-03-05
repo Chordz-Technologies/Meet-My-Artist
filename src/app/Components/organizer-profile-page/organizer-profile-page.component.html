@@ -5,8 +5,9 @@
                 <div class="card shadow pt-3 bg-white" style="border-radius: 15px">
                     <div class="card-body p-1 d-md-flex">
                         <div class="ms-md-5 my-2 d-flex flex-column text-center pe-5 px-5">
-                            <img src="{{ organizer.oprofilephoto }}" alt="Generic placeholder image"
-                                class="img-fluid my-4 mb-1 rounded-circle mx-auto" style="width: 150px; z-index: 1" />
+                            <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + OrganizerProfileImage)"
+                                alt="Generic placeholder image" class="img-fluid my-4 mb-1 rounded-circle mx-auto"
+                                style="width: 150px; z-index: 1" />
                             <!-- <button mat-button class="text-center">
                                 <span><b>{{ organizer.olikes }} </b><i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
                             </button> -->
@@ -16,6 +17,17 @@
                             <h3>{{ organizer.obusinesscategory }}</h3>
                             <h3>{{ organizer.uaddress }}, <b>{{organizer.ucity}}</b></h3>
                         </div>
+                        <div id="myModal" class="modal" [style.display]="modalDisplay">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <h4>You want to subscribe first!</h4><br>
+                                <div style="display: flex; margin: auto;">
+                                    <button class="btn" routerLink="/userSubscription">Subscription
+                                        Plan</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button class="btn" (click)="closeModal()">Close</button>
+                                </div><br>
+                            </div>
+                        </div>
                         <div
                             class="profile-icons ms-auto ms-md-6 mt-4 d-flex flex-column align-items-center text-md-center">
                             <!-- <button mat-button class="fs-4">
@@ -24,12 +36,12 @@
                             <div class="social-links">
                                 <a class="btn btn-sm rounded-circle bg-primary text-white me-3"
                                     [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                    (click)="onLinkClick($event, organizer.ofblink)" target="_blank"><i
+                                    (click)="onLinkClick($event, organizer.ofblink)"><i
                                         class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-sm rounded-circle text-white me-3"
                                     style="background: linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);"
                                     [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                    (click)="onLinkClick($event, organizer.oinstalink)" target="_blank"><i
+                                    (click)="onLinkClick($event, organizer.oinstalink)"><i
                                         class="fab fa-instagram"></i></a>
                                 <a class="btn btn-sm rounded-circle text-white bg-primary"
                                     [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
@@ -37,7 +49,7 @@
                             </div>
                             <p>
                                 <a [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                    (click)="onLinkClick($event, organizer.uwhatsappno)" target="_blank"
+                                    href="https://api.whatsapp.com/send?phone=917517311326" target="_blank"
                                     class="btn border border-secondary shadow bg-white py-2 px-5 mt-3">
                                     <i class="fab fa-whatsapp"
                                         style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
@@ -46,7 +58,7 @@
                             <p class="fs-5 mt-3">
                                 <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a
                                     [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                    (click)="onLinkClick($event, organizer.owebsite)" target="_blank"
+                                    (click)="onLinkClick($event, organizer.owebsite)"
                                     class="text-decoration-none py-3 px-2 mt-3">{{ organizer.owebsite }}</a>
                             </p>
                         </div>
@@ -57,11 +69,11 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="row row-cols-2 row-cols-md-3 g-4">
-                            <div class="col" *ngFor="let image of organizer.ophotos">
-                                <div class="h-100 rounded-3">
-                                    <img [src]="image" class="card-img-top" alt="Image" />
-                                </div>
+                        <div class="row row-cols-2 row-cols-md-5 g-4">
+                            <div *ngFor="let image of images" class="image-wrapper">
+                                <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + image.data)"
+                                    [alt]="image.src"
+                                    style="height: 100%; width: 100%; border: 1px solid black; border-radius: 10px;" />
                             </div>
                         </div>
                     </div>

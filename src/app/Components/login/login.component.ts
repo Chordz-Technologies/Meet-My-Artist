@@ -59,24 +59,27 @@ export class LoginComponent implements OnInit {
       next: (result: any) => {
         if (result.message === 'Valid User' && result.user_type === 'user') {
           const userId = result.user_id;
+          const status = result.status;
           this.router.navigate(['/']);
           this.toastr.success('Login successful as a user!', 'Success');
           const userType: string = 'user';
-          this.authService.login(userType, userId.toString());
+          this.authService.login(userType, userId.toString(), status);
 
         } else if (result.message === 'Valid User' && result.user_type === 'artist') {
           const userId = result.user_id;
+          const status = result.status;
           this.router.navigate(['/artistsHome']);
           this.toastr.success('Login successful as an artist!', 'Success');
           const userType: string = 'artist';
-          this.authService.login(userType, userId.toString());
+          this.authService.login(userType, userId.toString(), status);
 
         } else if (result.message === 'Valid User' && result.user_type === 'organizer') {
           const userId = result.user_id;
+          const status = result.status;
           this.router.navigate(['/']);
           this.toastr.success('Login successful as an organizer!', 'Success');
           const userType: string = 'organizer';
-          this.authService.login(userType, userId.toString());
+          this.authService.login(userType, userId.toString(), status);
         } else {
           this.toastr.error('Login failed. Please check your credentials.', 'Error');
         }

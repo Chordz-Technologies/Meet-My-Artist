@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/Services/service.service';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-organizer-profile-page',
@@ -10,13 +12,25 @@ import { ActivatedRoute } from '@angular/router';
 export class OrganizerProfilePageComponent implements OnInit {
   organizer: any;
   public userId!: number;
+  images: any[] = [];
+  OrganizerProfileImage: any[] = [];
   isUserLoggedIn: any;
+  modalDisplay = 'none';
 
-  constructor(private service: ServiceService, private activatedRoute: ActivatedRoute) { }
+  constructor(private service: ServiceService, private activatedRoute: ActivatedRoute, public sanitizer: DomSanitizer, private toastr: ToastrService) { }
+
+  openModal() {
+    this.modalDisplay = 'block';
+  }
+
+  closeModal() {
+    this.modalDisplay = 'none';
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(val => {
       this.userId = val['uid'];
+      this.fetchData(this.userId);
       this.service.getUserDetailsByID(this.userId)
         .subscribe({
           next: (res: any) => {
@@ -27,15 +41,46 @@ export class OrganizerProfilePageComponent implements OnInit {
           }
         })
     })
+
+    const status = localStorage.getItem('status');
+    if (status === 'Active') {
+      this.isUserLoggedIn = true;
+    } else {
+      this.isUserLoggedIn = false;
+    }
+  }
+
+  fetchData(userId: number) {
+    this.service.getMultipleImages(userId).subscribe(
+      (res => {
+        this.images = Object.keys(res.base64images).map(key => ({ src: key, data: res.base64images[key] }));
+      }),
+      (error => {
+        this.toastr.error('Error fetching images', 'Error');
+      })
+    );
+    this.service.getArtistProfileImage(userId).subscribe(
+      (res => {
+        this.OrganizerProfileImage = res.base64_photo; // Assuming the response is an array of objects with 'fileName' and 'base64Image' properties
+      }),
+      (error => {
+        console.error('Error fetching images:', error);
+        this.toastr.error('Error fetching images', 'Error');
+      })
+    );
   }
 
   onLinkClick(event: MouseEvent, link: string): void {
+    event.preventDefault();
     if (!this.isUserLoggedIn) {
-      event.preventDefault();
-      event.stopPropagation();
-      return;
+      this.openModal();
+    } else {
+      const newTab = window.open(link, '_blank');
+      if (newTab) {
+        newTab.focus();
+      } else {
+        window.location.href = link;
+      }
     }
-    // Redirect logic for logged-in users
-    window.location.href = link;
   }
 }

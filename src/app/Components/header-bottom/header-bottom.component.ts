@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/Services/auth.service';
-// import { ServiceService } from 'src/app/Services/service.service';
 import { Router } from '@angular/router';
-
+import { ServiceService } from 'src/app/Services/service.service';
 @Component({
   selector: 'app-header-bottom',
   templateUrl: './header-bottom.component.html',
@@ -12,8 +11,12 @@ export class HeaderBottomComponent implements OnInit {
   isNavbarCollapsed = true;
   isUserLoggedIn: boolean = false;
   userType: string = '';
+  searchTerm: string = '';
+  showModal = false;
+  selectedDate: string = '';
+  userId = this.getUserId();
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private service: ServiceService) { }
 
   ngOnInit(): void {
     this.authService.isLoggedIn.subscribe((loggedIn) => {
@@ -27,10 +30,10 @@ export class HeaderBottomComponent implements OnInit {
   }
 
   openUpdateForm(): void {
-    const userId = this.getUserId();
-    if (userId) {
+    // const userId = this.getUserId();
+    if (this.userId) {
       // Navigate to the updateRegistrationForm route with uid parameter
-      this.router.navigate(['/updateRegistrationForm', userId]);
+      this.router.navigate(['/updateRegistrationForm', this.userId]);
     } else {
       console.error('User ID not found in local storage');
       // Handle the case where userId is not found in local storage
@@ -38,19 +41,46 @@ export class HeaderBottomComponent implements OnInit {
   }
 
   eventManageForm(): void {
-    const userId = this.getUserId();
-    if (userId) {
+    // const userId = this.getUserId();
+    if (this.userId) {
       // Navigate to the updateRegistrationForm route with uid parameter
-      this.router.navigate(['/eventManage', userId]);
+      this.router.navigate(['/eventManage', this.userId]);
     } else {
       console.error('User ID not found in local storage');
       // Handle the case where userId is not found in local storage
     }
   }
 
+  onSearch(): void {
+    if (this.searchTerm.trim() !== '') {
+      this.router.navigate(['/search', this.searchTerm]);
+      // this.searchTerm = '';
+      // window.location.reload();
+    }
+  }
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+    this.selectedDate = ''; // Reset selectedDate
+  }
+
+  saveDate() {
+    this.service.openToWork(this.userId, this.selectedDate).subscribe({
+      next: () => {
+        this.closeModal();
+      },
+      error: (err: any) => {
+        alert(err);
+      }
+    });
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/']);
   }
-
 }

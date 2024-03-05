@@ -45,7 +45,7 @@ import { UserSubscriptionPageComponent } from './Components/user-subscription-pa
 import { OrganizerSubscriptionPageComponent } from './Components/organizer-subscription-page/organizer-subscription-page.component';
 import { PricingPageComponent } from './Components/pricing-page/pricing-page.component';
 import { UpdateRegistrationFormComponent } from './Components/update-registration-form/update-registration-form.component';
-
+import { SearchPageComponent } from './Components/search-page/search-page.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +73,8 @@ import { UpdateRegistrationFormComponent } from './Components/update-registratio
     UserSubscriptionPageComponent,
     OrganizerSubscriptionPageComponent,
     PricingPageComponent,
-    UpdateRegistrationFormComponent
+    UpdateRegistrationFormComponent,
+    SearchPageComponent
   ],
   imports: [
     BrowserModule,

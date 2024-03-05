@@ -29,14 +29,15 @@ export class ArtistsPageComponent implements OnInit {
   treeData$ = new BehaviorSubject<CategoryNode[]>([]);
   selectedCategory: string | null = null;
 
-  treeControl: FlatTreeControl<ExampleFlatNode>; // Declare treeControl
+  treeControl: FlatTreeControl<ExampleFlatNode>;
   treeFlattener: MatTreeFlattener<CategoryNode, ExampleFlatNode>;
   dataSource: MatTreeFlatDataSource<CategoryNode, ExampleFlatNode>;
 
   artists: any[] = [];
   filteredArtists: any[] = [];
   products: any[] = [];
-  isUserLoggedIn: any;
+  isUserLoggedIn: boolean = false; // Default value
+  url = 'https://meetmyartist.beatsacademy.in/';
   modalDisplay = 'none';
 
   openModal() {
@@ -65,6 +66,14 @@ export class ArtistsPageComponent implements OnInit {
     this.fetchTreeData();
     this.getArtistList();
     this.getProductsList();
+
+    // Check localStorage for user login status
+    const status = localStorage.getItem('status');
+    if (status === 'Active') {
+      this.isUserLoggedIn = true;
+    } else {
+      this.isUserLoggedIn = false;
+    }
   }
 
   fetchTreeData() {
@@ -74,7 +83,7 @@ export class ArtistsPageComponent implements OnInit {
         children: category.scname.map((subcategory: string) => ({ name: subcategory }))
       }));
       this.treeData$.next(categoryNodes);
-      this.dataSource.data = categoryNodes; // Set the fetched data to the dataSource
+      this.dataSource.data = categoryNodes;
     });
   }
 
@@ -92,7 +101,7 @@ export class ArtistsPageComponent implements OnInit {
     this.service.getArtistDetails().subscribe({
       next: (res: any) => {
         this.artists = res.artists_list;
-        this.filteredArtists = [...this.artists]; // Initialize filteredArtists with all artists
+        this.filteredArtists = [...this.artists];
       },
       error: (err: any) => {
         console.error('Error:', err);
@@ -121,19 +130,27 @@ export class ArtistsPageComponent implements OnInit {
     });
   }
 
-  onLinkClick(event: MouseEvent, link: string): void {
-    if (!this.isUserLoggedIn) {
-        event.preventDefault();
-        event.stopPropagation();
-        return;
-    }
-    // Redirect logic for logged-in users
-    window.location.href = link;
-}
+  isBookedToday(date: string): boolean {
+    const today = new Date();
+    const bookedDate = new Date(date);
 
-getMsg() {
-  alert("Register First...");
-}
+    return today.toDateString() === bookedDate.toDateString();
+  }
+
+  onLinkClick(event: MouseEvent, link: string): void {
+    event.preventDefault();
+    if (!this.isUserLoggedIn) {
+      this.openModal();
+    } else {
+      const newTab = window.open(link, '_blank');
+      if (newTab) {
+        newTab.focus();
+      } else {
+        window.location.href = link;
+      }
+    }
+  }
+
 
   navigateToProfile(uid: number) {
     this.router.navigate(['/artistProfile', uid]);

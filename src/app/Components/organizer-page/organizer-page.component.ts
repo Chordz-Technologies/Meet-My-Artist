@@ -33,7 +33,17 @@ export class OrganizerPageComponent implements OnInit {
   isWishlist: boolean = false;
   loggedInUserId: number | undefined;
   wishlistIds: any;
-  isUserLoggedIn: any;
+  isUserLoggedIn: boolean = false; // Default value
+
+  modalDisplay = 'none';
+
+  openModal() {
+    this.modalDisplay = 'block';
+  }
+
+  closeModal() {
+    this.modalDisplay = 'none';
+  }
 
   constructor(private service: ServiceService, private router: Router) {
     this.treeFlattener = new MatTreeFlattener(
@@ -56,6 +66,14 @@ export class OrganizerPageComponent implements OnInit {
   ngOnInit(): void {
     this.fetchTreeData();
     this.getOrganizersList();
+
+    // Check localStorage for user login status
+    const status = localStorage.getItem('status');
+    if (status === 'Active') {
+      this.isUserLoggedIn = true;
+    } else {
+      this.isUserLoggedIn = false;
+    }
 
     // Retrieve wishlist IDs from local storage
     const storedWishlist = localStorage.getItem('wishlistIds');
@@ -174,13 +192,17 @@ export class OrganizerPageComponent implements OnInit {
   }
 
   onLinkClick(event: MouseEvent, link: string): void {
+    event.preventDefault();
     if (!this.isUserLoggedIn) {
-      event.preventDefault();
-      event.stopPropagation();
-      return;
+      this.openModal();
+    } else {
+      const newTab = window.open(link, '_blank');
+      if (newTab) {
+        newTab.focus();
+      } else {
+        window.location.href = link;
+      }
     }
-    // Redirect logic for logged-in users
-    window.location.href = link;
   }
 
   navigateToProfile(uid: number) {
