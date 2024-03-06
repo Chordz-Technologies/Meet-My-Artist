@@ -4,6 +4,7 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/Services/service.service';
 import { BehaviorSubject } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
 
 interface CategoryNode {
   name: string;
@@ -36,6 +37,8 @@ export class OrganizerPageComponent implements OnInit {
   isUserLoggedIn: boolean = false; // Default value
   url = 'https://meetmyartist.beatsacademy.in/';
   modalDisplay = 'none';
+  pageSize: number = 5;
+  currentPage: number = 0;
 
   openModal() {
     this.modalDisplay = 'block';
@@ -113,20 +116,34 @@ export class OrganizerPageComponent implements OnInit {
   getOrganizersList() {
     this.service.getOrganizerDetails().subscribe({
       next: (res: any) => {
+        this.organizers = res.organizers_list;
         // Assuming res.organizers_list contains the list of organizers from the API
-        this.organizers = res.organizers_list.map((organizer: any) => {
-          return {
-            ...organizer,
-            isWishlist: false // Add isWishlist property to each organizer
-          };
-        });
+        // this.organizers = res.organizers_list.map((organizer: any) => {
+        //   return {
+        //     ...organizer,
+        //     isWishlist: false // Add isWishlist property to each organizer
+        //   };
+        // });
         this.filteredOrganizers = [...this.organizers]; // Initialize filteredOrganizers with all organizers
+        this.applyPagination();
       },
       error: (err: any) => {
         console.error('Error:', err);
         alert('Error fetching data. Check the console for details.');
       },
     });
+  }
+
+  applyPagination() {
+    const startIndex = this.currentPage * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.filteredOrganizers = this.organizers.slice(startIndex, endIndex);
+  }
+
+  onPageChange(event: PageEvent) {
+    this.pageSize = event.pageSize;
+    this.currentPage = event.pageIndex;
+    this.applyPagination();
   }
 
   toggleWishlist(organizer: any) {
@@ -179,7 +196,6 @@ export class OrganizerPageComponent implements OnInit {
       // Handle the case where user ID is not defined, such as displaying an error message
     }
   }
-
 
   updateLocalStorage() {
     localStorage.setItem('wishlistIds', JSON.stringify(this.wishlistIds));

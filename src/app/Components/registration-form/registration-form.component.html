@@ -232,10 +232,10 @@
                             Profile Photo only 1 is accepted.
                         </div> -->
                     </td>
-                    <td>
+                    <!-- <td>
                         <label for="imageUpload">Upload Photos (up to 10):</label>
-                    </td>
-                     <td>
+                    </td> -->
+                    <!-- <td>
                         <input type="file" class="form-control up_img" id="imageUpload" name="imageUpload" multiple
                             accept="image/*" formControlName="artist_photos" (change)="onFileChange($event)" />
                         <!--<div class="form-text text-danger fw-bold"
@@ -245,8 +245,8 @@
                         <div class="form-text text-danger fw-bold"
                             *ngIf="artistPhotos.errors?.['maxlength'] && (artistPhotos.dirty || artistPhotos.touched)">
                             Only 10 photos are accepted.
-                        </div>-->
-                    </td> 
+                        </div>
+                    </td>  -->
                 </tr>
                 <tr>
                     <td colspan="3">
@@ -420,8 +420,9 @@
                 <tr>
                     <td><label for="imageUpload">Upload Profile Photo:</label></td>
                     <td>
-                        <input type="file" class="form-control up_img" id="imageUpload" formControlName="o_profile"
-                            accept="image/*" name="imageUpload" (change)="onImageSelected($event)" />
+                        <input type="file" (change)="onorganizerImageSelected($event)" accept="image/*"
+                            class="form-control" />
+
                         <!-- <div class="form-text text-danger fw-bold"
                             *ngIf="OrgProfile.errors?.['required'] && (OrgProfile.dirty || OrgProfile.touched)">
                             Profile Photo is required.

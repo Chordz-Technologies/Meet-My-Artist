@@ -85,10 +85,14 @@ export class ArtistProfilePageComponent implements OnInit {
     }
   }
 
-  isBookedToday(date: string): boolean {
+  isPastDate(date: Date): boolean {
     const today = new Date();
-    const bookedDate = new Date(date);
+    return new Date(date) < today;
+  }
 
-    return today.toDateString() === bookedDate.toDateString();
+  // Check if the booking is for today
+  isBookedToday(date: Date): boolean {
+    const today = new Date();
+    return new Date(date).toDateString() === today.toDateString();
   }
 }

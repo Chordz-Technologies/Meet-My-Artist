@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/Services/service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-registration',
@@ -12,7 +14,7 @@ export class EventRegistrationComponent implements OnInit {
   userFullName: string = ""; // Variable to store user's full name
   businessName: string = ""; // Variable to store business name
   eventimageData: File | null | undefined;
-  constructor(private fb: FormBuilder, private service: ServiceService) { }
+  constructor(private fb: FormBuilder, private service: ServiceService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -45,9 +47,7 @@ export class EventRegistrationComponent implements OnInit {
   // get user details
   getUserDetails() {
     const userIdString = this.getUserId();
-
     if (!userIdString) {
-      console.error('User ID not found in local storage');
       return;
     }
     const userId = parseInt(userIdString, 10); // Convert string to number
@@ -69,18 +69,14 @@ export class EventRegistrationComponent implements OnInit {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       this.eventimageData = fileList[0];
-      console.log('Selected image:', this.eventimageData);
     } else {
       this.eventimageData = null; // Reset file if no file is selected
     }
-
   }
 
   postEventdata() {
     const userId = this.getUserId();
-
     if (!userId) {
-      console.error('User ID not found in local storage');
       return;
     }
 
@@ -102,7 +98,6 @@ export class EventRegistrationComponent implements OnInit {
       obusinessname: this.businessName || this.userFullName // Use businessName if not null or blank, otherwise use userFullName
     };
     let postData = { ...eventData };
-    console.log(postData);
 
     if (
       !postData.ename ||
@@ -115,28 +110,25 @@ export class EventRegistrationComponent implements OnInit {
       !postData.artistequipwith ||
       !postData.facilitiesforartist
     ) {
-      alert('Please fill all the fields');
+      this.toastr.error('Please fill all the field.', 'Error');
       return;
     } else {
-      console.log("Before submitting the data is", postData);
       const formData: FormData = new FormData();
       for (const [key, value] of Object.entries(postData)) {
-        console.log(key, value);
-
         formData.append(key, value)
       }
-      console.log("the data is", formData);
       this.service.postEvent(formData).subscribe((res) => {
         console.log(res)
         if (res.status === 'success') {
-          alert('successfully added');
+          this.toastr.success('Successfully updated!', 'Success');
         } else {
-          alert('something went wrong');
+          this.toastr.error('Something went wrong.', 'Error');
         }
       });
     }
     // Reset the form after submitting
     this.createEventForm.reset();
+    this.router.navigate(['/']);
   }
 
   get EventName(): FormControl {

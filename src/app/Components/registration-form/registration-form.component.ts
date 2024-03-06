@@ -26,7 +26,7 @@ export class RegistrationFormComponent implements OnInit {
 
   // images upload
 
-  images: string[] = [];
+  // images: string[] = [];
   profileimageData: File | null | undefined;
   org_profileimageData: File | null | undefined;
 
@@ -89,7 +89,7 @@ export class RegistrationFormComponent implements OnInit {
         Validators.required,
         Validators.pattern('https://.*'),
       ]),
-      
+
       // artist_photos: this.fb.control('', [
       //   Validators.required,
       //   Validators.maxLength(10),
@@ -136,26 +136,21 @@ export class RegistrationFormComponent implements OnInit {
 
   // for profile image
   onImageSelected(event: any) {
-
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       this.profileimageData = fileList[0];
-      console.log('Selected image:', this.profileimageData);
     } else {
       this.profileimageData = null; // Reset file if no file is selected
     }
-
   }
-  onorganizerImageSelected(event: any) {
 
+  onorganizerImageSelected(event: any) {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
-      this.org_profileimageData  = fileList[0];
-      console.log('Selected image:', this.org_profileimageData );
+      this.org_profileimageData = fileList[0];
     } else {
-      this.org_profileimageData  = null; // Reset file if no file is selected
+      this.org_profileimageData = null; // Reset file if no file is selected
     }
-  
   }
 
   postdata() {
@@ -183,7 +178,7 @@ export class RegistrationFormComponent implements OnInit {
       utypeorganizer: this.userForm.value.options === '1' ? 1 : 0,
       utypeuser: this.userForm.value.options === '3' ? 1 : 0,
     };
-  
+
 
     // Extract artist data 
     const artistData = {
@@ -200,14 +195,10 @@ export class RegistrationFormComponent implements OnInit {
       arequirements: this.artistForm.value.requirement || '',
       adescription: this.artistForm.value.artist_description || '',
       artiststatus: "Trial",
-
-      aprofilephoto: this.profileimageData
-      
-
+      aprofilephoto: this.profileimageData || ''
       // aprofilephoto: this.artistForm.value.artist_profile || '',
       // aphotos: this.artistForm.value.artist_photos || '',
     };
-    console.log(artistData)
 
     // Extract organizer data
     const organizerData = {
@@ -220,7 +211,7 @@ export class RegistrationFormComponent implements OnInit {
       ofacilities: this.organizerForm.value.o_speciality || '',
       ofacilitesforartist: this.organizerForm.value.o_facility || '',
       organizerstatus: "Trial",
-      oprofilephoto: this.org_profileimageData ||'',
+      oprofilephoto: this.org_profileimageData || null
       // ophotos: this.organizerForm.value.o_photos || '',
       // oprofilephoto: this.organizerForm.value.o_profile || '',
     };
@@ -239,8 +230,8 @@ export class RegistrationFormComponent implements OnInit {
         !postData.ainstalink ||
         !postData.aspeciality ||
         !postData.arequirements ||
-        !postData.adescription ||
-        !postData.aprofilephoto 
+        !postData.adescription
+        // !postData.aprofilephoto
         // !postData.aphotos
       ) {
         this.toastr.error('Please fill all the field.', 'Error');
@@ -255,9 +246,8 @@ export class RegistrationFormComponent implements OnInit {
         !postData.oinstalink ||
         !postData.owebsite ||
         !postData.ofacilities ||
-        !postData.ofacilitesforartist ||
-        // !postData.ophotos ||
-        !postData.oprofilephoto
+        !postData.ofacilitesforartist 
+        // !postData.oprofilephoto
       ) {
         this.toastr.error('Please fill all the field.', 'Error');
         return;
@@ -279,21 +269,21 @@ export class RegistrationFormComponent implements OnInit {
     ) {
       if (postData.upassword && postData.uconfirmpassword && postData.upassword !== postData.uconfirmpassword) {
         this.toastr.error('Please enter password and confirm password same', 'Error');
-        return
+        return;
       }
       this.toastr.error('Please fill all the field.', 'Error');
       return;
     } else {
-      console.log("Before submitting the data is",postData);
-      // let formData2 = new FormData();
       const formData: FormData = new FormData();
       for (const [key, value] of Object.entries(postData)) {
-        console.log(key,value);
-        
-        formData.append(key,value)
+        if (key === 'oprofilephoto' && (value === null || value === undefined)) {
+          // Handle null or undefined case
+          formData.append(key, ''); // You can append an empty string or handle it based on your backend requirements
+        } else {
+          formData.append(key, value);
+        }
       }
-      console.log("the data is",formData);
-      
+
       this.service.postdata(formData).subscribe((res) => {
         if (res.status === 'success') {
           this.toastr.success('Successfully registered!', 'Success');
@@ -301,7 +291,6 @@ export class RegistrationFormComponent implements OnInit {
           this.toastr.error('Something went wrong.', 'Error');
         }
       });
-
     }
 
     // Reset the form after submitting
@@ -355,22 +344,22 @@ export class RegistrationFormComponent implements OnInit {
     return Password === Cpassword ? null : { mismatch: true };
   }
 
-  onFileChange(event: any) {
-    const files = event.target.files;
-    if (files.length > 10) {
-      this.artistPhotos.setErrors({ maxlength: true });
-    } else {
-      this.artistPhotos.setErrors(null);
-    }
-  }
-  onFileChange2(event: any) {
-    const files = event.target.files;
-    if (files.length > 10) {
-      this.OrgPhotos.setErrors({ maxlength: true });
-    } else {
-      this.OrgPhotos.setErrors(null);
-    }
-  }
+  // onFileChange(event: any) {
+  //   const files = event.target.files;
+  //   if (files.length > 10) {
+  //     this.artistPhotos.setErrors({ maxlength: true });
+  //   } else {
+  //     this.artistPhotos.setErrors(null);
+  //   }
+  // }
+  // onFileChange2(event: any) {
+  //   const files = event.target.files;
+  //   if (files.length > 10) {
+  //     this.OrgPhotos.setErrors({ maxlength: true });
+  //   } else {
+  //     this.OrgPhotos.setErrors(null);
+  //   }
+  // }
 
   get FirstName(): FormControl {
     return this.userForm.get('firstName') as FormControl;
@@ -402,12 +391,12 @@ export class RegistrationFormComponent implements OnInit {
   get Speciality(): FormControl {
     return this.artistForm.get('speciality') as FormControl;
   }
-  get artistProfile(): FormControl {
-    return this.artistForm.get('artist_profile') as FormControl;
-  }
-  get artistPhotos(): FormControl {
-    return this.artistForm.get('artist_photos') as FormControl;
-  }
+  // get artistProfile(): FormControl {
+  //   return this.artistForm.get('artist_profile') as FormControl;
+  // }
+  // get artistPhotos(): FormControl {
+  //   return this.artistForm.get('artist_photos') as FormControl;
+  // }
   get aVideo1(): FormControl {
     return this.artistForm.get('video_one') as FormControl;
   }
@@ -438,12 +427,12 @@ export class RegistrationFormComponent implements OnInit {
   get OrgSpeciality(): FormControl {
     return this.organizerForm.get('o_speciality') as FormControl;
   }
-  get OrgProfile(): FormControl {
-    return this.organizerForm.get('o_profile') as FormControl;
-  }
-  get OrgPhotos(): FormControl {
-    return this.organizerForm.get('o_photos') as FormControl;
-  }
+  // get OrgProfile(): FormControl {
+  //   return this.organizerForm.get('o_profile') as FormControl;
+  // }
+  // get OrgPhotos(): FormControl {
+  //   return this.organizerForm.get('o_photos') as FormControl;
+  // }
   get OrgFacbook(): FormControl {
     return this.organizerForm.get('organizer_facebook') as FormControl;
   }

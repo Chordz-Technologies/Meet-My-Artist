@@ -5,9 +5,9 @@
                 <div class="card shadow pt-3 bg-white" style="border-radius: 15px">
                     <div class="card-body p-1 d-md-flex">
                         <div class="ms-md-5 my-2 d-flex flex-column text-center pe-5 px-5">
-                            <img [src]="url + 'getProfilePhoto/' + organizer.uid"
-                                alt="Generic placeholder image" class="img-fluid my-4 mb-1 rounded-circle mx-auto"
-                                style="width: 150px; z-index: 1" />
+                            <img [src]="url + 'getProfilePhoto/' + organizer.uid" alt="Generic placeholder image"
+                                class="img-fluid my-4 mb-1 rounded-circle mx-auto"
+                                style="width: 150px; height: 150px; z-index: 1" />
                             <!-- <button mat-button class="text-center">
                                 <span><b>{{ organizer.olikes }} </b><i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
                             </button> -->
@@ -49,7 +49,7 @@
                             </div>
                             <p>
                                 <a [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                    href="https://api.whatsapp.com/send?phone=917517311326" target="_blank"
+                                    (click)="onLinkClick($event, 'https://api.whatsapp.com/send?phone=917517311326')"
                                     class="btn border border-secondary shadow bg-white py-2 px-5 mt-3">
                                     <i class="fab fa-whatsapp"
                                         style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>

@@ -110,8 +110,8 @@
                     <img [src]="url + 'getProfilePhoto/' + artist.uid" class="card-img-top" alt="Image Alt Text">
                     <h4>{{ artist.uname }}</h4>
                     <p class="text-center" style="font-size: 20px;">{{ artist.acategory }}</p>
-                    <p class="text-center"><b>{{ artist.alikes.length }} </b><mat-icon
-                            style="font-size: 28px;">thumb_up</mat-icon></p>
+                    <!-- <p class="text-center"><b>{{ artist.alikes.length }} </b><mat-icon
+                            style="font-size: 28px;">thumb_up</mat-icon></p> -->
                 </div>
             </div>
         </div>
@@ -179,7 +179,7 @@
             <hr class="custom-line">
         </div>
         <div class="col-md-3 col-5">
-            <button type="button" class="btn cat-btn" style="float: right;" routerLink="products">View More</button>
+            <button type="button" class="btn cat-btn" style="float: right;" routerLink="/products">View More</button>
         </div>
     </div>
     <div class="row pt-5 pb-5">
@@ -190,7 +190,8 @@
                     <h2 class="">{{product.pbrand}}</h2>
                     <p class="">{{product.pmodel | slice:0:70 }}...</p>
                     <span class="mx-2" style="font-size: large; font-weight: 600;">₹ {{product.pprice}}</span>
-                    <button href="#" class="btn mx-2" id="buy-btn">Buy Now</button>
+                    <a href="https://api.whatsapp.com/send?phone=917517311326" target="_blank" class="btn mx-2"
+                        id="buy-btn">Buy Now</a>
                 </div>
             </div>
         </div>

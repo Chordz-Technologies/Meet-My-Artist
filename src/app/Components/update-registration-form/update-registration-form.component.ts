@@ -108,6 +108,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
 
     this.organizerForm = this.fb.group({
       business_name: this.fb.control('', [Validators.required]),
+      organizer_category: '',
       organizer_description: this.fb.control('', [Validators.required]),
       organizer_facebook: this.fb.control('', [
         Validators.required,
@@ -207,6 +208,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
       this.organizerForm.setValue({
         // Fill organizer form values here
         business_name: user.obusinessname,
+        organizer_category: user.obusinesscategory,
         organizer_description: user.odescription,
         organizer_facebook: user.ofblink,
         organizer_instagram: user.oinstalink,
@@ -299,14 +301,14 @@ export class UpdateRegistrationFormComponent implements OnInit {
     // Extract organizer data
     const organizerData = {
       obusinessname: this.organizerForm.value.business_name || '',
-      obusinesscategory: this.user_model.obusinesscategory || '', // Include selected organizer category
+      obusinesscategory: this.organizerForm.value.organizer_category || '', // Include selected organizer category
       odescription: this.organizerForm.value.organizer_description || '',
       ofblink: this.organizerForm.value.organizer_facebook || '',
       oinstalink: this.organizerForm.value.organizer_instagram || '',
       owebsite: this.organizerForm.value.organizer_website || '',
       ofacilities: this.organizerForm.value.o_speciality || '',
       ofacilitesforartist: this.organizerForm.value.o_facility || '',
-      oprofilephoto: this.org_profileimageData ||''
+      oprofilephoto: this.org_profileimageData || ''
       // ophotos: this.organizerForm.value.o_photos || '',
     };
 
@@ -363,19 +365,19 @@ export class UpdateRegistrationFormComponent implements OnInit {
     } else {
       const formData: FormData = new FormData();
       for (const [key, value] of Object.entries(updateData)) {
-        console.log(key,value);
-        
-        formData.append(key,value)
-    }
-    this.service.updatedata(this.userIdToUpdate, formData).subscribe((res) => {
-      console.log(res)
-      if (res.status === 'success') {
-        this.toastr.success('Successfully updated!', 'Success');
-      } else {
-        this.toastr.error('Something went wrong.', 'Error');
+        console.log(key, value);
+
+        formData.append(key, value)
       }
-    });
-  }
+      this.service.updatedata(this.userIdToUpdate, formData).subscribe((res) => {
+        console.log(res)
+        if (res.status === 'success') {
+          this.toastr.success('Successfully updated!', 'Success');
+        } else {
+          this.toastr.error('Something went wrong.', 'Error');
+        }
+      });
+    }
     // Reset the form after submitting
     this.userForm.reset();
     this.artistForm.reset();
@@ -397,7 +399,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
       this.subcategories = selectedCategory.scname || [];
     }
   }
-  
+
   selected: string = 'none';
 
   organizer_categorylist() {
@@ -458,12 +460,12 @@ export class UpdateRegistrationFormComponent implements OnInit {
   get Speciality(): FormControl {
     return this.artistForm.get('speciality') as FormControl;
   }
-  // get artistProfile(): FormControl {
-  //   return this.artistForm.get('artist_profile') as FormControl;
-  // }
-  // get artistPhotos(): FormControl {
-  //   return this.artistForm.get('artist_photos') as FormControl;
-  // }
+  get artistProfile(): FormControl {
+    return this.artistForm.get('artist_profile') as FormControl;
+  }
+  get artistPhotos(): FormControl {
+    return this.artistForm.get('artist_photos') as FormControl;
+  }
   get aVideo1(): FormControl {
     return this.artistForm.get('video_one') as FormControl;
   }
@@ -541,93 +543,93 @@ export class UpdateRegistrationFormComponent implements OnInit {
   }
 }
 
-  // convertToBase64(file: File) {
-  //   const reader = new FileReader();
-  //   reader.onload = (event) => {
-  //     if (event.target && typeof event.target.result === 'string') {
-  //       let imgBase64 = event.target.result.split(',')[1]; // Extract base64 data after comma
-  //       // Check if this.images is an array before pushing to it
-  //       if (Array.isArray(this.images)) {
-  //         this.images.push(imgBase64);
-  //       } else {
-  //         this.images = [imgBase64]; // If not an array, initialize it as an array with the first image
-  //       }
-  //     }
-  //   };
-  //   reader.readAsDataURL(file);
-  // }
+// convertToBase64(file: File) {
+//   const reader = new FileReader();
+//   reader.onload = (event) => {
+//     if (event.target && typeof event.target.result === 'string') {
+//       let imgBase64 = event.target.result.split(',')[1]; // Extract base64 data after comma
+//       // Check if this.images is an array before pushing to it
+//       if (Array.isArray(this.images)) {
+//         this.images.push(imgBase64);
+//       } else {
+//         this.images = [imgBase64]; // If not an array, initialize it as an array with the first image
+//       }
+//     }
+//   };
+//   reader.readAsDataURL(file);
+// }
 
-  // postImages() {
+// postImages() {
 
-  //   const imageData: any = {
-  //     userid: this.userIdToUpdate
-  //   };
+//   const imageData: any = {
+//     userid: this.userIdToUpdate
+//   };
 
-  //   this.images.forEach((image, index) => {
-  //     imageData[`image${index + 1}`] = image;
-  //   });
-  //   this.service.postUserImages(imageData).subscribe(
-  //     (response => {
-  //       console.log('Images uploaded successfully:', response);
-  //       this.toastr.success('Images uploaded successfully!', 'Success');
-  //       if (response && response.status === 'success') {
-  //         console.log('File paths:', response.saved_file_paths);
-  //         this.toastr.success('Successfully uploaded photos!', 'Success');
-  //         if (response.saved_file_paths && Object.keys(response.saved_file_paths).length > 0) {
-  //           // Do something with the file paths object
-  //         } else {
-  //           console.log('No file paths returned from the server.');
-  //         }
-  //       } else {
-  //         console.error('Server returned an error:', response.message);
-  //       }
-  //     }),
-  //     (error => {
-  //       console.error('Error uploading images:', error);
-  //     })
-  //   );
-  // }
+//   this.images.forEach((image, index) => {
+//     imageData[`image${index + 1}`] = image;
+//   });
+//   this.service.postUserImages(imageData).subscribe(
+//     (response => {
+//       console.log('Images uploaded successfully:', response);
+//       this.toastr.success('Images uploaded successfully!', 'Success');
+//       if (response && response.status === 'success') {
+//         console.log('File paths:', response.saved_file_paths);
+//         this.toastr.success('Successfully uploaded photos!', 'Success');
+//         if (response.saved_file_paths && Object.keys(response.saved_file_paths).length > 0) {
+//           // Do something with the file paths object
+//         } else {
+//           console.log('No file paths returned from the server.');
+//         }
+//       } else {
+//         console.error('Server returned an error:', response.message);
+//       }
+//     }),
+//     (error => {
+//       console.error('Error uploading images:', error);
+//     })
+//   );
+// }
 
-  // // for profile image
-  // // onProfileImageSelected(event: any) {
-  // //   const file: File | null = event.target.files[0];
-  // //   if (file) {
-  // //     this.profileImageconvertToBase64(file);
-  // //   }
-  // // }
+// // for profile image
+// // onProfileImageSelected(event: any) {
+// //   const file: File | null = event.target.files[0];
+// //   if (file) {
+// //     this.profileImageconvertToBase64(file);
+// //   }
+// // }
 
-  // // profileImageconvertToBase64(file: File) {
-  // //   const reader = new FileReader();
-  // //   reader.onload = (event) => {
-  // //     if (event.target && typeof event.target.result === 'string') {
-  // //       this.profileimageData = event.target.result.split(',')[1]; // Extract base64 data after comma
-  // //     }
-  // //   };
-  // //   reader.readAsDataURL(file);
-  // // }
+// // profileImageconvertToBase64(file: File) {
+// //   const reader = new FileReader();
+// //   reader.onload = (event) => {
+// //     if (event.target && typeof event.target.result === 'string') {
+// //       this.profileimageData = event.target.result.split(',')[1]; // Extract base64 data after comma
+// //     }
+// //   };
+// //   reader.readAsDataURL(file);
+// // }
 
-  // postProfileImage() {
-  //   if (!this.profileimageData) {
-  //     console.error('No image data available.');
-  //     return;
-  //   }
+// postProfileImage() {
+//   if (!this.profileimageData) {
+//     console.error('No image data available.');
+//     return;
+//   }
 
-  //   const imageData: any = {
-  //     userid: this.userIdToUpdate,
-  //     photo: this.profileimageData
-  //   };
+//   const imageData: any = {
+//     userid: this.userIdToUpdate,
+//     photo: this.profileimageData
+//   };
 
-  //   // Post imageData object containing image data to the server
-  //   this.service.postUserProfileImage(imageData).subscribe(
-  //     (response => {
-  //       console.log('Image uploaded successfully:', response);
-  //       this.toastr.success('Image uploaded successfully!', 'Success');
-  //       // Handle response as needed
-  //     }),
-  //     (error => {
-  //       console.error('Error uploading image:', error);
-  //     })
-  //   );
-  // }
-  // // ////////////////////////////////////////////////////////////////////
+//   // Post imageData object containing image data to the server
+//   this.service.postUserProfileImage(imageData).subscribe(
+//     (response => {
+//       console.log('Image uploaded successfully:', response);
+//       this.toastr.success('Image uploaded successfully!', 'Success');
+//       // Handle response as needed
+//     }),
+//     (error => {
+//       console.error('Error uploading image:', error);
+//     })
+//   );
+// }
+// // ////////////////////////////////////////////////////////////////////
 

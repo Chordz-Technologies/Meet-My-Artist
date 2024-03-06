@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Find_My_Artist": {
+    "Meet_My_Artist": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/find-my-artist",
+            "outputPath": "dist/meet-my-artist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -37,12 +37,12 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
+                  "maximumWarning": "3kb",
                   "maximumError": "4kb"
                 }
               ],
@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Find_My_Artist:build:production"
+              "browserTarget": "Meet_My_Artist:build:production"
             },
             "development": {
-              "browserTarget": "Find_My_Artist:build:development"
+              "browserTarget": "Meet_My_Artist:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Find_My_Artist:build"
+            "browserTarget": "Meet_My_Artist:build"
           }
         },
         "test": {

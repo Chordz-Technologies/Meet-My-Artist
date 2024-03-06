@@ -1,20 +1,19 @@
 <div class="container my-5">
-    <form class="form-table" [formGroup]="updateEventForm" disabled>
+    <form class="form-table" [formGroup]="updateEventForm">
         <h1 class="mt-2">Manage Event</h1>
         <hr />
         <table>
             <tr>
                 <td style="width: 200px"><label for="eventName">Event Name:</label></td>
                 <td colspan="2">
-                    <input type="text" id="eventName" formControlName="eventName" placeholder="Enter your event name"
-                        readonly />
+                    <input type="text" id="eventName" formControlName="eventName" placeholder="Enter your event name" />
                 </td>
             </tr>
             <tr>
                 <td><label for="eventlocation">Event Location:</label></td>
                 <td colspan="2">
                     <input type="text" id="eventlocation" formControlName="eventlocation" name="eventlocation"
-                        placeholder="Google map link" readonly />
+                        placeholder="Google map link" />
                 </td>
             </tr>
             <tr>
@@ -30,13 +29,11 @@
             <tr>
                 <td><label for="eventDate">Event Date:</label></td>
                 <td>
-                    <input type="date" class="date-input" id="eventDate" formControlName="eventDate" name="eventDate"
-                        readonly />
+                    <input type="date" class="date-input" id="eventDate" formControlName="eventDate" name="eventDate" />
                 </td>
                 <td><label for="eventTime">Event Time:</label></td>
                 <td>
-                    <input type="time" class="date-input" id="eventTime" formControlName="eventTime" name="eventTime"
-                        readonly />
+                    <input type="time" class="date-input" id="eventTime" formControlName="eventTime" name="eventTime" />
                 </td>
             </tr>
 
@@ -46,7 +43,7 @@
                 <!-- column 1 -->
                 <td colspan="2">
                     <input type="text" id="requiredArtist" name="requiredArtist" formControlName="requiredArtist"
-                        placeholder="Singer, Guitarist, Drummer, Anchor, etc." readonly />
+                        placeholder="Singer, Guitarist, Drummer, Anchor, etc." />
                 </td>
             </tr>
 
@@ -57,7 +54,7 @@
                 <td colspan="2">
                     <input type="text" id="facilityForArtist" name="facilityForArtist"
                         formControlName="facilityForArtist"
-                        placeholder="Travel Allowance,Music System, Meal, Stay, etc." readonly />
+                        placeholder="Travel Allowance,Music System, Meal, Stay, etc." />
                 </td>
             </tr>
 
@@ -67,7 +64,7 @@
                 <!-- column 1 -->
                 <td colspan="2">
                     <input type="text" id="artistEquip" name="artistEquip" formControlName="artistEquip"
-                        placeholder="Sound System, Own Instruments, Music System, Stay, etc." readonly />
+                        placeholder="Sound System, Own Instruments, Music System, Stay, etc." />
                 </td>
             </tr>
             <!-- upload profile photo and images -->

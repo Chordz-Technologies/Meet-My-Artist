@@ -1,5 +1,6 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/Services/service.service';
@@ -39,6 +40,8 @@ export class ArtistsPageComponent implements OnInit {
   isUserLoggedIn: boolean = false; // Default value
   url = 'https://meetmyartist.beatsacademy.in/';
   modalDisplay = 'none';
+  pageSize: number = 5;
+  currentPage: number = 0;
 
   openModal() {
     this.modalDisplay = 'block';
@@ -102,12 +105,25 @@ export class ArtistsPageComponent implements OnInit {
       next: (res: any) => {
         this.artists = res.artists_list;
         this.filteredArtists = [...this.artists];
+        this.applyPagination();
       },
       error: (err: any) => {
         console.error('Error:', err);
         alert('Error fetching data. Check the console for details.');
       },
     });
+  }
+
+  applyPagination() {
+    const startIndex = this.currentPage * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.filteredArtists = this.artists.slice(startIndex, endIndex);
+  }
+
+  onPageChange(event: PageEvent) {
+    this.pageSize = event.pageSize;
+    this.currentPage = event.pageIndex;
+    this.applyPagination();
   }
 
   nodeClicked(node: CategoryNode | SubcategoryNode) {
@@ -130,11 +146,15 @@ export class ArtistsPageComponent implements OnInit {
     });
   }
 
-  isBookedToday(date: string): boolean {
+  isPastDate(date: Date): boolean {
     const today = new Date();
-    const bookedDate = new Date(date);
+    return new Date(date) < today;
+  }
 
-    return today.toDateString() === bookedDate.toDateString();
+  // Check if the booking is for today
+  isBookedToday(date: Date): boolean {
+    const today = new Date();
+    return new Date(date).toDateString() === today.toDateString();
   }
 
   onLinkClick(event: MouseEvent, link: string): void {
@@ -150,7 +170,6 @@ export class ArtistsPageComponent implements OnInit {
       }
     }
   }
-
 
   navigateToProfile(uid: number) {
     this.router.navigate(['/artistProfile', uid]);

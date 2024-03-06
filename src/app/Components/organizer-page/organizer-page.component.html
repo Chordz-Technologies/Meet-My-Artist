@@ -29,9 +29,10 @@
                                     <div class="card shadow p-3 mb-3 bg-white rounded">
                                         <div class="card-body p-1 d-md-flex text-center text-md-left">
                                             <div class="ms-md-5 my-2 d-flex flex-column">
-                                                <img [src]="url + 'getProfilePhoto/' + organizer.uid" alt="Generic placeholder image"
+                                                <img [src]="url + 'getProfilePhoto/' + organizer.uid"
+                                                    alt="Generic placeholder image"
                                                     class="img-fluid my-4 mb-1 rounded-circle mx-auto"
-                                                    style="width: 150px; z-index: 1" />
+                                                    style="width: 150px; height: 150px; z-index: 1" />
                                                 <!-- <button mat-button class="text-center">
                                                     <span><b>{{ organizer.olikes.length }} </b>
                                                         <i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
@@ -82,8 +83,7 @@
                                                 </div>
                                                 <p>
                                                     <a [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                                        href="https://api.whatsapp.com/send?phone=917517311326"
-                                                        target="_blank"
+                                                        (click)="onLinkClick($event, 'https://api.whatsapp.com/send?phone=917517311326')"
                                                         class="btn border border-secondary bg-white py-2 mt-3">
                                                         <i class="fab fa-whatsapp"
                                                             style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
@@ -107,19 +107,13 @@
 
                 <div class="row justify-content-center mt-3">
                     <div class="col-12 col-md-10 col-xl-10 text-center">
-                        <mat-paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons></mat-paginator>
+                        <mat-paginator [length]="organizers.length" [pageSize]="pageSize" (page)="onPageChange($event)"
+                            showFirstLastButtons>
+                        </mat-paginator>
                     </div>
                 </div>
             </div>
-            <!-- <div class="d-flex justify-content-center mt-4">
-          <mat-paginator
-            [length]="100"
-            [pageSize]="10"
-            [pageSizeOptions]="[5, 10, 25, 100]"
-            aria-label="Select page"
-          >
-          </mat-paginator>
-        </div> -->
         </div>
     </div>
 </div>
+<br><br><br>

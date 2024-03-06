@@ -37,7 +37,7 @@ export class EventManageComponent implements OnInit {
     });
 
     this.route.params.subscribe(params => {
-      this.eventId = +params['id']; // Get uid from URL
+      this.eventId = +params['eid']; // Get uid from URL
 
       this.service.getEventById(this.eventId).subscribe({
         next: (res) => {
@@ -50,7 +50,7 @@ export class EventManageComponent implements OnInit {
     });
   }
 
-  fillFormToUpdate(event: any) {
+  fillFormToUpdate(event: event_model) {
     this.updateEventForm.patchValue({
       eventName: event.ename,
       eventlocation: event.elocation,
@@ -66,11 +66,9 @@ export class EventManageComponent implements OnInit {
   }
   // for event image
   onImageSelected(event: any) {
-
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       this.eventimageData = fileList[0];
-      console.log('Selected image:', this.eventimageData);
     } else {
       this.eventimageData = null; // Reset file if no file is selected
     }
@@ -88,10 +86,8 @@ export class EventManageComponent implements OnInit {
       facilitiesforartist: this.updateEventForm.value.facilityForArtist,
       erequirements: this.updateEventForm.get('option1')?.value ? 1 : 0,
       eposter: this.eventimageData
-
     };
     let postData = { ...eventData };
-    console.log(postData);
 
     if (
       !postData.ename ||
@@ -99,21 +95,16 @@ export class EventManageComponent implements OnInit {
       !postData.egooglemap ||
       !postData.edate ||
       !postData.etime ||
-      // !postData.eposter ||
+      !postData.eposter ||
       !postData.orequirements ||
       !postData.artistequipwith ||
       !postData.facilitiesforartist
     ) {
-      alert('Please fill all the fields');
+      this.toastr.error('Please fill all the field.', 'Error');
       return;
     } else {
-      // this.postImage()
-      console.log("Before submitting the data is", eventData);
-      // let formData2 = new FormData();
       const formData: FormData = new FormData();
-      for (const [key, value] of Object.entries(eventData)) {
-        console.log(key, value);
-
+      for (const [key, value] of Object.entries(postData)) {
         formData.append(key, value)
       }
 

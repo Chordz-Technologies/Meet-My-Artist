@@ -47,6 +47,7 @@ import { PricingPageComponent } from './Components/pricing-page/pricing-page.com
 import { UpdateRegistrationFormComponent } from './Components/update-registration-form/update-registration-form.component';
 import { SearchPageComponent } from './Components/search-page/search-page.component';
 import { UserEventsComponent } from './Components/user-events/user-events.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { UserEventsComponent } from './Components/user-events/user-events.compon
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTooltipModule,
     ToastrModule.forRoot()
 
   ],

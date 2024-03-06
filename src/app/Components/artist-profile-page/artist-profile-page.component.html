@@ -17,7 +17,7 @@
                             <h2 class="mb-3">{{ artist.uname }}</h2>
                             <h3>{{ artist.acategory }}</h3>
                             <h3>{{ artist.uaddress }}, <b>{{artist.ucity}}</b></h3>
-                            <h3>Experience: {{ artist.aworkexperience }}</h3>
+                            <h3>Experience: {{ artist.aworkexperience }} Years</h3>
                         </div>
 
                         <div id="myModal" class="modal" [style.display]="modalDisplay">
@@ -51,7 +51,7 @@
                             </div>
                             <p>
                                 <a [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                    href="https://api.whatsapp.com/send?phone=917517311326"
+                                    (click)="onLinkClick($event, 'https://api.whatsapp.com/send?phone=917517311326')"
                                     class="btn border border-secondary shadow bg-white py-2 px-5 mt-3">
                                     <i class="fab fa-whatsapp"
                                         style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
@@ -63,8 +63,9 @@
                                     (click)="onLinkClick($event, artist.awebsite)"
                                     class="text-decoration-none py-3 px-2 mt-3">{{ artist.awebsite }}</a>
                             </p>
-                            <h3 class="text-danger">This artist is booked for
-                                {{ isBookedToday(artist.abookeddate) ? 'Today' : artist.abookeddate }}.
+                            <h3 class="text-danger" *ngIf="artist.abookeddate && !isPastDate(artist.abookeddate)">
+                                This artist is booked for {{ isBookedToday(artist.abookeddate) ? 'Today' :
+                                artist.abookeddate }}.
                             </h3>
                         </div>
                     </div>

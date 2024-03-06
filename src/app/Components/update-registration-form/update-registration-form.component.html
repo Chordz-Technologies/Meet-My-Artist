@@ -463,18 +463,13 @@
         <tr>
           <td><label for="dropdown">Business Category:</label></td>
           <td>
-            <div class="dropdown" ngbDropdown>
-              <button class="btn_dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
-                ngbDropdownToggle>
-                {{ selectedCategory?.businesscategory || "Select Category" }}
-              </button>
-              <ul class="dropdown-menu" ngbDropdownMenu>
-                <li *ngFor="let category of organizer_categories">
-                  <a class="dropdown-item" ngbDropdownItem (click)="selectOCategory(category)">
-                    {{ category.businesscategory }}</a>
-                </li>
-              </ul>
-            </div>
+            <select class="form-select" id="category" name="category" formControlName="organizer_category"
+              (change)="selectOCategory(organizerForm.value.category)">
+              <option [ngValue]="null" disabled>Select Category</option>
+              <option *ngFor="let category of organizer_categories" [ngValue]="category.businesscategory">{{
+                category?.businesscategory }}
+              </option>
+            </select>
           </td>
         </tr>
 
@@ -507,12 +502,12 @@
             </div> -->
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td><label for="imageUpload">Upload Photos:</label></td>
           <td>
             <input type="file" class="form-control up_img" id="imageUpload" name="imageUpload" multiple accept="image/*"
-              (change)="onFilesSelected($event)" />
-            <!-- <div class="form-text text-danger fw-bold"
+              (change)="onFilesSelected($event)" /> -->
+        <!-- <div class="form-text text-danger fw-bold"
               *ngIf="OrgPhotos.errors?.['required'] && (OrgPhotos.dirty || OrgPhotos.touched)">
               Photo is required.
             </div>
@@ -523,8 +518,8 @@
                   ">
               Only 10 photos are accepted.
             </div> -->
-          </td>
-        </tr>
+        <!-- </td>
+        </tr> -->
 
 
         <!-- Social medial links -->

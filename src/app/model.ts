@@ -24,7 +24,7 @@ export class user_model {
     usersubsdate!: string;
     ulikes!: string;
     uwishlist!: string;
-    aprofilephoto!: string;
+    aprofilephoto!: File;
     afblink!: string;
     ainstalink!: string;
     awebsite!: string;
@@ -43,7 +43,7 @@ export class user_model {
     arequirements!: string;
     adescription!: string;
     artiststaus!: string;
-    oprofilephoto!: string;
+    oprofilephoto!: File;
     obusinessname!: string;
     obusinesscategory!: string;
     ofacilities!: string;
@@ -63,6 +63,7 @@ export class event_model {
     eid!: number;
     ename!: string;
     elocation!: string;
+    egooglemap!: string;
     edate!: string;
     etime!: string;
     eposter!: string;

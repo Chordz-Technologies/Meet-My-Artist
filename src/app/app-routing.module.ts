@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'registrationForm', component: RegistrationFormComponent },
   { path: 'updateRegistrationForm/:uid', component: UpdateRegistrationFormComponent },
   { path: 'eventRegistration', component: EventRegistrationComponent },
-  { path: 'eventManage/:uid', component: EventManageComponent },
+  { path: 'eventManage/:eid', component: EventManageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'notifications', component: NotificationsPageComponent },
   { path: 'wishlist/:uid', component: WishlistPageComponent },

@@ -20,12 +20,12 @@ export class UserEventsComponent {
       // Fetch the product details using the ID and populate the form
       this.service.getEventIdByUserId(this.userID).subscribe({
         next: (res: any) => { // Adjust the type annotation here
-          console.log('Response:', res); // Debug statement to check response data
+          // console.log('Response:', res); // Debug statement to check response data
           if (typeof res === 'object' && res !== null && 'event_data' in res && Array.isArray(res.event_data)) {
             this.eventdata = res.event_data.filter((item: any) => item.erequirements === 1);
             this.r_eventdata = res.event_data.filter((item: any) => item.erequirements === null || item.erequirements === 0);
-            console.log('EventData:', this.eventdata); // Debug statement to check eventdata
-            console.log('Reversed EventData:', this.r_eventdata); // Debug statement to check r_eventdata
+            // console.log('EventData:', this.eventdata); // Debug statement to check eventdata
+            // console.log('Reversed EventData:', this.r_eventdata); // Debug statement to check r_eventdata
           } else {
             console.error('Invalid response structure:', res); // Log an error if response structure is invalid
           }
@@ -44,7 +44,7 @@ export class UserEventsComponent {
     return parsedEventDate < currentDate;
   }
 
-  edit(uid: number) {
-    this.router.navigate(['/eventManage', uid]);
+  edit(eid: number) {
+    this.router.navigate(['/eventManage', eid]);
   }
 }

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Find_My_Artist';
+  title = 'Meet_My_Artist';
   
   onActive() {
     window.scroll(0, 0);

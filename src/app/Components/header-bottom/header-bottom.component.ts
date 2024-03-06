@@ -44,7 +44,7 @@ export class HeaderBottomComponent implements OnInit {
     // const userId = this.getUserId();
     if (this.userId) {
       // Navigate to the updateRegistrationForm route with uid parameter
-      this.router.navigate(['/eventManage', this.userId]);
+      this.router.navigate(['/userEvents', this.userId]);
     } else {
       console.error('User ID not found in local storage');
       // Handle the case where userId is not found in local storage

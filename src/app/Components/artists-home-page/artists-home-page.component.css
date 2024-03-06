@@ -8,13 +8,16 @@
     font-weight: 700;
     line-height: normal;
 }
+
 .card-img-top {
-    height: 200px;
+    height: 100%;
     width: 100%;
 }
+
 .card {
     height: 95%;
 }
+
 .container {
     font-family: Roboto;
 }
@@ -84,6 +87,7 @@ table {
         height: none;
         /* Remove the max-height for smaller screens */
     }
+
     .heading {
         font-size: 30px;
     }
