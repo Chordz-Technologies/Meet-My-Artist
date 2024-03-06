@@ -15,6 +15,7 @@ export class ArtistProfilePageComponent implements OnInit {
   images: any[] = [];
   ArtistProfileimage: any[] = [];
   isUserLoggedIn: boolean = false; // Default value
+  url = 'https://meetmyartist.beatsacademy.in/';
   modalDisplay = 'none';
 
   constructor(private service: ServiceService, private activatedRoute: ActivatedRoute, public sanitizer: DomSanitizer, private toastr: ToastrService) { }
@@ -59,15 +60,15 @@ export class ArtistProfilePageComponent implements OnInit {
         this.toastr.error('Error fetching images', 'Error');
       })
     );
-    this.service.getArtistProfileImage(userId).subscribe(
-      (res => {
-        this.ArtistProfileimage = res.base64_photo; // Assuming the response is an array of objects with 'fileName' and 'base64Image' properties
-      }),
-      (error => {
-        console.error('Error fetching images:', error);
-        this.toastr.error('Error fetching images', 'Error');
-      })
-    );
+    // this.service.getArtistProfileImage(userId).subscribe(
+    //   (res => {
+    //     this.ArtistProfileimage = res.base64_photo; // Assuming the response is an array of objects with 'fileName' and 'base64Image' properties
+    //   }),
+    //   (error => {
+    //     console.error('Error fetching images:', error);
+    //     this.toastr.error('Error fetching images', 'Error');
+    //   })
+    // );
   }
 
   onLinkClick(event: MouseEvent, link: string): void {

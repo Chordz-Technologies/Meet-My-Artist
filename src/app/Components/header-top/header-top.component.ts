@@ -45,7 +45,7 @@ export class HeaderTopComponent implements OnInit {
     const userId = this.getUserId();
     if (userId) {
       // Navigate to the updateRegistrationForm route with uid parameter
-      this.router.navigate(['/eventManage', userId]);
+      this.router.navigate(['/userEvents', userId]);
     } else {
       console.error('User ID not found in local storage');
       // Handle the case where userId is not found in local storage

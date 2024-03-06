@@ -208,12 +208,14 @@
             <label for="category">Category:</label>
           </td>
           <td>
-            <select class="form-select" id="category" name="category" formControlName="category" (change)="selectCategory(artistForm.value.category)">
+            <select class="form-select" id="category" name="category" formControlName="category"
+              (change)="selectCategory(artistForm.value.category)">
               <option [ngValue]="null" disabled>Select Category</option>
-              <option *ngFor="let category of artist_categories" [ngValue]="category.cname">{{ category?.cname }}</option>
+              <option *ngFor="let category of artist_categories" [ngValue]="category.cname">{{ category?.cname }}
+              </option>
             </select>
           </td>
-        
+
           <td>
             <label for="subcategory">Sub Category:</label>
           </td>
@@ -224,54 +226,6 @@
             </select>
           </td>
         </tr>
-        
-        
-        <!-- <tr>
-              <td><label for="dropdown">Category:</label></td>
-              <td>
-                <div class="dropdown">
-                  <button
-                    class="btn_dropdown dropdown-toggle"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    {{ selectedCategory?.cname || "Select Category" }}
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li *ngFor="let category of artist_categories">
-                      <a class="dropdown-item" (click)="selectCategory(category)">
-                        {{ category.cname }}
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </td>
-             
-              <td><label for="dropdown">Sub Category:</label></td>
-              <td>
-                <div class="dropdown">
-                  <button
-                    class="btn_dropdown dropdown-toggle"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    {{ selectedSubcategory || "Select Subcategory" }}
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li *ngFor="let subcategory of subcategories">
-                      <a
-                        class="dropdown-item"
-                        (click)="selectSubcategory(subcategory)"
-                      >
-                        {{ subcategory }}</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </td>
-            </tr> -->
 
         <!-- Speciality check box -->
         <tr>
@@ -287,18 +241,12 @@
         </tr>
 
         <!-- upload profile photo and images -->
-        <!-- <tr>
-              <td><label for="imageUpload">Upload Profile Photo:</label></td>
-              <td>
-                <input
-                  type="file"
-                  class="form-control up_img"
-                  id="imageUpload"
-                  name="imageUpload"
-                  formControlName="artist_profile"
-                  accept="image/*"
-                />
-                <div
+        <tr>
+          <td><label for="imageUpload">Upload Profile Photo:</label></td>
+          <td>
+            <input type="file" class="form-control up_img" id="imageUpload" name="imageUpload"
+              (change)="onImageSelected($event)" accept="image/*" />
+            <!-- <div
                   class="form-text text-danger fw-bold"
                   *ngIf="artistProfile.errors?.['required'] && (artistProfile.dirty || artistProfile.touched)"
                 >
@@ -309,24 +257,16 @@
                   *ngIf="artistProfile.errors?.['minlength'] && (artistProfile.dirty || artistProfile.touched)"
                 >
                   Profile Photo only 1 is accepted.
-                </div>
-              </td>
-              
-              <td>
-                <label for="imageUpload">Upload Photos (up to 10):</label>
-              </td>
-              <td>
-                <input
-                  type="file"
-                  class="form-control up_img"
-                  id="imageUpload"
-                  name="imageUpload"
-                  multiple
-                  accept="image/*"
-                  formControlName="artist_photos"
-                  (change)="onFileChange($event)"
-                />
-                <div
+                </div> -->
+          </td>
+
+          <td>
+            <label for="imageUpload">Upload Photos (up to 10):</label>
+          </td>
+          <td>
+            <input type="file" class="form-control up_img" id="imageUpload" name="imageUpload" multiple accept="image/*"
+              (change)="onFilesSelected($event)" />
+            <!-- <div
                   class="form-text text-danger fw-bold"
                   *ngIf="artistPhotos.errors?.['required'] && (artistPhotos.dirty || artistPhotos.touched)"
                 >
@@ -341,9 +281,9 @@
                   "
                 >
                   Only 10 photos are accepted.
-                </div>
-              </td>
-            </tr> -->
+                </div> -->
+          </td>
+        </tr>
 
         <!-- popular video link section -->
 
@@ -520,28 +460,23 @@
         </tr>
         <!-- Category filter -->
 
-        <!-- <tr>
-            <td><label for="dropdown">Business Category:</label></td>
-            <td>
-              <div class="dropdown">
-                <button
-                  class="btn_dropdown dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Select Category
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </li>
-                </ul>
-              </div>
-            </td>
-          </tr> -->
+        <tr>
+          <td><label for="dropdown">Business Category:</label></td>
+          <td>
+            <div class="dropdown" ngbDropdown>
+              <button class="btn_dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                ngbDropdownToggle>
+                {{ selectedCategory?.businesscategory || "Select Category" }}
+              </button>
+              <ul class="dropdown-menu" ngbDropdownMenu>
+                <li *ngFor="let category of organizer_categories">
+                  <a class="dropdown-item" ngbDropdownItem (click)="selectOCategory(category)">
+                    {{ category.businesscategory }}</a>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
 
         <!-- Speciality check box -->
         <tr>
@@ -558,61 +493,39 @@
 
         <!-- upload profile photo and images -->
         <tr>
-          <!-- <td><label for="imageUpload">Upload Profile Photo:</label></td>
-              <td>
-                <input
-                  type="file"
-                  class="form-control up_img"
-                  id="imageUpload"
-                  formControlName="o_profile"
-                  name="imageUpload"
-                  accept="image/*"
-                />
-                <div
-                  class="form-text text-danger fw-bold"
-                  *ngIf="OrgProfile.errors?.['required'] && (OrgProfile.dirty || OrgProfile.touched)"
-                >
-                  Profile Photo is required.
-                </div>
-                <div
-                  class="form-text text-danger fw-bold"
-                  *ngIf="OrgProfile.errors?.['minlength'] && (OrgProfile.dirty || OrgProfile.touched)"
-                >
-                  Profile Photo only 1 is accepted.
-                </div>
-              </td> -->
-          <!-- </tr>
-                      <tr> -->
-          <!-- <td><label for="imageUpload">Upload Photos:</label></td>
-              <td>
-                <input
-                  type="file"
-                  class="form-control up_img"
-                  id="imageUpload"
-                  formControlName="o_photos"
-                  name="imageUpload"
-                  multiple
-                  accept="image/*"
-                  (change)="onFileChange2($event)"
-                />
-                <div
-                  class="form-text text-danger fw-bold"
-                  *ngIf="OrgPhotos.errors?.['required'] && (OrgPhotos.dirty || OrgPhotos.touched)"
-                >
-                  Photo is required.
-                </div>
-                <div
-                  class="form-text text-danger fw-bold"
-                  *ngIf="
+          <td><label for="imageUpload">Upload Profile Photo:</label></td>
+          <td>
+            <input type="file" class="form-control up_img" id="imageUpload" (change)="onorganizerImageSelected($event)"
+              name="imageUpload" accept="image/*" />
+            <!-- <div class="form-text text-danger fw-bold"
+              *ngIf="OrgProfile.errors?.['required'] && (OrgProfile.dirty || OrgProfile.touched)">
+              Profile Photo is required.
+            </div>
+            <div class="form-text text-danger fw-bold"
+              *ngIf="OrgProfile.errors?.['minlength'] && (OrgProfile.dirty || OrgProfile.touched)">
+              Profile Photo only 1 is accepted.
+            </div> -->
+          </td>
+        </tr>
+        <tr>
+          <td><label for="imageUpload">Upload Photos:</label></td>
+          <td>
+            <input type="file" class="form-control up_img" id="imageUpload" name="imageUpload" multiple accept="image/*"
+              (change)="onFilesSelected($event)" />
+            <!-- <div class="form-text text-danger fw-bold"
+              *ngIf="OrgPhotos.errors?.['required'] && (OrgPhotos.dirty || OrgPhotos.touched)">
+              Photo is required.
+            </div>
+            <div class="form-text text-danger fw-bold" *ngIf="
                     OrgPhotos.errors?.['maxlength'] &&
                     (OrgPhotos.dirty ||
                     OrgPhotos.touched)
-                  "
-                >
-                  Only 10 photos are accepted.
-                </div>
-              </td> -->
+                  ">
+              Only 10 photos are accepted.
+            </div> -->
+          </td>
         </tr>
+
 
         <!-- Social medial links -->
         <tr>

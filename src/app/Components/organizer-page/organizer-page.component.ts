@@ -34,7 +34,7 @@ export class OrganizerPageComponent implements OnInit {
   loggedInUserId: number | undefined;
   wishlistIds: any;
   isUserLoggedIn: boolean = false; // Default value
-
+  url = 'https://meetmyartist.beatsacademy.in/';
   modalDisplay = 'none';
 
   openModal() {

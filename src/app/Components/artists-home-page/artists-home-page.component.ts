@@ -7,15 +7,15 @@ import { ServiceService } from 'src/app/Services/service.service';
   styleUrls: ['./artists-home-page.component.css']
 })
 export class ArtistsHomePageComponent implements OnInit {
-  eventdata: any[] = []
-  r_eventdata: any[] = []
+  eventdata: any[] = [];
+  r_eventdata: any[] = [];
+  url = 'https://meetmyartist.beatsacademy.in/';
+
   constructor(private event_data: ServiceService) { }
   ngOnInit(): void {
     this.event_data.getEventDetails().subscribe(res => {
       this.eventdata = res.all_events.filter((item: { erequirements: number; }) => item.erequirements === 1);
       this.r_eventdata = res.all_events.filter((item: { erequirements: number; }) => item.erequirements === 0);
     })
-
   }
-
 }

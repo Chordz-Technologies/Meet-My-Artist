@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from
 import { ServiceService } from 'src/app/Services/service.service';
 import { user_model } from '../../model';
 import { ToastrService } from 'ngx-toastr';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-registration-form',
@@ -14,6 +15,7 @@ export class RegistrationFormComponent implements OnInit {
   artistForm!: FormGroup;
   organizerForm!: FormGroup;
   user_model: user_model = new user_model();
+
   artist_categories: any[] = [];
   selectedCategory: any;
   subcategories: string[] = [];
@@ -22,7 +24,14 @@ export class RegistrationFormComponent implements OnInit {
   showPassword: boolean = false;
   showCPassword: boolean = false;
 
-  constructor(private service: ServiceService, private fb: FormBuilder, private toastr: ToastrService) { }
+  // images upload
+
+  images: string[] = [];
+  profileimageData: File | null | undefined;
+  org_profileimageData: File | null | undefined;
+
+
+  constructor(private service: ServiceService, private fb: FormBuilder, private toastr: ToastrService, public sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     //user form validators
@@ -80,14 +89,11 @@ export class RegistrationFormComponent implements OnInit {
         Validators.required,
         Validators.pattern('https://.*'),
       ]),
-      artist_profile: this.fb.control('', [
-        Validators.required,
-        Validators.minLength(1),
-      ]),
-      artist_photos: this.fb.control('', [
-        Validators.required,
-        Validators.maxLength(10),
-      ]),
+      
+      // artist_photos: this.fb.control('', [
+      //   Validators.required,
+      //   Validators.maxLength(10),
+      // ]),
       speciality: this.fb.control('', [Validators.required]),
       requirement: this.fb.control('', [Validators.required]),
       artist_description: this.fb.control('', [Validators.required]),
@@ -112,14 +118,14 @@ export class RegistrationFormComponent implements OnInit {
       ]),
       o_speciality: this.fb.control('', [Validators.required]),
       o_facility: this.fb.control('', [Validators.required]),
-      o_profile: this.fb.control('', [
-        Validators.required,
-        Validators.maxLength(1),
-      ]),
-      o_photos: this.fb.control('', [
-        Validators.required,
-        Validators.maxLength(10),
-      ]),
+      // o_profile: this.fb.control('', [
+      //   Validators.required,
+      //   Validators.maxLength(1),
+      // ]),
+      // o_photos: this.fb.control('', [
+      //   Validators.required,
+      //   Validators.maxLength(10),
+      // ]),
     });
 
     // artist category function calling
@@ -127,8 +133,41 @@ export class RegistrationFormComponent implements OnInit {
     this.organizer_categorylist();
   }
 
+
+  // for profile image
+  onImageSelected(event: any) {
+
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      this.profileimageData = fileList[0];
+      console.log('Selected image:', this.profileimageData);
+    } else {
+      this.profileimageData = null; // Reset file if no file is selected
+    }
+
+  }
+  onorganizerImageSelected(event: any) {
+
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      this.org_profileimageData  = fileList[0];
+      console.log('Selected image:', this.org_profileimageData );
+    } else {
+      this.org_profileimageData  = null; // Reset file if no file is selected
+    }
+  
+  }
+
   postdata() {
     // Extract user data
+    const currentDate = new Date();
+
+    // Format date to YYYY-MM-DD
+    const formattedDate = currentDate.getFullYear() + '-' +
+      ('0' + (currentDate.getMonth() + 1)).slice(-2) + '-' +
+      ('0' + currentDate.getDate()).slice(-2);
+
+
     const userData = {
       uname: this.userForm.value.firstName,
       uemail: this.userForm.value.email,
@@ -137,16 +176,20 @@ export class RegistrationFormComponent implements OnInit {
       ucity: this.userForm.value.city,
       upassword: this.userForm.value.password,
       uconfirmpassword: this.userForm.value.cpassword,
+
+      userstatus: "Trial",
+      uregistrationdate: formattedDate,
       utypeartist: this.userForm.value.options === '2' ? 1 : 0,
       utypeorganizer: this.userForm.value.options === '1' ? 1 : 0,
       utypeuser: this.userForm.value.options === '3' ? 1 : 0,
     };
+  
 
     // Extract artist data 
     const artistData = {
       aworkexperience: this.artistForm.value.wexp || '',
-      acategory: this.artistForm.value.selectedCategory || '',
-      asubcategory: this.artistForm.value.selectedSubcategory || '',
+      acategory: this.user_model.acategory || '', // Include selected category
+      asubcategory: this.user_model.asubcategory || '', // Include selected subcategory
       alink1: this.artistForm.value.video_one || '',
       alink2: this.artistForm.value.video_two || '',
       alink3: this.artistForm.value.video_three || '',
@@ -156,21 +199,30 @@ export class RegistrationFormComponent implements OnInit {
       aspeciality: this.artistForm.value.speciality || '',
       arequirements: this.artistForm.value.requirement || '',
       adescription: this.artistForm.value.artist_description || '',
-      aprofilephoto: this.artistForm.value.artist_profile || '',
-      aphotos: this.artistForm.value.artist_photos || '',
+      artiststatus: "Trial",
+
+      aprofilephoto: this.profileimageData
+      
+
+      // aprofilephoto: this.artistForm.value.artist_profile || '',
+      // aphotos: this.artistForm.value.artist_photos || '',
     };
+    console.log(artistData)
 
     // Extract organizer data
     const organizerData = {
       obusinessname: this.organizerForm.value.business_name || '',
+      obusinesscategory: this.user_model.obusinesscategory || '', // Include selected organizer category
       odescription: this.organizerForm.value.organizer_description || '',
       ofblink: this.organizerForm.value.organizer_facebook || '',
       oinstalink: this.organizerForm.value.organizer_instagram || '',
       owebsite: this.organizerForm.value.organizer_website || '',
       ofacilities: this.organizerForm.value.o_speciality || '',
       ofacilitesforartist: this.organizerForm.value.o_facility || '',
-      ophotos: this.organizerForm.value.o_photos || '',
-      oprofilephoto: this.organizerForm.value.o_profile || '',
+      organizerstatus: "Trial",
+      oprofilephoto: this.org_profileimageData ||'',
+      // ophotos: this.organizerForm.value.o_photos || '',
+      // oprofilephoto: this.organizerForm.value.o_profile || '',
     };
 
     let postData = { ...userData, ...artistData, ...organizerData };
@@ -188,8 +240,9 @@ export class RegistrationFormComponent implements OnInit {
         !postData.aspeciality ||
         !postData.arequirements ||
         !postData.adescription ||
-        !postData.aprofilephoto ||
-        !postData.aphotos) {
+        !postData.aprofilephoto 
+        // !postData.aphotos
+      ) {
         this.toastr.error('Please fill all the field.', 'Error');
         return;
       }
@@ -203,7 +256,7 @@ export class RegistrationFormComponent implements OnInit {
         !postData.owebsite ||
         !postData.ofacilities ||
         !postData.ofacilitesforartist ||
-        !postData.ophotos ||
+        // !postData.ophotos ||
         !postData.oprofilephoto
       ) {
         this.toastr.error('Please fill all the field.', 'Error');
@@ -231,13 +284,24 @@ export class RegistrationFormComponent implements OnInit {
       this.toastr.error('Please fill all the field.', 'Error');
       return;
     } else {
-      this.service.postdata(postData).subscribe((res) => {
+      console.log("Before submitting the data is",postData);
+      // let formData2 = new FormData();
+      const formData: FormData = new FormData();
+      for (const [key, value] of Object.entries(postData)) {
+        console.log(key,value);
+        
+        formData.append(key,value)
+      }
+      console.log("the data is",formData);
+      
+      this.service.postdata(formData).subscribe((res) => {
         if (res.status === 'success') {
           this.toastr.success('Successfully registered!', 'Success');
         } else {
           this.toastr.error('Something went wrong.', 'Error');
         }
       });
+
     }
 
     // Reset the form after submitting

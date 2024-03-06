@@ -54,7 +54,7 @@ export class HeaderBottomComponent implements OnInit {
   onSearch(): void {
     if (this.searchTerm.trim() !== '') {
       this.router.navigate(['/search', this.searchTerm]);
-      // this.searchTerm = '';
+      this.searchTerm = '';
       // window.location.reload();
     }
   }

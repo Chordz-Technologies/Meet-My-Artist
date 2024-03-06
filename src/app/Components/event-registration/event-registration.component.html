@@ -18,9 +18,20 @@
                 <td><label for="eventlocation">Event Location:</label></td>
                 <td colspan="2">
                     <input type="text" id="eventlocation" formControlName="eventlocation" name="eventlocation"
-                        placeholder="Google map link" />
+                        placeholder="Event Location" />
                     <div class="form-text text-danger fw-bold"
                         *ngIf="EventLocation.errors?.['required'] && (EventLocation.dirty || EventLocation.touched)">
+                        Location is required.
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="googlemaplocation">Google Map Location:</label></td>
+                <td colspan="2">
+                    <input type="text" id="googlemaplocation" formControlName="googlemaplocation"
+                        name="googlemaplocation" placeholder="Google map link" />
+                    <div class="form-text text-danger fw-bold"
+                        *ngIf="GoogleLocation.errors?.['required'] && (GoogleLocation.dirty || GoogleLocation.touched)">
                         Location is required.
                     </div>
                 </td>
@@ -94,15 +105,15 @@
                 <td><label for="imageUpload">Upload Event Poster:</label></td>
                 <td>
                     <input type="file" class="form-control up_img" id="imageUpload" formControlName="imageUpload"
-                        name="imageUpload" accept="image/*" />
-                    <div class="form-text text-danger fw-bold"
+                        name="imageUpload" accept="image/*" (change)="onImageSelected($event)" />
+                    <!-- <div class="form-text text-danger fw-bold"
                         *ngIf="EventPoster.errors?.['required'] && (EventPoster.dirty || EventPoster.touched)">
                         EventPoster is required.
                     </div>
                     <div class="form-text text-danger fw-bold"
                         *ngIf="EventPoster.errors?.['minlength'] && (EventPoster.dirty || EventPoster.touched)">
                         EventPoster only 1 is accepted.
-                    </div>
+                    </div> -->
                 </td>
             </tr>
         </table>

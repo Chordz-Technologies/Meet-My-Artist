@@ -107,7 +107,7 @@
         <div class="col-md-4" *ngFor="let artist of artists">
             <div class="card business-card shadow p-3 mb-5 bg-white rounded">
                 <div class="card-data">
-                    <img [src]="artist.aprofilephoto" class="card-img-top" alt="Image Alt Text">
+                    <img [src]="url + 'getProfilePhoto/' + artist.uid" class="card-img-top" alt="Image Alt Text">
                     <h4>{{ artist.uname }}</h4>
                     <p class="text-center" style="font-size: 20px;">{{ artist.acategory }}</p>
                     <p class="text-center"><b>{{ artist.alikes.length }} </b><mat-icon
@@ -185,7 +185,7 @@
     <div class="row pt-5 pb-5">
         <div class="col-lg-3 col-md-4 col-sm-12 " *ngFor="let product of products">
             <div class="card my-3 pt-2" id="product-card">
-                <img src={{product.pimages}} class="card-img-top" alt="product-image">
+                <img [src]="url + 'getProductPhoto/' + product.pid" class="card-img-top" alt="product-image">
                 <div id="product-body">
                     <h2 class="">{{product.pbrand}}</h2>
                     <p class="">{{product.pmodel | slice:0:70 }}...</p>

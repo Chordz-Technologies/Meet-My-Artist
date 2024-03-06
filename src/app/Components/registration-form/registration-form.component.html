@@ -119,10 +119,10 @@
                 <tr>
                     <td>
                         <label>Select Profile:</label>
-                        <div class="form-text text-danger fw-bold"
+                        <!-- <div class="form-text text-danger fw-bold"
                             *ngIf="Options.errors?.['required'] && (Options.dirty || Options.touched)">
                             Select any option.
-                        </div>
+                        </div> -->
                     </td>
                     <td class="checkbox-group">
                         <div class="form-check">
@@ -222,31 +222,31 @@
                     <td><label for="imageUpload">Upload Profile Photo:</label></td>
                     <td>
                         <input type="file" class="form-control up_img" id="imageUpload" name="imageUpload"
-                            formControlName="artist_profile" accept="image/*" />
-                        <div class="form-text text-danger fw-bold"
+                            accept="image/*" (change)="onImageSelected($event)" />
+                        <!-- <div class="form-text text-danger fw-bold"
                             *ngIf="artistProfile.errors?.['required'] && (artistProfile.dirty || artistProfile.touched)">
                             Profile Photo is required.
                         </div>
                         <div class="form-text text-danger fw-bold"
                             *ngIf="artistProfile.errors?.['minlength'] && (artistProfile.dirty || artistProfile.touched)">
                             Profile Photo only 1 is accepted.
-                        </div>
+                        </div> -->
                     </td>
                     <td>
                         <label for="imageUpload">Upload Photos (up to 10):</label>
                     </td>
-                    <td>
+                     <td>
                         <input type="file" class="form-control up_img" id="imageUpload" name="imageUpload" multiple
                             accept="image/*" formControlName="artist_photos" (change)="onFileChange($event)" />
-                        <div class="form-text text-danger fw-bold"
+                        <!--<div class="form-text text-danger fw-bold"
                             *ngIf="artistPhotos.errors?.['required'] && (artistPhotos.dirty || artistPhotos.touched)">
                             Photo is required.
                         </div>
                         <div class="form-text text-danger fw-bold"
                             *ngIf="artistPhotos.errors?.['maxlength'] && (artistPhotos.dirty || artistPhotos.touched)">
                             Only 10 photos are accepted.
-                        </div>
-                    </td>
+                        </div>-->
+                    </td> 
                 </tr>
                 <tr>
                     <td colspan="3">
@@ -421,8 +421,8 @@
                     <td><label for="imageUpload">Upload Profile Photo:</label></td>
                     <td>
                         <input type="file" class="form-control up_img" id="imageUpload" formControlName="o_profile"
-                            name="imageUpload" accept="image/*" />
-                        <div class="form-text text-danger fw-bold"
+                            accept="image/*" name="imageUpload" (change)="onImageSelected($event)" />
+                        <!-- <div class="form-text text-danger fw-bold"
                             *ngIf="OrgProfile.errors?.['required'] && (OrgProfile.dirty || OrgProfile.touched)">
                             Profile Photo is required.
                         </div>
@@ -434,7 +434,7 @@
                     <td><label for="imageUpload">Upload Photos:</label></td>
                     <td>
                         <input type="file" class="form-control up_img" id="imageUpload" formControlName="o_photos"
-                            name="imageUpload" multiple accept="image/*" (change)="onFileChange2($event)" />
+                            name="imageUpload" multiple accept="image/*" (change)="onFilesSelected($event)" />
                         <div class="form-text text-danger fw-bold"
                             *ngIf="OrgPhotos.errors?.['required'] && (OrgPhotos.dirty || OrgPhotos.touched)">
                             Photo is required.
@@ -442,7 +442,7 @@
                         <div class="form-text text-danger fw-bold"
                             *ngIf="OrgPhotos.errors?.['maxlength'] && (OrgPhotos.dirty || OrgPhotos.touched)">
                             Only 10 photos are accepted.
-                        </div>
+                        </div> -->
                     </td>
                 </tr>
                 <!-- Social medial links -->

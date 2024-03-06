@@ -9,6 +9,7 @@ import { ServiceService } from 'src/app/Services/service.service';
 export class HomePageComponent implements OnInit {
   artists: any[] = [];
   products: any[] = [];
+  url = 'https://meetmyartist.beatsacademy.in/';
 
   constructor(private service: ServiceService) { }
 

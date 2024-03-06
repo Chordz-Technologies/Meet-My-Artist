@@ -29,7 +29,7 @@
                                     <div class="card shadow p-3 mb-3 bg-white rounded">
                                         <div class="card-body p-1 d-md-flex text-center text-md-left">
                                             <div class="ms-md-5 my-2 d-flex flex-column">
-                                                <img src="{{ organizer.oprofilephoto }}" alt="Generic placeholder image"
+                                                <img [src]="url + 'getProfilePhoto/' + organizer.uid" alt="Generic placeholder image"
                                                     class="img-fluid my-4 mb-1 rounded-circle mx-auto"
                                                     style="width: 150px; z-index: 1" />
                                                 <!-- <button mat-button class="text-center">
