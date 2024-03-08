@@ -65,6 +65,8 @@ export class RegistrationFormComponent implements OnInit {
         Validators.required,
         Validators.pattern('[0-9]*'),
       ]),
+      category: '',
+      subcategory: '',
       video_one: this.fb.control('', [
         Validators.required,
         Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
@@ -103,6 +105,7 @@ export class RegistrationFormComponent implements OnInit {
 
     this.organizerForm = this.fb.group({
       business_name: this.fb.control('', [Validators.required]),
+      obusinesscategory: '',
       organizer_description: this.fb.control('', [Validators.required]),
       organizer_facebook: this.fb.control('', [
         Validators.required,
@@ -211,7 +214,7 @@ export class RegistrationFormComponent implements OnInit {
       ofacilities: this.organizerForm.value.o_speciality || '',
       ofacilitesforartist: this.organizerForm.value.o_facility || '',
       organizerstatus: "Trial",
-      oprofilephoto: this.org_profileimageData || null
+      oprofilephoto: this.org_profileimageData || ''
       // ophotos: this.organizerForm.value.o_photos || '',
       // oprofilephoto: this.organizerForm.value.o_profile || '',
     };
@@ -230,8 +233,8 @@ export class RegistrationFormComponent implements OnInit {
         !postData.ainstalink ||
         !postData.aspeciality ||
         !postData.arequirements ||
-        !postData.adescription
-        // !postData.aprofilephoto
+        !postData.adescription ||
+        !postData.aprofilephoto
         // !postData.aphotos
       ) {
         this.toastr.error('Please fill all the field.', 'Error');
@@ -241,13 +244,15 @@ export class RegistrationFormComponent implements OnInit {
       postData = { ...postData, ...organizerData };
       if (
         !postData.obusinessname ||
+        !postData.obusinesscategory ||
         !postData.odescription ||
         !postData.ofblink ||
         !postData.oinstalink ||
         !postData.owebsite ||
         !postData.ofacilities ||
-        !postData.ofacilitesforartist 
-        // !postData.oprofilephoto
+        !postData.ofacilitesforartist ||
+        !postData.oprofilephoto
+
       ) {
         this.toastr.error('Please fill all the field.', 'Error');
         return;
@@ -262,7 +267,7 @@ export class RegistrationFormComponent implements OnInit {
       !postData.uwhatsappno ||
       !postData.uaddress ||
       !postData.ucity ||
-      (postData.upassword && postData.uconfirmpassword && postData.upassword !== postData.uconfirmpassword) || !(postData.utypeartist + '') ||
+      !(postData.upassword && postData.uconfirmpassword && postData.upassword !== postData.uconfirmpassword) || !(postData.utypeartist + '') ||
       !(postData.utypeorganizer + '') ||
       !(postData.utypeuser + '')
 
@@ -276,14 +281,8 @@ export class RegistrationFormComponent implements OnInit {
     } else {
       const formData: FormData = new FormData();
       for (const [key, value] of Object.entries(postData)) {
-        if (key === 'oprofilephoto' && (value === null || value === undefined)) {
-          // Handle null or undefined case
-          formData.append(key, ''); // You can append an empty string or handle it based on your backend requirements
-        } else {
-          formData.append(key, value);
-        }
+        formData.append(key, value)
       }
-
       this.service.postdata(formData).subscribe((res) => {
         if (res.status === 'success') {
           this.toastr.success('Successfully registered!', 'Success');

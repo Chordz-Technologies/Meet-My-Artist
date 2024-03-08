@@ -2,7 +2,9 @@
 /* color: white;
     height: 80px; */
 /* } */
-
+mat-toolbar {
+    background-color: #fff;
+}
 .logo {
     width: 200px;
     height: 190px;

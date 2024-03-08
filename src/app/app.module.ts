@@ -48,6 +48,7 @@ import { UpdateRegistrationFormComponent } from './Components/update-registratio
 import { SearchPageComponent } from './Components/search-page/search-page.component';
 import { UserEventsComponent } from './Components/user-events/user-events.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTooltipModule,
+    MatSelectModule,
     ToastrModule.forRoot()
 
   ],

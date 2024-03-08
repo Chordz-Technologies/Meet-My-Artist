@@ -87,7 +87,7 @@ export class ServiceService {
 
   // Update event API
   updateEvent(eid: number, updateData: any): Observable<any> {
-    return this.http.put<any>(`${this.url}/updateEvent/${eid}`, updateData);
+    return this.http.patch<any>(`${this.url}/partialupdateEvent/${eid}/`, updateData);
   }
 
   // Post user API

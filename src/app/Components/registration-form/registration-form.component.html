@@ -118,7 +118,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>Select Profile:</label>
+                        <label>Select Profile :</label>
                         <!-- <div class="form-text text-danger fw-bold"
                             *ngIf="Options.errors?.['required'] && (Options.dirty || Options.touched)">
                             Select any option.
@@ -158,7 +158,7 @@
             <hr />
             <table>
                 <tr>
-                    <td><label for="wexp">Work Experience:</label></td>
+                    <td><label for="wexp">Work Experience :</label></td>
                     <td>
                         <input type="text" id="wexp" name="wexp" formControlName="wexp" maxlength="2"
                             placeholder="Enter your work experience" />
@@ -174,7 +174,7 @@
                 </tr>
                 <!-- Category filter -->
                 <tr>
-                    <td><label for="dropdown">Category:</label></td>
+                    <td><label for="dropdown">Category :</label></td>
                     <td>
                         <div class="dropdown" ngbDropdown>
                             <button class="btn_dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -191,7 +191,7 @@
                         </div>
                     </td>
                     <!-- sub category -->
-                    <td><label for="dropdown">Sub Category:</label></td>
+                    <td><label for="dropdown">Sub Category :</label></td>
                     <td>
                         <div class="dropdown" ngbDropdown>
                             <button class="btn_dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -208,7 +208,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="speciality">Speciality:</label></td>
+                    <td><label for="speciality">Speciality :</label></td>
                     <td colspan="2">
                         <input type="text" id="speciality" name="speciality" formControlName="speciality"
                             placeholder="Anchoring, Guitarist, Public Engagement, etc." />
@@ -219,7 +219,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="imageUpload">Upload Profile Photo:</label></td>
+                    <td><label for="imageUpload">Upload Profile Photo :</label></td>
                     <td>
                         <input type="file" class="form-control up_img" id="imageUpload" name="imageUpload"
                             accept="image/*" (change)="onImageSelected($event)" />
@@ -232,9 +232,12 @@
                             Profile Photo only 1 is accepted.
                         </div> -->
                     </td>
-                    <!-- <td>
-                        <label for="imageUpload">Upload Photos (up to 10):</label>
-                    </td> -->
+                    <!-- <td>Note : </td> -->
+                    <td colspan="2"><br>
+                        <p class="text-danger">"Expand your gallery! Add more photos after logging in."</p>
+                        <!-- <label for="imageUpload">Upload Photos (up to 10):</label> -->
+                    </td>
+
                     <!-- <td>
                         <input type="file" class="form-control up_img" id="imageUpload" name="imageUpload" multiple
                             accept="image/*" formControlName="artist_photos" (change)="onFileChange($event)" />
@@ -254,7 +257,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="video_one">Popular Video Link 1:</label></td>
+                    <td><label for="video_one">Popular Video Link 1 :</label></td>
                     <td>
                         <input type="text" id="video_one" name="video_one" formControlName="video_one"
                             placeholder="Video Link 1" />
@@ -265,7 +268,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="video_two">Popular Video Link 2:</label></td>
+                    <td><label for="video_two">Popular Video Link 2 :</label></td>
                     <td>
                         <input type="text" id="video_two" name="video_two" formControlName="video_two"
                             placeholder="Video Link 2" />
@@ -276,7 +279,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="video_three">Popular Video Link 3:</label></td>
+                    <td><label for="video_three">Popular Video Link 3 :</label></td>
                     <td>
                         <input type="text" id="video_three" name="video_three" formControlName="video_three"
                             placeholder="Video Link 3" />
@@ -354,7 +357,7 @@
                 </tr>
                 <!-- description section -->
                 <tr>
-                    <td><label for="artist_description">Your Description</label></td>
+                    <td><label for="artist_description">Your Description :</label></td>
                     <td colspan="3">
                         <textarea id="artist_description" name="artist_description" placeholder="Enter your Description"
                             formControlName="artist_description"></textarea>
@@ -406,7 +409,7 @@
                 </tr>
                 <!-- Speciality check box -->
                 <tr>
-                    <td><label for="o_speciality">Speciality:</label></td>
+                    <td><label for="o_speciality">Speciality :</label></td>
                     <td colspan="2">
                         <input type="text" id="o_speciality" name="o_speciality" formControlName="o_speciality"
                             placeholder="AC hall, Lawn, Musical Nights, etc." />
@@ -418,7 +421,7 @@
                 </tr>
                 <!-- upload profile photo and images -->
                 <tr>
-                    <td><label for="imageUpload">Upload Profile Photo:</label></td>
+                    <td><label for="imageUpload">Upload Profile Photo :</label></td>
                     <td>
                         <input type="file" (change)="onorganizerImageSelected($event)" accept="image/*"
                             class="form-control" />
@@ -432,6 +435,7 @@
                             Profile Photo only 1 is accepted.
                         </div>
                     </td>
+                    
                     <td><label for="imageUpload">Upload Photos:</label></td>
                     <td>
                         <input type="file" class="form-control up_img" id="imageUpload" formControlName="o_photos"
@@ -444,6 +448,11 @@
                             *ngIf="OrgPhotos.errors?.['maxlength'] && (OrgPhotos.dirty || OrgPhotos.touched)">
                             Only 10 photos are accepted.
                         </div> -->
+                    </td>
+                    <!-- <td></td> -->
+                    <td colspan="2"><br>
+                        <p class="text-danger">"Expand your gallery! Add more photos after logging in."</p>
+                        <!-- <label for="imageUpload">Upload Photos (up to 10):</label> -->
                     </td>
                 </tr>
                 <!-- Social medial links -->
@@ -502,7 +511,7 @@
                 </tr>
                 <!-- artist requirements -->
                 <tr>
-                    <td><label for="o_facility">Facility For Artist:</label></td>
+                    <td><label for="o_facility">Facility For Artist :</label></td>
                     <td colspan="2">
                         <input type="text" id="o_facility" name="o_facility" formControlName="o_facility"
                             placeholder="Travel Allowance, Meal, Stay, etc." />
@@ -514,7 +523,7 @@
                 </tr>
                 <!-- description section -->
                 <tr>
-                    <td><label for="organizer_description">Your Description</label></td>
+                    <td><label for="organizer_description">Your Description :</label></td>
                     <td colspan="3">
                         <textarea id="organizer_description" name="organizer_description"
                             formControlName="organizer_description" placeholder="Enter your Description"></textarea>

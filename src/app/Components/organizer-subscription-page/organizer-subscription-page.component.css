@@ -3,7 +3,7 @@ section {
     background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
     background: linear-gradient(to right, #0083B0, #00B4DB);
     color: #514B64;
-    min-height: 100vh;
+    /* min-height: 100vh; */
 }
 
 .rounded-lg {
@@ -19,7 +19,3 @@ section {
     height: 6px;
     border-radius: 1rem;
 }
-
-/* .text-uppercase {
-    letter-spacing: 0.2em;
-} */

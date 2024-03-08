@@ -40,7 +40,7 @@
                             routerLink="/login">Subscribe</a>
                     </ng-template>
                     <ng-template #loggedIn>
-                        <ng-container *ngIf="userType === 'artist'">
+                        <ng-container *ngIf="userType === 'artist' || 'user'">
                             <a class="btn btn-primary btn-block p-3 shadow rounded-pill" routerLinkActive="active"
                                 routerLink="/pricing">Subscribe</a>
                         </ng-container>

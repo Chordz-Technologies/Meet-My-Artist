@@ -47,7 +47,7 @@
                             routerLink="/login">Subscribe</a>
                     </ng-template>
                     <ng-template #loggedIn>
-                        <ng-container *ngIf="userType === 'organizer'">
+                        <ng-container *ngIf="userType === 'organizer' || 'user'">
                             <a class="btn btn-primary btn-block p-3 shadow rounded-pill" routerLinkActive="active"
                                 routerLink="/pricing">Subscribe</a>
                         </ng-container>

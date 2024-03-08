@@ -1,5 +1,5 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { Router } from '@angular/router';
@@ -29,6 +29,7 @@ interface ExampleFlatNode {
 export class ArtistsPageComponent implements OnInit {
   treeData$ = new BehaviorSubject<CategoryNode[]>([]);
   selectedCategory: string | null = null;
+  selectedSubcategory: string | null = null;
 
   treeControl: FlatTreeControl<ExampleFlatNode>;
   treeFlattener: MatTreeFlattener<CategoryNode, ExampleFlatNode>;
@@ -127,12 +128,49 @@ export class ArtistsPageComponent implements OnInit {
   }
 
   nodeClicked(node: CategoryNode | SubcategoryNode) {
-    const category = this.selectedCategory;
-    const subcategory = node.name;
-    const category1 = node.name;
-    this.selectedCategory = category;
-    this.filteredArtists = this.artists.filter(artist => artist.acategory === category);
-    this.filteredArtists = this.artists.filter(artist => artist.acategory === category1 || artist.asubcategory === subcategory);
+    this.nodeClicked1(node.name);
+  }
+
+  nodeClicked1(categoryOrSubcategory: string | null) {
+    if (!categoryOrSubcategory) {
+      // Resetting filters when nothing is selected
+      this.selectedCategory = null;
+      this.selectedSubcategory = null;
+      this.filteredArtists = [...this.artists];
+      return;
+    }
+
+    if (this.isCategory(categoryOrSubcategory)) {
+      // Category selected
+      this.selectedCategory = categoryOrSubcategory;
+      this.selectedSubcategory = null;
+
+      // Filter artists based on selected category
+      this.filteredArtists = this.artists.filter(artist => artist.acategory === this.selectedCategory);
+    } else {
+      // Subcategory selected
+      this.selectedSubcategory = categoryOrSubcategory;
+
+      // Filter artists based on selected category and subcategory
+      this.filteredArtists = this.artists.filter(
+        artist => artist.acategory === this.selectedCategory && artist.asubcategory === this.selectedSubcategory
+      );
+    }
+  }
+
+  isCategory(categoryOrSubcategory: string): boolean {
+    const categoryNode = this.treeData$.getValue()?.find(category => category.name === categoryOrSubcategory);
+    return !!categoryNode?.children?.length;
+  }
+
+  getSubcategories(categoryName: string): string[] {
+    const categoryNode = this.treeData$.getValue()?.find(category => category.name === categoryName);
+    return categoryNode ? categoryNode.children?.map(subcategory => subcategory.name) || [] : [];
+  }
+
+  categoryChanged() {
+    // Reset selected subcategory when category changes
+    this.selectedSubcategory = null;
   }
 
   getProductsList() {

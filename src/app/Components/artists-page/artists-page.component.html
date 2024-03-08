@@ -1,19 +1,16 @@
 <div class="header">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2" id="myFilterDesktop">
                 <div class="pt-4">
                     <h2>Filters</h2>
                     <hr />
-                    <!-- category-tree.component.html -->
+                    <!-- Category Tree for Desktop -->
                     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-                        <!-- Category nodes -->
                         <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle (click)="nodeClicked(node)">
                             <button mat-icon-button disabled></button>
                             {{node.name}}
                         </mat-tree-node>
-
-                        <!-- Subcategory nodes -->
                         <mat-tree-node *matTreeNodeDef="let node; when: hasChild">
                             <button mat-icon-button matTreeNodeToggle (click)="nodeClicked(node)">
                                 <mat-icon class="mat-icon-rtl-mirror">
@@ -25,8 +22,33 @@
                     </mat-tree>
                 </div>
             </div>
-            <div class="col-md-10">
-                <div class="container pt-3">
+            <div id="myFilterMobile">
+                <div class="col-md-6">
+                    <!-- Category Dropdown for Mobile -->
+                    <mat-form-field style="padding: 20px 5px 5px 0; width:50%">
+                        <mat-label>Select Category</mat-label>
+                        <mat-select [(value)]="selectedCategory" (selectionChange)="nodeClicked1(selectedCategory)">
+                            <mat-option *ngFor="let category of treeData$ | async" [value]="category.name">
+                                {{ category.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field style="padding: 20px 0 5px 5px; width:50%" *ngIf="selectedCategory">
+                        <mat-label>Select Subcategory</mat-label>
+                        <mat-select [(value)]="selectedSubcategory"
+                            (selectionChange)="nodeClicked1(selectedSubcategory)">
+                            <mat-option *ngFor="let subcategory of getSubcategories(selectedCategory)"
+                                [value]="subcategory">
+                                {{ subcategory }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="col-md-10 bg-white">
+                <div class="container pt-2">
                     <section class="mt-3">
                         <div class="row justify-content-center align-items-center h-50">
                             <div class="col-12 col-md-10 col-xl-10">
@@ -99,7 +121,7 @@
                                                         artist.awebsite }}</a>
                                                 </p>
                                                 <h3 class="text-danger"
-                                                    *ngIf="artist.abookeddate && !isPastDate(artist.abookeddate)">
+                                                    *ngIf="!artist.abookeddate || (artist.abookeddate.length > 0 && artist.abookeddate[0] !== '[]' && !isPastDate(artist.abookeddate))">
                                                     This artist is booked for {{ isBookedToday(artist.abookeddate) ?
                                                     'Today' : artist.abookeddate }}.
                                                 </h3>
@@ -113,8 +135,8 @@
                 </div>
                 <div class="row justify-content-center mt-3">
                     <div class="col-12 col-md-10 col-xl-10 text-center">
-                        <mat-paginator [length]="artists.length" [pageSize]="pageSize"
-                            (page)="onPageChange($event)" showFirstLastButtons>
+                        <mat-paginator [length]="artists.length" [pageSize]="pageSize" (page)="onPageChange($event)"
+                            showFirstLastButtons>
                         </mat-paginator>
                     </div>
                 </div>

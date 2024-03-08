@@ -183,8 +183,6 @@ export class UpdateRegistrationFormComponent implements OnInit {
         artist_facebook: user.afblink,
         artist_instagram: user.ainstalink,
         artist_website: user.awebsite,
-        // artist_profile: user.aprofilephoto,
-        // artist_photos: user.aphotos,
         speciality: user.aspeciality,
         requirement: user.arequirements,
         artist_description: user.adescription
@@ -215,8 +213,6 @@ export class UpdateRegistrationFormComponent implements OnInit {
         organizer_website: user.owebsite,
         o_speciality: user.ofacilities,
         o_facility: user.ofacilitesforartist,
-        // o_profile: user.oprofilephoto,
-        // o_photos: user.ophotos
       });
 
       this.userForm.setValue({
@@ -325,6 +321,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
         !updateData.ainstalink ||
         !updateData.aspeciality ||
         !updateData.arequirements ||
+        !updateData.aprofilephoto ||
         !updateData.adescription) {
         this.toastr.error('Please fill all the field.', 'Error');
         return;
@@ -334,12 +331,15 @@ export class UpdateRegistrationFormComponent implements OnInit {
       updateData = { ...updateData, ...organizerData };
       if (
         !updateData.obusinessname ||
+        !updateData.obusinesscategory ||
         !updateData.odescription ||
         !updateData.ofblink ||
         !updateData.oinstalink ||
         !updateData.owebsite ||
         !updateData.ofacilities ||
-        !updateData.ofacilitesforartist
+        !updateData.ofacilitesforartist ||
+        !updateData.oprofilephoto
+
         // !updateData.ophotos ||
         // !updateData.oprofilephoto
       ) {
@@ -365,12 +365,9 @@ export class UpdateRegistrationFormComponent implements OnInit {
     } else {
       const formData: FormData = new FormData();
       for (const [key, value] of Object.entries(updateData)) {
-        console.log(key, value);
-
         formData.append(key, value)
       }
       this.service.updatedata(this.userIdToUpdate, formData).subscribe((res) => {
-        console.log(res)
         if (res.status === 'success') {
           this.toastr.success('Successfully updated!', 'Success');
         } else {
