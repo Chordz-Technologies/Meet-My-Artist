@@ -1,4 +1,4 @@
-<h1 class="heading my-3 pt-5 pb-4">--- Latest Requirements ---</h1>
+<h1 class="heading my-3 pt-5 pb-4">Latest Requirements</h1>
 <div class="container text-center">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12 " *ngFor="let event of r_eventdata">
@@ -37,7 +37,7 @@
                         </table>
                     </div>
                     <div class="buttons my-2">
-                        <br><a href="https://api.whatsapp.com/send?phone=917517311326" target="_blank" class="btn mx-2"
+                        <br><a href="https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to attend event of {{event.ename}} organized by {{event.obusinessname}}." target="_blank" class="btn mx-2"
                             id="buy-btn">Book Now</a>
                     </div>
                 </div>
@@ -47,10 +47,19 @@
 </div>
 
 <!-- all scheduled events -->
-<h1 class="heading my-3 pt-5 pb-4">--- Latest Events ---</h1>
-<div class="container text-center">
+<!-- <h1 class="heading my-3 pt-5 pb-4">Latest Events</h1> -->
+<div class="container text-center my-3 pt-5 pb-4">
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-12 " *ngFor="let event of eventdata">
+        <div class="col-md-4 col-1">
+            <hr class="custom-line">
+        </div>
+        <div class="col-md-4 col-12">
+            <h1 class="heading text-center">Latest Events</h1>
+        </div>
+        <div class="col-md-4 col-1">
+            <hr class="custom-line">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 pt-4" *ngFor="let event of eventdata">
             <div class="card business-card shadow my-3">
                 <img [src]="url + 'getEventPoster/' + event.eid" class="card-img-top" alt="Event">
                 <div class="card-body">
@@ -59,7 +68,7 @@
                         {{event.etime}}</p>
                     <span class="mx-2" style="font-size: large; font-weight: 600;">{{event.elocation}}</span>
                     <div class="buttons my-2">
-                        <br><a href="https://api.whatsapp.com/send?phone=917517311326" target="_blank" class="btn mx-2"
+                        <br><a href="https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to attend event of {{event.ename}} organized by {{event.obusinessname}}." target="_blank" class="btn mx-2"
                             id="buy-btn">Book Now</a>
                     </div>
                 </div>

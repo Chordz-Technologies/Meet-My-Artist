@@ -202,10 +202,30 @@ export class OrganizerPageComponent implements OnInit {
   }
 
   nodeClicked(node: CategoryNode) {
-    const category = node.name;
-    this.selectedCategory = category;
-    this.filteredOrganizers = this.organizers.filter(organizer => organizer.obusinesscategory === category);
+    this.nodeClicked1(node.name);
   }
+
+  nodeClicked1(categoryOrSubcategory: string | null) {
+    if (!categoryOrSubcategory) {
+      // Resetting filters when nothing is selected
+      this.selectedCategory = null;
+      this.filteredOrganizers = [...this.organizers];
+      return;
+    }
+
+    if (this.isCategory(categoryOrSubcategory)) {
+      // Category selected
+      this.selectedCategory = categoryOrSubcategory;
+      // Filter artists based on selected category
+      this.filteredOrganizers = this.organizers.filter(organizer => organizer.obusinesscategory === this.selectedCategory);
+    }
+  }
+
+  isCategory(categoryOrSubcategory: string): boolean {
+    const categoryNode = this.treeData$.getValue()?.find(category => category.name === categoryOrSubcategory);
+    return !!categoryNode;
+  }
+
 
   onLinkClick(event: MouseEvent, link: string): void {
     event.preventDefault();

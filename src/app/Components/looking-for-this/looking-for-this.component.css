@@ -9,6 +9,7 @@ h1 {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    padding-bottom: 50px;
 }
 
 h4 {
@@ -32,8 +33,24 @@ h4 {
     padding: 5px;
 }
 
+.custom-line {
+    height: 2px;
+    opacity: 1;
+    background: black;
+    /* margin-left: 35px; */
+}
+
 @media screen and (max-width: 600px) {
     h1 {
         font-size: 30px;
+        padding-bottom: 20px;
+    }
+
+    .container {
+        padding-top: 20px;
+    }
+
+    .custom-line {
+        display: none;
     }
 }

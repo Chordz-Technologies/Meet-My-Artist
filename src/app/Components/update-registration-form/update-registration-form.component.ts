@@ -262,6 +262,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
   }
 
   upDate() {
+    this.postImages();
     // Extract user data
     const userData = {
       uname: this.userForm.value.firstName,
@@ -321,7 +322,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
         !updateData.ainstalink ||
         !updateData.aspeciality ||
         !updateData.arequirements ||
-        !updateData.aprofilephoto ||
+        // !updateData.aprofilephoto ||
         !updateData.adescription) {
         this.toastr.error('Please fill all the field.', 'Error');
         return;
@@ -337,8 +338,8 @@ export class UpdateRegistrationFormComponent implements OnInit {
         !updateData.oinstalink ||
         !updateData.owebsite ||
         !updateData.ofacilities ||
-        !updateData.ofacilitesforartist ||
-        !updateData.oprofilephoto
+        !updateData.ofacilitesforartist
+        // !updateData.oprofilephoto
 
         // !updateData.ophotos ||
         // !updateData.oprofilephoto
@@ -410,22 +411,22 @@ export class UpdateRegistrationFormComponent implements OnInit {
     this.user_model.obusinesscategory = category.businesscategory;
   }
 
-  onFileChange(event: any) {
-    const files = event.target.files;
-    if (files.length > 10) {
-      // this.artistPhotos.setErrors({ maxlength: true });
-    } else {
-      // this.artistPhotos.setErrors(null);
-    }
-  }
-  onFileChange2(event: any) {
-    const files = event.target.files;
-    if (files.length > 10) {
-      this.OrgPhotos.setErrors({ maxlength: true });
-    } else {
-      this.OrgPhotos.setErrors(null);
-    }
-  }
+  // onFileChange(event: any) {
+  //   const files = event.target.files;
+  //   if (files.length > 10) {
+  //     // this.artistPhotos.setErrors({ maxlength: true });
+  //   } else {
+  //     // this.artistPhotos.setErrors(null);
+  //   }
+  // }
+  // onFileChange2(event: any) {
+  //   const files = event.target.files;
+  //   if (files.length > 10) {
+  //     this.OrgPhotos.setErrors({ maxlength: true });
+  //   } else {
+  //     this.OrgPhotos.setErrors(null);
+  //   }
+  // }
 
   get FirstName(): FormControl {
     return this.userForm.get('firstName') as FormControl;
@@ -525,7 +526,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
       for (let i = 0; i < files.length; i++) {
         const file = files.item(i);
         if (file) {
-          // this.convertToBase64(file);
+          this.convertToBase64(file);
         }
       }
     }
@@ -536,57 +537,54 @@ export class UpdateRegistrationFormComponent implements OnInit {
     } else {
       this.OrgPhotos.setErrors(null);
     }
+  }
 
+  convertToBase64(file: File) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      if (event.target && typeof event.target.result === 'string') {
+        let imgBase64 = event.target.result.split(',')[1]; // Extract base64 data after comma
+        // Check if this.images is an array before pushing to it
+        if (Array.isArray(this.images)) {
+          this.images.push(imgBase64);
+        } else {
+          this.images = [imgBase64]; // If not an array, initialize it as an array with the first image
+        }
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  postImages() {
+    const imageData: any = {
+      userid: this.userIdToUpdate
+    };
+
+    this.images.forEach((image, index) => {
+      imageData[`image${index + 1}`] = image;
+    });
+    this.service.postUserImages(imageData).subscribe(
+      (response => {
+        console.log('Images uploaded successfully:', response);
+        this.toastr.success('Images uploaded successfully!', 'Success');
+        if (response && response.status === 'success') {
+          console.log('File paths:', response.saved_file_paths);
+          this.toastr.success('Successfully uploaded photos!', 'Success');
+          if (response.saved_file_paths && Object.keys(response.saved_file_paths).length > 0) {
+            // Do something with the file paths object
+          } else {
+            console.log('No file paths returned from the server.');
+          }
+        } else {
+          console.error('Server returned an error:', response.message);
+        }
+      }),
+      (error => {
+        console.error('Error uploading images:', error);
+      })
+    );
   }
 }
-
-// convertToBase64(file: File) {
-//   const reader = new FileReader();
-//   reader.onload = (event) => {
-//     if (event.target && typeof event.target.result === 'string') {
-//       let imgBase64 = event.target.result.split(',')[1]; // Extract base64 data after comma
-//       // Check if this.images is an array before pushing to it
-//       if (Array.isArray(this.images)) {
-//         this.images.push(imgBase64);
-//       } else {
-//         this.images = [imgBase64]; // If not an array, initialize it as an array with the first image
-//       }
-//     }
-//   };
-//   reader.readAsDataURL(file);
-// }
-
-// postImages() {
-
-//   const imageData: any = {
-//     userid: this.userIdToUpdate
-//   };
-
-//   this.images.forEach((image, index) => {
-//     imageData[`image${index + 1}`] = image;
-//   });
-//   this.service.postUserImages(imageData).subscribe(
-//     (response => {
-//       console.log('Images uploaded successfully:', response);
-//       this.toastr.success('Images uploaded successfully!', 'Success');
-//       if (response && response.status === 'success') {
-//         console.log('File paths:', response.saved_file_paths);
-//         this.toastr.success('Successfully uploaded photos!', 'Success');
-//         if (response.saved_file_paths && Object.keys(response.saved_file_paths).length > 0) {
-//           // Do something with the file paths object
-//         } else {
-//           console.log('No file paths returned from the server.');
-//         }
-//       } else {
-//         console.error('Server returned an error:', response.message);
-//       }
-//     }),
-//     (error => {
-//       console.error('Error uploading images:', error);
-//     })
-//   );
-// }
-
 // // for profile image
 // // onProfileImageSelected(event: any) {
 // //   const file: File | null = event.target.files[0];

@@ -114,7 +114,7 @@ export class ServiceService {
 
   // Images API
   getMultipleImages(id: number): Observable<any> {
-    return this.http.get<any>(`${this.url}/getMultiplePhotos/${id}`)
+    return this.http.get<any>(`${this.url}/getMultiplePhotos/${id}/`)
   }
   getArtistProfileImage(id: number): Observable<any> {
     return this.http.get<any>(`${this.url}/getProfilePhoto/${id}`)

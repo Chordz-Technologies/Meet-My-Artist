@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ArtistProfilePageComponent implements OnInit {
   artist: any;
-  public userId!: number;
+  userId!: number;
   images: any[] = [];
   ArtistProfileimage: any[] = [];
   isUserLoggedIn: boolean = false; // Default value
@@ -52,14 +52,15 @@ export class ArtistProfilePageComponent implements OnInit {
   }
 
   fetchData(userId: number) {
-    this.service.getMultipleImages(userId).subscribe(
-      (res => {
+    this.service.getMultipleImages(userId).subscribe({
+      next: (res: any) => {
         this.images = Object.keys(res.base64images).map(key => ({ src: key, data: res.base64images[key] }));
-      }),
-      (error => {
+      },
+      error: (err: any) => {
         this.toastr.error('Error fetching images', 'Error');
-      })
-    );
+      }
+    })
+    // alert(this.userId);
     // this.service.getArtistProfileImage(userId).subscribe(
     //   (res => {
     //     this.ArtistProfileimage = res.base64_photo; // Assuming the response is an array of objects with 'fileName' and 'base64Image' properties

@@ -3,12 +3,12 @@
         <div class="col-lg-3 col-md-4 col-sm-12 " *ngFor="let product of products">
             <div class="card my-3 pt-2" id="product-card">
                 <img [src]="url + 'getProductPhoto/' + product.pid" class="card-img-top" alt="product-image">
-                <div id="product-body">
-                    <h2 class="">{{product.pbrand}}</h2>
-                    <p class="">{{product.pmodel | slice:0:70 }}...</p>
+                <div id="product-body"><br>
+                    <h2 class="">{{product.pbrand}}</h2><br>
+                    <p class="">{{product.pmodel | slice:0:70 }}...</p><br>
                     <span class="mx-2" style="font-size: large; font-weight: 600;">₹ {{product.pprice}}</span>
-                    <a href="https://api.whatsapp.com/send?phone=917517311326"
-                    target="_blank" class="btn mx-2" id="buy-btn">Buy Now</a>
+                    <a href="https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to purchase {{product.pmodel}}." target="_blank" class="btn mx-2"
+                        id="buy-btn">Buy Now</a>
                 </div>
             </div>
         </div>

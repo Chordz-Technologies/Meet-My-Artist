@@ -5,6 +5,10 @@
     z-index: 1000;
 }
 
+.navbar-toggler {
+    background: white;
+}
+
 .dropdown-menu .dropdown-item {
     padding: 3px 15px 4px 15px;
     color: black;
@@ -16,7 +20,7 @@
 }
 
 .navbar {
-    background-color: #40ADEA;
+    background-color: #2c5654 ;
 }
 
 .navbar-nav .nav-item .nav-link {

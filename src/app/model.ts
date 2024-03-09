@@ -37,7 +37,7 @@ export class user_model {
     alink1!: string;
     alink2!: string;
     alink3!: string;
-    aphotos!: string;
+    aphotos!: File;
     abookeddate!: string;
     artistsubsdate!: string;
     arequirements!: string;
@@ -50,7 +50,7 @@ export class user_model {
     oinstalink!: string;
     ofblink!: string;
     owebsite!: string;
-    ophotos!: string;
+    ophotos!: File;
     olikes!: string;
     owishlist!: string;
     ofacilitesforartist!: string;

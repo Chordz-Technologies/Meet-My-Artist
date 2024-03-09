@@ -9,6 +9,13 @@
     line-height: normal;
 }
 
+.custom-line {
+    height: 2px;
+    opacity: 1;
+    background: black;
+    /* margin-left: 35px; */
+}
+
 .card-img-top {
     height: 100%;
     width: 100%;
@@ -90,6 +97,10 @@ table {
 
     .heading {
         font-size: 30px;
+    }
+
+    .custom-line {
+        display: none;
     }
 
 }
