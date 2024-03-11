@@ -5,7 +5,7 @@
                 <div class="card shadow pt-3 bg-white" style="border-radius: 15px">
                     <div class="card-body p-1 d-md-flex">
                         <div class="ms-md-5 my-2 d-flex flex-column text-center pe-5 px-5">
-                            <img [src]="url + 'getProfilePhoto/' + organizer.uid" alt="Generic placeholder image"
+                            <img [src]="url + 'getProfilePhoto/' + organizer.uid"  alt="Profile image"
                                 class="img-fluid my-4 mb-1 rounded-circle mx-auto"
                                 style="width: 150px; height: 150px; z-index: 1" />
                             <!-- <button mat-button class="text-center">
@@ -43,9 +43,9 @@
                                     [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
                                     (click)="onLinkClick($event, organizer.oinstalink)"><i
                                         class="fab fa-instagram"></i></a>
-                                <a class="btn btn-sm rounded-circle text-white bg-primary"
+                                <!-- <a class="btn btn-sm rounded-circle text-white bg-primary"
                                     [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                    (click)="onLinkClick($event, '#')"><i class="fab fa-linkedin-in"></i></a>
+                                    (click)="onLinkClick($event, '#')"><i class="fab fa-linkedin-in"></i></a> -->
                             </div>
                             <p>
                                 <a [ngClass]="{ 'disabled-link': !isUserLoggedIn }"

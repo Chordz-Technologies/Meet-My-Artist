@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row justify-content-center mt-3">
-        <div class="col-12 col-md-12 col-xl-11">
+        <div class="col-12 col-md-12 col-xl-12">
             <div class="mb-3 pt-3 pb-5">
                 <div class="card shadow pt-3 bg-white" style="border-radius: 15px">
                     <div class="card-body p-1 d-md-flex">
                         <div class="ms-md-5 my-2 d-flex flex-column text-center pe-5 px-5">
-                            <img [src]="url + 'getProfilePhoto/' + artist.uid" alt="Generic placeholder image"
+                            <img [src]="url + 'getProfilePhoto/' + artist.uid" alt="Profile image"
                                 class="img-fluid my-4 mb-1 rounded-circle mx-auto"
                                 style="width: 150px; height: 150px; z-index: 1" />
                             <!-- <button mat-button class="text-center">
@@ -15,9 +15,9 @@
                         </div>
                         <div class="mx-md-5 mt-4 text-start px-5 text-center text-md-start">
                             <h2 class="mb-3">{{ artist.uname }}</h2>
-                            <h3>{{ artist.acategory }}</h3>
+                            <h3>{{ artist.acategory }}, {{artist.asubcategory}}</h3>
                             <h3>{{ artist.uaddress }}, <b>{{artist.ucity}}</b></h3>
-                            <h3>Experience: {{ artist.aworkexperience }} Years</h3>
+                            <h3>Experience: {{ artist.aworkexperience }}</h3>
                         </div>
 
                         <div id="myModal" class="modal" [style.display]="modalDisplay">
@@ -45,14 +45,14 @@
                                     [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
                                     (click)="onLinkClick($event, artist.ainstalink)"><i
                                         class="fab fa-instagram"></i></a>
-                                <a class="btn btn-sm rounded-circle text-white bg-primary"
+                                <!-- <a class="btn btn-sm rounded-circle text-white bg-primary"
                                     [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                    (click)="onLinkClick($event, '#')"><i class="fab fa-linkedin-in"></i></a>
+                                    (click)="onLinkClick($event, '#')"><i class="fab fa-linkedin-in"></i></a> -->
                             </div>
                             <p>
                                 <a [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                (click)="onLinkClick($event, 'https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to collaborate with artist ' + artist.uname + '.')"
-                                class="btn border border-secondary shadow bg-white py-2 px-5 mt-3">
+                                    (click)="onLinkClick($event, 'https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to collaborate with artist ' + artist.uname + '.')"
+                                    class="btn border border-secondary shadow bg-white py-2 px-5 mt-3">
                                     <i class="fab fa-whatsapp"
                                         style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
                                     Book Now</a>
@@ -63,9 +63,10 @@
                                     (click)="onLinkClick($event, artist.awebsite)"
                                     class="text-decoration-none py-3 px-2 mt-3">{{ artist.awebsite }}</a>
                             </p>
-                            <h3 class="text-danger" *ngIf="artist.abookeddate && !isPastDate(artist.abookeddate)">
-                                This artist is booked for {{ isBookedToday(artist.abookeddate) ? 'Today' :
-                                artist.abookeddate }}.
+                            <h3 class="text-danger"
+                                *ngIf="!artist.abookeddate || (artist.abookeddate.length > 0 && artist.abookeddate[0] !== '[]' && !isPastDate(artist.abookeddate))">
+                                This artist is booked for {{ isBookedToday(artist.abookeddate) ?
+                                'Today' : artist.abookeddate }}.
                             </h3>
                         </div>
                     </div>
@@ -84,12 +85,26 @@
                         </div>
                     </div>
                     <div class="card-body p-1 d-md-flex">
-                        <div class="ms-md-5 my-3 text-center pe-5">
+                        <div class="ms-md-5 ms-3 my-3 text-center pe-5">
+                            <h1 class="fw-bold" style="text-align: left;">
+                                Video Link
+                            </h1>
+                        </div>
+                        <div class="mx-md-5 mt-4 fs-5 px-5">
+                            <ol>
+                                <li class="mb-3"><a href="{{artist.alink1}}" target="_blank">{{artist.alink1}}</a></li>
+                                <li class="mb-3"><a href="{{artist.alink2}}" target="_blank">{{artist.alink2}}</a></li>
+                                <li class="mb-3"><a href="{{artist.alink3}}" target="_blank">{{artist.alink3}}</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="card-body p-1 d-md-flex">
+                        <div class="ms-md-5 ms-3 my-3 text-center pe-5">
                             <h1 class="fw-bold" style="text-align: left;">
                                 Speciality
                             </h1>
                         </div>
-                        <div class="mx-md-5 mt-4 fs-5 px-5">
+                        <div class="mx-md-5 mt-4 fs-5 px-5 ms-3 my-3">
                             <ol>
                                 <li class="mb-3" *ngFor="let requirement of artist.aspeciality.split(',')">
                                     {{requirement.trim()}}</li>
@@ -107,7 +122,7 @@
                         </div>
                     </div>
                     <div class="card-body p-1 d-md-flex">
-                        <div class="ms-md-5 my-3 text-center pe-5">
+                        <div class="ms-md-5 ms-3 my-3 text-center pe-5">
                             <h1 class="fw-bold" style="text-align: left;">
                                 Requirements
                             </h1>

@@ -5,54 +5,58 @@
         <div class="d-flex justify-content-center align-content-center">
             <table>
                 <tr>
-                    <td><label for="firstName">Name :</label></td>
+                    <td><label for="firstName">Name</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="3">
-                        <input type="text" id="firstName" formControlName="firstName" name="firstName"
-                            placeholder="Enter your Name" />
+                        <input type="text" id="firstName" formControlName="firstName" placeholder="Enter your Name" >
                         <div class="form-text text-danger fw-bold"
-                            *ngIf="FirstName.errors?.['required'] && (FirstName.dirty || FirstName.touched)">
-                            Name is required.
+                            *ngIf="userForm.get('firstName')?.errors?.['onlyLetters'] && userForm.get('firstName')?.touched">
+                            First Name must contain only letters
                         </div>
+                        <div class="form-text text-danger fw-bold"
+                            *ngIf="userForm.get('firstName')?.errors?.['required'] && userForm.get('firstName')?.touched">
+                            First Name is required
+                        </div>
+
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="email">Email :</label></td>
+                    <td><label for="email">Email</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="3">
                         <input type="text" id="email" name="email" formControlName="email"
                             placeholder="Enter your Email " />
                         <div class="form-text text-danger fw-bold"
                             *ngIf="Email.errors?.['required'] &&(Email.dirty || Email.touched)">
-                            Email is required.
+                            Valid Email Id is required.
                         </div>
-                        <div class="form-text text-danger fw-bold"
+                        <!-- <div class="form-text text-danger fw-bold"
                             *ngIf="Email.errors?.['email'] && (Email.dirty || Email.touched)">
                             Email is invalid.
-                        </div>
+                        </div> -->
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 200px">
-                        <label for="wnumber">Whatsapp Number :</label>
+                        <label for="wnumber">Whatsapp Number</label><span class="text-danger fw-bold"> *</span>
                     </td>
                     <td colspan="3">
-                        <input type="phone" id="wnumber" formControlName="wnumber" name="wnumber" maxlength="10"
-                            placeholder="Enter your Whatsapp Number " />
+                        <input type="text" id="wnumber" formControlName="wnumber" name="wnumber" maxlength="10"
+                            placeholder="Enter your Whatsapp Number" />
                         <div class="form-text text-danger fw-bold"
-                            *ngIf="Wnumber.errors?.['required'] && (Wnumber.dirty || Wnumber.touched)">
+                            *ngIf="Wnumber.hasError('required') && (Wnumber.dirty || Wnumber.touched)">
                             Whatsapp Number is required.
                         </div>
                         <div class="form-text text-danger fw-bold"
-                            *ngIf="Wnumber.errors?.['pattern'] && (Wnumber.dirty || Wnumber.touched)">
-                            Whatsapp Number is invalid.
+                            *ngIf="Wnumber.hasError('pattern') && (Wnumber.dirty || Wnumber.touched)">
+                            Whatsapp Number should contain only numbers.
                         </div>
                         <div class="form-text text-danger fw-bold"
-                            *ngIf="Wnumber.errors?.['minlength'] && (Wnumber.dirty || Wnumber.touched)">
-                            Whatsapp Number is too short.
+                            *ngIf="Wnumber.hasError('minlength') && (Wnumber.dirty || Wnumber.touched)">
+                            Whatsapp Number should be at least 10 digits long.
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="address">Address :</label></td>
+                    <td><label for="address">Address</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="3">
                         <input type="text" id="address" name="address" formControlName="address"
                             placeholder="Enter your Address" />
@@ -63,7 +67,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="city">City :</label></td>
+                    <td><label for="city">City</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="3">
                         <input type="text" id="city" name="city" formControlName="city" placeholder="Enter your City" />
                         <div class="form-text text-danger fw-bold"
@@ -73,7 +77,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="password">Password :</label></td>
+                    <td><label for="password">Password</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="3">
                         <div class="input-group d-flex">
                             <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password"
@@ -91,14 +95,14 @@
                             *ngIf="Password.errors?.['required'] && (Password.dirty || Password.touched)">
                             Password is required.
                         </div>
-                        <div class="form-text text-danger fw-bold"
+                        <!-- <div class="form-text text-danger fw-bold"
                             *ngIf="(Password.errors?.['minlength']) && (Password.dirty || Password.get('password')?.touched)">
                             Password should be minimum 6 characters.
-                        </div>
+                        </div> -->
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="cpassword">Confirm Password :</label></td>
+                    <td><label for="cpassword">Confirm Password</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="3">
                         <div class="input-group me-3 d-flex">
                             <input type="{{ showCPassword ? 'text' : 'password' }}" id="cpassword" name="cpassword"
@@ -118,7 +122,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>Select Profile :</label>
+                        <label>Select Profile</label><span class="text-danger fw-bold"> *</span>
                         <!-- <div class="form-text text-danger fw-bold"
                             *ngIf="Options.errors?.['required'] && (Options.dirty || Options.touched)">
                             Select any option.
@@ -158,23 +162,23 @@
             <hr />
             <table>
                 <tr>
-                    <td><label for="wexp">Work Experience :</label></td>
+                    <td><label for="wexp">Work Experience</label><span class="text-danger fw-bold"> *</span></td>
                     <td>
-                        <input type="text" id="wexp" name="wexp" formControlName="wexp" maxlength="2"
-                            placeholder="Enter your work experience" />
+                        <input type="text" id="wexp" name="wexp" formControlName="wexp"
+                            placeholder="Enter work experience, eg. 1 Month/Year" />
                         <div class="form-text text-danger fw-bold"
                             *ngIf="Experience.errors?.['required'] && (Experience.dirty || Experience.touched)">
                             Experience is required.
                         </div>
-                        <div class="form-text text-danger fw-bold"
+                        <!-- <div class="form-text text-danger fw-bold"
                             *ngIf="Experience.errors?.['pattern'] && (Experience.dirty || Experience.touched)">
                             Experience Number is invalid.
-                        </div>
+                        </div> -->
                     </td>
                 </tr>
                 <!-- Category filter -->
                 <tr>
-                    <td><label for="dropdown">Category :</label></td>
+                    <td><label for="dropdown">Category</label><span class="text-danger fw-bold"> *</span></td>
                     <td>
                         <div class="dropdown" ngbDropdown>
                             <button class="btn_dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -191,7 +195,7 @@
                         </div>
                     </td>
                     <!-- sub category -->
-                    <td><label for="dropdown">Sub Category :</label></td>
+                    <td><label for="dropdown">Sub Category</label><span class="text-danger fw-bold"> *</span></td>
                     <td>
                         <div class="dropdown" ngbDropdown>
                             <button class="btn_dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -208,7 +212,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="speciality">Speciality :</label></td>
+                    <td><label for="speciality">Speciality</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="2">
                         <input type="text" id="speciality" name="speciality" formControlName="speciality"
                             placeholder="Anchoring, Guitarist, Public Engagement, etc." />
@@ -219,7 +223,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="imageUpload">Upload Profile Photo :</label></td>
+                    <td><label for="imageUpload">Upload Profile Photo</label><span class="text-danger fw-bold"> *</span></td>
                     <td>
                         <input type="file" class="form-control up_img" id="imageUpload" name="imageUpload"
                             accept="image/*" (change)="onImageSelected($event)" />
@@ -233,10 +237,10 @@
                         </div> -->
                     </td>
                     <!-- <td>Note : </td> -->
-                    <td colspan="2"><br>
+                    <!-- <td colspan="2"><br>
                         <p class="text-danger">"Expand your gallery! Add more photos after logging in."</p>
-                        <!-- <label for="imageUpload">Upload Photos (up to 10):</label> -->
-                    </td>
+                        <!-- <label for="imageUpload">Upload Photos (up to 10):</label> 
+                    </td> -->
 
                     <!-- <td>
                         <input type="file" class="form-control up_img" id="imageUpload" name="imageUpload" multiple
@@ -261,10 +265,10 @@
                     <td>
                         <input type="text" id="video_one" name="video_one" formControlName="video_one"
                             placeholder="Video Link 1" />
-                        <div *ngIf="aVideo1.errors?.['required'] && (aVideo1.dirty || aVideo1.touched)"
+                        <!-- <div *ngIf="aVideo1.errors?.['required'] && (aVideo1.dirty || aVideo1.touched)"
                             class="form-text text-danger fw-bold">
                             Video Link 1 is required.
-                        </div>
+                        </div> -->
                     </td>
                 </tr>
                 <tr>
@@ -272,10 +276,10 @@
                     <td>
                         <input type="text" id="video_two" name="video_two" formControlName="video_two"
                             placeholder="Video Link 2" />
-                        <div *ngIf="aVideo2.errors?.['required'] && (aVideo2.dirty || aVideo2.touched)"
+                        <!-- <div *ngIf="aVideo2.errors?.['required'] && (aVideo2.dirty || aVideo2.touched)"
                             class="form-text text-danger fw-bold">
                             Video Link 2 is required.
-                        </div>
+                        </div> -->
                     </td>
                 </tr>
                 <tr>
@@ -283,10 +287,10 @@
                     <td>
                         <input type="text" id="video_three" name="video_three" formControlName="video_three"
                             placeholder="Video Link 3" />
-                        <div *ngIf="aVideo3.errors?.['required'] && (aVideo3.dirty || aVideo3.touched)"
+                        <!-- <div *ngIf="aVideo3.errors?.['required'] && (aVideo3.dirty || aVideo3.touched)"
                             class="form-text text-danger fw-bold">
                             Video Link 3 is required.
-                        </div>
+                        </div> -->
                     </td>
                 </tr>
                 <!-- Social medial links -->
@@ -298,15 +302,16 @@
                 <tr>
                     <td class="text-center text_brand">
                         <i class="fa-brands fa-2x fa-facebook" style="color: #1877f2"></i><span
-                            class="brand_names">&nbsp; Facebook</span>
+                            class="brand_names">&nbsp;
+                            Facebook</span>
                     </td>
                     <td>
                         <input type="text" id="artist_facebook" name="artist_facebook" formControlName="artist_facebook"
                             placeholder="Facebook link" />
-                        <div *ngIf="linkFacebook.errors?.['required'] && (linkFacebook.dirty || linkFacebook.touched)"
+                        <!-- <div *ngIf="linkFacebook.errors?.['required'] && (linkFacebook.dirty || linkFacebook.touched)"
                             class="form-text text-danger fw-bold">
                             Facebook link is required.
-                        </div>
+                        </div> -->
                     </td>
                     <td class="text-center text_brand">
                         <i class="fa-brands fa-2x fa-square-instagram" style="color: #c13584"></i><span
@@ -315,10 +320,10 @@
                     <td>
                         <input type="text" id="artist_instagram" name="artist_instagram" placeholder="Instagram link"
                             formControlName="artist_instagram" />
-                        <div *ngIf="linkInstagram.errors?.['required'] && (linkInstagram.dirty || linkInstagram.touched)"
+                        <!-- <div *ngIf="linkInstagram.errors?.['required'] && (linkInstagram.dirty || linkInstagram.touched)"
                             class="form-text text-danger fw-bold">
                             Instagram link is required.
-                        </div>
+                        </div> -->
                     </td>
                 </tr>
                 <tr>
@@ -329,14 +334,14 @@
                     <td>
                         <input type="url" id="artist_website" name="artist_website" formControlName="artist_website"
                             placeholder="Website link" />
-                        <div *ngIf="linkWebsite.errors?.['required'] && (linkWebsite.dirty || linkWebsite.touched)"
+                        <!-- <div *ngIf="linkWebsite.errors?.['required'] && (linkWebsite.dirty || linkWebsite.touched)"
                             class="form-text text-danger fw-bold">
                             Website link is required.
-                        </div>
-                        <div *ngIf="linkWebsite.errors?.['pattern'] && (linkWebsite.dirty || linkWebsite.touched)"
+                        </div> -->
+                        <!-- <div *ngIf="linkWebsite.errors?.['pattern'] && (linkWebsite.dirty || linkWebsite.touched)"
                             class="form-text text-danger fw-bold">
                             Invalid website URL.
-                        </div>
+                        </div> -->
                     </td>
                     <td colspan="2">
                         <span class="hidden_text">Don’t have a website? Build your website with
@@ -345,7 +350,7 @@
                 </tr>
                 <!-- artist requirements -->
                 <tr>
-                    <td><label for="requirement">Your Requirements:</label></td>
+                    <td><label for="requirement">Your Requirements</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="2">
                         <input type="text" id="requirement" name="requirement" formControlName="requirement"
                             placeholder="Travel Allowance, Meal, Stay, etc." />
@@ -357,7 +362,7 @@
                 </tr>
                 <!-- description section -->
                 <tr>
-                    <td><label for="artist_description">Your Description :</label></td>
+                    <td><label for="artist_description">Your Description</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="3">
                         <textarea id="artist_description" name="artist_description" placeholder="Enter your Description"
                             formControlName="artist_description"></textarea>
@@ -379,7 +384,7 @@
             <hr />
             <table>
                 <tr>
-                    <td><label for="business_name">Business Name :</label></td>
+                    <td><label for="business_name">Business Name</label><span class="text-danger fw-bold"> *</span></td>
                     <td>
                         <input type="text" id="business_name" name="business_name" formControlName="business_name"
                             placeholder="Enter your Business Name " />
@@ -391,7 +396,7 @@
                 </tr>
                 <!-- Category filter -->
                 <tr>
-                    <td><label for="dropdown">Business Category:</label></td>
+                    <td><label for="dropdown">Business Category</label><span class="text-danger fw-bold"> *</span></td>
                     <td>
                         <div class="dropdown" ngbDropdown>
                             <button class="btn_dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -409,7 +414,7 @@
                 </tr>
                 <!-- Speciality check box -->
                 <tr>
-                    <td><label for="o_speciality">Speciality :</label></td>
+                    <td><label for="o_speciality">Speciality</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="2">
                         <input type="text" id="o_speciality" name="o_speciality" formControlName="o_speciality"
                             placeholder="AC hall, Lawn, Musical Nights, etc." />
@@ -421,7 +426,7 @@
                 </tr>
                 <!-- upload profile photo and images -->
                 <tr>
-                    <td><label for="imageUpload">Upload Profile Photo :</label></td>
+                    <td><label for="imageUpload">Upload Profile Photo</label><span class="text-danger fw-bold"> *</span></td>
                     <td>
                         <input type="file" (change)="onorganizerImageSelected($event)" accept="image/*"
                             class="form-control" />
@@ -450,10 +455,10 @@
                         </div> -->
                     </td>
                     <!-- <td></td> -->
-                    <td colspan="2"><br>
+                    <!-- <td colspan="2"><br>
                         <p class="text-danger">"Expand your gallery! Add more photos after logging in."</p>
-                        <!-- <label for="imageUpload">Upload Photos (up to 10):</label> -->
-                    </td>
+                        <!-- <label for="imageUpload">Upload Photos (up to 10):</label>
+                    </td> -->
                 </tr>
                 <!-- Social medial links -->
                 <tr>
@@ -464,15 +469,16 @@
                 <tr>
                     <td class="text-center text_brand">
                         <i class="fa-brands fa-2x fa-facebook" style="color: #1877f2"></i><span
-                            class="brand_names">&nbsp; Facebook</span>
+                            class="brand_names">&nbsp;
+                            Facebook</span>
                     </td>
                     <td>
                         <input type="text" id="organizer_facebook" name="organizer_facebook"
                             formControlName="organizer_facebook" placeholder="Facebook link" />
-                        <div *ngIf="OrgFacbook.errors?.['required'] && (OrgFacbook.dirty || OrgFacbook.touched)"
+                        <!-- <div *ngIf="OrgFacbook.errors?.['required'] && (OrgFacbook.dirty || OrgFacbook.touched)"
                             class="form-text text-danger fw-bold">
                             Facebook link is required.
-                        </div>
+                        </div> -->
                     </td>
                     <td class="text-center text_brand">
                         <i class="fa-brands fa-2x fa-square-instagram" style="color: #c13584"></i><span
@@ -481,10 +487,10 @@
                     <td>
                         <input type="text" id="organizer_instagram" name="organizer_instagram"
                             formControlName="organizer_instagram" placeholder="Instagram link" />
-                        <div *ngIf="OrgInstagram.errors?.['required'] && (OrgInstagram.dirty || OrgInstagram.touched)"
+                        <!-- <div *ngIf="OrgInstagram.errors?.['required'] && (OrgInstagram.dirty || OrgInstagram.touched)"
                             class="form-text text-danger fw-bold">
                             Instagram link is required.
-                        </div>
+                        </div> -->
                     </td>
                 </tr>
                 <tr>
@@ -495,14 +501,14 @@
                     <td>
                         <input type="url" id="organizer_website" name="organizer_website" placeholder="Website link"
                             formControlName="organizer_website" />
-                        <div *ngIf="OrgWebsite.errors?.['required'] && (OrgWebsite.dirty || OrgWebsite.touched)"
+                        <!-- <div *ngIf="OrgWebsite.errors?.['required'] && (OrgWebsite.dirty || OrgWebsite.touched)"
                             class="form-text text-danger fw-bold">
                             Website link is required.
-                        </div>
-                        <div *ngIf="OrgWebsite.errors?.['pattern'] && (OrgWebsite.dirty || OrgWebsite.touched)"
+                        </div> -->
+                        <!-- <div *ngIf="OrgWebsite.errors?.['pattern'] && (OrgWebsite.dirty || OrgWebsite.touched)"
                             class="form-text text-danger fw-bold">
                             Invalid website URL.
-                        </div>
+                        </div> -->
                     </td>
                     <td colspan="2">
                         <span class="hidden_text">Don’t have an website? build your website with
@@ -511,7 +517,7 @@
                 </tr>
                 <!-- artist requirements -->
                 <tr>
-                    <td><label for="o_facility">Facility For Artist :</label></td>
+                    <td><label for="o_facility">Facility For Artist</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="2">
                         <input type="text" id="o_facility" name="o_facility" formControlName="o_facility"
                             placeholder="Travel Allowance, Meal, Stay, etc." />
@@ -523,7 +529,7 @@
                 </tr>
                 <!-- description section -->
                 <tr>
-                    <td><label for="organizer_description">Your Description :</label></td>
+                    <td><label for="organizer_description">Your Description</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="3">
                         <textarea id="organizer_description" name="organizer_description"
                             formControlName="organizer_description" placeholder="Enter your Description"></textarea>

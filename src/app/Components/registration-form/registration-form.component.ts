@@ -4,6 +4,7 @@ import { ServiceService } from 'src/app/Services/service.service';
 import { user_model } from '../../model';
 import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration-form',
@@ -31,17 +32,14 @@ export class RegistrationFormComponent implements OnInit {
   org_profileimageData: File | null | undefined;
 
 
-  constructor(private service: ServiceService, private fb: FormBuilder, private toastr: ToastrService, public sanitizer: DomSanitizer) { }
+  constructor(private service: ServiceService,private router: Router, private fb: FormBuilder, private toastr: ToastrService, public sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     //user form validators
     this.userForm = this.fb.group(
       {
-        firstName: this.fb.control('', [Validators.required]),
-        email: this.fb.control(
-          '',
-          Validators.compose([Validators.required, Validators.email])
-        ),
+        firstName: ['', [Validators.required, this.onlyLettersValidator]],
+        email: ['', [Validators.required, Validators.pattern('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/')]],
         wnumber: this.fb.control('', [
           Validators.required,
           Validators.minLength(10),
@@ -67,30 +65,12 @@ export class RegistrationFormComponent implements OnInit {
       ]),
       category: '',
       subcategory: '',
-      video_one: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      video_two: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      video_three: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      artist_facebook: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      artist_instagram: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      artist_website: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('https://.*'),
-      ]),
+      video_one: '',
+      video_two: '',
+      video_three: '',
+      artist_facebook: '',
+      artist_instagram: '',
+      artist_website: '',
 
       // artist_photos: this.fb.control('', [
       //   Validators.required,
@@ -107,18 +87,9 @@ export class RegistrationFormComponent implements OnInit {
       business_name: this.fb.control('', [Validators.required]),
       obusinesscategory: '',
       organizer_description: this.fb.control('', [Validators.required]),
-      organizer_facebook: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      organizer_instagram: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      organizer_website: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('https://.*'),
-      ]),
+      organizer_facebook: '',
+      organizer_instagram: '',
+      organizer_website: '',
       o_speciality: this.fb.control('', [Validators.required]),
       o_facility: this.fb.control('', [Validators.required]),
       // o_profile: this.fb.control('', [
@@ -136,6 +107,15 @@ export class RegistrationFormComponent implements OnInit {
     this.organizer_categorylist();
   }
 
+  onlyLettersValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const value = control.value;
+
+    if (value && !/^[a-zA-Z]*$/.test(value)) {
+      return { 'onlyLetters': true };
+    }
+
+    return null;
+  }
 
   // for profile image
   onImageSelected(event: any) {
@@ -157,6 +137,28 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   postdata() {
+    const utypeartist = this.userForm.get('options')?.value === '2';
+    const utypeorganizer = this.userForm.get('options')?.value === '1';
+    const utypeuser = this.userForm.get('options')?.value === '3';
+    if (!utypeartist && !utypeorganizer && !utypeuser) {
+      this.toastr.error('Please fill all the fields and select at least one option.', 'Error');
+      return;
+    }
+    const wnumber = this.userForm.get('wnumber')?.value;
+    if (isNaN(wnumber) || wnumber.toString().length < 10) {
+      this.toastr.error('Whatsapp Number should contain only numbers and be at least 10 digits long.', 'Error');
+      return;
+    }
+    // const firstName = this.userForm.get('firstName')?.value;
+    // if (isNaN(firstName)) {
+    //   this.toastr.error('Please enter a valid name.', 'Error');
+    //   return;
+    // }
+    // const email = this.userForm.get('email')?.value;
+    // if (!email) {
+    //   this.toastr.error('Please enter a valid email address.', 'Error');
+    //   return;
+    // }
     // Extract user data
     const currentDate = new Date();
 
@@ -226,11 +228,11 @@ export class RegistrationFormComponent implements OnInit {
       if (!postData.aworkexperience ||
         !postData.acategory ||
         !postData.asubcategory ||
-        !postData.alink1 ||
-        !postData.alink2 ||
-        !postData.alink3 ||
-        !postData.afblink ||
-        !postData.ainstalink ||
+        // !postData.alink1 ||
+        // !postData.alink2 ||
+        // !postData.alink3 ||
+        // !postData.afblink ||
+        // !postData.ainstalink ||
         !postData.aspeciality ||
         !postData.arequirements ||
         !postData.adescription ||
@@ -246,9 +248,9 @@ export class RegistrationFormComponent implements OnInit {
         !postData.obusinessname ||
         !postData.obusinesscategory ||
         !postData.odescription ||
-        !postData.ofblink ||
-        !postData.oinstalink ||
-        !postData.owebsite ||
+        // !postData.ofblink ||
+        // !postData.oinstalink ||
+        // !postData.owebsite ||
         !postData.ofacilities ||
         !postData.ofacilitesforartist ||
         !postData.oprofilephoto
@@ -267,10 +269,10 @@ export class RegistrationFormComponent implements OnInit {
       !postData.uwhatsappno ||
       !postData.uaddress ||
       !postData.ucity ||
-      !(postData.upassword && postData.uconfirmpassword && postData.upassword !== postData.uconfirmpassword) || !(postData.utypeartist + '') ||
-      !(postData.utypeorganizer + '') ||
-      !(postData.utypeuser + '')
-
+      !(postData.upassword && postData.uconfirmpassword && postData.upassword === postData.uconfirmpassword)
+      // !(postData.utypeartist) ||
+      // !(postData.utypeorganizer) ||
+      // !(postData.utypeuser)
     ) {
       if (postData.upassword && postData.uconfirmpassword && postData.upassword !== postData.uconfirmpassword) {
         this.toastr.error('Please enter password and confirm password same', 'Error');
@@ -296,6 +298,8 @@ export class RegistrationFormComponent implements OnInit {
     this.userForm.reset();
     this.artistForm.reset();
     this.organizerForm.reset();
+    this.router.navigate(['/login']);
+
   }
 
   //  select category

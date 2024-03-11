@@ -4,7 +4,7 @@
         <hr />
         <table>
             <tr>
-                <td style="width: 200px"><label for="eventName">Event Name:</label></td>
+                <td style="width: 200px"><label for="eventName">Event Name</label><span class="text-danger fw-bold"> *</span></td>
                 <td colspan="2">
                     <input type="text" id="eventName" name="eventName" formControlName="eventName"
                         placeholder="Enter your event name" />
@@ -15,7 +15,7 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="eventlocation">Event Location:</label></td>
+                <td><label for="eventlocation">Event Location</label><span class="text-danger fw-bold"> *</span></td>
                 <td colspan="2">
                     <input type="text" id="eventlocation" formControlName="eventlocation" name="eventlocation"
                         placeholder="Event Location" />
@@ -26,7 +26,7 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="googlemaplocation">Google Map Location:</label></td>
+                <td><label for="googlemaplocation">Google Map Location</label><span class="text-danger fw-bold"> *</span></td>
                 <td colspan="2">
                     <input type="text" id="googlemaplocation" formControlName="googlemaplocation"
                         name="googlemaplocation" placeholder="Google map link" />
@@ -39,7 +39,7 @@
 
             <!-- date & time -->
             <tr>
-                <td><label for="eventDate">Event Date:</label></td>
+                <td><label for="eventDate">Event Date</label><span class="text-danger fw-bold"> *</span></td>
                 <td>
                     <input type="date" class="date-input" id="eventDate" formControlName="eventDate" name="eventDate" />
                     <div class="form-text text-danger fw-bold"
@@ -47,8 +47,8 @@
                         Date is required.
                     </div>
                 </td>
-                <td><label for="eventTime">Event Time:</label></td>
-                <td>
+                <td><label for="eventTime">Time</label><span class="text-danger fw-bold"> *</span></td>
+                <td colspan="2">
                     <input type="time" class="date-input" id="eventTime" formControlName="eventTime" name="eventTime" />
                     <div class="form-text text-danger fw-bold"
                         *ngIf="EventTime.errors?.['required'] && (EventTime.dirty || EventTime.touched)">
@@ -59,7 +59,7 @@
 
             <!-- Artist check box -->
             <tr>
-                <td><label>Required Artist:</label></td>
+                <td><label>Required Artist</label><span class="text-danger fw-bold"> *</span></td>
                 <!-- column 1 -->
                 <td colspan="2">
                     <input type="text" id="requiredArtist" name="requiredArtist" formControlName="requiredArtist"
@@ -74,7 +74,7 @@
             <!-- Facility for artist -->
             <tr>
                 <!-- column 1 -->
-                <td><label for="o_facility">Facility For Artist:</label></td>
+                <td><label for="o_facility">Facility For Artist</label><span class="text-danger fw-bold"> *</span></td>
                 <td colspan="2">
                     <input type="text" id="facilityForArtist" name="facilityForArtist"
                         formControlName="facilityForArtist"
@@ -88,7 +88,7 @@
 
             <!-- Artist Should equip with -->
             <tr>
-                <td><label>Artist Should equip with:</label></td>
+                <td><label>Artist Equipped</label><span class="text-danger fw-bold"> *</span></td>
                 <!-- column 1 -->
                 <td colspan="2">
                     <input type="text" id="artistEquip" name="artistEquip" formControlName="artistEquip"
@@ -102,7 +102,7 @@
 
             <!-- upload profile photo and images -->
             <tr>
-                <td><label for="imageUpload">Upload Event Poster:</label></td>
+                <td><label for="imageUpload">Upload Event Poster</label><span class="text-danger fw-bold"> *</span></td>
                 <td>
                     <input type="file" class="form-control up_img" id="imageUpload" formControlName="imageUpload"
                         name="imageUpload" accept="image/*" (change)="onImageSelected($event)" />

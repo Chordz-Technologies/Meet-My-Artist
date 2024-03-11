@@ -66,30 +66,12 @@ export class UpdateRegistrationFormComponent implements OnInit {
       ]),
       category: '',
       subcategory: '',
-      video_one: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      video_two: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      video_three: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      artist_facebook: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      artist_instagram: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      artist_website: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('https://.*'),
-      ]),
+      video_one: '',
+      video_two: '',
+      video_three: '',
+      artist_facebook: '',
+      artist_instagram: '',
+      artist_website: '',
       // artist_profile: this.fb.control('', [
       //   Validators.required,
       //   Validators.minLength(1),
@@ -110,18 +92,9 @@ export class UpdateRegistrationFormComponent implements OnInit {
       business_name: this.fb.control('', [Validators.required]),
       organizer_category: '',
       organizer_description: this.fb.control('', [Validators.required]),
-      organizer_facebook: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      organizer_instagram: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('/^(ftp|http|https)://[^ "]+$/'),
-      ]),
-      organizer_website: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('https://.*'),
-      ]),
+      organizer_facebook: '',
+      organizer_instagram: '',
+      organizer_website: '',
       o_speciality: this.fb.control('', [Validators.required]),
       o_facility: this.fb.control('', [Validators.required]),
       // o_profile: this.fb.control('', [
@@ -289,8 +262,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
       aspeciality: this.artistForm.value.speciality || '',
       arequirements: this.artistForm.value.requirement || '',
       adescription: this.artistForm.value.artist_description || '',
-      aprofilephoto: this.profileimageData || '' // Append image to artistData
-      // aphotos: this.artistForm.value.artist_photos || '',
+      ...(this.profileimageData ? { aprofilephoto: this.profileimageData } : {})      // aphotos: this.artistForm.value.artist_photos || '',
     };
     // this.postImages()
     // this.postProfileImage()
@@ -305,7 +277,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
       owebsite: this.organizerForm.value.organizer_website || '',
       ofacilities: this.organizerForm.value.o_speciality || '',
       ofacilitesforartist: this.organizerForm.value.o_facility || '',
-      oprofilephoto: this.org_profileimageData || ''
+      ...(this.profileimageData ? { oprofilephoto: this.profileimageData } : {})
       // ophotos: this.organizerForm.value.o_photos || '',
     };
 
@@ -315,11 +287,11 @@ export class UpdateRegistrationFormComponent implements OnInit {
     if (userData.utypeartist) {
       updateData = { ...updateData, ...artistData };
       if (!updateData.aworkexperience ||
-        !updateData.alink1 ||
-        !updateData.alink2 ||
-        !updateData.alink3 ||
-        !updateData.afblink ||
-        !updateData.ainstalink ||
+        // !updateData.alink1 ||
+        // !updateData.alink2 ||
+        // !updateData.alink3 ||
+        // !updateData.afblink ||
+        // !updateData.ainstalink ||
         !updateData.aspeciality ||
         !updateData.arequirements ||
         // !updateData.aprofilephoto ||
@@ -327,6 +299,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
         this.toastr.error('Please fill all the field.', 'Error');
         return;
       }
+      this.navigateToArtistHome();
 
     } else if (userData.utypeorganizer) {
       updateData = { ...updateData, ...organizerData };
@@ -334,19 +307,23 @@ export class UpdateRegistrationFormComponent implements OnInit {
         !updateData.obusinessname ||
         !updateData.obusinesscategory ||
         !updateData.odescription ||
-        !updateData.ofblink ||
-        !updateData.oinstalink ||
-        !updateData.owebsite ||
+        // !updateData.ofblink ||
+        // !updateData.oinstalink ||
+        // !updateData.owebsite ||
         !updateData.ofacilities ||
         !updateData.ofacilitesforartist
         // !updateData.oprofilephoto
-
         // !updateData.ophotos ||
         // !updateData.oprofilephoto
       ) {
         this.toastr.error('Please fill all the field.', 'Error');
         return;
       }
+      this.navigateToHome();
+    }
+    else if (userData.utypeuser) {
+      // Redirect to home page
+      this.navigateToHome();
     }
 
     // Combine all data into one object
@@ -363,7 +340,9 @@ export class UpdateRegistrationFormComponent implements OnInit {
     ) {
       this.toastr.error('Please fill all the field.', 'Error');
       return;
-    } else {
+
+    }
+    else {
       const formData: FormData = new FormData();
       for (const [key, value] of Object.entries(updateData)) {
         formData.append(key, value)
@@ -380,6 +359,14 @@ export class UpdateRegistrationFormComponent implements OnInit {
     this.userForm.reset();
     this.artistForm.reset();
     this.organizerForm.reset();
+
+  }
+
+  private navigateToArtistHome() {
+    this.router.navigate(['/artistsHome']);
+  }
+
+  private navigateToHome() {
     this.router.navigate(['/']);
   }
 

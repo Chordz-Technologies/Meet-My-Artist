@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/Services/auth.service';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/Services/service.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-header-bottom',
   templateUrl: './header-bottom.component.html',
@@ -16,7 +18,7 @@ export class HeaderBottomComponent implements OnInit {
   selectedDate: string = '';
   userId = this.getUserId();
 
-  constructor(private authService: AuthService, private router: Router, private service: ServiceService) { }
+  constructor(private authService: AuthService, private toastr: ToastrService, private router: Router, private service: ServiceService) { }
 
   ngOnInit(): void {
     this.authService.isLoggedIn.subscribe((loggedIn) => {
@@ -71,10 +73,11 @@ export class HeaderBottomComponent implements OnInit {
   saveDate() {
     this.service.openToWork(this.userId, this.selectedDate).subscribe({
       next: () => {
+        this.toastr.success('Artist booked successfully!', 'Success');
         this.closeModal();
       },
       error: (err: any) => {
-        alert(err);
+        console.error(err);
       }
     });
   }

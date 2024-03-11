@@ -57,7 +57,7 @@ export class OrganizerProfilePageComponent implements OnInit {
         this.images = Object.keys(res.base64images).map(key => ({ src: key, data: res.base64images[key] }));
       }),
       (error => {
-        this.toastr.error('Error fetching images', 'Error');
+        console.log(error);
       })
     );
     // this.service.getArtistProfileImage(userId).subscribe(

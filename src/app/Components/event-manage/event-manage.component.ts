@@ -85,7 +85,8 @@ export class EventManageComponent implements OnInit {
       artistequipwith: this.updateEventForm.value.artistEquip,
       facilitiesforartist: this.updateEventForm.value.facilityForArtist,
       erequirements: this.updateEventForm.get('option1')?.value ? 1 : 0,
-      eposter: this.eventimageData || ''
+      ...(this.eventimageData ? { eposter: this.eventimageData } : {})
+
     };
     let postData = { ...eventData };
 

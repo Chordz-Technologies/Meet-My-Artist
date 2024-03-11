@@ -56,8 +56,7 @@
                                     <div class="card shadow p-3 mb-3 bg-white rounded">
                                         <div class="card-body p-1 d-md-flex text-center text-md-left">
                                             <div class="ms-md-5 my-2 d-flex flex-column">
-                                                <img [src]="url + 'getProfilePhoto/' + artist.uid"
-                                                    alt="Generic placeholder image"
+                                                <img [src]="url + 'getProfilePhoto/' + artist.uid" alt="Profile image"
                                                     class="img-fluid my-4 mb-1 rounded-circle mx-auto"
                                                     style="width: 150px; height: 150px; z-index: 1" />
                                                 <!-- <button mat-button class="text-center">
@@ -67,9 +66,9 @@
                                             </div>
                                             <div class="artist-info mt-1">
                                                 <h4 class="mb-3 mt-1">{{ artist.uname }}</h4>
-                                                <p>{{ artist.acategory }}</p>
-                                                <p>{{ artist.uaddress }}, <b>{{artist.ucity}}</b></p>
-                                                <p>Experience: {{ artist.aworkexperience }} Years</p>
+                                                <p>{{ artist.acategory }}, {{artist.asubcategory}}</p>
+                                                <p>{{ artist.uaddress | slice:0:10 }}, <b>{{artist.ucity}}</b></p>
+                                                <p>Experience: {{ artist.aworkexperience }}</p>
                                                 <button class="btn border border-secondary" id="profilebtn"
                                                     (click)="navigateToProfile(artist.uid)"><i class="fa fa-user"></i>
                                                     View Profile</button>
@@ -100,15 +99,15 @@
                                                         [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
                                                         (click)="onLinkClick($event, artist.ainstalink)"><i
                                                             class="fab fa-instagram"></i></a>
-                                                    <a class="btn btn-sm rounded-circle text-white bg-primary me-1"
+                                                    <!-- <a class="btn btn-sm rounded-circle text-white bg-primary me-1"
                                                         [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
                                                         (click)="onLinkClick($event, '#')"><i
-                                                            class="fab fa-linkedin-in"></i></a>
+                                                            class="fab fa-linkedin-in"></i></a> -->
                                                 </div>
                                                 <p>
                                                     <a [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                                    (click)="onLinkClick($event, 'https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to collaborate with artist ' + artist.uname + '.')"
-                                                    class="btn border border-secondary bg-white py-2 mt-3">
+                                                        (click)="onLinkClick($event, 'https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to collaborate with artist ' + artist.uname + '.')"
+                                                        class="btn border border-secondary bg-white py-2 mt-3">
                                                         <i class="fab fa-whatsapp"
                                                             style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
                                                         Book Now</a>
@@ -122,7 +121,7 @@
                                                 </p>
                                                 <h3 class="text-danger"
                                                     *ngIf="!artist.abookeddate || (artist.abookeddate.length > 0 && artist.abookeddate[0] !== '[]' && !isPastDate(artist.abookeddate))">
-                                                    This artist is booked for {{ isBookedToday(artist.abookeddate) ?
+                                                    Artist booked for {{ isBookedToday(artist.abookeddate) ?
                                                     'Today' : artist.abookeddate }}.
                                                 </h3>
                                             </div>
@@ -167,8 +166,8 @@
                     <h2 class="">{{product.pbrand}}</h2>
                     <p class="">{{product.pmodel | slice:0:70 }}...</p>
                     <span class="mx-2" style="font-size: large; font-weight: 600;">₹ {{product.pprice}}</span>
-                    <a href="https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to purchase {{product.pmodel}}." target="_blank" class="btn mx-2"
-                        id="buy-btn">Buy Now</a>
+                    <a href="https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to purchase {{product.pmodel}}."
+                        target="_blank" class="btn mx-2" id="buy-btn">Buy Now</a>
                 </div>
             </div>
         </div>

@@ -57,7 +57,7 @@ export class ArtistProfilePageComponent implements OnInit {
         this.images = Object.keys(res.base64images).map(key => ({ src: key, data: res.base64images[key] }));
       },
       error: (err: any) => {
-        this.toastr.error('Error fetching images', 'Error');
+        console.log(err);
       }
     })
     // alert(this.userId);

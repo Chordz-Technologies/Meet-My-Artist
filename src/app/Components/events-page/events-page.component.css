@@ -6,6 +6,11 @@
     height: 95%;
 }
 
+.card-img-top {
+    height: 100%;
+    width: 100%;
+}
+
 .btn {
     width: 70%;
     height: auto;
