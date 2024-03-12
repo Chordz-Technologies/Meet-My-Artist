@@ -1,48 +1,132 @@
-<div class="text-center" *ngIf="searchArtists.length === 0">
+<div class="text-center"
+    *ngIf="searchArtists.length === 0 && searchOrganizers.length === 0 && searchEvents.length === 0 && searchProducts.length === 0">
     <p class="pt-5">No results found for '{{ searchTerm }}'</p>
 </div>
 
 <div class="container text-center pt-5 pb-5">
+    <!-- Artists Section -->
     <div *ngIf="searchArtists.length > 0">
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12 " *ngFor="let user of searchArtists">
+            <!-- Title and Horizontal Line -->
+            <div class="col-md-5 col-1">
+                <hr class="custom-line">
+            </div>
+            <div class="col-md-2 col-12">
+                <h1 class="text-center">Artists</h1>
+            </div>
+            <div class="col-md-5 col-1">
+                <hr class="custom-line">
+            </div>
+
+            <!-- Display Artists -->
+            <div class="col-lg-4 col-md-4 col-sm-12" *ngFor="let artist of searchArtists">
                 <div class="card business-card shadow my-3">
-                    <img [src]="url + 'getProfilePhoto/' + user.uid" class="card-img-top" alt="Event">
+                    <img [src]="url + 'getProfilePhoto/' + artist.uid" class="card-img-top" alt="Event">
                     <div class="card-body">
-                        <h2 class="card-title">{{ user.uname }}</h2>
-                        <p>{{ user.acategory }}</p>
-                        <p>{{ user.uaddress }}, <b>{{user.ucity}}</b></p>
+                        <h2 class="card-title">{{ artist.uname }}</h2>
+                        <p>{{ artist.acategory }}</p>
+                        <p>{{ artist.uaddress }}, <b>{{artist.ucity}}</b></p>
                         <div class="buttons my-2">
-                            <br><a (click)="viewArtist(user.uid)" class="btn mx-2">View More</a>
+                            <br><a (click)="viewArtist(artist.uid)" class="btn mx-2">View More</a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div><br>
 
-            <div class="col-lg-4 col-md-4 col-sm-12 " *ngFor="let product of searchProducts">
+    <!-- Organizers Section -->
+    <div *ngIf="searchOrganizers.length > 0">
+        <div class="row pt-5">
+            <!-- Title and Horizontal Line -->
+            <!-- Organizers Section -->
+            <div class="col-md-5 col-1">
+                <hr class="custom-line">
+            </div>
+            <div class="col-md-2 col-12">
+                <h1 class="text-center">Organizers</h1>
+            </div>
+            <div class="col-md-5 col-1">
+                <hr class="custom-line">
+            </div>
+
+            <!-- Display Organizers -->
+            <div class="col-lg-4 col-md-4 col-sm-12" *ngFor="let organizer of searchOrganizers">
+                <div class="card business-card shadow my-3">
+                    <img [src]="url + 'getProfilePhoto/' + organizer.uid" class="card-img-top" alt="Event">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ organizer.uname }}</h2>
+                        <p>{{ organizer.obusinesscategory }}</p>
+                        <p>{{ organizer.uaddress }}, <b>{{organizer.ucity}}</b></p>
+                        <div class="buttons my-2">
+                            <br><a (click)="viewOrganizer(organizer.uid)" class="btn mx-2">View More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br>
+
+    <!-- Events Section -->
+    <div *ngIf="searchEvents.length > 0">
+        <div class="row pt-5">
+            <!-- Title and Horizontal Line -->
+            <div class="col-md-5 col-1">
+                <hr class="custom-line">
+            </div>
+            <div class="col-md-2 col-12">
+                <h1 class="text-center">Events</h1>
+            </div>
+            <div class="col-md-5 col-1">
+                <hr class="custom-line">
+            </div>
+
+            <!-- Display Events -->
+            <div class="col-lg-4 col-md-4 col-sm-12" *ngFor="let event of searchEvents">
+                <div class="card business-card shadow my-3">
+                    <img [src]="event.eposter ? (url + 'getEventPoster/' + event.eid) : defaultImageUrl"
+                        class="card-img-top" alt="Event">
+                    <!-- <img [src]="url + 'getEventPoster/' + event.eid" class="card-img-top" alt="Event"> -->
+                    <div class="card-body">
+                        <h2 class="card-title">{{event.obusinessname}} has planned event {{event.ename}}</h2>
+                        <p style="font-size: medium; font-weight: 400;">{{event.edate}} | at
+                            {{event.etime}}</p>
+                        <!-- <p></p> -->
+                        <span class="mx-2" style="font-size: large; font-weight: 600;">{{event.elocation}}</span>
+                        <div class="buttons my-2">
+                            <br><a routerLink="/events" class="btn mx-2">View More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br>
+
+    <!-- Products Section -->
+    <div *ngIf="searchProducts.length > 0">
+        <div class="row pt-5">
+            <!-- Title and Horizontal Line -->
+            <div class="col-md-5 col-1">
+                <hr class="custom-line">
+            </div>
+            <div class="col-md-2 col-12">
+                <h1 class="text-center">Products</h1>
+            </div>
+            <div class="col-md-5 col-1">
+                <hr class="custom-line">
+            </div>
+
+            <!-- Display Products -->
+            <div class="col-lg-4 col-md-4 col-sm-12" *ngFor="let product of searchProducts">
                 <div class="card business-card shadow my-3">
                     <img [src]="url + 'getProductPhoto/' + product.pid" class="card-img-top" alt="product-image">
                     <div class="card-body">
                         <h2 class="card-title">{{product.pbrand}}</h2>
                         <p>{{product.pmodel | slice:0:70 }}...</p>
+                        <!-- <p></p> -->
                         <span class="mx-2" style="font-size: large; font-weight: 600;">₹ {{product.pprice}}</span>
                         <div class="buttons my-2">
                             <a routerLink="/products" class="btn mx-2">View More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-12 " *ngFor="let event of searchEvents">
-                <div class="card business-card shadow my-3">
-                    <img [src]="url + 'getEventPoster/' + event.eid" class="card-img-top" alt="Event">
-                    <div class="card-body">
-                        <h2 class="card-title">{{event.obusinessname}} has planned event {{event.ename}}</h2>
-                        <p style="font-size: medium; font-weight: 400;">{{event.edate}} | at
-                            {{event.etime}}</p>
-                        <span class="mx-2" style="font-size: large; font-weight: 600;">{{event.elocation}}</span>
-                        <div class="buttons my-2">
-                            <br><a routerLink="/events" class="btn mx-2">View More</a>
                         </div>
                     </div>
                 </div>

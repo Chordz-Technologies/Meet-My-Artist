@@ -39,7 +39,7 @@ export class RegistrationFormComponent implements OnInit {
     this.userForm = this.fb.group(
       {
         firstName: ['', [Validators.required, this.onlyLettersValidator]],
-        email: ['', [Validators.required, Validators.pattern('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/')]],
+        email: ['', [Validators.required, Validators.email]], // Email validation
         wnumber: this.fb.control('', [
           Validators.required,
           Validators.minLength(10),
@@ -109,11 +109,11 @@ export class RegistrationFormComponent implements OnInit {
 
   onlyLettersValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const value = control.value;
-
-    if (value && !/^[a-zA-Z]*$/.test(value)) {
+  
+    if (value && !/^[a-zA-Z\s]*$/.test(value)) {
       return { 'onlyLetters': true };
     }
-
+  
     return null;
   }
 
@@ -144,21 +144,21 @@ export class RegistrationFormComponent implements OnInit {
       this.toastr.error('Please fill all the fields and select at least one option.', 'Error');
       return;
     }
+    if (this.userForm.get('firstName')?.invalid) {
+      this.toastr.error('Please fill valid name it must contain only letters.', 'Error');
+      return;
+    }
+    if (this.userForm.get('email')?.invalid) {
+      this.toastr.error('Please fill valid email id. Ex. admin@gmail.com', 'Error');
+      return;
+    }
     const wnumber = this.userForm.get('wnumber')?.value;
     if (isNaN(wnumber) || wnumber.toString().length < 10) {
       this.toastr.error('Whatsapp Number should contain only numbers and be at least 10 digits long.', 'Error');
       return;
     }
-    // const firstName = this.userForm.get('firstName')?.value;
-    // if (isNaN(firstName)) {
-    //   this.toastr.error('Please enter a valid name.', 'Error');
-    //   return;
-    // }
-    // const email = this.userForm.get('email')?.value;
-    // if (!email) {
-    //   this.toastr.error('Please enter a valid email address.', 'Error');
-    //   return;
-    // }
+    
+
     // Extract user data
     const currentDate = new Date();
 

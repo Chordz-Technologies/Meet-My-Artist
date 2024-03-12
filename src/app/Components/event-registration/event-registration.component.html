@@ -102,8 +102,9 @@
 
             <!-- upload profile photo and images -->
             <tr>
-                <td><label for="imageUpload">Upload Event Poster</label><span class="text-danger fw-bold"> *</span></td>
+                <td><label for="imageUpload">Upload Event Poster</label></td>
                 <td>
+                    <!-- <img [src]="eventimageData ? eventimageData : defaultImageUrl" alt="Event Poster" /> -->
                     <input type="file" class="form-control up_img" id="imageUpload" formControlName="imageUpload"
                         name="imageUpload" accept="image/*" (change)="onImageSelected($event)" />
                     <!-- <div class="form-text text-danger fw-bold"

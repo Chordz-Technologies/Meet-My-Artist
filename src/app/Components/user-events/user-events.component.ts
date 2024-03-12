@@ -12,6 +12,7 @@ export class UserEventsComponent {
   r_eventdata: any[] = []
   userID!: number;
   url='https://meetmyartist.beatsacademy.in/'
+  defaultImageUrl: string = './assets/event-poster.jpeg';
 
   constructor(private service: ServiceService, private route: ActivatedRoute, private router: Router) { }
   ngOnInit(): void {

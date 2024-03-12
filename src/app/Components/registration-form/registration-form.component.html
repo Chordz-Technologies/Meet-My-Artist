@@ -7,14 +7,14 @@
                 <tr>
                     <td><label for="firstName">Name</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="3">
-                        <input type="text" id="firstName" formControlName="firstName" placeholder="Enter your Name" >
+                        <input type="text" id="firstName" formControlName="firstName" placeholder="Enter your Name">
                         <div class="form-text text-danger fw-bold"
                             *ngIf="userForm.get('firstName')?.errors?.['onlyLetters'] && userForm.get('firstName')?.touched">
-                            First Name must contain only letters
+                            Name must contain only letters.
                         </div>
                         <div class="form-text text-danger fw-bold"
                             *ngIf="userForm.get('firstName')?.errors?.['required'] && userForm.get('firstName')?.touched">
-                            First Name is required
+                            Name is required.
                         </div>
 
                     </td>
@@ -22,18 +22,16 @@
                 <tr>
                     <td><label for="email">Email</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="3">
-                        <input type="text" id="email" name="email" formControlName="email"
-                            placeholder="Enter your Email " />
-                        <div class="form-text text-danger fw-bold"
-                            *ngIf="Email.errors?.['required'] &&(Email.dirty || Email.touched)">
+                        <input type="email" id="email" name="email" formControlName="email" placeholder="Enter your Email" />
+                        <div class="form-text text-danger fw-bold" *ngIf="userForm.get('email')?.errors?.['required'] && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
                             Valid Email Id is required.
                         </div>
-                        <!-- <div class="form-text text-danger fw-bold"
-                            *ngIf="Email.errors?.['email'] && (Email.dirty || Email.touched)">
+                        <div class="form-text text-danger fw-bold" *ngIf="userForm.get('email')?.errors?.['email'] && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
                             Email is invalid.
-                        </div> -->
+                        </div>
                     </td>
-                </tr>
+                  </tr>
+                  
                 <tr>
                     <td style="width: 200px">
                         <label for="wnumber">Whatsapp Number</label><span class="text-danger fw-bold"> *</span>
@@ -223,7 +221,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="imageUpload">Upload Profile Photo</label><span class="text-danger fw-bold"> *</span></td>
+                    <td><label for="imageUpload">Upload Profile Photo</label><span class="text-danger fw-bold"> *</span>
+                    </td>
                     <td>
                         <input type="file" class="form-control up_img" id="imageUpload" name="imageUpload"
                             accept="image/*" (change)="onImageSelected($event)" />
@@ -350,7 +349,8 @@
                 </tr>
                 <!-- artist requirements -->
                 <tr>
-                    <td><label for="requirement">Your Requirements</label><span class="text-danger fw-bold"> *</span></td>
+                    <td><label for="requirement">Your Requirements</label><span class="text-danger fw-bold"> *</span>
+                    </td>
                     <td colspan="2">
                         <input type="text" id="requirement" name="requirement" formControlName="requirement"
                             placeholder="Travel Allowance, Meal, Stay, etc." />
@@ -362,7 +362,8 @@
                 </tr>
                 <!-- description section -->
                 <tr>
-                    <td><label for="artist_description">Your Description</label><span class="text-danger fw-bold"> *</span></td>
+                    <td><label for="artist_description">Your Description</label><span class="text-danger fw-bold">
+                            *</span></td>
                     <td colspan="3">
                         <textarea id="artist_description" name="artist_description" placeholder="Enter your Description"
                             formControlName="artist_description"></textarea>
@@ -426,7 +427,8 @@
                 </tr>
                 <!-- upload profile photo and images -->
                 <tr>
-                    <td><label for="imageUpload">Upload Profile Photo</label><span class="text-danger fw-bold"> *</span></td>
+                    <td><label for="imageUpload">Upload Profile Photo</label><span class="text-danger fw-bold"> *</span>
+                    </td>
                     <td>
                         <input type="file" (change)="onorganizerImageSelected($event)" accept="image/*"
                             class="form-control" />
@@ -517,7 +519,8 @@
                 </tr>
                 <!-- artist requirements -->
                 <tr>
-                    <td><label for="o_facility">Facility For Artist</label><span class="text-danger fw-bold"> *</span></td>
+                    <td><label for="o_facility">Facility For Artist</label><span class="text-danger fw-bold"> *</span>
+                    </td>
                     <td colspan="2">
                         <input type="text" id="o_facility" name="o_facility" formControlName="o_facility"
                             placeholder="Travel Allowance, Meal, Stay, etc." />
@@ -529,7 +532,8 @@
                 </tr>
                 <!-- description section -->
                 <tr>
-                    <td><label for="organizer_description">Your Description</label><span class="text-danger fw-bold"> *</span></td>
+                    <td><label for="organizer_description">Your Description</label><span class="text-danger fw-bold">
+                            *</span></td>
                     <td colspan="3">
                         <textarea id="organizer_description" name="organizer_description"
                             formControlName="organizer_description" placeholder="Enter your Description"></textarea>

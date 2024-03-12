@@ -14,10 +14,42 @@
 }
 
 .card {
-    height: 90%;
+    height: 96%;
 }
 
 img {
-    height: 50%;
+    height: 250px;
     width: 100%;
+}
+
+p {
+    height: 10%;
+}
+
+h1 {
+    color: #1E1E1E;
+    font-family: Roboto;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-bottom: 50px;
+}
+
+.custom-line {
+    height: 2px;
+    opacity: 1;
+    background: black;
+    /* margin-left: 35px; */
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 30px;
+        padding-bottom: 20px;
+    }
+
+    .custom-line {
+        display: none;
+    }
 }

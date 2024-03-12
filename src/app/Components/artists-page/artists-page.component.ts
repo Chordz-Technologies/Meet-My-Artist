@@ -1,5 +1,5 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { Router } from '@angular/router';
@@ -52,7 +52,7 @@ export class ArtistsPageComponent implements OnInit {
     this.modalDisplay = 'none';
   }
 
-  constructor(private service: ServiceService, private router: Router) {
+  constructor(private service: ServiceService, private router: Router, private elRef: ElementRef) {
     this.treeFlattener = new MatTreeFlattener(
       this.transformer,
       node => node.level,
@@ -119,6 +119,10 @@ export class ArtistsPageComponent implements OnInit {
     const startIndex = this.currentPage * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.filteredArtists = this.artists.slice(startIndex, endIndex);
+    const artistsSection = this.elRef.nativeElement.querySelector('#artistsSection');
+    if (artistsSection) {
+      artistsSection.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   onPageChange(event: PageEvent) {

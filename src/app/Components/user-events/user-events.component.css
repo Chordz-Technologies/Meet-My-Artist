@@ -3,8 +3,12 @@
 }
 
 .card-img-top {
-    height: 100%;
+    height: 250px;
     width: 100%;
+}
+
+.card-title {
+    height: 40%;
 }
 
 .card {

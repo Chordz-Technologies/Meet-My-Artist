@@ -95,11 +95,6 @@ export class ServiceService {
     return this.http.post<any>(`${this.url}/createUser/`, data);
   }
 
-  // artist category
-  // artist_category(): Observable<any> {
-  //   return this.http.get<any>(`${this.url}/allAcategories/`);
-  // }
-
   postToWishlist(uid: number, wished_user_id: number): Observable<any> {
     return this.http.post<any>(`${this.url}/addtoWishlist/${uid}/${wished_user_id}/`, {});
   }
@@ -134,5 +129,10 @@ export class ServiceService {
   // Update user API for open to work
   openToWork(uid: any, selectedDate: string): Observable<any> {
     return this.http.put(`${this.url}/updateUser/${uid}/`, { abookeddate: selectedDate })
+  }
+
+  // Send email API
+  sendEmail(emailData: any): Observable<any> {
+    return this.http.post<any>(`${this.url}/sendMessage/`, emailData);
   }
 }

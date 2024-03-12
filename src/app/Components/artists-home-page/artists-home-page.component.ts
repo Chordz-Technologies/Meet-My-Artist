@@ -10,6 +10,8 @@ export class ArtistsHomePageComponent implements OnInit {
   eventdata: any[] = [];
   r_eventdata: any[] = [];
   url = 'https://meetmyartist.beatsacademy.in/';
+  defaultImageUrl: string = './assets/event-poster.jpeg';
+
 
   constructor(private event_data: ServiceService) { }
   ngOnInit(): void {

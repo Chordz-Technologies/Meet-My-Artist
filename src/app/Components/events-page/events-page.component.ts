@@ -9,6 +9,7 @@ import { ServiceService } from 'src/app/Services/service.service';
 export class EventsPageComponent {
   eventdata: any[] = [];
   url = 'https://meetmyartist.beatsacademy.in/';
+  defaultImageUrl: string = './assets/event-poster.jpeg';
 
   constructor(private service: ServiceService) { }
   ngOnInit(): void {

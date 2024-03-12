@@ -12,24 +12,28 @@ import { user_model, product_model, event_model } from 'src/app/model';
 export class SearchPageComponent implements OnInit {
     searchTerm: string = '';
     searchArtists: user_model[] = [];
+    searchOrganizers: user_model[] = [];
     searchProducts: product_model[] = [];
     searchEvents: event_model[] = [];
     url = 'https://meetmyartist.beatsacademy.in/';
+    defaultImageUrl: string = './assets/event-poster.jpeg';
 
     constructor(private route: ActivatedRoute, private service: ServiceService, private router: Router) { }
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {
             this.searchTerm = params['term'];
-            this.service.search(this.searchTerm).subscribe((data: any) => {
-                if (data.status === 'success') {
+            this.service.search(this.searchTerm).subscribe((res: any) => {
+                if (res.status === 'success') {
                     // Filter data into respective arrays
-                    this.searchArtists = data.data.User;
-                    this.searchProducts = data.data.Products;
-                    this.searchEvents = data.data.Events;
+                    this.searchArtists = res.data.User.artists;
+                    this.searchOrganizers = res.data.User.organizers
+                    this.searchProducts = res.data.Products;
+                    this.searchEvents = res.data.Events;
                 } else {
                     // Handle no results found
                     this.searchArtists = [];
+                    this.searchOrganizers = [];
                     this.searchProducts = [];
                     this.searchEvents = [];
                 }
@@ -39,6 +43,10 @@ export class SearchPageComponent implements OnInit {
 
     viewArtist(artistId: number): void {
         this.router.navigate(['/artistProfile', artistId]);
+    }
+
+    viewOrganizer(organizerId: number): void {
+        this.router.navigate(['/organizerProfile', organizerId]);
     }
 
     // viewProduct(productId: number): void {

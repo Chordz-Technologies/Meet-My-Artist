@@ -3,11 +3,11 @@
         <div class="container p-7">
             <div class="row">
                 <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-                    <h4>Find My Artist</h4>
+                    <h4>Meet My Artist</h4>
                     <p>
-                        Welcome to "Find My Artist" – Your Gateway to the World of Art and Creativity!
+                        Welcome to "Meet My Artist" – Your Gateway to the World of Art and Creativity!
                         <br><br>
-                        Are you passionate about discovering unique and talented artists? Look no further! "Find My
+                        Are you passionate about discovering unique and talented artists? Look no further! "Meet My
                         Artist" is your go-to platform, designed to connect art enthusiasts with a diverse array of
                         skilled and emerging artists from around the globe.
                     </p>
@@ -107,19 +107,31 @@
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
                     <h4 class="text-uppercase mb-0">Contact Us</h4>
-                    <form>
+                    <!-- <form (ngSubmit)="sendEmail()">
+                        <label for="to">To:</label>
+                        <input type="email" id="to" name="to" [(ngModel)]="emailData.to" required>
+                        
+                        <label for="subject">Subject:</label>
+                        <input type="text" id="subject" name="subject" [(ngModel)]="emailData.subject" required>
+                        
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" [(ngModel)]="emailData.message" required></textarea>
+                        
+                        <button type="submit">Send Email</button>
+                      </form> -->
+                    <form (ngSubmit)="sendEmail()">
                         <br>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                placeholder="Your Name">
+                            <input type="text" class="form-control" id="subject" name="subject"
+                                [(ngModel)]="emailData.subject" placeholder="Your Subject" required>
                         </div><br>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="exampleInputPassword1"
-                                placeholder="Your Email Id">
+                            <input type="email" class="form-control" id="email" name="email"
+                                [(ngModel)]="emailData.email" placeholder="Your Email Id" required>
                         </div><br>
                         <div class="form-group">
-                            <textarea type="text" class="form-control" id="exampleInputPassword1"
-                                placeholder="Your Message"></textarea>
+                            <textarea type="text" class="form-control" id="message" name="message"
+                                [(ngModel)]="emailData.message" placeholder="Your Message" required></textarea>
                         </div><br>
                         <button type="submit" class="btn">Submit</button>
                     </form>

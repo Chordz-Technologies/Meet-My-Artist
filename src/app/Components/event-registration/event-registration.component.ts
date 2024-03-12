@@ -105,7 +105,7 @@ export class EventRegistrationComponent implements OnInit {
       !postData.egooglemap ||
       !postData.edate ||
       !postData.etime ||
-      !postData.eposter ||
+      // !postData.eposter ||
       !postData.orequirements ||
       !postData.artistequipwith ||
       !postData.facilitiesforartist
