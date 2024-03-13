@@ -17,6 +17,9 @@ export class HeaderBottomComponent implements OnInit {
   showModal = false;
   selectedDate: string = '';
   userId = this.getUserId();
+  showEventModal = false;
+  // userType1 = localStorage.getItem('userType');
+
 
   constructor(private authService: AuthService, private toastr: ToastrService, private router: Router, private service: ServiceService) { }
 
@@ -59,6 +62,33 @@ export class HeaderBottomComponent implements OnInit {
       this.searchTerm = '';
       // window.location.reload();
     }
+  }
+
+  createEvent() {
+    const userStatus = localStorage.getItem('status');
+
+    if (this.userType === 'user' || this.userType === 'organizer') {
+      if (userStatus === 'Active') {
+        this.router.navigate(['/eventRegistration']);
+      } else {
+        this.showEventModal = true;
+      }
+    } else {
+      // Handle other user types if needed
+    }
+  }
+
+  goToSubscription() {
+    if (this.userType === 'user') {
+      this.router.navigate(['/userSubscription']);
+    } else if (this.userType === 'organizer') {
+      this.router.navigate(['/organizerSubscription']);
+    }
+    this.hideModal();
+  }
+
+  hideModal() {
+    this.showEventModal = false;
   }
 
   openModal() {

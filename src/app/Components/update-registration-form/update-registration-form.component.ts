@@ -21,7 +21,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
   showUserRadioButton: boolean = true;
   showArtistRadioButton: boolean = true;
   showOrganizerRadioButton: boolean = true;
-
+  userType = localStorage.getItem('userType');
   user_model: user_model = new user_model();
   artist_categories: any[] = [];
   selectedCategory: any;
@@ -359,7 +359,6 @@ export class UpdateRegistrationFormComponent implements OnInit {
     this.userForm.reset();
     this.artistForm.reset();
     this.organizerForm.reset();
-
   }
 
   private navigateToArtistHome() {
@@ -368,6 +367,14 @@ export class UpdateRegistrationFormComponent implements OnInit {
 
   private navigateToHome() {
     this.router.navigate(['/']);
+  }
+
+  navigateToProfile() {
+    if (this.userType === 'artist') {
+      this.router.navigate(['/artistProfile', this.userIdToUpdate]);
+    } else if (this.userType === 'organizer') {
+      this.router.navigate(['/organizerProfile', this.userIdToUpdate]);
+    }
   }
 
   //  select category

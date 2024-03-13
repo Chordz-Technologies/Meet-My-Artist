@@ -1,4 +1,8 @@
-<div class="container my-5">
+<div class="container my-4">
+  <button class="btn" style="float: right; margin-right: 10px;"
+    *ngIf="userType === 'artist' || userType === 'organizer'" (click)="navigateToProfile()">
+    View Profile
+  </button><br><br><br><br>
   <form class="form-table" [formGroup]="userForm">
     <h1 class="mt-2">User Edit Profile Form</h1>
     <hr />
@@ -604,7 +608,8 @@
 
         <!-- description section -->
         <tr>
-          <td><label for="organizer_description">Your Description</label><span class="text-danger fw-bold"> *</span></td>
+          <td><label for="organizer_description">Your Description</label><span class="text-danger fw-bold"> *</span>
+          </td>
           <td colspan="3">
             <textarea id="organizer_description" name="organizer_description" formControlName="organizer_description"
               placeholder="Enter your Description"></textarea>

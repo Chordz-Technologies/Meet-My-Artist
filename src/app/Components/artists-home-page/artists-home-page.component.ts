@@ -17,7 +17,7 @@ export class ArtistsHomePageComponent implements OnInit {
   ngOnInit(): void {
     this.event_data.getEventDetails().subscribe(res => {
       this.eventdata = res.all_events.filter((item: { erequirements: number; }) => item.erequirements === 1);
-      this.r_eventdata = res.all_events.filter((item: { erequirements: number; }) => item.erequirements === 0);
+      this.r_eventdata = res.all_events.filter((item: { erequirements: number; }) => item.erequirements === 0 || item.erequirements === null);
     })
   }
 }

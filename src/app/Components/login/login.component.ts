@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   user_model: user_model = new user_model()
   loginform!: FormGroup;
-
+  hidePassword: boolean = true;
   isUserLoggedIn!: boolean;
 
   ngOnInit(): void {
@@ -87,8 +87,12 @@ export class LoginComponent implements OnInit {
       },
       error: (err: any) => {
         console.error('Error:', err);
-        this.toastr.error('Invalid credentials. Please check your credentials.', 'Error');
+        this.toastr.error('Please check your credentials and also select your profile.', 'Error');
       }
     });
+  }
+
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
   }
 }

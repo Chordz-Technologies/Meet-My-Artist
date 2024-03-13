@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/Services/service.service';
 
 @Component({
@@ -10,8 +11,9 @@ export class HomePageComponent implements OnInit {
   artists: any[] = [];
   products: any[] = [];
   url = 'https://meetmyartist.beatsacademy.in/';
+  userType = localStorage.getItem('userType');
 
-  constructor(private service: ServiceService) { }
+  constructor(private service: ServiceService, private router: Router) { }
 
   ngOnInit(): void {
     this.getArtistList();

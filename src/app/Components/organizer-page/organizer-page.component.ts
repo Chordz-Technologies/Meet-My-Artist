@@ -39,6 +39,7 @@ export class OrganizerPageComponent implements OnInit {
   modalDisplay = 'none';
   pageSize: number = 5;
   currentPage: number = 0;
+  userType = localStorage.getItem('userType');
 
   openModal() {
     this.modalDisplay = 'block';
@@ -247,5 +248,17 @@ export class OrganizerPageComponent implements OnInit {
 
   navigateToProfile(uid: number) {
     this.router.navigate(['/organizerProfile', uid]);
+  }
+
+  Subscription() {
+    if (this.userType === 'user') {
+      this.router.navigate(['/userSubscription']);
+    } else if (this.userType === 'artist') {
+      this.router.navigate(['/artistSubscription']);
+    } else if (this.userType === 'organizer') {
+      this.router.navigate(['/organizerSubscription']);
+    } else {
+      this.router.navigate(['/userSubscription']);
+    }
   }
 }

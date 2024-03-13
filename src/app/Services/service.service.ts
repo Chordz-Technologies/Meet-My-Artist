@@ -128,7 +128,7 @@ export class ServiceService {
 
   // Update user API for open to work
   openToWork(uid: any, selectedDate: string): Observable<any> {
-    return this.http.put(`${this.url}/updateUser/${uid}/`, { abookeddate: selectedDate })
+    return this.http.patch(`${this.url}/partialupdateUser/${uid}/`, { abookeddate: selectedDate })
   }
 
   // Send email API

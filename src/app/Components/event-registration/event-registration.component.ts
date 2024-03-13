@@ -90,7 +90,7 @@ export class EventRegistrationComponent implements OnInit {
       orequirements: this.createEventForm.value.requiredArtist,
       artistequipwith: this.createEventForm.value.artistEquip,
       facilitiesforartist: this.createEventForm.value.facilityForArtist,
-      eposter: this.eventimageData,
+      ...(this.eventimageData ? { eposter: this.eventimageData } : {}),
       uid: userId, // Add userId to eventData
       // uname:userId,
       // obusinessname:userId
@@ -102,7 +102,7 @@ export class EventRegistrationComponent implements OnInit {
     if (
       !postData.ename ||
       !postData.elocation ||
-      !postData.egooglemap ||
+      // !postData.egooglemap ||
       !postData.edate ||
       !postData.etime ||
       // !postData.eposter ||
@@ -120,7 +120,7 @@ export class EventRegistrationComponent implements OnInit {
       this.service.postEvent(formData).subscribe((res) => {
         console.log(res)
         if (res.status === 'success') {
-          this.toastr.success('Successfully updated!', 'Success');
+          this.toastr.success('Successfully create event!', 'Success');
         } else {
           this.toastr.error('Something went wrong.', 'Error');
         }

@@ -93,7 +93,7 @@ export class EventManageComponent implements OnInit {
     if (
       !postData.ename ||
       !postData.elocation ||
-      !postData.egooglemap ||
+      // !postData.egooglemap ||
       !postData.edate ||
       !postData.etime ||
       // !postData.eposter ||

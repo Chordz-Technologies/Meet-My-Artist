@@ -1,6 +1,7 @@
 <mat-toolbar class="desktop">
     <div class="center-content">
-        <img src="./assets/Meet-my-artist.png" alt="Logo" class="logo">
+        <img src="./assets/Meet-my-artist.png" alt="Logo" class="logo"
+            [routerLink]="userType === 'artist' ? '/artistsHome' : '/'" style="cursor: pointer;">
     </div>
     <ng-container *ngIf="isUserLoggedIn">
 

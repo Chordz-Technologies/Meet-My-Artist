@@ -143,7 +143,7 @@
                         <li>Networking and Collaboration</li>
                         <li>Accessibility and Mobile Responsiveness</li>
                     </ul><br>
-                    <button type="button" class="btn" routerLink="/registrationForm">Register as Organizer
+                    <button type="button" class="btn" *ngIf="userType !== 'user' && userType !== 'organizer'" routerLink="/registrationForm">Register as Organizer
                         !</button>
                 </div>
             </div>
@@ -153,7 +153,7 @@
             <div class="col-md-6">
                 <div class="card-body" style="padding-left: 60px;">
                     <h3 class="card-title">Benefits For Artists</h3><br>
-                    <p class="card-text">Here are some benefits that organizers may find appealing when registering
+                    <p class="card-text">Here are some benefits that artists may find appealing when registering
                         on
                         our website</p><br>
                     <ul>
@@ -165,7 +165,7 @@
                         <li>Mobile-Friendly Experience</li>
                         <li>Support and Community Building</li>
                     </ul><br>
-                    <button type="button" class="btn" routerLink="/registrationForm">Register as Artist
+                    <button type="button" class="btn" *ngIf="userType !== 'user' && userType !== 'organizer'" routerLink="/registrationForm">Register as Artist
                         !</button><br><br>
                 </div>
             </div>

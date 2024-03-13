@@ -26,14 +26,14 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="googlemaplocation">Google Map Location</label><span class="text-danger fw-bold"> *</span></td>
+                <td><label for="googlemaplocation">Google Map Location</label></td>
                 <td colspan="2">
                     <input type="text" id="googlemaplocation" formControlName="googlemaplocation"
                         name="googlemaplocation" placeholder="Google map link" />
-                    <div class="form-text text-danger fw-bold"
+                    <!-- <div class="form-text text-danger fw-bold"
                         *ngIf="GoogleLocation.errors?.['required'] && (GoogleLocation.dirty || GoogleLocation.touched)">
                         Location is required.
-                    </div>
+                    </div> -->
                 </td>
             </tr>
 
