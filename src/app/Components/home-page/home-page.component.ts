@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/Services/service.service';
 export class HomePageComponent implements OnInit {
   artists: any[] = [];
   products: any[] = [];
-  url = 'https://meetmyartist.beatsacademy.in/';
+  url = 'https://api.meetmyartist.in/';
   userType = localStorage.getItem('userType');
 
   constructor(private service: ServiceService, private router: Router) { }
@@ -26,7 +26,7 @@ export class HomePageComponent implements OnInit {
         this.artists = res.artists_list.slice(0, 3);
       },
       error: (err: any) => {
-        alert(err);
+        console.log(err);
       }
     });
   }
@@ -37,7 +37,7 @@ export class HomePageComponent implements OnInit {
         this.products = res.all_products.slice(0, 4);
       },
       error: (err: any) => {
-        alert(err);
+        console.log(err);
       }
     });
   }

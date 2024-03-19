@@ -9,7 +9,7 @@ import { ServiceService } from 'src/app/Services/service.service';
 export class ArtistsHomePageComponent implements OnInit {
   eventdata: any[] = [];
   r_eventdata: any[] = [];
-  url = 'https://meetmyartist.beatsacademy.in/';
+  url = 'https://api.meetmyartist.in/';
   defaultImageUrl: string = './assets/event-poster.jpeg';
 
 

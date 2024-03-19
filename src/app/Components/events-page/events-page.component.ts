@@ -8,7 +8,7 @@ import { ServiceService } from 'src/app/Services/service.service';
 })
 export class EventsPageComponent {
   eventdata: any[] = [];
-  url = 'https://meetmyartist.beatsacademy.in/';
+  url = 'https://api.meetmyartist.in/';
   defaultImageUrl: string = './assets/event-poster.jpeg';
 
   constructor(private service: ServiceService) { }
@@ -18,7 +18,7 @@ export class EventsPageComponent {
         this.eventdata = res.all_events.filter((item: { erequirements: number; }) => item.erequirements === 1);
       },
       error: (err: any) => {
-        alert(err);
+        console.log(err);
       }
     });
   }

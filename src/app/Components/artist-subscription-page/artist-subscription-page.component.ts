@@ -34,7 +34,7 @@ export class ArtistSubscriptionPageComponent implements OnInit {
       },
       error: (err: any) => {
         console.error('Error:', err);
-        alert('Error fetching data. Check the console for details.');
+        // alert('Error fetching data. Check the console for details.');
       },
     })
   }

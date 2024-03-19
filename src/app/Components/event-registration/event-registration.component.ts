@@ -118,7 +118,7 @@ export class EventRegistrationComponent implements OnInit {
         formData.append(key, value)
       }
       this.service.postEvent(formData).subscribe((res) => {
-        console.log(res)
+        // console.log(res)
         if (res.status === 'success') {
           this.toastr.success('Successfully create event!', 'Success');
         } else {

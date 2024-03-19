@@ -39,7 +39,7 @@ export class ArtistsPageComponent implements OnInit {
   filteredArtists: any[] = [];
   products: any[] = [];
   isUserLoggedIn: boolean = false; // Default value
-  url = 'https://meetmyartist.beatsacademy.in/';
+  url = 'https://api.meetmyartist.in/';
   modalDisplay = 'none';
   pageSize: number = 5;
   currentPage: number = 0;
@@ -111,7 +111,7 @@ export class ArtistsPageComponent implements OnInit {
       },
       error: (err: any) => {
         console.error('Error:', err);
-        alert('Error fetching data. Check the console for details.');
+        // alert('Error fetching data. Check the console for details.');
       },
     });
   }
@@ -184,7 +184,7 @@ export class ArtistsPageComponent implements OnInit {
         this.products = res.all_products;
       },
       error: (err: any) => {
-        alert(err);
+        console.log(err);
       }
     });
   }

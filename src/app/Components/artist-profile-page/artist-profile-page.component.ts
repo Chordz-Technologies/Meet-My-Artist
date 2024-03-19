@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/Services/service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 
@@ -15,10 +15,11 @@ export class ArtistProfilePageComponent implements OnInit {
   images: any[] = [];
   ArtistProfileimage: any[] = [];
   isUserLoggedIn: boolean = false; // Default value
-  url = 'https://meetmyartist.beatsacademy.in/';
+  url = 'https://api.meetmyartist.in/';
   modalDisplay = 'none';
+  userType = localStorage.getItem('userType');
 
-  constructor(private service: ServiceService, private activatedRoute: ActivatedRoute, public sanitizer: DomSanitizer, private toastr: ToastrService) { }
+  constructor(private service: ServiceService, private router: Router, private activatedRoute: ActivatedRoute, public sanitizer: DomSanitizer, private toastr: ToastrService) { }
 
   openModal() {
     this.modalDisplay = 'block';
@@ -95,5 +96,17 @@ export class ArtistProfilePageComponent implements OnInit {
   isBookedToday(date: Date): boolean {
     const today = new Date();
     return new Date(date).toDateString() === today.toDateString();
+  }
+
+  Subscription() {
+    if (this.userType === 'user') {
+      this.router.navigate(['/userSubscription']);
+    } else if (this.userType === 'artist') {
+      this.router.navigate(['/artistSubscription']);
+    } else if (this.userType === 'organizer') {
+      this.router.navigate(['/organizerSubscription']);
+    } else {
+      this.router.navigate(['/userSubscription']);
+    }
   }
 }

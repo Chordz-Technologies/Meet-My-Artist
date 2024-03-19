@@ -6,17 +6,17 @@ import { ServiceService } from 'src/app/Services/service.service';
   templateUrl: './notifications-page.component.html',
   styleUrls: ['./notifications-page.component.css']
 })
-export class NotificationsPageComponent implements OnInit{
+export class NotificationsPageComponent implements OnInit {
 
-  eventdata:any[]=[]
-  r_eventdata:any[]=[]
-  constructor(private service:ServiceService){}
+  eventdata: any[] = []
+  r_eventdata: any[] = []
+
+  constructor(private service: ServiceService) { }
+
   ngOnInit(): void {
-    this.service.getEventDetails().subscribe(res=>{
-      this.r_eventdata=res.filter((item: { Erequirement: number; })=>item.Erequirement===0);
-      console.log(res)
+    this.service.getEventDetails().subscribe(res => {
+      this.r_eventdata = res.filter((item: { Erequirement: number; }) => item.Erequirement === 0);
+      // console.log(res)
     })
-    
   }
-
 }

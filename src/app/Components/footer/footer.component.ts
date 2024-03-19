@@ -33,7 +33,7 @@ export class FooterComponent implements OnInit {
   sendEmail() {
     this.service.sendEmail(this.emailData).subscribe({
       next: (res: any) => {
-        console.log('Email sent successfully!', res);
+        // console.log('Email sent successfully!', res);
         // Reset the form after sending the email
         this.emailData = {
           subject: '',

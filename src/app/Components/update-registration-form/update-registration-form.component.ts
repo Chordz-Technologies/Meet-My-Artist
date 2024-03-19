@@ -218,7 +218,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       this.profileimageData = fileList[0];
-      console.log('Selected image:', this.profileimageData);
+      // console.log('Selected image:', this.profileimageData);
     } else {
       this.profileimageData = null; // Reset file if no file is selected
     }
@@ -228,7 +228,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       this.org_profileimageData = fileList[0];
-      console.log('Selected image:', this.org_profileimageData);
+      // console.log('Selected image:', this.org_profileimageData);
     } else {
       this.org_profileimageData = null; // Reset file if no file is selected
     }
@@ -559,11 +559,11 @@ export class UpdateRegistrationFormComponent implements OnInit {
     });
     this.service.postUserImages(imageData).subscribe(
       (response => {
-        console.log('Images uploaded successfully:', response);
-        this.toastr.success('Images uploaded successfully!', 'Success');
+        // console.log('Images uploaded successfully:', response);
+        // this.toastr.success('Images uploaded successfully!', 'Success');
         if (response && response.status === 'success') {
-          console.log('File paths:', response.saved_file_paths);
-          this.toastr.success('Successfully uploaded photos!', 'Success');
+          // console.log('File paths:', response.saved_file_paths);
+          // this.toastr.success('Successfully uploaded photos!', 'Success');
           if (response.saved_file_paths && Object.keys(response.saved_file_paths).length > 0) {
             // Do something with the file paths object
           } else {

@@ -11,7 +11,7 @@ export class UserEventsComponent {
   eventdata: any[] = [];
   r_eventdata: any[] = []
   userID!: number;
-  url='https://meetmyartist.beatsacademy.in/'
+  url='https://api.meetmyartist.in/'
   defaultImageUrl: string = './assets/event-poster.jpeg';
 
   constructor(private service: ServiceService, private route: ActivatedRoute, private router: Router) { }

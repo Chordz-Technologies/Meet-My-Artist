@@ -8,7 +8,7 @@ import { ServiceService } from 'src/app/Services/service.service';
 })
 export class ProductsPageComponent implements OnInit {
   products: any[] = [];
-  url = 'https://meetmyartist.beatsacademy.in/';
+  url = 'https://api.meetmyartist.in/';
 
   constructor(private service: ServiceService) { }
 
@@ -22,7 +22,7 @@ export class ProductsPageComponent implements OnInit {
         this.products = res.all_products;
       },
       error: (err: any) => {
-        alert(err);
+        console.log(err);
       }
     });
   }

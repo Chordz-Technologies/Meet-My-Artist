@@ -15,7 +15,7 @@ export class SearchPageComponent implements OnInit {
     searchOrganizers: user_model[] = [];
     searchProducts: product_model[] = [];
     searchEvents: event_model[] = [];
-    url = 'https://meetmyartist.beatsacademy.in/';
+    url = 'https://api.meetmyartist.in/';
     defaultImageUrl: string = './assets/event-poster.jpeg';
 
     constructor(private route: ActivatedRoute, private service: ServiceService, private router: Router) { }
