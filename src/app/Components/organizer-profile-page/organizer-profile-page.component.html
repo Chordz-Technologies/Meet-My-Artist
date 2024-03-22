@@ -1,18 +1,18 @@
 <div class="container">
     <div class="row justify-content-center mt-3">
-        <div class="col-12 col-md-12 col-xl-11">
+        <div class="col-lg-12 col-md-10 col-sm-12 col-xl-11">
             <div class="mb-3 pt-3 pb-5">
                 <div class="card shadow pt-3 bg-white" style="border-radius: 15px">
                     <div class="card-body p-1 d-md-flex">
-                        <div class="ms-md-5 my-2 d-flex flex-column text-center pe-5 px-5">
-                            <img [src]="url + 'getProfilePhoto/' + organizer.uid"  alt="Profile image"
+                        <div class="col-lg-3 col-md-3 col-sm-12 ms-md-5 my-2 d-flex flex-column text-center pe-5 px-5">
+                            <img [src]="url + 'getProfilePhoto/' + organizer.uid" alt="Profile image"
                                 class="img-fluid my-4 mb-1 rounded-circle mx-auto"
                                 style="width: 150px; height: 150px; z-index: 1" />
                             <!-- <button mat-button class="text-center">
                                 <span><b>{{ organizer.olikes }} </b><i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
                             </button> -->
                         </div>
-                        <div class="mx-md-5 mt-5 text-start px-5 text-center text-md-start">
+                        <div class="col-lg-4 col-md-4 col-sm-12 mx-md-5 mt-5 text-start px-5 text-center text-md-start">
                             <h2 class="mb-3">{{ organizer.obusinessname }}</h2>
                             <h3>{{ organizer.obusinesscategory }}</h3>
                             <h3>{{ organizer.uaddress }}, <b>{{organizer.ucity}}</b></h3>
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div
-                            class="profile-icons ms-auto ms-md-6 mt-4 d-flex flex-column align-items-center text-md-center">
+                            class="col-lg-3 col-md-3 col-sm-12 profile-icons ms-auto ms-md-6 mt-4 d-flex flex-column align-items-center text-md-center">
                             <!-- <button mat-button class="fs-4">
                                 <i class="far fa-heart" style="font-size: 20px;"></i>
                             </button> -->
@@ -49,17 +49,17 @@
                             </div>
                             <p>
                                 <a [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                (click)="onLinkClick($event, 'https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to collaborate with organizer ' + organizer.obusinessname + '.')"
-                                class="btn border border-secondary shadow bg-white py-2 px-5 mt-3">
+                                    (click)="onLinkClick($event, 'https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to collaborate with organizer ' + organizer.obusinessname + '.')"
+                                    class="btn border border-secondary shadow bg-white py-2 px-5 mt-3">
                                     <i class="fab fa-whatsapp"
                                         style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
                                     Book Now</a>
                             </p>
-                            <p class="fs-5 mt-3">
+                            <p class="mt-3 px-5">
                                 <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a
                                     [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
                                     (click)="onLinkClick($event, organizer.owebsite)"
-                                    class="text-decoration-none py-3 px-2 mt-3">{{ organizer.owebsite }}</a>
+                                    class="text-decoration-none py-3 px-2 mt-3 website">{{ organizer.owebsite }}</a>
                             </p>
                         </div>
                     </div>

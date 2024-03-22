@@ -22,16 +22,19 @@
                 <tr>
                     <td><label for="email">Email</label><span class="text-danger fw-bold"> *</span></td>
                     <td colspan="3">
-                        <input type="email" id="email" name="email" formControlName="email" placeholder="Enter your Email" />
-                        <div class="form-text text-danger fw-bold" *ngIf="userForm.get('email')?.errors?.['required'] && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
+                        <input type="email" id="email" name="email" formControlName="email"
+                            placeholder="Enter your Email" />
+                        <div class="form-text text-danger fw-bold"
+                            *ngIf="userForm.get('email')?.errors?.['required'] && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
                             Valid Email Id is required.
                         </div>
-                        <div class="form-text text-danger fw-bold" *ngIf="userForm.get('email')?.errors?.['email'] && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
+                        <div class="form-text text-danger fw-bold"
+                            *ngIf="userForm.get('email')?.errors?.['email'] && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
                             Email is invalid.
                         </div>
                     </td>
-                  </tr>
-                  
+                </tr>
+
                 <tr>
                     <td style="width: 200px">
                         <label for="wnumber">Whatsapp Number</label><span class="text-danger fw-bold"> *</span>
@@ -80,14 +83,11 @@
                         <div class="input-group d-flex">
                             <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password"
                                 formControlName="password" placeholder="Set your Password" />
-                            <div class="input-group-append ms-3 mt-1">
-                                <span class="input-group-text">
-                                    <i class="fa" [ngClass]="{
-                        'fa-eye-slash': !showPassword,
-                        'fa-eye': showPassword
-                      }" (click)="togglePasswordVisibility('password')"></i>
-                                </span>
-                            </div>
+                            <span class="position-absolute end-0 top-50 translate-middle-y"
+                                style="padding-right: 15px;">
+                                <i class="fa" [ngClass]="{'fa-eye-slash': !showPassword, 'fa-eye': showPassword}"
+                                    (click)="togglePasswordVisibility('password')"></i>
+                            </span>
                         </div>
                         <div class="form-text text-danger fw-bold"
                             *ngIf="Password.errors?.['required'] && (Password.dirty || Password.touched)">
@@ -105,12 +105,11 @@
                         <div class="input-group me-3 d-flex">
                             <input type="{{ showCPassword ? 'text' : 'password' }}" id="cpassword" name="cpassword"
                                 formControlName="cpassword" placeholder="Confirm Password" />
-                            <div class="input-group-append ms-3 mt-1">
-                                <span class="input-group-text">
-                                    <i class="fa" [ngClass]="{'fa-eye-slash': !showCPassword,'fa-eye': showCPassword}"
-                                        (click)="togglePasswordVisibility('cpassword')"></i>
-                                </span>
-                            </div>
+                            <span class="position-absolute end-0 top-50 translate-middle-y"
+                                style="padding-right: 15px;">
+                                <i class="fa" [ngClass]="{'fa-eye-slash': !showCPassword, 'fa-eye': showCPassword}"
+                                    (click)="togglePasswordVisibility('cpassword')"></i>
+                            </span>
                         </div>
                         <div class="form-text text-danger fw-bold"
                             *ngIf="Cpassword.errors?.['mismatch'] && (Cpassword.dirty || Cpassword.get('cpassword')?.touched)">

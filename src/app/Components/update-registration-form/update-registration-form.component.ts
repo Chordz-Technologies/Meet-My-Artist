@@ -28,7 +28,8 @@ export class UpdateRegistrationFormComponent implements OnInit {
   subcategories: string[] = [];
   selectedSubcategory: string = '';
   organizer_categories: any[] = [];
-
+  showPassword: boolean = false;
+  showCPassword: boolean = false;
   // images upload
 
   images: any[] = [];
@@ -55,6 +56,11 @@ export class UpdateRegistrationFormComponent implements OnInit {
         ]),
         address: this.fb.control({ value: '', disabled: true }, [Validators.required]),
         city: this.fb.control('', [Validators.required]),
+        password: this.fb.control('', [
+          Validators.required,
+          Validators.minLength(6),
+        ]),
+        cpassword: this.fb.control('', [Validators.required]),
         options: this.fb.control('', [Validators.required]),
       });
 
@@ -169,6 +175,8 @@ export class UpdateRegistrationFormComponent implements OnInit {
         wnumber: user.uwhatsappno,
         address: user.uaddress,
         city: user.ucity,
+        password: user.upassword,
+        cpassword: user.uconfirmpassword,
         options: '2'
       });
     } else if (user.utypeorganizer === 1) {
@@ -195,6 +203,8 @@ export class UpdateRegistrationFormComponent implements OnInit {
         wnumber: user.uwhatsappno,
         address: user.uaddress,
         city: user.ucity,
+        password: user.upassword,
+        cpassword: user.uconfirmpassword,
         options: '1'
       });
     } else {
@@ -209,6 +219,8 @@ export class UpdateRegistrationFormComponent implements OnInit {
         wnumber: user.uwhatsappno,
         address: user.uaddress,
         city: user.ucity,
+        password: user.upassword,
+        cpassword: user.uconfirmpassword,
         options: '3'
       });
     }
@@ -243,6 +255,8 @@ export class UpdateRegistrationFormComponent implements OnInit {
       uwhatsappno: this.userForm.value.wnumber,
       uaddress: this.userForm.value.address,
       ucity: this.userForm.value.city,
+      upassword: this.userForm.value.password,
+      uconfirmpassword: this.userForm.value.cpassword,
       utypeartist: this.userForm.value.options === '2' ? 1 : 0,
       utypeorganizer: this.userForm.value.options === '1' ? 1 : 0,
       utypeuser: this.userForm.value.options === '3' ? 1 : 0,
@@ -277,7 +291,7 @@ export class UpdateRegistrationFormComponent implements OnInit {
       owebsite: this.organizerForm.value.organizer_website || '',
       ofacilities: this.organizerForm.value.o_speciality || '',
       ofacilitesforartist: this.organizerForm.value.o_facility || '',
-      ...(this.profileimageData ? { oprofilephoto: this.profileimageData } : {})
+      ...(this.org_profileimageData ? { oprofilephoto: this.org_profileimageData } : {})
       // ophotos: this.organizerForm.value.o_photos || '',
     };
 
@@ -334,6 +348,8 @@ export class UpdateRegistrationFormComponent implements OnInit {
       !updateData.uwhatsappno ||
       !updateData.uaddress ||
       !updateData.ucity ||
+      !updateData.upassword ||
+      !updateData.uconfirmpassword ||
       !(updateData.utypeorganizer + '') ||
       !(updateData.utypeuser + '')
 
@@ -403,6 +419,14 @@ export class UpdateRegistrationFormComponent implements OnInit {
   selectOCategory(category: any) {
     this.selectedCategory = category;
     this.user_model.obusinesscategory = category.businesscategory;
+  }
+
+  togglePasswordVisibility(field: string) {
+    if (field === 'password') {
+      this.showPassword = !this.showPassword;
+    } else if (field === 'cpassword') {
+      this.showCPassword = !this.showCPassword;
+    }
   }
 
   // onFileChange(event: any) {

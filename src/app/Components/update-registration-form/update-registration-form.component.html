@@ -74,76 +74,44 @@
             </div>
           </td>
         </tr>
-        <!-- <tr>
-              <td><label for="password">Password :</label></td>
-              <td colspan="3">
-                <div class="input-group d-flex">
-                  <input
-                    type="{{ showPassword ? 'text' : 'password' }}"
-                    id="password"
-                    name="password"
-                    formControlName="password"
-                    placeholder="Set your Password"
-                  />
-                  <div class="input-group-append ms-3 mt-1">
-                    <span class="input-group-text">
-                      <i
-                        class="fa"
-                        [ngClass]="{
-                          'fa-eye-slash': !showPassword,
-                          'fa-eye': showPassword
-                        }"
-                        (click)="togglePasswordVisibility('password')"
-                      ></i>
-                    </span>
-                  </div>
-                </div>
-                <div
-                  class="form-text text-danger fw-bold"
-                  *ngIf="Password.errors?.['required'] && (Password.dirty || Password.touched)"
-                >
-                  Password is required.
-                </div>
-                <div
-                  class="form-text text-danger fw-bold"
-                  *ngIf="(Password.errors?.['minlength']) && (Password.dirty || Password.get('password')?.touched)"
-                >
-                  Password should be minimum 6 characters.
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><label for="cpassword">Confirm Password :</label></td>
-              <td colspan="3">
-                <div class="input-group me-3 d-flex">
-                  <input
-                    type="{{ showCPassword ? 'text' : 'password' }}"
-                    id="cpassword"
-                    name="cpassword"
-                    formControlName="cpassword"
-                    placeholder="Confirm Password"
-                  />
-                  <div class="input-group-append ms-3 mt-1">
-                    <span class="input-group-text">
-                      <i
-                        class="fa"
-                        [ngClass]="{
-                          'fa-eye-slash': !showCPassword,
-                          'fa-eye': showCPassword
-                        }"
-                        (click)="togglePasswordVisibility('cpassword')"
-                      ></i>
-                    </span>
-                  </div>
-                </div>
-                <div
-                  class="form-text text-danger fw-bold"
-                  *ngIf="Cpassword.errors?.['mismatch'] && (Cpassword.dirty || Cpassword.get('cpassword')?.touched)"
-                >
-                  Confirm Password is invalid.
-                </div>
-              </td>
-            </tr> -->
+        <tr>
+          <td><label for="password">Password </label><span class="text-danger fw-bold"> *</span></td>
+          <td colspan="3">
+            <div class="input-group d-flex position-relative">
+              <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password"
+                formControlName="password" placeholder="Set your Password" />
+              <span class="position-absolute end-0 top-50 translate-middle-y" style="padding-right: 15px;">
+                <i class="fa" [ngClass]="{'fa-eye-slash': !showPassword, 'fa-eye': showPassword}"
+                  (click)="togglePasswordVisibility('password')"></i>
+              </span>
+            </div>
+            <div class="form-text text-danger fw-bold"
+              *ngIf="Password.errors?.['required'] && (Password.dirty || Password.touched)">
+              Password is required.
+            </div>
+            <div class="form-text text-danger fw-bold"
+              *ngIf="(Password.errors?.['minlength']) && (Password.dirty || Password.get('password')?.touched)">
+              Password should be minimum 6 characters.
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="cpassword">Confirm Password </label><span class="text-danger fw-bold"> *</span></td>
+          <td colspan="3">
+            <div class="input-group me-3 d-flex">
+              <input type="{{ showCPassword ? 'text' : 'password' }}" id="cpassword" name="cpassword"
+                formControlName="cpassword" placeholder="Confirm Password" />
+              <span class="position-absolute end-0 top-50 translate-middle-y" style="padding-right: 15px;">
+                <i class="fa" [ngClass]="{'fa-eye-slash': !showCPassword, 'fa-eye': showCPassword}"
+                  (click)="togglePasswordVisibility('cpassword')"></i>
+              </span>
+            </div>
+            <div class="form-text text-danger fw-bold"
+              *ngIf="Cpassword.errors?.['mismatch'] && (Cpassword.dirty || Cpassword.get('cpassword')?.touched)">
+              Confirm Password is invalid.
+            </div>
+          </td>
+        </tr>
 
         <!-- Speciality check box -->
         <tr>
@@ -193,8 +161,7 @@
         <tr>
           <td><label for="wexp">Work Experience</label><span class="text-danger fw-bold"> *</span></td>
           <td>
-            <input type="text" id="wexp" name="wexp" formControlName="wexp" maxlength="2"
-              placeholder="Enter your work experience" />
+            <input type="text" id="wexp" name="wexp" formControlName="wexp" placeholder="Enter your work experience" />
             <div class="form-text text-danger fw-bold"
               *ngIf="Experience.errors?.['required'] && (Experience.dirty || Experience.touched)">
               Experience is required.

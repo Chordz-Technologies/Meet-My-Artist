@@ -48,11 +48,11 @@
                 <div class="container pt-3">
                     <section class="vh-50 mt-3">
                         <div class="row justify-content-center align-items-center h-50">
-                            <div class="col-12 col-md-10 col-xl-10">
+                            <div class="col-lg-12 col-md-10 col-sm-12 col-xl-10">
                                 <div *ngFor="let organizer of filteredOrganizers" class="mb-3">
                                     <div class="card shadow p-3 mb-3 bg-white rounded">
                                         <div class="card-body p-1 d-md-flex text-center text-md-left">
-                                            <div class="ms-md-5 my-2 d-flex flex-column">
+                                            <div class="col-lg-2 col-md-3 col-sm-12 my-2 d-flex flex-column">
                                                 <img [src]="url + 'getProfilePhoto/' + organizer.uid"
                                                     alt="Profile image"
                                                     class="img-fluid my-4 mb-1 rounded-circle mx-auto"
@@ -63,7 +63,7 @@
 
                                                 </button> -->
                                             </div>
-                                            <div class="organizer-info mt-3">
+                                            <div class="col-lg-3 col-md-4 col-sm-12 organizer-info mt-3">
                                                 <h4 class="mb-3 mt-1">{{ organizer.obusinessname }}</h4>
                                                 <p>{{ organizer.obusinesscategory }}</p>
                                                 <p>{{ organizer.uaddress }}</p>
@@ -85,7 +85,7 @@
                                                     </div><br>
                                                 </div>
                                             </div>
-                                            <div class="profile-icons ms-auto ms-md-6 mt-4">
+                                            <div class="col-lg-3 col-md-3 col-sm-12 profile-icons ms-auto ms-md-6 mt-4">
                                                 <!-- <a (click)="toggleWishlist(organizer)">
                                                     <i *ngIf="!organizer.isWishlist" class="far fa-heart" style="font-size: 20px;"></i>
                                                     <i *ngIf="organizer.isWishlist" class="fas fa-heart" style="font-size: 20px;"></i>
@@ -113,7 +113,7 @@
                                                             style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
                                                         Book Now</a>
                                                 </p>
-                                                <p>
+                                                <p style="font-size: 13px;">
                                                     <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a
                                                         [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
                                                         (click)="onLinkClick($event, organizer.owebsite)"

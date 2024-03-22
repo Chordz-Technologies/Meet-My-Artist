@@ -28,7 +28,7 @@ export class ServiceService {
 
   // Update user API 
   updatedata(uid: number, data: any): Observable<any> {
-    return this.http.put<any>(`${this.url}/updateUser/${uid}/`, data);
+    return this.http.patch<any>(`${this.url}/partialupdateUser/${uid}/`, data);
   }
 
   // Organizer API

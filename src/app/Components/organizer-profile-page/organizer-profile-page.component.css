@@ -13,7 +13,8 @@ a {
     height: 100%;
     overflow: auto;
     /* background-color: rgba(219, 219, 219, 0.4); */
-    backdrop-filter: blur(15px); /* Add the blur effect */
+    backdrop-filter: blur(15px);
+    /* Add the blur effect */
     /* Add the blur effect */
 }
 
@@ -69,3 +70,9 @@ h4 {
     text-align: center;
     padding-top: 15px;
 }
+
+/* @media (max-width: 767px) {
+    .website {
+        padding-left: 80px;
+    }
+} */

@@ -29,6 +29,13 @@ li {
     flex-shrink: 0;
 }
 
+#featured-img {
+    height: 400px; /* Set your desired fixed height here */
+    width: 100%;
+    padding: 5px;
+
+}
+
 .btn {
     border-radius: 10px;
     background: #F0E945;
@@ -103,14 +110,16 @@ h1 {
     font-weight: 700;
     line-height: normal;
 }
-.business-card{
-    height: 90%;
+
+.business-card {
+    height: 95%;
 }
-.card-data img {
+
+/* .card-data img {
     height: 80%;
     width: 100%;
     padding: 5px;
-}
+} */
 
 h4 {
     color: #1E1E1E;
