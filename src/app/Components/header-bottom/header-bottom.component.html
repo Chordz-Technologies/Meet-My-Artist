@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg">
+<!-- <nav class="navbar navbar-expand-lg">
     <div class="container">
         <button class="navbar-toggler" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse">
-            <!-- Initial set of menu items -->
+           
             <ng-template #initialMenu>
                 <ul class="navbar-nav mr-auto" id="toggler">
                     <li class="nav-item" (click)="isNavbarCollapsed = true">
@@ -24,9 +24,9 @@
                 </ul>
             </ng-template>
 
-            <!-- Menu items after login -->
+           
             <ng-template #loggedInMenu>
-                <!-- Adjust these menu items based on the user's type -->
+                
                 <ul class="navbar-nav mr-auto" *ngIf="userType === 'user'" id="toggler">
                     <li class="nav-item" (click)="isNavbarCollapsed = true">
                         <a class="nav-link" routerLink="/" routerLinkActive="active"
@@ -76,7 +76,7 @@
                 </ul>
             </ng-template>
 
-            <!-- Display the appropriate set of menu items based on login status -->
+           
             <ng-container *ngIf="isUserLoggedIn; else initialMenu">
                 <ng-container *ngTemplateOutlet="loggedInMenu"></ng-container>
             </ng-container>
@@ -159,4 +159,164 @@
             </div>
         </div>
     </div>
+</div> -->
+
+<header class="premium-header sticky-top">
+  <div class="header-container">
+    <div class="logo-section">
+      <img
+        src="./assets/meeAalogo.png"
+        alt="Logo"
+        class="logo"
+        [routerLink]="userType === 'artist' ? '/artistsHome' : '/'"
+        style="cursor: pointer"
+      />
+    </div>
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-and-actions" [class.active]="isMenuOpen">
+      <nav class="nav-section">
+        <ng-container *ngIf="isUserLoggedIn; else initialMenu">
+          <ng-container [ngSwitch]="userType">
+            <ng-container *ngSwitchCase="'user'">
+              <a
+                routerLink="/"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Home</a
+              >
+              <a routerLink="/artists" routerLinkActive="active">Artists</a>
+              <a routerLink="/events" routerLinkActive="active">Events</a>
+              <a routerLink="/products" routerLinkActive="active">Products</a>
+              <a routerLink="/careers" routerLinkActive="active">Careers</a>
+            </ng-container>
+            <ng-container *ngSwitchCase="'artist'">
+              <a
+                routerLink="/artistsHome"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Home</a
+              >
+              <a routerLink="/organizer" routerLinkActive="active"
+                >Organizers</a
+              >
+              <a routerLink="/events" routerLinkActive="active">Events</a>
+              <a routerLink="/products" routerLinkActive="active">Products</a>
+              <a routerLink="/careers" routerLinkActive="active">Careers</a>
+            </ng-container>
+            <ng-container *ngSwitchCase="'organizer'">
+              <a
+                routerLink="/"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Home</a
+              >
+              <a routerLink="/artists" routerLinkActive="active">Artists</a>
+              <a routerLink="/events" routerLinkActive="active">Events</a>
+              <a routerLink="/products" routerLinkActive="active">Products</a>
+              <a routerLink="/careers" routerLinkActive="active">Careers</a>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <ng-template #initialMenu>
+          <a
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
+          <a routerLink="/artists" routerLinkActive="active">Artists</a>
+          <a routerLink="/events" routerLinkActive="active">Events</a>
+          <a routerLink="/products" routerLinkActive="active">Products</a>
+          <a routerLink="/careers" routerLinkActive="active">Careers</a>
+        </ng-template>
+      </nav>
+      <div class="action-section">
+        <div class="search-container">
+          <input type="text" placeholder="Search" [(ngModel)]="searchTerm" />
+          <button class="search-btn" (click)="onSearch()">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
+        <ng-container *ngIf="!isUserLoggedIn; else loggedInActions">
+          <button class="auth-btn" routerLink="/login">Login</button>
+        </ng-container>
+        <ng-template #loggedInActions>
+          <div class="user-actions" ngbDropdown>
+            <button
+              class="action-btn"
+              *ngIf="userType === 'user' || userType === 'organizer'"
+              (click)="createEvent()"
+            >
+              Create Event
+            </button>
+            <button
+              class="action-btn"
+              *ngIf="userType === 'artist'"
+              (click)="openModal()"
+            >
+              Book Yourself
+            </button>
+            <button class="profile-btn" ngbDropdownToggle>
+              <mat-icon>person</mat-icon>
+            </button>
+            <div class="dropdown-menu" ngbDropdownMenu>
+              <!-- <a
+                ngbDropdownItem
+                *ngIf="userType === 'user' || userType === 'organizer'"
+                (click)="createEvent()"
+                >Create Event</a
+              > -->
+              <a
+                ngbDropdownItem
+                *ngIf="userType === 'artist'"
+                (click)="openModal()"
+                >Book Yourself</a
+              >
+              <a
+                ngbDropdownItem
+                *ngIf="userType === 'user' || userType === 'organizer'"
+                (click)="eventManageForm()"
+                >Manage Event</a
+              >
+              <a ngbDropdownItem (click)="openUpdateForm()">Edit Profile</a>
+              <a ngbDropdownItem (click)="logout()">Logout</a>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Modal for event subscription -->
+<div class="modal" [class.show]="showEventModal">
+  <div class="modal-content">
+    <h2>Subscribe to Create Events</h2>
+    <p>You need to subscribe first to create events!</p>
+    <div class="modal-actions">
+      <button class="btn primary" (click)="goToSubscription()">
+        View Subscription Plans
+      </button>
+      <button class="btn secondary" (click)="hideModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for date selection -->
+<div class="modal" [class.show]="showModal">
+  <div class="modal-content">
+    <h2>Select Date</h2>
+    <div class="form-group">
+      <label for="selectedDate">Choose a date:</label>
+      <input type="date" id="selectedDate" [(ngModel)]="selectedDate" />
+    </div>
+    <div class="modal-actions">
+      <button class="btn primary" (click)="saveDate()">Save</button>
+      <button class="btn secondary" (click)="closeModal()">Close</button>
+    </div>
+  </div>
 </div>

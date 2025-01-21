@@ -1,120 +1,143 @@
-<div class="container">
-    <div class="row justify-content-center mt-3">
-        <div class="col-lg-12 col-md-10 col-sm-12 col-xl-11">
-            <div class="mb-3 pt-3 pb-5">
-                <div class="card shadow pt-3 bg-white" style="border-radius: 15px">
-                    <div class="card-body p-1 d-md-flex">
-                        <div class="col-lg-3 col-md-3 col-sm-12 ms-md-5 my-2 d-flex flex-column text-center pe-5 px-5">
-                            <img [src]="url + 'getProfilePhoto/' + organizer.uid" alt="Profile image"
-                                class="img-fluid my-4 mb-1 rounded-circle mx-auto"
-                                style="width: 150px; height: 150px; z-index: 1" />
-                            <!-- <button mat-button class="text-center">
-                                <span><b>{{ organizer.olikes }} </b><i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
-                            </button> -->
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12 mx-md-5 mt-5 text-start px-5 text-center text-md-start">
-                            <h2 class="mb-3">{{ organizer.obusinessname }}</h2>
-                            <h3>{{ organizer.obusinesscategory }}</h3>
-                            <h3>{{ organizer.uaddress }}, <b>{{organizer.ucity}}</b></h3>
-                        </div>
-                        <div id="myModal" class="modal" [style.display]="modalDisplay">
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <h4>You want to subscribe first!</h4><br>
-                                <div style="display: flex; margin: auto;">
-                                    <button class="btn" (click)="Subscription()">Subscription
-                                        Plan</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button class="btn" (click)="closeModal()">Close</button>
-                                </div><br>
-                            </div>
-                        </div>
-                        <div
-                            class="col-lg-3 col-md-3 col-sm-12 profile-icons ms-auto ms-md-6 mt-4 d-flex flex-column align-items-center text-md-center">
-                            <!-- <button mat-button class="fs-4">
-                                <i class="far fa-heart" style="font-size: 20px;"></i>
-                            </button> -->
-                            <div class="social-links">
-                                <a class="btn btn-sm rounded-circle bg-primary text-white me-3"
-                                    [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                    (click)="onLinkClick($event, organizer.ofblink)"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm rounded-circle text-white me-3"
-                                    style="background: linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);"
-                                    [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                    (click)="onLinkClick($event, organizer.oinstalink)"><i
-                                        class="fab fa-instagram"></i></a>
-                                <!-- <a class="btn btn-sm rounded-circle text-white bg-primary"
-                                    [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                    (click)="onLinkClick($event, '#')"><i class="fab fa-linkedin-in"></i></a> -->
-                            </div>
-                            <p>
-                                <a [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                    (click)="onLinkClick($event, 'https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to collaborate with organizer ' + organizer.obusinessname + '.')"
-                                    class="btn border border-secondary shadow bg-white py-2 px-5 mt-3">
-                                    <i class="fab fa-whatsapp"
-                                        style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
-                                    Book Now</a>
-                            </p>
-                            <p class="mt-3 px-5">
-                                <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a
-                                    [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                    (click)="onLinkClick($event, organizer.owebsite)"
-                                    class="text-decoration-none py-3 px-2 mt-3 website">{{ organizer.owebsite }}</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 ms-md-5 ms-3 my-3 text-center pe-5 mt-5">
-                            <h1 class="fw-bold" style="text-align: left;">Gallery</h1>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row row-cols-2 row-cols-md-5 g-4">
-                            <div *ngFor="let image of images" class="image-wrapper">
-                                <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + image.data)"
-                                    [alt]="image.src"
-                                    style="height: 100%; width: 100%; border: 1px solid black; border-radius: 10px;" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body p-1 d-md-flex">
-                        <div class="ms-md-5 my-3 text-center pe-5">
-                            <h1 class="fw-bold" style="text-align: left;">
-                                Facilities
-                            </h1>
-                        </div>
-                        <div class="mx-md-5 mt-4 fs-5 px-5">
-                            <ol>
-                                <li class="mb-3" *ngFor="let requirement of organizer.ofacilities.split(',')">
-                                    {{requirement.trim()}}</li>
-                            </ol>
-                        </div>
-                    </div>
-                    <div class="card-body p-1 d-md-flex ">
-                        <div class="ms-md-5 ms-3 my-3 text-center pe-5">
-                            <h1 class="fw-bold" style="text-align: left;">
-                                Description
-                            </h1>
-                        </div>
-                        <div class="mx-md-5 mt-3 px-5">
-                            <h3>{{organizer.odescription}}</h3>
-                        </div>
-                    </div>
-                    <div class="card-body p-1 d-md-flex mb-5">
-                        <div class="ms-md-5 ms-4 my-3 text-center pe-4">
-                            <h1 class="fw-bold" style="text-align: left;">
-                                Facility for Artist
-                            </h1>
-                        </div>
-                        <div class="mx-md-5 mt-4 fs-5">
-                            <ol>
-                                <li class="mb-3" *ngFor="let requirement of organizer.ofacilitesforartist.split(',')">
-                                    {{requirement.trim()}}</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="organizer-profile">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="profile-container">
+      <div class="profile-header">
+        <div class="profile-image">
+          <img
+            [src]="url + 'getProfilePhoto/' + organizer.uid"
+            [alt]="organizer.obusinessname"
+          />
         </div>
+        <div class="profile-info">
+          <h1 class="business-name">{{ organizer.obusinessname }}</h1>
+          <div class="business-tags">
+            <span class="tag">{{ organizer.obusinesscategory }}</span>
+          </div>
+          <div class="business-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span
+              >{{ organizer.uaddress }},
+              <strong>{{ organizer.ucity }}</strong></span
+            >
+          </div>
+        </div>
+        <div class="profile-actions">
+          <div class="social-links">
+            <a
+              [ngClass]="{ disabled: !isUserLoggedIn }"
+              (click)="onLinkClick($event, organizer.ofblink)"
+              class="social-btn facebook"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              [ngClass]="{ disabled: !isUserLoggedIn }"
+              (click)="onLinkClick($event, organizer.oinstalink)"
+              class="social-btn instagram"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+          <a
+            class="booking-btn"
+            [ngClass]="{ disabled: !isUserLoggedIn }"
+            (click)="
+              onLinkClick(
+                $event,
+                'https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to collaborate with organizer ' +
+                  organizer.obusinessname +
+                  '.'
+              )
+            "
+          >
+            <i class="fab fa-whatsapp"></i>
+            Book Now
+          </a>
+          <!-- <div class="website-link">
+            <i class="fa fa-globe"></i>
+            <a
+              [ngClass]="{ disabled: !isUserLoggedIn }"
+              (click)="onLinkClick($event, organizer.owebsite)"
+              [title]="organizer.owebsite"
+            >
+              {{ organizer.owebsite }}
+            </a>
+          </div> -->
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Gallery Section -->
+  <section class="content-section">
+    <div class="section-container">
+      <h2 class="section-title">Gallery</h2>
+      <div class="gallery-grid">
+        <div *ngFor="let image of images" class="gallery-item">
+          <img
+            [src]="
+              sanitizer.bypassSecurityTrustUrl(
+                'data:image/png;base64,' + image.data
+              )
+            "
+            [alt]="image.src"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Facilities Section -->
+  <section class="content-section">
+    <div class="section-container">
+      <h2 class="section-title">Facilities</h2>
+      <div class="facilities-grid">
+        <div
+          *ngFor="let facility of organizer.ofacilities.split(',')"
+          class="facility-item"
+        >
+          <i class="fas fa-check-circle"></i>
+          <span>{{ facility.trim() }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Description Section -->
+  <section class="content-section">
+    <div class="section-container">
+      <h2 class="section-title">About</h2>
+      <p class="description">{{ organizer.odescription }}</p>
+    </div>
+  </section>
+
+  <!-- Artist Facilities Section -->
+  <section class="content-section">
+    <div class="section-container">
+      <h2 class="section-title">Facilities for Artists</h2>
+      <div class="artist-facilities-grid">
+        <div
+          *ngFor="let facility of organizer.ofacilitesforartist.split(',')"
+          class="facility-item"
+        >
+          <i class="fas fa-star"></i>
+          <span>{{ facility.trim() }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subscription Modal -->
+  <div class="modal-overlay" [class.active]="modalDisplay === 'block'">
+    <div class="modal-content">
+      <h3>You want to subscribe first!</h3>
+      <div class="modal-actions">
+        <button class="btn-primary" (click)="Subscription()">
+          Subscription Plan
+        </button>
+        <button class="btn-secondary" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

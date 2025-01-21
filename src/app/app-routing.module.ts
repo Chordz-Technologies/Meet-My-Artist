@@ -22,6 +22,7 @@ import { PricingPageComponent } from './Components/pricing-page/pricing-page.com
 import { UpdateRegistrationFormComponent } from './Components/update-registration-form/update-registration-form.component';
 import { SearchPageComponent } from './Components/search-page/search-page.component';
 import { UserEventsComponent } from './Components/user-events/user-events.component';
+import { CareerPageComponent } from './Components/career-page/career-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent, canActivate: [authGuard] },
@@ -30,7 +31,10 @@ const routes: Routes = [
   { path: 'events', component: EventsPageComponent },
   { path: 'products', component: ProductsPageComponent },
   { path: 'registrationForm', component: RegistrationFormComponent },
-  { path: 'updateRegistrationForm/:uid', component: UpdateRegistrationFormComponent },
+  {
+    path: 'updateRegistrationForm/:uid',
+    component: UpdateRegistrationFormComponent,
+  },
   { path: 'eventRegistration', component: EventRegistrationComponent },
   { path: 'eventManage/:eid', component: EventManageComponent },
   { path: 'login', component: LoginComponent },
@@ -39,18 +43,25 @@ const routes: Routes = [
   { path: 'artistProfile/:uid', component: ArtistProfilePageComponent },
   { path: 'organizer', component: OrganizerPageComponent },
   { path: 'organizerProfile/:uid', component: OrganizerProfilePageComponent },
-  { path: 'artistsHome', component: ArtistsHomePageComponent, canActivate: [authGuard] },
+  {
+    path: 'artistsHome',
+    component: ArtistsHomePageComponent,
+    canActivate: [authGuard],
+  },
   { path: 'userSubscription', component: UserSubscriptionPageComponent },
   { path: 'artistSubscription', component: ArtistSubscriptionPageComponent },
-  { path: 'organizerSubscription', component: OrganizerSubscriptionPageComponent },
+  {
+    path: 'organizerSubscription',
+    component: OrganizerSubscriptionPageComponent,
+  },
   { path: 'pricing', component: PricingPageComponent },
   { path: 'search/:term', component: SearchPageComponent },
-  { path: 'userEvents/:uid', component: UserEventsComponent }
-
+  { path: 'userEvents/:uid', component: UserEventsComponent },
+  { path: 'careers', component: CareerPageComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

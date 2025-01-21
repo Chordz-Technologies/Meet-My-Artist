@@ -1,108 +1,208 @@
 .footer {
-    background: rgba(203, 228, 242, 0.48);
+  background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.9)), 
+  url("../../../assets/musical-sound-waves.webp") no-repeat center center/cover;
+  color: #e0e0e0;
+  padding: 30px 0 0;
+  font-family: 'Arial', sans-serif;
 }
 
-img {
-    cursor: pointer; 
-    height: 25%; 
-    width: 55%;
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.container {
-    padding-top: 50px;
-    padding-bottom: 40px;
+.footer .footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.list-unstyled li {
-    margin-bottom: 30px;
-    color: #000;
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+.footer .footer-brand {
+  flex: 1 1 300px;
 }
 
-a {
-    text-decoration: none;
-    color: black;
+.footer .footer-brand .logo {
+  max-width: 150px;
+  margin-bottom: 15px;
 }
 
-a:hover {
-    color: blue;
+.footer .footer-brand .footer-quote {
+  font-style: italic;
+  line-height: 1.4;
+  color: #b3b3b3;
+  border-left: 3px solid #2BAEBF;
+  padding-left: 10px;
+  margin-top: 15px;
 }
 
-a.active {
-    color: blue;
+.footer .footer-links {
+  flex: 1 1 200px;
 }
 
-.copyright {
-    color: blue;
-    cursor: pointer;
+.footer .footer-links h4 {
+  color: #ffffff;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  position: relative;
 }
 
-.text-center p {
-    color: #000;
-    font-family: cursive;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-align: justify;
+.footer .footer-links h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 30px;
+  height: 2px;
+  background-color: #2BAEBF;
 }
 
-h4 {
-    color: #000;
-    text-align: center;
-    /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
-    font-family: Roboto;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+.footer .footer-links ul {
+  list-style: none;
+  padding: 0;
+  columns: 2;
 }
 
-.btn {
-    border-radius: 10px;
-    background: #F0E945;
-    /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
-    color: #1E1E1E;
-    text-align: center;
-    /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    padding: 10px 40px 10px 40px;
-}
-@media (max-width: 600px) {
-
-    /* Mobile view styles */
-    img {
-        height: 23%; 
-        width: 60%;
-    }
+.footer .footer-links ul li {
+  margin-bottom: 8px;
 }
 
-/* Custom CSS for the two-column layout */
-/* .quick-links-menu .row {
-    display: flex;
+.footer .footer-links ul li a {
+  color: #b3b3b3;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.quick-links-menu .col-md-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
-    padding-right: 15px;
-    padding-left: 15px;
+.footer .footer-links ul li a:hover {
+  color: #2BAEBF;
 }
 
-.quick-links-menu .list-unstyled {
-    margin: 0;
-    padding-left: 0;
-    list-style: none;
+.footer .footer-contact {
+  flex: 1 1 300px;
 }
 
-.quick-links-menu .list-unstyled li {
-    padding: 5px 0;
-} */
+.footer .footer-contact h4 {
+  color: #ffffff;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  position: relative;
+}
+
+.footer .footer-contact h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 30px;
+  height: 2px;
+  background-color: #2BAEBF;
+}
+
+.footer .footer-contact .contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer .footer-contact .contact-form input,
+.footer .footer-contact .contact-form textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+  transition: background-color 0.3s ease;
+}
+
+.footer .footer-contact .contact-form input::placeholder,
+.footer .footer-contact .contact-form textarea::placeholder {
+  color: #888;
+}
+
+.footer .footer-contact .contact-form input:focus,
+.footer .footer-contact .contact-form textarea:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+.footer .footer-contact .contact-form textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+.footer .footer-contact .contact-form button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2BAEBF;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.footer .footer-contact .contact-form button:hover {
+  background-color: #2BAEBF;
+}
+
+.footer .footer-bottom {
+  margin-top: 20px;
+  padding: 15px 0;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer .footer-bottom p {
+  font-size: 12px;
+  color: #888;
+}
+
+.footer .footer-bottom p a {
+  color: #2BAEBF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer .footer-bottom p a:hover {
+  text-decoration: underline;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: #3498db;
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background-color: #2980b9;
+}
+
+@media (max-width: 768px) {
+  .footer .footer-content {
+      flex-direction: column;
+  }
+
+  .footer .footer-links ul {
+      columns: 1;
+  }
+}

@@ -1,11 +1,54 @@
-<ngb-carousel [showNavigationArrows]="false" [pauseOnHover]="false" [pauseOnFocus]="false">
-    <ng-template ngFor let-image [ngForOf]="images">
-        <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
-                <!-- Use the 'src' and 'data' properties of the 'image' object -->
-                <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + image.data)"
-                    [alt]="image.src" />
-            </div>
-        </ng-template>
+<!-- <ngb-carousel
+  [showNavigationArrows]="false"
+  [pauseOnHover]="false"
+  [pauseOnFocus]="false"
+>
+  <ng-template ngFor let-image [ngForOf]="images">
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        
+        <img
+          [src]="
+            sanitizer.bypassSecurityTrustUrl(
+              'data:image/png;base64,' + image.data
+            )
+          "
+          [alt]="image.src"
+        />
+      </div>
     </ng-template>
-</ngb-carousel>
+  </ng-template>
+</ngb-carousel> -->
+
+<!-- carousel.component.html -->
+<div class="carousel-container">
+  <ngb-carousel
+    [showNavigationArrows]="true"
+    [showNavigationIndicators]="true"
+    [pauseOnHover]="true"
+    [interval]="5000"
+    class="premium-carousel"
+  >
+    <ng-template ngFor let-image [ngForOf]="images">
+      <ng-template ngbSlide>
+        <div class="slide-content">
+          <div class="image-wrapper">
+            <img
+              [src]="
+                sanitizer.bypassSecurityTrustUrl(
+                  'data:image/png;base64,' + image.data
+                )
+              "
+              [alt]="image.src"
+              class="carousel-image"
+            />
+            <div class="overlay"></div>
+          </div>
+          <!-- <div class="caption">
+            <h3>{{ image.src }}</h3>
+          </div> -->
+        </div>
+      </ng-template>
+    </ng-template>
+  </ngb-carousel>
+</div>

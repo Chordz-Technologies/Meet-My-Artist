@@ -9,11 +9,10 @@ import { AuthService } from 'src/app/Services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
-  user_model: user_model = new user_model()
+  user_model: user_model = new user_model();
   loginform!: FormGroup;
   hidePassword: boolean = true;
   isUserLoggedIn!: boolean;
@@ -37,19 +36,25 @@ export class LoginComponent implements OnInit {
     this.loginform = this.fb.group({
       u_email: [''],
       u_password: [''],
-      options: ['']
-    })
+      options: [''],
+    });
   }
 
-  constructor(private logindata: ServiceService, private fb: FormBuilder, private toastr: ToastrService, private router: Router, private authService: AuthService) {
+  constructor(
+    private logindata: ServiceService,
+    private fb: FormBuilder,
+    private toastr: ToastrService,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.authService.isLoggedIn.subscribe((loggedIn) => {
       this.isUserLoggedIn = loggedIn;
     });
   }
 
   loginpost_data() {
-    this.user_model.uemail = this.loginform.value.u_email,
-      this.user_model.upassword = this.loginform.value.u_password;
+    (this.user_model.uemail = this.loginform.value.u_email),
+      (this.user_model.upassword = this.loginform.value.u_password);
     const selectedOption = this.loginform.value.options;
     this.user_model.utypeartist = selectedOption === '2' ? 1 : 0;
     this.user_model.utypeorganizer = selectedOption === '1' ? 1 : 0;
@@ -60,35 +65,74 @@ export class LoginComponent implements OnInit {
         if (result.message === 'Valid User' && result.user_type === 'user') {
           const userId = result.user_id;
           const status = result.status;
+          const userDetails = {
+            name: result.name,
+            email: result.email,
+            contact: result.contact,
+          };
           this.router.navigate(['/']);
           this.toastr.success('Login successful as a user!', 'Success');
           const userType: string = 'user';
-          this.authService.login(userType, userId.toString(), status);
-
-        } else if (result.message === 'Valid User' && result.user_type === 'artist') {
+          this.authService.login(
+            userType,
+            userId.toString(),
+            status,
+            userDetails
+          );
+        } else if (
+          result.message === 'Valid User' &&
+          result.user_type === 'artist'
+        ) {
           const userId = result.user_id;
           const status = result.status;
+          const userDetails = {
+            name: result.name,
+            email: result.email,
+            contact: result.contact,
+          };
           this.router.navigate(['/artistsHome']);
           this.toastr.success('Login successful as an artist!', 'Success');
           const userType: string = 'artist';
-          this.authService.login(userType, userId.toString(), status);
-
-        } else if (result.message === 'Valid User' && result.user_type === 'organizer') {
+          this.authService.login(
+            userType,
+            userId.toString(),
+            status,
+            userDetails
+          );
+        } else if (
+          result.message === 'Valid User' &&
+          result.user_type === 'organizer'
+        ) {
           const userId = result.user_id;
           const status = result.status;
+          const userDetails = {
+            name: result.name,
+            email: result.email,
+            contact: result.contact,
+          };
           this.router.navigate(['/']);
           this.toastr.success('Login successful as an organizer!', 'Success');
           const userType: string = 'organizer';
-          this.authService.login(userType, userId.toString(), status);
+          this.authService.login(
+            userType,
+            userId.toString(),
+            status,
+            userDetails
+          );
         } else {
-          this.toastr.error('Login failed. Please check your credentials.', 'Error');
+          this.toastr.error(
+            'Login failed. Please check your credentials.',
+            'Error'
+          );
         }
-
       },
       error: (err: any) => {
         console.error('Error:', err);
-        this.toastr.error('Please check your credentials and also select your profile.', 'Error');
-      }
+        this.toastr.error(
+          'Please check your credentials and also select your profile.',
+          'Error'
+        );
+      },
     });
   }
 

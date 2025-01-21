@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-organizer-profile-page',
   templateUrl: './organizer-profile-page.component.html',
-  styleUrls: ['./organizer-profile-page.component.css']
+  styleUrls: ['./organizer-profile-page.component.css'],
 })
 export class OrganizerProfilePageComponent implements OnInit {
   organizer: any;
@@ -19,31 +19,40 @@ export class OrganizerProfilePageComponent implements OnInit {
   url = 'https://api.meetmyartist.in/';
   userType = localStorage.getItem('userType');
 
-
-  constructor(private service: ServiceService, private router: Router, private activatedRoute: ActivatedRoute, public sanitizer: DomSanitizer, private toastr: ToastrService) { }
+  constructor(
+    private service: ServiceService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    public sanitizer: DomSanitizer,
+    private toastr: ToastrService
+  ) {}
 
   openModal() {
-    this.modalDisplay = 'block';
+    if (!this.isUserLoggedIn) {
+      // Only open the modal if not logged in or not subscribed
+      console.log('Opening Modal');
+      this.modalDisplay = 'block';
+    }
   }
 
   closeModal() {
+    console.log('Closing Modal');
     this.modalDisplay = 'none';
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(val => {
+    this.activatedRoute.params.subscribe((val) => {
       this.userId = val['uid'];
       this.fetchData(this.userId);
-      this.service.getUserDetailsByID(this.userId)
-        .subscribe({
-          next: (res: any) => {
-            this.organizer = res.user_details; // Extracting the array of artists
-          },
-          error: (err: any) => {
-            console.log(err);
-          }
-        })
-    })
+      this.service.getUserDetailsByID(this.userId).subscribe({
+        next: (res: any) => {
+          this.organizer = res.user_details; // Extracting the array of artists
+        },
+        error: (err: any) => {
+          console.log(err);
+        },
+      });
+    });
 
     const status = localStorage.getItem('status');
     if (status === 'Active') {
@@ -55,12 +64,15 @@ export class OrganizerProfilePageComponent implements OnInit {
 
   fetchData(userId: number) {
     this.service.getMultipleImages(userId).subscribe(
-      (res => {
-        this.images = Object.keys(res.base64images).map(key => ({ src: key, data: res.base64images[key] }));
-      }),
-      (error => {
+      (res) => {
+        this.images = Object.keys(res.base64images).map((key) => ({
+          src: key,
+          data: res.base64images[key],
+        }));
+      },
+      (error) => {
         console.log(error);
-      })
+      }
     );
     // this.service.getArtistProfileImage(userId).subscribe(
     //   (res => {
@@ -75,6 +87,7 @@ export class OrganizerProfilePageComponent implements OnInit {
 
   onLinkClick(event: MouseEvent, link: string): void {
     event.preventDefault();
+    // Debugging line
     if (!this.isUserLoggedIn) {
       this.openModal();
     } else {

@@ -1,63 +1,79 @@
-<section>
-    <div class="container py-5">
+<section class="subscription-section">
+  <div class="container">
+    <header class="text-center mb-5">
+      <h1 class="main-title">Organizer Subscription Plans</h1>
+      <p class="subtitle">Choose the perfect plan to manage your events</p>
+    </header>
 
-        <!-- FOR DEMO PURPOSE -->
-        <header class="text-center mb-5 text-white">
-            <div class="row">
-                <div class="col-lg-7 mx-auto">
-                    <h1>Organizer Pricing Table</h1>
-                </div>
+    <div class="row justify-content-center">
+      <div
+        *ngFor="let subscription of organizerSubscriptions"
+        class="col-lg-4 col-md-6 mb-4"
+      >
+        <div
+          class="pricing-card"
+          [ngClass]="{ popular: subscription.sname === 'Premium' }"
+        >
+          <div class="pricing-header">
+            <h2 class="plan-name">{{ subscription.sname }}</h2>
+            <div class="price">
+              <!-- <span class="currency">₹</span> -->
+              <span class="amount">₹ {{ subscription.sprice }}</span>
             </div>
-        </header>
-        <!-- END -->
-
-        <div class="row text-center align-items-end">
-            <!-- Pricing Table-->
-            <div *ngFor="let subscription of organizerSubscriptions" class="col-lg-3 mb-5 mb-lg-0 h-100">
-                <div class="bg-white p-5 rounded-lg shadow">
-                    <h1 class="h6 text-uppercase font-weight-bold mb-4">
-                        {{ subscription.sname }}
-                    </h1>
-                    <h2 class="h1 font-weight-bold">
-                        {{ subscription.sprice
-                        }}<span class="text-small font-weight-normal ml-2"></span>
-                    </h2>
-
-                    <div class="custom-separator my-4 mx-auto bg-primary"></div>
-
-                    <ul class="list-unstyled text-small text-start">
-                        <li *ngFor="let benefit of subscription.sbenefits.split(',')" class="mb-3">
-                            <i class="fa fa-check mr-2 text-primary"></i>&nbsp;{{
-                            benefit.trim()
-                            }}
-                        </li>
-                    </ul>
-
-                    <!-- Check if sbenefitsmuted is not empty before rendering -->
-                    <ul *ngIf="subscription.sbenefitsmuted" class="list-unstyled text-small text-start">
-                        <li *ngFor="
-                let mutedBenefit of subscription.sbenefitsmuted.split(',')
-              " class="mb-3">
-                            <i class="fa fa-times me-2 text-danger"></i>&nbsp;
-                            {{ mutedBenefit.trim() }}
-                        </li>
-                    </ul>
-                    <ng-template #initialButton>
-                        <a class="btn btn-primary btn-block p-3 shadow rounded-pill" routerLinkActive="active"
-                            routerLink="/login">Subscribe</a>
-                    </ng-template>
-                    <ng-template #loggedIn>
-                        <ng-container *ngIf="userType === 'organizer' || 'user'">
-                            <a class="btn btn-primary btn-block p-3 shadow rounded-pill" routerLinkActive="active"
-                                routerLink="/pricing">Subscribe</a>
-                        </ng-container>
-                    </ng-template>
-                    <ng-container *ngIf="isUserLoggedIn; else initialButton">
-                        <ng-container *ngTemplateOutlet="loggedIn"></ng-container>
-                    </ng-container>
-                </div>
-            </div>
-            <!-- END -->
+          </div>
+          <div class="pricing-body">
+            <ul class="features">
+              <li *ngFor="let benefit of subscription.sbenefits.split(',')">
+                <i class="fas fa-check"></i>
+                {{ benefit.trim() }}
+              </li>
+            </ul>
+            <ul class="features muted" *ngIf="subscription.sbenefitsmuted">
+              <li
+                *ngFor="
+                  let mutedBenefit of subscription.sbenefitsmuted.split(',')
+                "
+              >
+                <i class="fas fa-times"></i>
+                {{ mutedBenefit.trim() }}
+              </li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <ng-template #initialButton>
+              <a
+                class="btn-subscribe"
+                routerLinkActive="active"
+                routerLink="/login"
+              >
+                Subscribe
+              </a>
+            </ng-template>
+            <ng-template #loggedIn>
+              <ng-container
+                *ngIf="userType === 'organizer' || userType === 'user'"
+              >
+                <button
+                  class="btn-subscribe"
+                  (click)="handleSubscription(subscription)"
+                  [disabled]="isLoading"
+                >
+                  <span *ngIf="!isLoading">Subscribe</span>
+                  <span
+                    *ngIf="isLoading"
+                    class="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                </button>
+              </ng-container>
+            </ng-template>
+            <ng-container *ngIf="isUserLoggedIn; else initialButton">
+              <ng-container *ngTemplateOutlet="loggedIn"></ng-container>
+            </ng-container>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>

@@ -1,146 +1,123 @@
-<section class="footer">
-    <footer class="text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-                    <img src="./assets/Meet-my-artist-footer.png" alt="Logo" class="logo"
-                        [routerLink]="userType === 'artist' ? '/artistsHome' : '/'">
-                    <!-- <h4>Meet My Artist</h4> -->
-                    <p><br>
-                        Welcome to "Meet My Artist" – Your Gateway to the World of Art and Creativity!
-                        <br><br>
-                        Are you passionate about discovering unique and talented artists? Look no further! "Meet My
-                        Artist" is your go-to platform, designed to connect art enthusiasts with a diverse array of
-                        skilled and emerging artists from around the globe.
-                    </p>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                    <h4>Quick Links</h4>
-                    <!-- Initial set of menu items -->
-                    <ng-template #initialMenu>
-                        <ul class="list-unstyled mb-0">
-                            <li>
-                                <a routerLink="" routerLinkActive="active"
-                                    [routerLinkActiveOptions]="{exact:true}">Home</a>
-                            </li>
-                            <li>
-                                <a routerLink="/artists" routerLinkActive="active">Artists</a>
-                            </li>
-                            <li>
-                                <a routerLink="/events" routerLinkActive="active">Events</a>
-                            </li>
-                            <li>
-                                <a routerLink="/products" routerLinkActive="active">Products</a>
-                            </li>
-                            <li>
-                                <a routerLink="/userSubscription" routerLinkActive="active">Subscription Plan</a>
-                            </li>
-                            <!-- <li>
-                                <a>Terms & Conditions</a>
-                            </li>
-                            <li>
-                                <a>Privacy Policy</a>
-                            </li> -->
-                        </ul>
-                    </ng-template>
-                
-
-
-                <!-- Menu items after login -->
-                <ng-template #loggedInMenu>
-                    <!-- Adjust these menu items based on the user's type -->
-                    <ul class="list-unstyled mb-0" *ngIf="userType === 'user'">
-                        <li>
-                            <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
-                        </li>
-                        <li>
-                            <a routerLink="/artists" routerLinkActive="active">Artists</a>
-                        </li>
-                        <li>
-                            <a routerLink="/events" routerLinkActive="active">Events</a>
-                        </li>
-                        <li>
-                            <a routerLink="/products" routerLinkActive="active">Products</a>
-                        </li>
-                        <li>
-                            <a routerLink="/userSubscription" routerLinkActive="active">Subscription Plan</a>
-                        </li>
-                    </ul>
-
-                    <ul class="list-unstyled mb-0" *ngIf="userType === 'artist'">
-                        <li>
-                            <a routerLink="/artistsHome" routerLinkActive="active"
-                                [routerLinkActiveOptions]="{exact:true}">Home</a>
-                        </li>
-                        <li>
-                            <a routerLink="/organizer" routerLinkActive="active">Organizers</a>
-                        </li>
-                        <li>
-                            <a routerLink="/events" routerLinkActive="active">Events</a>
-                        </li>
-                        <li>
-                            <a routerLink="/products" routerLinkActive="active">Products</a>
-                        </li>
-                        <li>
-                            <a routerLink="/artistSubscription" routerLinkActive="active">Subscription Plan</a>
-                        </li>
-                    </ul>
-
-                    <ul class="list-unstyled mb-0" *ngIf="userType === 'organizer'">
-                        <li>
-                            <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
-                        </li>
-                        <li>
-                            <a routerLink="/artists" routerLinkActive="active">Artists</a>
-                        </li>
-                        <li>
-                            <a routerLink="/events" routerLinkActive="active">Events</a>
-                        </li>
-                        <li>
-                            <a routerLink="/products" routerLinkActive="active">Products</a>
-                        </li>
-                        <li>
-                            <a routerLink="/organizerSubscription" routerLinkActive="active">Subscription
-                                Plan</a>
-                        </li>
-                    </ul>
-                </ng-template>
-
-                <!-- Display the appropriate set of menu items based on login status -->
-                <ng-container *ngIf="isUserLoggedIn; else initialMenu">
-                    <ng-container *ngTemplateOutlet="loggedInMenu"></ng-container>
+<!-- footer.component.html -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img
+          src="./assets/meeAalogo.png"
+          alt="Logo"
+          class="logo"
+          [routerLink]="userType === 'artist' ? '/artistsHome' : '/'"
+        />
+        <p class="footer-quote">
+          "Welcome to 'Meet My Artist' – Your Gateway to the World of Art and
+          Creativity! Discover unique and talented artists from around the
+          globe."
+        </p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <ng-container *ngIf="isUserLoggedIn; else initialMenu">
+            <ng-container [ngSwitch]="userType">
+              <ng-container *ngSwitchCase="'user'">
+                <li><a routerLink="">Home</a></li>
+                <li><a routerLink="/artists">Artists</a></li>
+                <li><a routerLink="/events">Events</a></li>
+                <li><a routerLink="/products">Products</a></li>
+                <li><a routerLink="/userSubscription">Subscription</a></li>
+              </ng-container>
+              <ng-container *ngIf="isUserLoggedIn; else initialMenu">
+                <ng-container [ngSwitch]="userType">
+                  <ng-container *ngSwitchCase="'user'">
+                    <li><a routerLink="">Home</a></li>
+                    <li><a routerLink="/artists">Artists</a></li>
+                    <li><a routerLink="/events">Events</a></li>
+                    <li><a routerLink="/products">Products</a></li>
+                    <li><a routerLink="/userSubscription">Subscription</a></li>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'artist'">
+                    <li><a routerLink="/artistsHome">Home</a></li>
+                    <li><a routerLink="/organizer">Organizers</a></li>
+                    <li><a routerLink="/events">Events</a></li>
+                    <li><a routerLink="/products">Products</a></li>
+                    <li>
+                      <a routerLink="/artistSubscription">Subscription</a>
+                    </li>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'organizer'">
+                    <li><a routerLink="">Home</a></li>
+                    <li><a routerLink="/artists">Artists</a></li>
+                    <li><a routerLink="/events">Events</a></li>
+                    <li><a routerLink="/products">Products</a></li>
+                    <li>
+                      <a routerLink="/organizerSubscription">Subscription</a>
+                    </li>
+                  </ng-container>
                 </ng-container>
-                </div>
-                <!-- </div> -->
-                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                    <h4 class="mb-0">Contact Us</h4>
-                    <form (ngSubmit)="sendEmail()">
-                        <br>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="subject" name="subject"
-                                [(ngModel)]="emailData.subject" placeholder="Your Subject" required>
-                        </div><br>
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="email" name="email"
-                                [(ngModel)]="emailData.email" placeholder="Your Email Id" required>
-                        </div><br>
-                        <div class="form-group">
-                            <textarea type="text" class="form-control" id="message" name="message"
-                                [(ngModel)]="emailData.message" placeholder="Your Message" required></textarea>
-                        </div><br>
-                        <button type="submit" class="btn">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+          <ng-template #initialMenu>
+            <li><a routerLink="">Home</a></li>
+            <li><a routerLink="/artists">Artists</a></li>
+            <li><a routerLink="/events">Events</a></li>
+            <li><a routerLink="/products">Products</a></li>
+            <li><a routerLink="/userSubscription">Subscription</a></li>
+          </ng-template>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <form (ngSubmit)="sendEmail()" class="contact-form">
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            [(ngModel)]="emailData.subject"
+            placeholder="Subject"
+            required
+          />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="emailData.email"
+            placeholder="Email"
+            required
+          />
+          <textarea
+            id="message"
+            name="message"
+            [(ngModel)]="emailData.message"
+            placeholder="Message"
+            required
+          ></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>
+        &copy; 2024
+        <a [routerLink]="userType === 'artist' ? '/artistsHome' : '/'"
+          >Meet My Artist</a
+        >
+        | Crafted by
+        <a href="https://chordztechnologies.com/" target="_blank"
+          >Chordz Technologies</a
+        >
+      </p>
+    </div>
+  </div>
+</footer>
 
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-            © 2024 All Rights Reserved By
-            <a class="copyright" [routerLink]="userType === 'artist' ? '/artistsHome' : '/'">Meet My Artist</a>
-            | Distributed By
-            <a class="copyright" href="https://chordztechnologies.com/" target="_blank">Chordz Technologies Pvt.
-                Ltd.</a>
-        </div>
-    </footer>
-</section>
+<button
+  class="back-to-top"
+  (click)="scrollToTop()"
+  [ngClass]="{ show: showBackToTop }"
+>
+  <i class="fas fa-chevron-up"></i>
+</button>

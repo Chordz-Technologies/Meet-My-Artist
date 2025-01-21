@@ -1,35 +1,363 @@
-a {
+:root {
+    --primary-color: #6c63ff;
+    --secondary-color: #ff6b6b;
+    --background-color: #f4f7f9;
+    --card-bg: #ffffff;
+    --text-color: #2d3748;
+    --accent-color: #4facfe;
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .artist-card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+  
+  .artist-card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-content {
+    display: flex;
+    padding: 2.5rem;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  
+  .profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
+  }
+  
+  .artist-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+  }
+  
+  .artist-category {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.4rem 1.2rem;
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 107, 107, 0.2));
+    border-radius: 50px;
+    display: inline-block;
+    font-weight: 600;
+  }
+  
+  .artist-location {
+    color: #718096;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+  }
+  
+  .experience-badge {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: rgb(2, 2, 2);
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-block;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  
+  .actions-section {
+    border-left: 2px dashed #e2e8f0;
+    padding-left: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.2rem;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .social-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: white;
+  }
+  
+  .social-btn:hover {
+    transform: translateY(-5px) rotate(10deg);
+  }
+  
+  .facebook { background: #1877f2; }
+  .instagram { 
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  }
+  
+  .book-now-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: rgb(60, 180, 5);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3);
+  }
+  
+  .book-now-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(79, 172, 254, 0.4);
+  }
+  
+  .website-link {
+    color: #718096;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+  }
+  
+  .website-link:hover {
+    color: var(--primary-color);
+  }
+  
+  .booked-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+  }
+  
+  /* Modal Styles */
+  a {
     cursor: pointer;
 }
 
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    /* background-color: rgba(219, 219, 219, 0.4); */
-    backdrop-filter: blur(8px);
-    /* Add the blur effect */
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /* background-color: rgba(170, 170, 170, 0.4); */
+  backdrop-filter: blur(8px);
+  /* Add the blur effect */
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 40%;
-    border-radius: 20px;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  border-radius: 20px;
+}
+
+.modal-content h4 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #333333;
+}
+
+.modal-content .btn {
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.modal-content .btn-primary {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 5px 15px rgba(101, 125, 241, 0.4);
+}
+
+.modal-content .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(101, 125, 241, 0.6);
+}
+
+.modal-content .btn-secondary {
+  background-color: #f0f0f0;
+  color: #666666;
+  border: none;
+}
+
+.modal-content .btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.modal-content .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.2rem;
+  color: #888888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-content .close-btn:hover {
+  color: #555555;
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .disabled-link {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
+/* Keyframes for animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+  
+  @media (max-width: 768px) {
+    .card-content {
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem;
+    }
+  
+    .actions-section {
+      border-left: none;
+      border-top: 2px dashed #e2e8f0;
+      padding-left: 0;
+      padding-top: 2rem;
+      align-items: center;
+    }
+  
+    .profile-image {
+      width: 150px;
+      height: 150px;
+    }
+  
+    .artist-name {
+      font-size: 1.8rem;
+    }
+  
+    .modal-content {
+      padding: 2rem;
+    }
+  
+    .modal-content h4 {
+      font-size: 1.8rem;
+    }
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .header {
+      padding: 20px 0;
+    }
+    
+    .card-body {
+      padding: 16px !important;
+    }
+    
+    .artist-info h4 {
+      font-size: 1.4rem;
+    }
+    
+    .social-links {
+      justify-content: center;
+    }
+    
+    .profile-icons {
+      text-align: center;
+    }
+  }
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 mat-tree-node {
     cursor: pointer;
 }

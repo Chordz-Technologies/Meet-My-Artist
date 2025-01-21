@@ -1,23 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/Services/auth.service';
 import { ServiceService } from 'src/app/Services/service.service';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit {
   emailData = {
     subject: '',
     email: '',
-    message: ''
+    message: '',
   };
 
   isUserLoggedIn: boolean = false;
   userType: string = '';
+  showBackToTop: boolean = false;
 
-  constructor(private authService: AuthService, private service: ServiceService) { }
+  constructor(
+    private authService: AuthService,
+    private service: ServiceService
+  ) {}
 
   ngOnInit(): void {
     this.authService.isLoggedIn.subscribe((loggedIn) => {
@@ -38,12 +42,20 @@ export class FooterComponent implements OnInit {
         this.emailData = {
           subject: '',
           email: '',
-          message: ''
+          message: '',
         };
       },
       error: (err: any) => {
         console.log(err);
-      }
+      },
     });
+  }
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.showBackToTop = window.pageYOffset > 300;
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

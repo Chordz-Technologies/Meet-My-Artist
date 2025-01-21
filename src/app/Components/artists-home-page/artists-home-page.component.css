@@ -53,7 +53,7 @@
 }
 
 .btn:hover {
-    background: #F0E945;
+    background: #2BAEBF;
     border: none;
 }
 
@@ -106,4 +106,189 @@ table {
         display: none;
     }
 
+}
+
+.events-section {
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+    min-height: 100vh;
+}
+
+.event-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.event-image-wrapper {
+    position: relative;
+    padding-top: 66.67%; /* 3:2 Aspect Ratio */
+    overflow: hidden;
+}
+
+.event-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.event-card:hover .event-image {
+    transform: scale(1.05);
+}
+
+.event-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.1)
+    );
+}
+
+.event-date-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.event-date-badge .date {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: #0968b6;
+    line-height: 1;
+}
+
+.event-date-badge .month {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2f3542;
+    text-transform: uppercase;
+}
+
+.event-content {
+    padding: 25px;
+}
+
+.event-organizer {
+    font-size: 14px;
+    color: #0968b6;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.event-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2f3542;
+    margin-bottom: 16px;
+    line-height: 1.4;
+    display: -webkit-box;
+    display: -moz-box;
+    -webkit-line-clamp: 2;
+    -moz-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
+    background: linear-gradient(45deg, #2f3542, #57606f);
+    background-clip: text;
+    -webkit-background-clip: text;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+.event-details {
+    margin-bottom: 20px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #57606f;
+}
+
+.detail-item i {
+    margin-right: 10px;
+    color: #0968b6;
+    width: 16px;
+}
+
+.book-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #0968b6;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.book-button:hover {
+    background: #03863a;
+    transform: translateY(-2px);
+}
+
+.book-button i {
+    font-size: 18px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .event-content {
+        padding: 20px;
+    }
+    
+    .event-title {
+        font-size: 18px;
+    }
+    
+    .event-date-badge {
+        padding: 8px 12px;
+    }
+    
+    .event-date-badge .date {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .event-card {
+        border-radius: 12px;
+    }
+    
+    .book-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
 }

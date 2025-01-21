@@ -49,6 +49,7 @@ import { SearchPageComponent } from './Components/search-page/search-page.compon
 import { UserEventsComponent } from './Components/user-events/user-events.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
+import { CareerPageComponent } from './Components/career-page/career-page.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { MatSelectModule } from '@angular/material/select';
     PricingPageComponent,
     UpdateRegistrationFormComponent,
     SearchPageComponent,
-    UserEventsComponent
+    UserEventsComponent,
+    CareerPageComponent
   ],
   imports: [
     BrowserModule,

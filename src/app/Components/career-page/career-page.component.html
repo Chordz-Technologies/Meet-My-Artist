@@ -1,0 +1,183 @@
+<div class="career-container">
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <h1>JACKSON BEATS</h1>
+    <p class="tagline">Where Education and Arts Unite</p>
+    <a href="https://jacksonbeats.in/" target="_blank" rel="noopener noreferrer"
+      ><button class="primary-btn">Know About Our Team</button></a
+    >
+  </header>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <div class="content-wrapper">
+      <h2>Join Our Creative Community</h2>
+      <p>
+        Jackson Beats is a premier provider of professional music and dance
+        educators, dedicated to enhancing the educational experience in both
+        international and national schools. Our team consists of highly skilled
+        and passionate teachers who are experts in their fields, committed to
+        fostering a love for the arts in every student they teach.
+      </p>
+    </div>
+  </section>
+
+  <!-- Current Openings -->
+  <section class="positions-section">
+    <h2>Open Positions</h2>
+    <div class="positions-grid">
+      <div class="position-card" *ngFor="let position of positions">
+        <span class="position-tag">{{ position.type }}</span>
+        <h3>{{ position.title }}</h3>
+        <p>Specializations: {{ position.specializations.join(", ") }}</p>
+        <ul class="position-details">
+          <li>
+            <i class="fas fa-map-marker-alt"></i> Locations:
+            {{ position.locations.join(", ") }}
+          </li>
+          <li><i class="fas fa-clock"></i> {{ position.type }}</li>
+          <li>
+            <i class="fas fa-graduation-cap"></i> {{ position.experience }}
+          </li>
+        </ul>
+        <a [href]="generateWhatsAppLink(position.title)" target="_blank">
+          <button class="apply-btn">Apply Now</button></a
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Path Section -->
+  <section class="career-path-section">
+    <h2>Your Growth Journey</h2>
+    <div class="career-timeline">
+      <div class="timeline-item">
+        <div class="timeline-icon">1</div>
+        <div class="timeline-content">
+          <h3>Join Our Team</h3>
+          <p>Begin your journey with comprehensive onboarding and training.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">2</div>
+        <div class="timeline-content">
+          <h3>Skill Development</h3>
+          <p>
+            Access professional development programs and mentorship
+            opportunities.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">3</div>
+        <div class="timeline-content">
+          <h3>Leadership Growth</h3>
+          <p>Take on leadership roles and mentor other educators.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">4</div>
+        <div class="timeline-content">
+          <h3>Global Opportunities</h3>
+          <p>
+            Explore international teaching opportunities and cultural exchange.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section">
+    <h2>Why Choose Jackson Beats?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <i class="fas fa-globe"></i>
+        <h3>Global Network</h3>
+        <p>Join our international community of educators and artists.</p>
+      </div>
+      <div class="benefit-card">
+        <i class="fas fa-graduation-cap"></i>
+        <h3>Professional Growth</h3>
+        <p>Continuous learning and development opportunities.</p>
+      </div>
+      <div class="benefit-card">
+        <i class="fas fa-heart"></i>
+        <h3>Supportive Culture</h3>
+        <p>Work in a collaborative and inspiring environment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let faq of faqs">
+        <div class="faq-question" (click)="toggleFaq($event)">
+          {{ faq.question }}
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>{{ faq.answer }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Modal -->
+  <div class="modal" [class.active]="isModalOpen">
+    <div class="modal-content">
+      <button class="close-btn" (click)="closeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      <h2>Apply Now</h2>
+      <form class="application-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="firstName">First Name *</label>
+            <input type="text" id="firstName" required />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name *</label>
+            <input type="text" id="lastName" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="position">Position *</label>
+          <select id="position" required>
+            <option value="">Select Position</option>
+            <option value="music">Music Education Specialist</option>
+            <option value="dance">Dance Instructor</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Cover Letter</label>
+          <textarea id="message" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="resume">Resume/CV *</label>
+          <input type="file" id="resume" required />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="submit-btn">Submit Application</button>
+          <button type="button" class="cancel-btn" (click)="closeModal()">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

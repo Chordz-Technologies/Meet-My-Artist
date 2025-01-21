@@ -1,4 +1,4 @@
-<mat-toolbar class="desktop">
+<!-- <mat-toolbar class="desktop">
     <div class="center-content">
         <img src="./assets/Meet-my-artist.png" alt="Logo" class="logo"
             [routerLink]="userType === 'artist' ? '/artistsHome' : '/'" style="cursor: pointer;">
@@ -7,12 +7,7 @@
 
         <div class="icons">
             <ng-container *ngIf="userType === 'user'">
-                <!-- <button mat-icon-button routerLink="/notifications">
-                    <mat-icon>notifications</mat-icon>
-                </button>
-                <button mat-icon-button routerLink="wishlist/:uid">
-                    <mat-icon>favorite</mat-icon>
-                </button> -->
+                
                 <button mat-icon-button matTooltip="Manage Event" (click)="eventManageForm()">
                     <mat-icon>event</mat-icon>
                 </button>
@@ -25,13 +20,7 @@
             </ng-container>
 
             <ng-container *ngIf="userType === 'artist'">
-                <!-- Display artist specific icon -->
-                <!-- <button mat-icon-button routerLink="/notifications">
-                    <mat-icon>notifications</mat-icon>
-                </button>
-                <button mat-icon-button routerLink="/wishlist/7">
-                    <mat-icon>favorite</mat-icon>
-                </button> -->
+                
                 <button mat-icon-button matTooltip="Edit Profile" (click)="openUpdateForm()">
                     <mat-icon>person</mat-icon>
                 </button>
@@ -41,13 +30,7 @@
             </ng-container>
 
             <ng-container *ngIf="userType === 'organizer'">
-                <!-- Display artist specific icon -->
-                <!-- <button mat-icon-button routerLink="/notifications">
-                    <mat-icon>notifications</mat-icon>
-                </button>
-                <button mat-icon-button routerLink="wishlist/:uid">
-                    <mat-icon>favorite</mat-icon>
-                </button> -->
+               
                 <button mat-icon-button matTooltip="Manage Event" (click)="eventManageForm()">
                     <mat-icon>event</mat-icon>
                 </button>
@@ -66,4 +49,50 @@
     <div class="center-content">
         <img src="./assets/Meet-my-artist.png" alt="Logo" class="logo">
     </div>
-</mat-toolbar>
+</mat-toolbar> -->
+
+<!-- <header class="header-top">
+  <div class="container">
+    <div class="logo-container">
+      <img
+        src="./assets/Meet-my-artist.png"
+        alt="Logo"
+        class="logo"
+        [routerLink]="userType === 'artist' ? '/artistsHome' : '/'"
+        style="cursor: pointer"
+      />
+    </div>
+    <div class="actions-container" *ngIf="isUserLoggedIn">
+      <ng-container [ngSwitch]="userType">
+        <ng-container *ngSwitchCase="'user'">
+          <button
+            class="action-btn"
+            matTooltip="Manage Event"
+            (click)="eventManageForm()"
+          >
+            <mat-icon>event</mat-icon>
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="'organizer'">
+          <button
+            class="action-btn"
+            matTooltip="Manage Event"
+            (click)="eventManageForm()"
+          >
+            <mat-icon>event</mat-icon>
+          </button>
+        </ng-container>
+      </ng-container>
+      <button
+        class="action-btn"
+        matTooltip="Edit Profile"
+        (click)="openUpdateForm()"
+      >
+        <mat-icon>person</mat-icon>
+      </button>
+      <button class="action-btn" matTooltip="Logout" (click)="logout()">
+        <mat-icon>lock</mat-icon>
+      </button>
+    </div>
+  </div>
+</header> -->

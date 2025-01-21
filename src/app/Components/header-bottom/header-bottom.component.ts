@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-header-bottom',
   templateUrl: './header-bottom.component.html',
-  styleUrls: ['./header-bottom.component.css']
+  styleUrls: ['./header-bottom.component.css'],
 })
 export class HeaderBottomComponent implements OnInit {
   isNavbarCollapsed = true;
@@ -18,10 +18,15 @@ export class HeaderBottomComponent implements OnInit {
   selectedDate: string = '';
   userId = this.getUserId();
   showEventModal = false;
+  isMenuOpen = false;
   // userType1 = localStorage.getItem('userType');
 
-
-  constructor(private authService: AuthService, private toastr: ToastrService, private router: Router, private service: ServiceService) { }
+  constructor(
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router: Router,
+    private service: ServiceService
+  ) {}
 
   ngOnInit(): void {
     this.authService.isLoggedIn.subscribe((loggedIn) => {
@@ -108,8 +113,12 @@ export class HeaderBottomComponent implements OnInit {
       },
       error: (err: any) => {
         console.error(err);
-      }
+      },
     });
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 
   logout() {

@@ -1,4 +1,4 @@
-<div class="container text-center pt-5 pb-5">
+<!-- <div class="container text-center pt-5 pb-5">
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-12 " *ngFor="let product of products">
             <div class="card my-3 pt-2" id="product-card">
@@ -13,4 +13,44 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<!-- Products Section -->
+<section class="products-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2 class="section-title">Featured Products</h2>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card" *ngFor="let product of products">
+        <div class="product-image">
+          <img
+            [src]="url + 'getProductPhoto/' + product.pid"
+            [alt]="product.pmodel"
+          />
+          <div class="product-overlay">
+            <a
+              [href]="
+                'https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to purchase ' +
+                product.pmodel
+              "
+              target="_blank"
+              class="buy-btn"
+            >
+              <i class="fab fa-whatsapp"></i>
+              Buy Now
+            </a>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-brand">{{ product.pbrand }}</h3>
+          <p class="product-model">{{ product.pmodel | slice : 0 : 70 }}...</p>
+          <div class="product-price">
+            <span class="price-tag">₹{{ product.pprice }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,79 +1,38 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-1">
-            <hr class="custom-line">
-        </div>
-        <div class="col-md-4 col-12">
-            <h1 class="text-center">Explore With Us</h1>
-        </div>
-        <div class="col-md-4 col-1">
-            <hr class="custom-line">
-        </div>
+<!-- explore.component.html -->
+<section class="explore-section">
+  <div class="explore-background">
+    <div class="background-pattern"></div>
+  </div>
+  <div class="container">
+    <div class="section-header">
+      <div class="header-line"></div>
+      <h2 class="section-title">Explore With Us</h2>
+      <div class="header-line"></div>
     </div>
-    <div class="row" routerLink="/organizer">
-        <div class="col-md-3">
-            <div class="card shadow p-3 mb-5 bg-white rounded">
-                <div class="card-data">
-                    <img src="./assets/looking-for/studio.png" class="card-img-top" alt="Image Alt Text">
-                    <h4>Recording Studio</h4>
-                </div>
+
+    <div class="explore-grid">
+      <div
+        *ngFor="let item of exploreItems"
+        class="explore-card"
+        routerLink="/organizer"
+      >
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="image-container">
+              <img [src]="item.image" [alt]="item.title" />
             </div>
+            <h3>{{ item.title }}</h3>
+          </div>
+          <div class="card-back">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+            <button class="explore-btn">
+              Explore Now
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
         </div>
-        <div class="col-md-3">
-            <div class="card shadow p-3 mb-5 bg-white rounded">
-                <div class="card-data">
-                    <img src="./assets/looking-for/hall.png" class="card-img-top" alt="Image Alt Text">
-                    <h4 class="text-center">Banquet Hall</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow p-3 mb-5 bg-white rounded">
-                <div class="card-data">
-                    <img src="./assets/looking-for/lawns.png" class="card-img-top" alt="Image Alt Text">
-                    <h4 class="text-center">Lawns</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow p-3 mb-5 bg-white rounded">
-                <div class="card-data">
-                    <img src="./assets/looking-for/event.png" class="card-img-top" alt="Image Alt Text">
-                    <h4>Event Management</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow p-3 mb-5 bg-white rounded">
-                <div class="card-data">
-                    <img src="./assets/looking-for/caterers.png" class="card-img-top" alt="Image Alt Text">
-                    <h4>Caterers</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow p-3 mb-5 bg-white rounded">
-                <div class="card-data">
-                    <img src="./assets/looking-for/dress.png" class="card-img-top" alt="Image Alt Text">
-                    <h4>Customized Dress</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow p-3 mb-5 bg-white rounded">
-                <div class="card-data">
-                    <img src="./assets/looking-for/restaurants.png" class="card-img-top" alt="Image Alt Text">
-                    <h4>Restaurants</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow p-3 mb-5 bg-white rounded">
-                <div class="card-data">
-                    <img src="./assets/looking-for/resto-bar.png" class="card-img-top" alt="Image Alt Text">
-                    <h4>Bar + Restaurants</h4>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>

@@ -1,175 +1,276 @@
 <div class="header">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2" id="myFilterDesktop">
-                <div class="pt-4">
-                    <h2>Filters</h2>
-                    <hr />
-                    <!-- Category Tree for Desktop -->
-                    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-                        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle (click)="nodeClicked(node)">
-                            <button mat-icon-button disabled></button>
-                            {{node.name}}
-                        </mat-tree-node>
-                        <mat-tree-node *matTreeNodeDef="let node; when: hasChild">
-                            <button mat-icon-button matTreeNodeToggle (click)="nodeClicked(node)">
-                                <mat-icon class="mat-icon-rtl-mirror">
-                                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                                </mat-icon>
-                            </button>
-                            {{node.name}}
-                        </mat-tree-node>
-                    </mat-tree>
-                </div>
-            </div>
-            <div id="myFilterMobile">
-                <div class="col-md-6">
-                    <!-- Category Dropdown for Mobile -->
-                    <mat-form-field style="padding: 20px 5px 5px 0; width:50%">
-                        <mat-label>Select Category</mat-label>
-                        <mat-select [(value)]="selectedCategory" (selectionChange)="nodeClicked1(selectedCategory)">
-                            <mat-option *ngFor="let category of treeData$ | async" [value]="category.name">
-                                {{ category.name }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field style="padding: 20px 0 5px 5px; width:50%" *ngIf="selectedCategory">
-                        <mat-label>Select Subcategory</mat-label>
-                        <mat-select [(value)]="selectedSubcategory"
-                            (selectionChange)="nodeClicked1(selectedSubcategory)">
-                            <mat-option *ngFor="let subcategory of getSubcategories(selectedCategory)"
-                                [value]="subcategory">
-                                {{ subcategory }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
-
-            <div class="col-md-10 bg-white" id="artistsSection">
-                <div class="container pt-2">
-                    <section class="mt-3">
-                        <div class="row justify-content-center align-items-center h-50">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xl-10">
-                                <div *ngFor="let artist of filteredArtists" class="mb-3">
-                                    <div class="card shadow p-3 mb-3 bg-white rounded">
-                                        <div class="card-body p-1 d-md-flex text-center text-md-left">
-                                            <div class="col-lg-2 col-md-3 col-sm-12 ms-md-5 my-2 d-flex flex-column">
-                                                <img [src]="url + 'getProfilePhoto/' + artist.uid" alt="Profile image"
-                                                    class="img-fluid my-4 mb-1 rounded-circle mx-auto"
-                                                    style="width: 150px; height: 150px; z-index: 1" />
-                                                <!-- <button mat-button class="text-center">
-                                                    <span><b>{{ artist.alikes }} </b>
-                                                        <i class="fa fa-thumbs-up" style="font-size: 18px;"></i></span>
-                                                </button> -->
-                                            </div>
-                                            <div class="col-lg-3 col-md-4 col-sm-12 artist-info mt-1">
-                                                <h4 class="mb-3 mt-1">{{ artist.uname }}</h4>
-                                                <p>{{ artist.acategory }}, {{artist.asubcategory}}</p>
-                                                <p>{{ artist.uaddress | slice:0:10 }}, <b>{{artist.ucity}}</b></p>
-                                                <p>Experience: {{ artist.aworkexperience }}</p>
-                                                <button class="btn border border-secondary" id="profilebtn"
-                                                    (click)="navigateToProfile(artist.uid)"><i class="fa fa-user"></i>
-                                                    View Profile</button>
-                                            </div>
-                                            <!-- <button mat-button>
-                                                    <i class="far fa-heart" style="font-size: 20px;"></i>
-                                                </button> -->
-
-                                            <div id="myModal" class="modal" [style.display]="modalDisplay">
-                                                <!-- Modal content -->
-                                                <div class="modal-content">
-                                                    <h4>You want to subscribe first!</h4><br>
-                                                    <div style="display: flex; margin: auto;">
-                                                        <button class="btn" (click)="Subscription()">Subscription
-                                                            Plan</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <button class="btn" (click)="closeModal()">Close</button>
-                                                    </div><br>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-3 col-sm-12 profile-icons ms-auto ms-md-6 mt-4">
-                                                <div class="social-links">
-                                                    <a class="btn rounded-circle bg-primary text-white me-1"
-                                                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                                        (click)="onLinkClick($event, artist.afblink)"><i
-                                                            class="fab fa-facebook-f"></i></a>
-                                                    <a class="btn btn-sm rounded-circle text-white me-1"
-                                                        style="background: linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);"
-                                                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                                        (click)="onLinkClick($event, artist.ainstalink)"><i
-                                                            class="fab fa-instagram"></i></a>
-                                                    <!-- <a class="btn btn-sm rounded-circle text-white bg-primary me-1"
-                                                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                                        (click)="onLinkClick($event, '#')"><i
-                                                            class="fab fa-linkedin-in"></i></a> -->
-                                                </div>
-                                                <p>
-                                                    <a [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                                        (click)="onLinkClick($event, 'https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to collaborate with artist ' + artist.uname + '.')"
-                                                        class="btn border border-secondary bg-white py-2 mt-3">
-                                                        <i class="fab fa-whatsapp"
-                                                            style="background: rgb(6, 199, 6); padding: 5px; border-radius: 50%; color: white;"></i>
-                                                        Book Now</a>
-                                                </p>
-                                                <p style="font-size: 13px; width: 100%;">
-                                                    <i class="fa fa-globe" style="color: rgb(57, 145, 252);"></i><a
-                                                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
-                                                        (click)="onLinkClick($event, artist.awebsite)"
-                                                        class="text-decoration-none py-3 px-2 mt-3">{{
-                                                        artist.awebsite }}</a>
-                                                </p>
-                                                <h3 class="text-danger" style="font-size: 13px;"
-                                                    *ngIf="!artist.abookeddate || (artist.abookeddate.length > 0 && artist.abookeddate[0] !== '[]' && !isPastDate(artist.abookeddate))">
-                                                    Artist booked for {{ isBookedToday(artist.abookeddate) ?
-                                                    'Today' : artist.abookeddate }}.
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                <div class="row justify-content-center mt-3">
-                    <div class="col-12 col-md-10 col-xl-10 text-center">
-                        <mat-paginator [length]="artists.length" [pageSize]="pageSize" (page)="onPageChange($event)"
-                            showFirstLastButtons>
-                        </mat-paginator>
-                    </div>
-                </div>
-            </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2" id="myFilterDesktop">
+        <div class="pt-4">
+          <h2>Filters</h2>
+          <hr />
+          <!-- Category Tree for Desktop -->
+          <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+            <mat-tree-node
+              *matTreeNodeDef="let node"
+              matTreeNodeToggle
+              (click)="nodeClicked(node)"
+            >
+              <button mat-icon-button disabled></button>
+              {{ node.name }}
+            </mat-tree-node>
+            <mat-tree-node *matTreeNodeDef="let node; when: hasChild">
+              <button
+                mat-icon-button
+                matTreeNodeToggle
+                (click)="nodeClicked(node)"
+              >
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{
+                    treeControl.isExpanded(node)
+                      ? "expand_more"
+                      : "chevron_right"
+                  }}
+                </mat-icon>
+              </button>
+              {{ node.name }}
+            </mat-tree-node>
+          </mat-tree>
         </div>
+      </div>
+      <div id="myFilterMobile">
+        <div class="col-md-6">
+          <!-- Category Dropdown for Mobile -->
+          <mat-form-field style="padding: 20px 5px 5px 0; width: 50%">
+            <mat-label>Select Category</mat-label>
+            <mat-select
+              [(value)]="selectedCategory"
+              (selectionChange)="nodeClicked1(selectedCategory)"
+            >
+              <mat-option
+                *ngFor="let category of treeData$ | async"
+                [value]="category.name"
+              >
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field
+            style="padding: 20px 0 5px 5px; width: 50%"
+            *ngIf="selectedCategory"
+          >
+            <mat-label>Select Subcategory</mat-label>
+            <mat-select
+              [(value)]="selectedSubcategory"
+              (selectionChange)="nodeClicked1(selectedSubcategory)"
+            >
+              <mat-option
+                *ngFor="let subcategory of getSubcategories(selectedCategory)"
+                [value]="subcategory"
+              >
+                {{ subcategory }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-md-10 bg-white" id="artistsSection">
+        <div class="container pt-2">
+          <section class="mt-3">
+            <div class="row justify-content-center align-items-center h-50">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xl-10">
+                <div class="artist-card" *ngFor="let artist of filteredArtists">
+                  <div class="card-content">
+                    <div class="profile-section">
+                      <img
+                        [src]="url + 'getProfilePhoto/' + artist.uid"
+                        [alt]="artist.uname"
+                        class="profile-image"
+                      />
+                    </div>
+
+                    <div class="artist-info">
+                      <h2 class="artist-name">{{ artist.uname }}</h2>
+                      <span class="artist-category"
+                        >{{ artist.acategory }} •
+                        {{ artist.asubcategory }}</span
+                      >
+
+                      <div class="artist-location">
+                        <mat-icon>location_on</mat-icon>
+                        <span
+                          >{{ artist.uaddress | slice : 0 : 10 }},
+                          <strong>{{ artist.ucity }}</strong></span
+                        >
+                      </div>
+                      <div class="experience-badge">
+                        <mat-icon>star</mat-icon>
+                        <span> {{ artist.aworkexperience }} Experience </span>
+                      </div>
+
+                      <button
+                        mat-raised-button
+                        color="primary"
+                        class="view-profile-btn"
+                        (click)="navigateToProfile(artist.uid)"
+                      >
+                        <mat-icon>person</mat-icon>
+                        View Full Profile
+                      </button>
+                    </div>
+
+                    <div class="actions-section">
+                      <div class="social-links">
+                        <button
+                          class="social-btn facebook"
+                          [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                          (click)="onLinkClick($event, artist.afblink)"
+                        >
+                          <i class="fab fa-facebook-f"></i>
+                        </button>
+
+                        <button
+                          class="social-btn instagram"
+                          [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                          (click)="onLinkClick($event, artist.ainstalink)"
+                        >
+                          <i class="fab fa-instagram"></i>
+                        </button>
+                      </div>
+
+                      <button
+                        class="book-now-btn"
+                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                        (click)="
+                          onLinkClick(
+                            $event,
+                            'https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to collaborate with artist ' +
+                              artist.uname +
+                              '.'
+                          )
+                        "
+                      >
+                        <i class="fab fa-whatsapp"></i>
+                        Book Now
+                      </button>
+
+                      <a
+                        [href]="artist.awebsite"
+                        class="website-link"
+                        [ngClass]="{ 'disabled-link': !isUserLoggedIn }"
+                        (click)="onLinkClick($event, artist.awebsite)"
+                      >
+                        <mat-icon>language</mat-icon>
+                        {{ artist.awebsite }}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div
+                    class="booked-badge"
+                    *ngIf="
+                      !artist.abookeddate ||
+                      (artist.abookeddate.length > 0 &&
+                        artist.abookeddate[0] !== '[]' &&
+                        !isPastDate(artist.abookeddate))
+                    "
+                  >
+                    Booked for
+                    {{
+                      isBookedToday(artist.abookeddate)
+                        ? "Today"
+                        : artist.abookeddate
+                    }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="row justify-content-center mt-3">
+          <div class="col-12 col-md-10 col-xl-10 text-center">
+            <mat-paginator
+              [length]="artists.length"
+              [pageSize]="pageSize"
+              (page)="onPageChange($event)"
+              showFirstLastButtons
+            >
+            </mat-paginator>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<div id="myModal" class="modal" [style.display]="modalDisplay">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close-btn" (click)="closeModal()">×</span>
+    <h4>You need to subscribe first!</h4>
+    <p>
+      Get access to exclusive features and content by subscribing to our plan.
+    </p>
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      "
+    >
+      <button class="btn btn-primary" (click)="Subscription()">
+        Subscription Plan
+      </button>
+      <button class="btn btn-secondary" (click)="closeModal()">Close</button>
+    </div>
+  </div>
 </div>
 
 <app-looking-for-this></app-looking-for-this>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-2 col-6">
-            <h1>Products</h1>
-        </div>
-        <div class="col-md-7 col-1">
-            <hr class="custom-line">
-        </div>
-        <div class="col-md-3 col-5">
-            <button type="button" class="btn cat-btn" style="float: right;" routerLink="/products">View More</button>
-        </div>
+<!-- Products Section -->
+<section class="products-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Featured Products</h2>
+      <div class="header-actions">
+        <div class="header-line"></div>
+        <button class="view-more-btn" routerLink="/products">
+          View All Products
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
     </div>
-    <div class="row pt-5 pb-5">
-        <div class="col-lg-3 col-md-4 col-sm-12 " *ngFor="let product of products">
-            <div class="card my-3 pt-2" id="product-card">
-                <img [src]="url + 'getProductPhoto/' + product.pid" class="card-img-top" alt="product-image">
-                <div id="product-body"><br>
-                    <h2 class="">{{product.pbrand}}</h2>
-                    <p class="">{{product.pmodel | slice:0:70 }}...</p>
-                    <span class="mx-2" style="font-size: large; font-weight: 600;">₹ {{product.pprice}}</span>
-                    <a href="https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to purchase {{product.pmodel}}."
-                        target="_blank" class="btn mx-2" id="buy-btn">Buy Now</a>
-                </div>
-            </div>
+
+    <div class="products-grid">
+      <div class="product-card" *ngFor="let product of products">
+        <div class="product-image">
+          <img
+            [src]="url + 'getProductPhoto/' + product.pid"
+            [alt]="product.pmodel"
+          />
+          <div class="product-overlay">
+            <a
+              [href]="
+                'https://api.whatsapp.com/send?phone=917517311326&text=Hello, I am interested to purchase ' +
+                product.pmodel
+              "
+              target="_blank"
+              class="buy-btn"
+            >
+              <i class="fab fa-whatsapp"></i>
+              Buy Now
+            </a>
+          </div>
         </div>
+        <div class="product-info">
+          <h3 class="product-brand">{{ product.pbrand }}</h3>
+          <p class="product-model">{{ product.pmodel | slice : 0 : 70 }}...</p>
+          <div class="product-price">
+            <span class="price-tag">₹{{ product.pprice }}</span>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
